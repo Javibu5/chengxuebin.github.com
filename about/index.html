@@ -104,7 +104,7 @@
 
 
 
-  <meta name="keywords" content="openssl," />
+  <meta name="keywords" content="Ironbin, c++, java, php, javascript, node.js, cef, nw.js, chromium" />
 
 
 
@@ -115,26 +115,17 @@
 
 
 
-<meta name="description" content="首先，推荐一篇非常好的文章：三种解密 HTTPS 流量的方法介绍。下面记录一下这次使用和配置的步骤： 配置 Fiddler1. 打开 HTTPS 设置打开菜单： Tools - Telerik Fiddler Options... - Https  2. 导入根证书在 Https 设置标签页，打开右上角菜单 Actio">
-<meta name="keywords" content="openssl">
-<meta property="og:type" content="article">
-<meta property="og:title" content="配置 Fiddler 和 WireShark 解密 HTTPS 流量">
-<meta property="og:url" content="http://onthink.com/2017/06/11/decrypt-https-tools/index.html">
+<meta name="description" content="我的技术多年一线设计、开发，积累很多『杂』技：C/C++ / Python / Java / PHP / JS / Python。 做过基于 Chromium 的国密安全浏览器调研、设计、开发：  扩展『国密』SSL 算法 域名识别、报警 防注入、防攻击 扩展 IE 内核 插件（NPPlugin、NaCl）&amp;a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ironbin">
+<meta property="og:url" content="http://onthink.com/about/index.html">
 <meta property="og:site_name" content="Ironbin">
-<meta property="og:description" content="首先，推荐一篇非常好的文章：三种解密 HTTPS 流量的方法介绍。下面记录一下这次使用和配置的步骤： 配置 Fiddler1. 打开 HTTPS 设置打开菜单： Tools - Telerik Fiddler Options... - Https  2. 导入根证书在 Https 设置标签页，打开右上角菜单 Actions - Trust Root Certificate  3. 同意系统警告">
+<meta property="og:description" content="我的技术多年一线设计、开发，积累很多『杂』技：C/C++ / Python / Java / PHP / JS / Python。 做过基于 Chromium 的国密安全浏览器调研、设计、开发：  扩展『国密』SSL 算法 域名识别、报警 防注入、防攻击 扩展 IE 内核 插件（NPPlugin、NaCl）&amp;amp; 浏览器扩展开发  以及 Chromium 衍生库改造和基于该库的应用开发：  C">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://onthink.com/images/posts/decrypt_https/fiddler_https.png">
-<meta property="og:image" content="http://onthink.com/images/posts/decrypt_https/fiddler_ca.png">
-<meta property="og:image" content="http://onthink.com/images/posts/decrypt_https/fiddler_ca2.png">
-<meta property="og:image" content="http://onthink.com/images/posts/decrypt_https/wireshark_log.jpg">
-<meta property="og:image" content="http://onthink.com/images/posts/decrypt_https/wireshark_ssl.jpg">
-<meta property="og:image" content="http://onthink.com/images/posts/decrypt_https/wireshark_ssl.jpg">
-<meta property="og:image" content="http://onthink.com/images/posts/decrypt_https/wireshark_key.jpg">
-<meta property="og:updated_time" content="2017-11-18T03:00:23.000Z">
+<meta property="og:updated_time" content="2017-11-18T08:08:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="配置 Fiddler 和 WireShark 解密 HTTPS 流量">
-<meta name="twitter:description" content="首先，推荐一篇非常好的文章：三种解密 HTTPS 流量的方法介绍。下面记录一下这次使用和配置的步骤： 配置 Fiddler1. 打开 HTTPS 设置打开菜单： Tools - Telerik Fiddler Options... - Https  2. 导入根证书在 Https 设置标签页，打开右上角菜单 Actions - Trust Root Certificate  3. 同意系统警告">
-<meta name="twitter:image" content="http://onthink.com/images/posts/decrypt_https/fiddler_https.png">
+<meta name="twitter:title" content="Ironbin">
+<meta name="twitter:description" content="我的技术多年一线设计、开发，积累很多『杂』技：C/C++ / Python / Java / PHP / JS / Python。 做过基于 Chromium 的国密安全浏览器调研、设计、开发：  扩展『国密』SSL 算法 域名识别、报警 防注入、防攻击 扩展 IE 内核 插件（NPPlugin、NaCl）&amp;amp; 浏览器扩展开发  以及 Chromium 衍生库改造和基于该库的应用开发：  C">
 
 
 
@@ -164,13 +155,13 @@
 
 
 
-  <link rel="canonical" href="http://onthink.com/2017/06/11/decrypt-https-tools/"/>
+  <link rel="canonical" href="http://onthink.com/about/"/>
 
 
 
 
 
-  <title>配置 Fiddler 和 WireShark 解密 HTTPS 流量 | Ironbin</title>
+  <title> | Ironbin</title>
   
 
 
@@ -338,236 +329,52 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/11/decrypt-https-tools/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">配置 Fiddler 和 WireShark 解密 HTTPS 流量</h2>
-        
+	<h2 class="post-title" itemprop="name headline"></h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T00:00:00+08:00">
-                2017-06-11
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenSSL/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenSSL</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/11/decrypt-https-tools/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/11/decrypt-https-tools/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/11/decrypt-https-tools/" class="leancloud_visitors" data-flag-title="配置 Fiddler 和 WireShark 解密 HTTPS 流量">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <p>首先，推荐一篇非常好的文章：<a href="https://imququ.com/post/how-to-decrypt-https.html" target="_blank" rel="noopener">三种解密 HTTPS 流量的方法介绍</a>。下面记录一下这次使用和配置的步骤：</p>
-<h2 id="配置-Fiddler"><a href="#配置-Fiddler" class="headerlink" title="配置 Fiddler"></a>配置 Fiddler</h2><h4 id="1-打开-HTTPS-设置"><a href="#1-打开-HTTPS-设置" class="headerlink" title="1. 打开 HTTPS 设置"></a>1. 打开 HTTPS 设置</h4><p>打开菜单： <code>Tools</code> - <code>Telerik Fiddler Options...</code> - <code>Https</code></p>
-<p><img src="/images/posts/decrypt_https/fiddler_https.png" alt=""></p>
-<h4 id="2-导入根证书"><a href="#2-导入根证书" class="headerlink" title="2. 导入根证书"></a>2. 导入根证书</h4><p>在 <code>Https</code> 设置标签页，打开右上角菜单 <code>Actions</code> - <code>Trust Root Certificate</code></p>
-<p><img src="/images/posts/decrypt_https/fiddler_ca.png" alt=""></p>
-<h4 id="3-同意系统警告"><a href="#3-同意系统警告" class="headerlink" title="3. 同意系统警告"></a>3. 同意系统警告</h4><p><img src="/images/posts/decrypt_https/fiddler_ca2.png" alt=""></p>
-<a id="more"></a>
-<h2 id="配置-WireShark-一：配合程序日志"><a href="#配置-WireShark-一：配合程序日志" class="headerlink" title="配置 WireShark 一：配合程序日志"></a>配置 WireShark 一：配合程序日志</h2><h4 id="1-设置环境变量"><a href="#1-设置环境变量" class="headerlink" title="1. 设置环境变量"></a>1. 设置环境变量</h4><p>添加系统环境变量 <code>SSLKEYLOGFILE</code></p>
-<p><img src="/images/posts/decrypt_https/wireshark_log.jpg" alt=""></p>
-<h4 id="2-配置-WireShark"><a href="#2-配置-WireShark" class="headerlink" title="2. 配置 WireShark"></a>2. 配置 WireShark</h4><p>打开菜单 <code>Edit</code> - <code>Preference...</code> - <code>Protocols</code> - <code>SSL</code></p>
-<p><img src="/images/posts/decrypt_https/wireshark_ssl.jpg" alt=""></p>
-<p>在 <code>(Pre)-Master-Secret log filename</code> 一栏，配置上一步产生的日志文件</p>
-<h2 id="配置-WireShark-二：配合网站私钥"><a href="#配置-WireShark-二：配合网站私钥" class="headerlink" title="配置 WireShark 二：配合网站私钥"></a>配置 WireShark 二：配合网站私钥</h2><p>私钥的方式需要配合使用网站的证书私钥，这对通常是做不到的，所以仅能用于监测自己搭建的 TLS 网站。</p>
-<h4 id="1-配置-WireShark"><a href="#1-配置-WireShark" class="headerlink" title="1. 配置 WireShark"></a>1. 配置 WireShark</h4><p>打开菜单 <code>Edit</code> - <code>Preference...</code> - <code>Protocols</code> - <code>SSL</code></p>
-<p><img src="/images/posts/decrypt_https/wireshark_ssl.jpg" alt=""></p>
-<h4 id="2-配置域名和私钥"><a href="#2-配置域名和私钥" class="headerlink" title="2. 配置域名和私钥"></a>2. 配置域名和私钥</h4><p>打开 <code>RSA keys list</code> 配置窗口</p>
-<blockquote>
-<p>为什么是 <code>RSA keys</code> 配置呢？<br>私钥方式只能用于解析采用 <code>RSA</code> 的 TLS 连接。</p>
-</blockquote>
-<p><img src="/images/posts/decrypt_https/wireshark_key.jpg" alt=""></p>
+      <div class="post-body">
+        
+        
+          <h3 id="我的技术"><a href="#我的技术" class="headerlink" title="我的技术"></a>我的技术</h3><p>多年一线设计、开发，积累很多『杂』技：<code>C/C++</code> / <code>Python</code> / <code>Java</code> / <code>PHP</code> / <code>JS</code> / <code>Python</code>。</p>
+<p>做过基于 <a href="https://www.chromium.org/" target="_blank" rel="noopener">Chromium</a> 的国密安全浏览器调研、设计、开发：</p>
 <ul>
-<li>IP Address： 连接的域名或 IP 地址</li>
-<li>Port： 连接的端口号</li>
-<li>Protocol： 连接的协议，TLS 要写成 http</li>
-<li>Key File： 服务器证书的私钥，要求 PEM 格式</li>
-<li>Password： 私钥密码</li>
+<li>扩展『国密』SSL 算法</li>
+<li>域名识别、报警</li>
+<li>防注入、防攻击</li>
+<li>扩展 IE 内核</li>
+<li>插件（NPPlugin、NaCl）&amp; 浏览器扩展开发</li>
 </ul>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    程学彬
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://onthink.com/2017/06/11/decrypt-https-tools/" title="配置 Fiddler 和 WireShark 解密 HTTPS 流量">http://onthink.com/2017/06/11/decrypt-https-tools/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
+<p>以及 Chromium 衍生库改造和基于该库的应用开发：</p>
+<ul>
+<li><a href="https://bitbucket.org/chromiumembedded/cef" target="_blank" rel="noopener">CEF</a></li>
+<li><a href="https://nwjs.io/" target="_blank" rel="noopener">nw.js</a></li>
 </ul>
+<p><code>WebBrowser</code> 组件相关的优化与改造，</p>
+<p>也是互联网项目『父母基地』、『亲子足迹』的后端及 <code>iOS</code> 应用的设计兼主程，以及电商产品的架构设计。</p>
+<h3 id="工作之外"><a href="#工作之外" class="headerlink" title="工作之外"></a>工作之外</h3><p>与好友包勇明合译过技术书 <a href="https://www.amazon.cn/jQuery-jQuery-UI%E5%8F%8AjQuery-Mobile%E6%8A%80%E5%B7%A7%E4%B8%8E%E7%A4%BA%E4%BE%8B-%E6%89%AC/dp/B00EH8DFNA/ref=sr_1_1?ie=UTF8&amp;qid=1510991996&amp;sr=8-1&amp;keywords=%E7%A8%8B%E5%AD%A6%E5%BD%AC&amp;dpID=51i%252BosJVvKL&amp;preST=_SX258_BO1,204,203,200_QL70_&amp;dpSrc=srch" target="_blank" rel="noopener">『jQuery, jQuery UI and jQuery Mobile』</a></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>技术于我是快乐、是谋生的手段。以后该多些时间做些喜欢的事，不该被工作所困。</p>
+<p>希望我的技术对其他人有用，欢迎来讨论指正。</p>
 
+        
       </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/openssl/" rel="tag"># openssl</a>
-          
-        </div>
-      
-
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/06/10/mitm-proxy/" rel="next" title="中间人劫持代理">
-                <i class="fa fa-chevron-left"></i> 中间人劫持代理
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/22/build-nwjs/" rel="prev" title="编译 NW.js">
-                编译 NW.js <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
       
     </div>
+    
+    
+    
   </div>
 
 
@@ -745,7 +552,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Fiddler"><span class="nav-number">1.</span> <span class="nav-text">配置 Fiddler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-打开-HTTPS-设置"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. 打开 HTTPS 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-导入根证书"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 导入根证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-同意系统警告"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 同意系统警告</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-WireShark-一：配合程序日志"><span class="nav-number">2.</span> <span class="nav-text">配置 WireShark 一：配合程序日志</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-设置环境变量"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 设置环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置-WireShark"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. 配置 WireShark</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-WireShark-二：配合网站私钥"><span class="nav-number">3.</span> <span class="nav-text">配置 WireShark 二：配合网站私钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置-WireShark"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. 配置 WireShark</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-配置域名和私钥"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. 配置域名和私钥</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#我的技术"><span class="nav-number">1.</span> <span class="nav-text">我的技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作之外"><span class="nav-number">2.</span> <span class="nav-text">工作之外</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">3.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
 
           </div>
@@ -917,9 +724,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://onthink.com/2017/06/11/decrypt-https-tools/';
-          this.page.identifier = '2017/06/11/decrypt-https-tools/';
-          this.page.title = '配置 Fiddler 和 WireShark 解密 HTTPS 流量';
+          this.page.url = 'http://onthink.com/about/index.html';
+          this.page.identifier = 'about/index.html';
+          this.page.title = '';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://chengxuebin.disqus.com/embed.js';

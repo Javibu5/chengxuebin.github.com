@@ -457,14 +457,14 @@
 <p>进入 OpenSSL 命令行模式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OpenSSL</span><br></pre></td></tr></table></figure>
 <p>;) windows 系统中会提示：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARNING: can\'t open config file: /usr/local/ssl/openssl.cnf</span><br><span class="line"><span class="meta">OpenSSL&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARNING: can\'t open config file: /usr/local/ssl/openssl.cnf</span><br><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
 <p>退出OpenSSL程序</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span> exit</span><br></pre></td></tr></table></figure>
-<h3 id="生成私钥"><a href="#生成私钥" class="headerlink" title="生成私钥"></a>生成私钥</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span> genrsa -out rsa_private_key.pem   1024</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"> <span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="生成私钥"><a href="#生成私钥" class="headerlink" title="生成私钥"></a>生成私钥</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"> genrsa -out rsa_private_key.pem   1024</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="生成公钥"><a href="#生成公钥" class="headerlink" title="生成公钥"></a>生成公钥</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span> rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem</span><br></pre></td></tr></table></figure>
+<h3 id="生成公钥"><a href="#生成公钥" class="headerlink" title="生成公钥"></a>生成公钥</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"> rsa -<span class="keyword">in</span> rsa_private_key.pem -pubout -out rsa_public_key.pem</span></span><br></pre></td></tr></table></figure>
 <h3 id="将公私钥写入同一文件"><a href="#将公私钥写入同一文件" class="headerlink" title="将公私钥写入同一文件"></a>将公私钥写入同一文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat cert.key cert.crt &gt; cert.pem</span><br></pre></td></tr></table></figure>
-<h3 id="转换成-PKCS8-格式"><a href="#转换成-PKCS8-格式" class="headerlink" title="转换成 PKCS8 格式"></a>转换成 PKCS8 格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span> pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt -out rsa_private_key_pkcs8.pem</span><br></pre></td></tr></table></figure>
+<h3 id="转换成-PKCS8-格式"><a href="#转换成-PKCS8-格式" class="headerlink" title="转换成 PKCS8 格式"></a>转换成 PKCS8 格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"> pkcs8 -topk8 -inform PEM -<span class="keyword">in</span> rsa_private_key.pem -outform PEM -nocrypt -out rsa_private_key_pkcs8.pem</span></span><br></pre></td></tr></table></figure>
 <p>其它一些格式转换，参考<a href="http://onthink.com/post/about-cert-type.html">这里</a></p>
 
       
@@ -524,8 +524,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/10/mitm-proxy/" rel="prev" title="中间人劫持代理">
-                中间人劫持代理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/10/tls-1.2/" rel="prev" title="TLS 协议">
+                TLS 协议 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
