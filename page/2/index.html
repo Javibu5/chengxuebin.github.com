@@ -338,6 +338,996 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/11/decrypt-https-tools/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/11/decrypt-https-tools/" itemprop="url">配置 Fiddler 和 WireShark 解密 HTTPS 流量</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T00:00:00+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenSSL/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenSSL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/11/decrypt-https-tools/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/11/decrypt-https-tools/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/11/decrypt-https-tools/" class="leancloud_visitors" data-flag-title="配置 Fiddler 和 WireShark 解密 HTTPS 流量">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>首先，推荐一篇非常好的文章：<a href="https://imququ.com/post/how-to-decrypt-https.html" target="_blank" rel="noopener">三种解密 HTTPS 流量的方法介绍</a>。下面记录一下这次使用和配置的步骤：</p>
+<h2 id="配置-Fiddler"><a href="#配置-Fiddler" class="headerlink" title="配置 Fiddler"></a>配置 Fiddler</h2><h4 id="1-打开-HTTPS-设置"><a href="#1-打开-HTTPS-设置" class="headerlink" title="1. 打开 HTTPS 设置"></a>1. 打开 HTTPS 设置</h4><p>打开菜单： <code>Tools</code> - <code>Telerik Fiddler Options...</code> - <code>Https</code></p>
+<p><img src="/images/posts/decrypt_https/fiddler_https.png" alt=""></p>
+<h4 id="2-导入根证书"><a href="#2-导入根证书" class="headerlink" title="2. 导入根证书"></a>2. 导入根证书</h4><p>在 <code>Https</code> 设置标签页，打开右上角菜单 <code>Actions</code> - <code>Trust Root Certificate</code></p>
+<p><img src="/images/posts/decrypt_https/fiddler_ca.png" alt=""></p>
+<h4 id="3-同意系统警告"><a href="#3-同意系统警告" class="headerlink" title="3. 同意系统警告"></a>3. 同意系统警告</h4><p><img src="/images/posts/decrypt_https/fiddler_ca2.png" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/11/decrypt-https-tools/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/10/mitm-proxy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/10/mitm-proxy/" itemprop="url">中间人劫持代理</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-10T00:00:00+08:00">
+                2017-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenSSL/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenSSL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/10/mitm-proxy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/10/mitm-proxy/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/10/mitm-proxy/" class="leancloud_visitors" data-flag-title="中间人劫持代理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="中间人劫持代理"><a href="#中间人劫持代理" class="headerlink" title="中间人劫持代理"></a>中间人劫持代理</h2><p><img src="/images/posts/mitm_proxy/how-mitmproxy-works-explicit-https.png" alt=""></p>
+<p>注：图片来源于 mitmproxy</p>
+<h4 id="本代理基于-TCP，是一个不关心协议的代理？"><a href="#本代理基于-TCP，是一个不关心协议的代理？" class="headerlink" title="本代理基于 TCP，是一个不关心协议的代理？"></a>本代理基于 TCP，是一个不关心协议的代理？</h4><p>是的</p>
+<h4 id="HTTP-代理-VS-Socks-代理"><a href="#HTTP-代理-VS-Socks-代理" class="headerlink" title="HTTP 代理 VS Socks 代理"></a>HTTP 代理 VS Socks 代理</h4><h2 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h2><h3 id="获取远端主机名（Host）"><a href="#获取远端主机名（Host）" class="headerlink" title="获取远端主机名（Host）"></a>获取远端主机名（Host）</h3><p>当应用设置了代理后，在 TLS 协商前，应用首先会发一条 CONNECT 请求，期待通过代理和远端服务器建立 TLS 隧道（tunnel）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT 10.1.1.1:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
+<p>作为中间人代理，并不帮助建立隧道，而是需要解析 CONNECT 请求，并从中获得远端服务器主机名。同时返回给被代理程序隧道建立成功的回复：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 根据请求指定版本号</span><br><span class="line">HTTP/1.0 200 Connection established\r\n\r\n</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/10/mitm-proxy/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/10/tls-1.2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/10/tls-1.2/" itemprop="url">TLS 协议</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-10T00:00:00+08:00">
+                2017-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenSSL/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenSSL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/10/tls-1.2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/10/tls-1.2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/10/tls-1.2/" class="leancloud_visitors" data-flag-title="TLS 协议">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>首先，这是 IETF 协会文档 <a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">Request for Comments (RFC) 5246</a></p>
+<h3 id="Alert-Messages"><a href="#Alert-Messages" class="headerlink" title="Alert Messages"></a><a href="https://tools.ietf.org/html/rfc5246#appendix-A.3" target="_blank" rel="noopener">Alert Messages</a></h3><p>在 TLS 协商握手阶段，遇到服务器返回的 Alert 消息时，能通过下表查找出对应的原因。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Alert Code</th>
+<th style="text-align:center">Alert Message</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">close_notify</td>
+<td style="text-align:left">Notifies the recipient that the sender will not send any more messages on this connection.</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">unexpected_message</td>
+<td style="text-align:left">Received an inappropriate message This alert should never be observed in communication between proper implementations. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:center">bad_record_mac</td>
+<td style="text-align:left">Received a record with an incorrect MAC. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">decryption_failed</td>
+<td style="text-align:left">Decryption of a TLSCiphertext record is decrypted in an invalid way: either it was not an even multiple of the block length or its padding values, when checked, were not correct. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:center">record_overflow</td>
+<td style="text-align:left">Received a TLSCiphertext record which had a length more than 2^14+2048 bytes, or a record decrypted to a TLSCompressed record with more than 2^14+1024 bytes. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:center">decompression_failure</td>
+<td style="text-align:left">Received improper input, such as data that would expand to excessive length, from the decompression function. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">40</td>
+<td style="text-align:center">handshake_failure</td>
+<td style="text-align:left">Indicates that the sender was unable to negotiate an acceptable set of security parameters given the options available. This is a fatal error.</td>
+</tr>
+<tr>
+<td style="text-align:center">42</td>
+<td style="text-align:center">bad_certificate</td>
+<td style="text-align:left">There is a problem with the certificate, for example, a certificate is corrupt, or a certificate contains signatures that cannot be verified.</td>
+</tr>
+<tr>
+<td style="text-align:center">43</td>
+<td style="text-align:center">unsupported_certificate</td>
+<td style="text-align:left">Received an unsupported certificate type.</td>
+</tr>
+<tr>
+<td style="text-align:center">44</td>
+<td style="text-align:center">certificate_revoked</td>
+<td style="text-align:left">Received a certificate that was revoked by its signer.</td>
+</tr>
+<tr>
+<td style="text-align:center">45</td>
+<td style="text-align:center">certificate_expired</td>
+<td style="text-align:left">Received a certificate has expired or is not currently valid.</td>
+</tr>
+<tr>
+<td style="text-align:center">46</td>
+<td style="text-align:center">certificate_unknown</td>
+<td style="text-align:left">An unspecified issue took place while processing the certificate that made it unacceptable.</td>
+</tr>
+<tr>
+<td style="text-align:center">47</td>
+<td style="text-align:center">illegal_parameter</td>
+<td style="text-align:left">Violated security parameters, such as a field in the handshake was out of range or inconsistent with other fields. This is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">48</td>
+<td style="text-align:center">unknown_ca</td>
+<td style="text-align:left">Received a valid certificate chain or partial chain, but the certificate was not accepted because the CA certificate could not be located or could not be matched with a known, trusted CA. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">49</td>
+<td style="text-align:center">access_denied</td>
+<td style="text-align:left">Received a valid certificate, but when access control was applied, the sender did not proceed with negotiation. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">50</td>
+<td style="text-align:center">decode_error</td>
+<td style="text-align:left">A message could not be decoded because some field was out of the specified range or the length of the message was incorrect. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">51</td>
+<td style="text-align:center">decrypt_error</td>
+<td style="text-align:left">Failed handshake cryptographic operation, including being unable to correctly verify a signature, decrypt a key exchange, or validate a finished message.</td>
+</tr>
+<tr>
+<td style="text-align:center">60</td>
+<td style="text-align:center">export_restriction</td>
+<td style="text-align:left">Detected a negotiation that was not in compliance with export restrictions; for example, attempting to transfer a 1024 bit ephemeral RSA key for the RSA_EXPORT handshake method. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">70</td>
+<td style="text-align:center">protocol_version</td>
+<td style="text-align:left">The protocol version the client attempted to negotiate is recognized, but not supported. For example, old protocol versions might be avoided for security reasons. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">71</td>
+<td style="text-align:center">insufficient_security</td>
+<td style="text-align:left">Failed negotiation specifically because the server requires ciphers more secure than those supported by the client. Returned instead of handshake_failure. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">80</td>
+<td style="text-align:center">internal_error</td>
+<td style="text-align:left">An internal error unrelated to the peer or the correctness of the protocol makes it impossible to continue, such as a memory allocation failure. The error is not related to protocol. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">90</td>
+<td style="text-align:center">user_cancelled</td>
+<td style="text-align:left">Cancelled handshake for a reason that is unrelated to a protocol failure. If the user cancels an operation after the handshake is complete, just closing the connection by sending a close_notify is more appropriate. This alert should be followed by a close_notify. This message is generally a warning.</td>
+</tr>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center">no_renegotiation</td>
+<td style="text-align:left">Sent by the client in response to a hello request or sent by the server in response to a client hello after initial handshaking. Either of these would normally lead to renegotiation; when that is not appropriate, the recipient should respond with this alert; at that point, the original requester can decide whether to proceed with the connection. One case where this would be appropriate would be where a server has spawned a process to satisfy a request; the process might receive security parameters (key length, authentication, and so on) at start-up and it might be difficult to communicate changes to these parameters after that point. This message is always a warning.</td>
+</tr>
+<tr>
+<td style="text-align:center">255</td>
+<td style="text-align:center">unsupported_extension</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/10/tls-1.2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/08/openssl-commands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/08/openssl-commands/" itemprop="url">OpenSSL 常用方法收集</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-08T00:00:00+08:00">
+                2017-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenSSL/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenSSL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/08/openssl-commands/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/08/openssl-commands/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/08/openssl-commands/" class="leancloud_visitors" data-flag-title="OpenSSL 常用方法收集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://onthink.com/post/openssl-resources.html">下载 OpenSSL</a></p>
+<p>进入 OpenSSL 命令行模式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OpenSSL</span><br></pre></td></tr></table></figure>
+<p>;) windows 系统中会提示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WARNING: can\'t open config file: /usr/local/ssl/openssl.cnf</span><br><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<p>退出OpenSSL程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"> <span class="built_in">exit</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="生成私钥"><a href="#生成私钥" class="headerlink" title="生成私钥"></a>生成私钥</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"> genrsa -out rsa_private_key.pem   1024</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/08/openssl-commands/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/06/cpp-library/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/06/cpp-library/" itemprop="url">C++ 常用方法收集</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-06T00:00:00+08:00">
+                2017-06-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/06/cpp-library/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/06/cpp-library/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/06/cpp-library/" class="leancloud_visitors" data-flag-title="C++ 常用方法收集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="字符操作"><a href="#字符操作" class="headerlink" title="字符操作"></a>字符操作</h2><h3 id="wstring-和-string-互转"><a href="#wstring-和-string-互转" class="headerlink" title="wstring 和 string 互转"></a>wstring 和 string 互转</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function">wstring <span class="title">s2ws</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">using</span> convert_typeX = <span class="built_in">std</span>::codecvt_utf8&lt;<span class="keyword">wchar_t</span>&gt;;</span><br><span class="line">    <span class="built_in">std</span>::wstring_convert&lt;convert_typeX, <span class="keyword">wchar_t</span>&gt; converterX;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> converterX.from_bytes(str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">ws2s</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::wstring&amp; wstr)</span></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> convert_typeX = <span class="built_in">std</span>::codecvt_utf8&lt;<span class="keyword">wchar_t</span>&gt;;</span><br><span class="line">    <span class="built_in">std</span>::wstring_convert&lt;convert_typeX, <span class="keyword">wchar_t</span>&gt; converterX;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> converterX.to_bytes(wstr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://stackoverflow.com/questions/4804298/how-to-convert-wstring-into-string" target="_blank" rel="noopener">进一步阅读</a></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/06/cpp-library/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/05/openssl-resources/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1220,919 +2210,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/04/19/extension-replace-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/19/extension-replace-js/" itemprop="url">Chrome 扩展之： 使用 webRequest 替换页面资源</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T00:00:00+08:00">
-                2017-04-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chrome/" itemprop="url" rel="index">
-                    <span itemprop="name">chrome</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/19/extension-replace-js/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/19/extension-replace-js/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/19/extension-replace-js/" class="leancloud_visitors" data-flag-title="Chrome 扩展之： 使用 webRequest 替换页面资源">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="请求事件"><a href="#请求事件" class="headerlink" title="请求事件"></a>请求事件</h2><p>首先，一个请求的生命周期是这样的：</p>
-<p><img src="/images/posts/chrome_extension/webrequestapi.png" alt=""></p>
-<p>利用 <a href="https://developer.chrome.com/extensions/webRequest" target="_blank" rel="noopener">webRequest</a> 接口，可以监听图中的事件，插入自己的处理。</p>
-<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><h3 id="1-webRequest-需要在-background-中使用"><a href="#1-webRequest-需要在-background-中使用" class="headerlink" title="1. webRequest 需要在 background 中使用"></a>1. webRequest 需要在 background 中使用</h3><h3 id="2-调用方式"><a href="#2-调用方式" class="headerlink" title="2. 调用方式"></a>2. 调用方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params">details</span>) </span>&#123;...&#125;;</span><br><span class="line"><span class="keyword">var</span> filter = &#123;...&#125;;</span><br><span class="line"><span class="keyword">var</span> opt_extraInfoSpec = [...];</span><br><span class="line"></span><br><span class="line">chrome.webRequest.onBeforeRequest.addListener(</span><br><span class="line">    callback, filter, opt_extraInfoSpec);</span><br></pre></td></tr></table></figure>
-<h3 id="3-blocking-参数"><a href="#3-blocking-参数" class="headerlink" title="3. blocking 参数"></a>3. <code>blocking</code> 参数</h3><p><code>blocking</code> 会将回调函数设置为同步处理，请求会等待回调完成。使用该参数需要在 <code>permission</code> 中添加 <code>webRequestBlocking</code> 权限。</p>
-<h2 id="举例：-替换网站的-JS-文件"><a href="#举例：-替换网站的-JS-文件" class="headerlink" title="举例： 替换网站的 JS 文件"></a>举例： 替换网站的 JS 文件</h2><h3 id="1-声明权限"><a href="#1-声明权限" class="headerlink" title="1. 声明权限"></a>1. 声明权限</h3><p>编辑 <code>manifest.json</code>，添加 <code>permission</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"permissions": [</span><br><span class="line">  "webRequest",</span><br><span class="line">  "webRequestBlocking",</span><br><span class="line">  "http://*/*",</span><br><span class="line">  <span class="string">"https://*/*"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="2-添加后端-文件"><a href="#2-添加后端-文件" class="headerlink" title="2. 添加后端 文件"></a>2. 添加后端 文件</h3><p>首先在 <code>manifest.json</code> 中添加 background 文件</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"background": &#123;</span><br><span class="line">  "scripts": ["dist/js/background.js"],</span><br><span class="line">  "persistent": true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-webRequest-脚本"><a href="#3-webRequest-脚本" class="headerlink" title="3. webRequest 脚本"></a>3. webRequest 脚本</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">chrome.webRequest.onBeforeRequest.addListener(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">details</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( details.url.endsWith(<span class="string">'origin.js'</span>) )&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;<span class="attr">redirectUrl</span>: chrome.extension.getURL (<span class="string">"dist/bake/fake.js"</span>)&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;<span class="attr">urls</span>: [<span class="string">"*://*/*.js"</span>]&#125;,</span><br><span class="line">  [<span class="string">"blocking"</span>]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>解释一下上面的后端代码：</p>
-<ul>
-<li>监听 <strong>符合规定请求</strong> 的 <code>onBeforeRequest</code> 事件</li>
-<li>这2个参数是回调函数，通过参数 <code>details</code> 来判断每一个请求 <code>url</code>，如果以 <code>origin.js</code> 结尾，将用扩展中准备好的 <code>fake.js</code> 替换。换句话说，将原始网站的 JS 替换为假的 JS</li>
-<li>对于用户来讲，通过查看源码，看到的仍然是 <code>&lt;script src=&quot;origin.js&quot;&gt;&lt;/script&gt;</code></li>
-<li>通过 DevTools 的 network 查看，会发现 <code>url</code> 已经变为 <code>fake.js</code></li>
-<li>第3个参数过滤被监听的请求，支持通配符 <code>*</code></li>
-<li>第4个参数为扩展参数，<code>blocking</code> 说明这是 <strong>同步</strong> 处理，请求会等待回调函数完成</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/27/webbrowser-document-mode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/webbrowser-document-mode/" itemprop="url">设置 WebBrowser Document Mode</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T00:00:00+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ie/" itemprop="url" rel="index">
-                    <span itemprop="name">ie</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/27/webbrowser-document-mode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/27/webbrowser-document-mode/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/27/webbrowser-document-mode/" class="leancloud_visitors" data-flag-title="设置 WebBrowser Document Mode">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="编辑注册表"><a href="#编辑注册表" class="headerlink" title="编辑注册表"></a>编辑注册表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION</span><br></pre></td></tr></table></figure>
-<h3 id="设置值"><a href="#设置值" class="headerlink" title="设置值"></a>设置值</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">值</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">10001 (0x2711)</td>
-<td style="text-align:left">Internet Explorer 10。网页以IE 10的标准模式展现，页面!DOCTYPE无效</td>
-</tr>
-<tr>
-<td style="text-align:left">10000 (0x02710)</td>
-<td style="text-align:left">Internet Explorer 10。在IE 10标准模式中按照网页上!DOCTYPE指令来显示网页。Internet Explorer 10 默认值。</td>
-</tr>
-<tr>
-<td style="text-align:left">9999 (0x270F)</td>
-<td style="text-align:left">Windows Internet Explorer 9. 强制IE9显示，忽略!DOCTYPE指令</td>
-</tr>
-<tr>
-<td style="text-align:left">9000 (0x2328)</td>
-<td style="text-align:left">Internet Explorer 9. Internet Explorer 9默认值，在IE9标准模式中按照网页上!DOCTYPE指令来显示网页。</td>
-</tr>
-<tr>
-<td style="text-align:left">8888 (0x22B8)</td>
-<td style="text-align:left">Internet Explorer 8，强制IE8标准模式显示，忽略!DOCTYPE指令</td>
-</tr>
-<tr>
-<td style="text-align:left">8000 (0x1F40)</td>
-<td style="text-align:left">Internet Explorer 8默认设置，在IE8标准模式中按照网页上!DOCTYPE指令展示网页</td>
-</tr>
-<tr>
-<td style="text-align:left">7000 (0x1B58)</td>
-<td style="text-align:left">使用WebBrowser Control控件的应用程序所使用的默认值，在IE7标准模式中按照网页上!DOCTYPE指令来展示网页。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><p><img src="/images/posts/ie/set-reg.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/17/duilib-tutorial/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/17/duilib-tutorial/" itemprop="url">DuiLib 的使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T00:00:00+08:00">
-                2017-03-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/17/duilib-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/17/duilib-tutorial/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/17/duilib-tutorial/" class="leancloud_visitors" data-flag-title="DuiLib 的使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p>本文下载的是 <a href="https://github.com/redrains/DuiLib_Redrain" target="_blank" rel="noopener">Redrain 维护的版本</a>，原始的 DuiLib 版本从<a href="https://github.com/duilib/duilib" target="_blank" rel="noopener">这里</a>下载。</p>
-<h2 id="以库方式使用"><a href="#以库方式使用" class="headerlink" title="以库方式使用"></a>以库方式使用</h2><h3 id="打开并升级工程文件"><a href="#打开并升级工程文件" class="headerlink" title="打开并升级工程文件"></a>打开并升级工程文件</h3><p>打开 <code>DuiLib_vs2010.sln</code>，我安装的 IDE 是 <code>VS2015</code>，会提示升级，按提示完成。</p>
-<h3 id="编译全部动态库"><a href="#编译全部动态库" class="headerlink" title="编译全部动态库"></a>编译全部动态库</h3><p>打开菜单 Build &gt; Batch Build…</p>
-<p>选择编译所有配置：</p>
-<p><img src="/images/posts/duilib/build-batch.jpg" alt=""></p>
-<p>保存编译的结果：</p>
-<ul>
-<li>DuiLib.dll</li>
-<li>DuiLib.lib</li>
-<li>DuiLib_d.dll</li>
-<li>DuiLib_d.lib</li>
-</ul>
-<p>以及 DuiLib 库的定义目录： <code>DuiLib</code></p>
-<p>当创建新工程时，把 lib 文件添加到 link 依赖里，把 DuiLib 目录添加到 inluce 路径中，最后把 dll 库放到导出目录中，便配置好了一个 DuiLib 工程。</p>
-<h2 id="以源码方式使用"><a href="#以源码方式使用" class="headerlink" title="以源码方式使用"></a>以源码方式使用</h2><h3 id="1-创建一个空工程"><a href="#1-创建一个空工程" class="headerlink" title="1. 创建一个空工程"></a>1. 创建一个空工程</h3><h3 id="2-将源码中的-DuiLib-目录添加到工程根目录中"><a href="#2-将源码中的-DuiLib-目录添加到工程根目录中" class="headerlink" title="2. 将源码中的 DuiLib 目录添加到工程根目录中"></a>2. 将源码中的 DuiLib 目录添加到工程根目录中</h3><h3 id="3-导入-DuiLib-项目"><a href="#3-导入-DuiLib-项目" class="headerlink" title="3. 导入 DuiLib 项目"></a>3. 导入 DuiLib 项目</h3><p>在工程上右键，选择：Add &gt; Existing Project…，找到 DuiLib 项目文件导入</p>
-<h3 id="4-设置依赖-DuiLib"><a href="#4-设置依赖-DuiLib" class="headerlink" title="4. 设置依赖 DuiLib"></a>4. 设置依赖 DuiLib</h3><p>在主项目上右键，选择：Build Dependencies &gt; Project Dependencies…，设置依赖 DuiLib 项目。</p>
-<p>这样，在编译主项目时会先编译依赖的 DuiLib 项目。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/17/cef-tutorial/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/17/cef-tutorial/" itemprop="url">CEF 的使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T00:00:00+08:00">
-                2017-03-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/17/cef-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/17/cef-tutorial/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/17/cef-tutorial/" class="leancloud_visitors" data-flag-title="CEF 的使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
-<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
-<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
-<li>创建新的项目</li>
-<li>设置 include 目录到 cef 头文件目录</li>
-<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
-<li>添加 resource.rc</li>
-<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
-<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
-</ol>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
-<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
-<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
-<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/10/proxychains-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/10/proxychains-problem/" itemprop="url">Proxychains4 问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T00:00:00+08:00">
-                2017-03-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/10/proxychains-problem/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/10/proxychains-problem/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/10/proxychains-problem/" class="leancloud_visitors" data-flag-title="Proxychains4 问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Timeout-问题"><a href="#Timeout-问题" class="headerlink" title="Timeout 问题"></a>Timeout 问题</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">proxychains4 curl https://www.twitter.com/</span><br><span class="line">[proxychains] config file found: /usr/local/Cellar/proxychains-ng/4.10/etc/proxychains.conf</span><br><span class="line">[proxychains] preloading /usr/local/Cellar/proxychains-ng/4.10/lib/libproxychains4.dylib</span><br><span class="line">curl: (7) Failed to connect to www.twitter.com port 443: Operation timed out</span><br></pre></td></tr></table></figure>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h4 id="1-重启系统进入维护模式（Recovery-Mode）"><a href="#1-重启系统进入维护模式（Recovery-Mode）" class="headerlink" title="1. 重启系统进入维护模式（Recovery Mode）"></a>1. 重启系统进入维护模式（Recovery Mode）</h4><p>按住 ‘Command’ 和 ‘R’ 启动系统</p>
-<h4 id="2-打开终端（Terminal）"><a href="#2-打开终端（Terminal）" class="headerlink" title="2. 打开终端（Terminal）"></a>2. 打开终端（Terminal）</h4><h4 id="3-禁用-csrutil"><a href="#3-禁用-csrutil" class="headerlink" title="3. 禁用 csrutil"></a>3. 禁用 csrutil</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csrutil disable</span><br></pre></td></tr></table></figure>
-<h4 id="4-重启系统"><a href="#4-重启系统" class="headerlink" title="4. 重启系统"></a>4. 重启系统</h4>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2182,7 +2264,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2193,7 +2275,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2204,7 +2286,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2471,7 +2553,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "";
+    var search_path = "search.xml";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
