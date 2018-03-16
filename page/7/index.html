@@ -338,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/linux-commands/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/the-most-used-regular-expression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -357,7 +357,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/01/25/linux-commands/" itemprop="url">Linux 常用命令</a></h2>
+                <a class="post-title-link" href="/2015/01/25/the-most-used-regular-expression/" itemprop="url">常用的正则表达式</a></h2>
         
 
         <div class="post-meta">
@@ -392,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/program/" itemprop="url" rel="index">
+                    <span itemprop="name">program</span>
                   </a>
                 </span>
 
@@ -410,9 +410,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/01/25/linux-commands/#comments" itemprop="discussionUrl">
+                <a href="/2015/01/25/the-most-used-regular-expression/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/01/25/linux-commands/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2015/01/25/the-most-used-regular-expression/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -420,7 +420,7 @@
 
           
           
-             <span id="/2015/01/25/linux-commands/" class="leancloud_visitors" data-flag-title="Linux 常用命令">
+             <span id="/2015/01/25/the-most-used-regular-expression/" class="leancloud_visitors" data-flag-title="常用的正则表达式">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -453,29 +453,52 @@
       
         
           
-            <h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
-<li>启用被 iptables 禁用的 80 端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+            <h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
+<h3 id="2-邮箱"><a href="#2-邮箱" class="headerlink" title="2. 邮箱"></a>2. 邮箱</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^([a-z0<span class="number">-9</span>\+_\-]+)(\.[a-z0<span class="number">-9</span>\+_\-]+)*@([_a-z0<span class="number">-9</span>]+\.)+[a-z]&#123;<span class="number">2</span>,<span class="number">5</span>&#125;$/</span><br></pre></td></tr></table></figure>
+<h3 id="3-多个单词或"><a href="#3-多个单词或" class="headerlink" title="3. 多个单词或"></a>3. 多个单词或</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?:apple|banna)/</span><br></pre></td></tr></table></figure>
+<h3 id="4-不包含某个单词"><a href="#4-不包含某个单词" class="headerlink" title="4. 不包含某个单词"></a>4. 不包含某个单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^((?!hede).)*$/</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
 <ul>
-<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+<li><a href="http://fineonly.com/solutions/regex-exclude-a-string" target="_blank" rel="noopener">Exclude a String</a></li>
+<li><a href="http://www.vaikan.com/regular-expression-to-match-string-not-containing-a-word/" target="_blank" rel="noopener">正则表达式里字符串”不包含”匹配技巧</a></li>
+<li><a href="http://stackoverflow.com/questions/2078915/a-regular-expression-to-exclude-a-word-string" target="_blank" rel="noopener">A regular expression to exclude a word/string</a></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
-<li>启动、停止、重启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
-<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<h3 id="5-神奇的全部-ASCII-字符"><a href="#5-神奇的全部-ASCII-字符" class="headerlink" title="5. 神奇的全部 ASCII 字符"></a>5. 神奇的全部 ASCII 字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[ -~]/</span><br><span class="line">/[\x20-\x7E]/</span><br></pre></td></tr></table></figure>
+<p><strong>解释</strong>：<a href="http://www.asciitable.com/" target="_blank" rel="noopener">ASCII 表</a>中大于空格（0x20），小于~（0x7E）的字符为全部的<strong>打印</strong>字符。</p>
+<h3 id="6-处理-HTML-标签"><a href="#6-处理-HTML-标签" class="headerlink" title="6. 处理 HTML 标签"></a>6. 处理 HTML 标签</h3><p>参考：</p>
 <ul>
-<li>设置开机自启</li>
+<li><a href="http://haacked.com/archive/2004/10/25/usingregularexpressionstomatchhtml.aspx/" target="_blank" rel="noopener">Using a Regular Expression to Match HTML</a></li>
+<li><a href="http://www.pagecolumn.com/tool/all_about_html_tags.htm" target="_blank" rel="noopener">All about HTML tags</a></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
-<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+<h3 id="7-使用空格分隔中文和英文单词"><a href="#7-使用空格分隔中文和英文单词" class="headerlink" title="7. 使用空格分隔中文和英文单词"></a>7. 使用空格分隔中文和英文单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">([\x&#123;4E00&#125;-\x&#123;9FA5&#125;])([a-z0-9@#&amp;;=_\[\$\%\^\*\-\+\(\/]+)</span><br><span class="line"></span><br><span class="line">$<span class="number">1</span> $<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Modifier</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:left">Perform case-insensitive matching</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:left">Perform a global match (find all matches rather than stopping after the first match)</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:left">Perform multiline matching</td>
+</tr>
+</tbody>
+</table>
+<p>收集了一些总结的很好的文章：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/zxin/archive/2013/01/26/2877765.html" target="_blank" rel="noopener">最全的常用正则表达式大全</a></li>
+<li><a href="http://www.regular-expressions.info/lookaround.html" target="_blank" rel="noopener">regular-expressions.info</a></li>
+<li><a href="http://regexr.com/30npe" target="_blank" rel="noopener">RegExr</a></li>
+</ul>
 
           
         
@@ -2480,7 +2503,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
   </span>

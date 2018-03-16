@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="版本的分页规则： https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYYYYYY 对应4位的版本号 比如： https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623 CEF branches">
+<meta name="description" content="项目与分支内容来自官方文档BranchesAndBuilding 背景CEF 是 Chromium 项目的一个扩展，跟踪其分支。可通过自动工具或手动编译。 开发CEF 的 master 分支跟踪 Chromium 的 master 分支，不建议用其产品化。 下载开发版 CEF CEF3 - https://bitbuc">
 <meta name="keywords" content="chromium,cef">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CEF 拾遗">
+<meta property="og:title" content="编译 CEF">
 <meta property="og:url" content="http://onthink.com/2017/04/26/cef-tips/index.html">
 <meta property="og:site_name" content="Ironbin">
-<meta property="og:description" content="版本的分页规则： https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYYYYYY 对应4位的版本号 比如： https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623 CEF branches">
+<meta property="og:description" content="项目与分支内容来自官方文档BranchesAndBuilding 背景CEF 是 Chromium 项目的一个扩展，跟踪其分支。可通过自动工具或手动编译。 开发CEF 的 master 分支跟踪 Chromium 的 master 分支，不建议用其产品化。 下载开发版 CEF CEF3 - https://bitbucket.org/chromiumembedded/cef/src?at=mast">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-18T03:00:23.000Z">
+<meta property="og:updated_time" content="2018-03-16T03:29:45.115Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CEF 拾遗">
-<meta name="twitter:description" content="版本的分页规则： https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYYYYYY 对应4位的版本号 比如： https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623 CEF branches">
+<meta name="twitter:title" content="编译 CEF">
+<meta name="twitter:description" content="项目与分支内容来自官方文档BranchesAndBuilding 背景CEF 是 Chromium 项目的一个扩展，跟踪其分支。可通过自动工具或手动编译。 开发CEF 的 master 分支跟踪 Chromium 的 master 分支，不建议用其产品化。 下载开发版 CEF CEF3 - https://bitbucket.org/chromiumembedded/cef/src?at=mast">
 
 
 
@@ -162,7 +162,7 @@
 
 
 
-  <title>CEF 拾遗 | Ironbin</title>
+  <title>编译 CEF | Ironbin</title>
   
 
 
@@ -359,7 +359,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CEF 拾遗</h2>
+          <h2 class="post-title" itemprop="name headline">编译 CEF</h2>
         
 
         <div class="post-meta">
@@ -422,7 +422,7 @@
 
           
           
-             <span id="/2017/04/26/cef-tips/" class="leancloud_visitors" data-flag-title="CEF 拾遗">
+             <span id="/2017/04/26/cef-tips/" class="leancloud_visitors" data-flag-title="编译 CEF">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -453,9 +453,46 @@
       
 
       
-        <h4 id="版本的分页"><a href="#版本的分页" class="headerlink" title="版本的分页"></a>版本的分页</h4><p>规则： <a href="https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY</a><br>YYYY 对应4位的版本号</p>
+        <h2 id="项目与分支"><a href="#项目与分支" class="headerlink" title="项目与分支"></a>项目与分支</h2><p><strong>内容来自官方文档<a href="https://bitbucket.org/chromiumembedded/cef/wiki/BranchesAndBuilding.md" target="_blank" rel="noopener">BranchesAndBuilding</a></strong></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>CEF 是 Chromium 项目的一个扩展，跟踪其分支。可通过自动工具或手动编译。</p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>CEF 的 master 分支跟踪 Chromium 的 master 分支，不建议用其产品化。</p>
+<p>下载开发版 CEF</p>
+<p>CEF3 - <a href="https://bitbucket.org/chromiumembedded/cef/src?at=master" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src?at=master</a></p>
+<p>CEF1 已不再支持。</p>
+<h3 id="发布（Release）分支"><a href="#发布（Release）分支" class="headerlink" title="发布（Release）分支"></a>发布（Release）分支</h3><p>CEF 的发布分支跟踪 Chromium 的 release 里程碑（milesone）MXX 分支，推荐使用其产品化：</p>
+<ul>
+<li>基于 Chromium release </li>
+<li>更好的测试</li>
+<li>CEF API 维护不变，仅做 bug 和安全修复</li>
+<li>CEF 必要时可包含 Blink 补丁</li>
+<li>不受 CEF master 分支推进影响</li>
+</ul>
+<p>CEF 版本 <strong> X.YYYY.A.gHHHHHHH</strong>：</p>
+<ul>
+<li>X：主版本号（当前为 3）</li>
+<li>YYYY：Chromium 分支</li>
+<li>A：自增值，反映当前分支的版本值。可表示基于同一分支，各版本的顺序，用于修复 bug 等的版本提升</li>
+<li>gHHHHHHH：7位字符反映 git 提交哈希，便于定位 git 历史</li>
+</ul>
+<p>版本的详细信息保存在 <code>include/cef_version.h</code> 头文件中，也可以通过生成的应用访问 <code>about:version</code> 查看。</p>
+<p>CEF release 分支下载规则，YYYY 对应4位 Chromium release 分支号：</p>
+<ul>
+<li><a href="https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY</a></li>
+</ul>
 <p>比如： <a href="https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623</a></p>
-<p><a href="https://bitbucket.org/chromiumembedded/cef/downloads/?tab=branches" target="_blank" rel="noopener">CEF branches</a></p>
+<h2 id="编译-CEF"><a href="#编译-CEF" class="headerlink" title="编译 CEF"></a>编译 CEF</h2><h3 id="下载文档"><a href="#下载文档" class="headerlink" title="下载文档"></a>下载文档</h3><p>首先要下载文档仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://bitbucket.org/chromiumembedded/cef.git/wiki</span><br></pre></td></tr></table></figure>
+<p>然后将文档检出到需要编译的版本，比如 2623</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 0625af2618b7f15660146acd769142144e5a48c9</span><br></pre></td></tr></table></figure>
+<h3 id="生成项目文件"><a href="#生成项目文件" class="headerlink" title="生成项目文件"></a>生成项目文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src\cef </span><br><span class="line">create.bat</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src </span><br><span class="line">ninja -C out\Release</span><br></pre></td></tr></table></figure>
+<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>编译成功之后，运行 <code>out\Release\cefclient.exe</code></p>
+<h3 id="打包导出"><a href="#打包导出" class="headerlink" title="打包导出"></a>打包导出</h3><p>执行打包脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src\cef\tools</span><br><span class="line">make_distrib.bat --ninja-build</span><br></pre></td></tr></table></figure>
+<p>打包成功后，在 <code>src/cef/binary_distrib</code> 目录会生成二进制的包</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li><a href="https://bitbucket.org/chromiumembedded/cef/downloads/?tab=branches" target="_blank" rel="noopener">CEF branches</a></li>
+</ul>
 
       
     </div>
@@ -476,7 +513,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://onthink.com/2017/04/26/cef-tips/" title="CEF 拾遗">http://onthink.com/2017/04/26/cef-tips/</a>
+    <a href="http://onthink.com/2017/04/26/cef-tips/" title="编译 CEF">http://onthink.com/2017/04/26/cef-tips/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -715,7 +752,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#版本的分页"><span class="nav-number">1.</span> <span class="nav-text">版本的分页</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目与分支"><span class="nav-number">1.</span> <span class="nav-text">项目与分支</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发"><span class="nav-number">1.2.</span> <span class="nav-text">开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布（Release）分支"><span class="nav-number">1.3.</span> <span class="nav-text">发布（Release）分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译-CEF"><span class="nav-number">2.</span> <span class="nav-text">编译 CEF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载文档"><span class="nav-number">2.1.</span> <span class="nav-text">下载文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成项目文件"><span class="nav-number">2.2.</span> <span class="nav-text">生成项目文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">2.3.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行测试"><span class="nav-number">2.4.</span> <span class="nav-text">运行测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包导出"><span class="nav-number">2.5.</span> <span class="nav-text">打包导出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">3.</span> <span class="nav-text">附录</span></a></li></ol></div>
             
 
           </div>
@@ -742,7 +779,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
   </span>
@@ -889,7 +926,7 @@
         var disqus_config = function () {
           this.page.url = 'http://onthink.com/2017/04/26/cef-tips/';
           this.page.identifier = '2017/04/26/cef-tips/';
-          this.page.title = 'CEF 拾遗';
+          this.page.title = '编译 CEF';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://chengxuebin.disqus.com/embed.js';

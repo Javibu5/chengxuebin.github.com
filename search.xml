@@ -870,11 +870,48 @@
     </entry>
     
     <entry>
-      <title><![CDATA[CEF 拾遗]]></title>
+      <title><![CDATA[编译 CEF]]></title>
       <url>/2017/04/26/cef-tips/</url>
-      <content type="html"><![CDATA[<h4 id="版本的分页"><a href="#版本的分页" class="headerlink" title="版本的分页"></a>版本的分页</h4><p>规则： <a href="https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY</a><br>YYYY 对应4位的版本号</p>
+      <content type="html"><![CDATA[<h2 id="项目与分支"><a href="#项目与分支" class="headerlink" title="项目与分支"></a>项目与分支</h2><p><strong>内容来自官方文档<a href="https://bitbucket.org/chromiumembedded/cef/wiki/BranchesAndBuilding.md" target="_blank" rel="noopener">BranchesAndBuilding</a></strong></p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>CEF 是 Chromium 项目的一个扩展，跟踪其分支。可通过自动工具或手动编译。</p>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>CEF 的 master 分支跟踪 Chromium 的 master 分支，不建议用其产品化。</p>
+<p>下载开发版 CEF</p>
+<p>CEF3 - <a href="https://bitbucket.org/chromiumembedded/cef/src?at=master" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src?at=master</a></p>
+<p>CEF1 已不再支持。</p>
+<h3 id="发布（Release）分支"><a href="#发布（Release）分支" class="headerlink" title="发布（Release）分支"></a>发布（Release）分支</h3><p>CEF 的发布分支跟踪 Chromium 的 release 里程碑（milesone）MXX 分支，推荐使用其产品化：</p>
+<ul>
+<li>基于 Chromium release </li>
+<li>更好的测试</li>
+<li>CEF API 维护不变，仅做 bug 和安全修复</li>
+<li>CEF 必要时可包含 Blink 补丁</li>
+<li>不受 CEF master 分支推进影响</li>
+</ul>
+<p>CEF 版本 <strong> X.YYYY.A.gHHHHHHH</strong>：</p>
+<ul>
+<li>X：主版本号（当前为 3）</li>
+<li>YYYY：Chromium 分支</li>
+<li>A：自增值，反映当前分支的版本值。可表示基于同一分支，各版本的顺序，用于修复 bug 等的版本提升</li>
+<li>gHHHHHHH：7位字符反映 git 提交哈希，便于定位 git 历史</li>
+</ul>
+<p>版本的详细信息保存在 <code>include/cef_version.h</code> 头文件中，也可以通过生成的应用访问 <code>about:version</code> 查看。</p>
+<p>CEF release 分支下载规则，YYYY 对应4位 Chromium release 分支号：</p>
+<ul>
+<li><a href="https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY</a></li>
+</ul>
 <p>比如： <a href="https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623</a></p>
-<p><a href="https://bitbucket.org/chromiumembedded/cef/downloads/?tab=branches" target="_blank" rel="noopener">CEF branches</a></p>
+<h2 id="编译-CEF"><a href="#编译-CEF" class="headerlink" title="编译 CEF"></a>编译 CEF</h2><h3 id="下载文档"><a href="#下载文档" class="headerlink" title="下载文档"></a>下载文档</h3><p>首先要下载文档仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://bitbucket.org/chromiumembedded/cef.git/wiki</span><br></pre></td></tr></table></figure>
+<p>然后将文档检出到需要编译的版本，比如 2623</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 0625af2618b7f15660146acd769142144e5a48c9</span><br></pre></td></tr></table></figure>
+<h3 id="生成项目文件"><a href="#生成项目文件" class="headerlink" title="生成项目文件"></a>生成项目文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src\cef </span><br><span class="line">create.bat</span><br></pre></td></tr></table></figure>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src </span><br><span class="line">ninja -C out\Release</span><br></pre></td></tr></table></figure>
+<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>编译成功之后，运行 <code>out\Release\cefclient.exe</code></p>
+<h3 id="打包导出"><a href="#打包导出" class="headerlink" title="打包导出"></a>打包导出</h3><p>执行打包脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src\cef\tools</span><br><span class="line">make_distrib.bat --ninja-build</span><br></pre></td></tr></table></figure>
+<p>打包成功后，在 <code>src/cef/binary_distrib</code> 目录会生成二进制的包</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li><a href="https://bitbucket.org/chromiumembedded/cef/downloads/?tab=branches" target="_blank" rel="noopener">CEF branches</a></li>
+</ul>
 ]]></content>
       
         <categories>
@@ -1304,32 +1341,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[PHPStorm 设置 watcher]]></title>
-      <url>/2017/01/19/phpstorm-file-watcher/</url>
-      <content type="html"><![CDATA[<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p><img src="/images/posts/phpstorm_watch/pic-1.png" alt=""></p>
-<p><img src="/images/posts/phpstorm_watch/pic-2.png" alt=""></p>
-<h4 id="Arguments"><a href="#Arguments" class="headerlink" title="Arguments:"></a>Arguments:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-cache --update $FileName$:$ProjectFileDir$/dist/css/$FileNameWithoutExtension$.css</span><br></pre></td></tr></table></figure>
-<h4 id="Outputs-path-to-refresh"><a href="#Outputs-path-to-refresh" class="headerlink" title="Outputs path to refresh:"></a>Outputs path to refresh:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">ProjectFileDir$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css:<span class="variable">$ProjectFileDir</span>$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css.map</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> php </tag>
-            
-            <tag> ide </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Chromium 拾遗]]></title>
       <url>/2017/01/19/chrome-tips/</url>
       <content type="html"><![CDATA[<h4 id="记录-SSL-的-Session-Key"><a href="#记录-SSL-的-Session-Key" class="headerlink" title="记录 SSL 的 Session Key"></a>记录 SSL 的 Session Key</h4><p>在环境变量中添加一个变量</p>
@@ -1350,6 +1361,32 @@
         <tags>
             
             <tag> chromium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PHPStorm 设置 watcher]]></title>
+      <url>/2017/01/19/phpstorm-file-watcher/</url>
+      <content type="html"><![CDATA[<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p><img src="/images/posts/phpstorm_watch/pic-1.png" alt=""></p>
+<p><img src="/images/posts/phpstorm_watch/pic-2.png" alt=""></p>
+<h4 id="Arguments"><a href="#Arguments" class="headerlink" title="Arguments:"></a>Arguments:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-cache --update $FileName$:$ProjectFileDir$/dist/css/$FileNameWithoutExtension$.css</span><br></pre></td></tr></table></figure>
+<h4 id="Outputs-path-to-refresh"><a href="#Outputs-path-to-refresh" class="headerlink" title="Outputs path to refresh:"></a>Outputs path to refresh:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">ProjectFileDir$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css:<span class="variable">$ProjectFileDir</span>$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css.map</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> php </tag>
+            
+            <tag> ide </tag>
             
         </tags>
         
@@ -1408,29 +1445,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[编译 Chromium 常见问题]]></title>
-      <url>/2017/01/17/build-chromium-issues/</url>
-      <content type="html"><![CDATA[<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p>解决办法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> chromium </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> chromium </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Windows Batch 用法]]></title>
       <url>/2017/01/17/batch-usage/</url>
       <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
@@ -1450,6 +1464,29 @@
             <tag> windows </tag>
             
             <tag> bat </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[编译 Chromium 常见问题]]></title>
+      <url>/2017/01/17/build-chromium-issues/</url>
+      <content type="html"><![CDATA[<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<p>解决办法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> chromium </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> chromium </tag>
             
         </tags>
         
@@ -1733,9 +1770,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> php </tag>
-            
             <tag> server </tag>
+            
+            <tag> php </tag>
             
         </tags>
         
@@ -1850,6 +1887,37 @@ For help, use /usr/bin/supervisord -h
             <tag> linux </tag>
             
             <tag> composer </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[url 编码常规]]></title>
+      <url>/2015/07/03/url-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+</ul>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> url </tag>
             
         </tags>
         
@@ -1976,37 +2044,6 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[url 编码常规]]></title>
-      <url>/2015/07/03/url-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
-<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
-<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
-<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
-</ul>
-<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
-<li><code>SEO</code> 模式</li>
-<li>使用连字符规则，不使用大写</li>
-<li>命名首选 <code>RESTful</code> 方式</li>
-<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> url </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[bower usage]]></title>
       <url>/2015/06/11/bower-usage/</url>
       <content type="html"><![CDATA[<h4 id="1-安装-nodejs"><a href="#1-安装-nodejs" class="headerlink" title="1. 安装 nodejs"></a>1. 安装 <code>nodejs</code></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew install nodejs</span></span><br></pre></td></tr></table></figure>
@@ -2124,9 +2161,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> extension </tag>
-            
             <tag> osx </tag>
+            
+            <tag> extension </tag>
             
         </tags>
         
@@ -2422,11 +2459,11 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> php </tag>
-            
             <tag> mac </tag>
             
             <tag> nginx </tag>
+            
+            <tag> php </tag>
             
             <tag> mysql </tag>
             
@@ -2648,6 +2685,51 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
+      <title><![CDATA[Linux 常用命令]]></title>
+      <url>/2015/01/25/linux-commands/</url>
+      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+<li>启用被 iptables 禁用的 80 端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
+<li>启动、停止、重启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
+<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<ul>
+<li>设置开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> server </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[常用的正则表达式]]></title>
       <url>/2015/01/25/the-most-used-regular-expression/</url>
       <content type="html"><![CDATA[<h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
@@ -2708,51 +2790,6 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> regexp </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Linux 常用命令]]></title>
-      <url>/2015/01/25/linux-commands/</url>
-      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
-<li>启用被 iptables 禁用的 80 端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
-<li>启动、停止、重启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
-<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
-<ul>
-<li>设置开机自启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
-<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> server </tag>
             
         </tags>
         
