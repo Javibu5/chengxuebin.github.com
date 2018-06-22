@@ -338,6 +338,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/31/chromium-grit-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/31/chromium-grit-2/" itemprop="url">Grit - Chromium 国际化（2）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-31T00:00:00+08:00">
+                2015-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/31/chromium-grit-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/31/chromium-grit-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/01/31/chromium-grit-2/" class="leancloud_visitors" data-flag-title="Grit - Chromium 国际化（2）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>经过上一篇的分析，虽然对工作原理有了简单认识，但实际修改或添加支持多语言的文本还是蛮麻烦。所以这里提供一个小工具，简化这个流程。</p>
+<p>下面说一下工具的使用：</p>
+<h3 id="1-准备修改前的文件"><a href="#1-准备修改前的文件" class="headerlink" title="1. 准备修改前的文件"></a>1. 准备修改前的文件</h3><ul>
+<li><p>修改前的默认语言文件（grd）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings.grd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改前的翻译文件（xtb）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings_zh-CN.xtb</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>将2个文件放到工具的 <code>old</code> 目录中。 </p>
+<blockquote>
+<p>注意如果有的 grd 文件中引用了其它资源，需要将这些资源一并放到 <code>old</code> 目录中</p>
+</blockquote>
+<h3 id="2-准备新的默认语言文件（grd）"><a href="#2-准备新的默认语言文件（grd）" class="headerlink" title="2. 准备新的默认语言文件（grd）"></a>2. 准备新的默认语言文件（grd）</h3><p>根据需要，修改旧的默认语言文件，最好将新加的文本放到文档的最后，以便和 chromium 原有的文本作区分。修改完成后的将文件放到 <code>new</code> 目录中。 这里，我将修改好的 <code>chromium_strings.grd</code> 放置到 <code>new</code> 目录。</p>
+<blockquote>
+<p>注意如果有的 grd 文件中引用了其它资源，需要将这些资源一并放到 <code>old</code> 目录中</p>
+</blockquote>
+<h3 id="3-执行"><a href="#3-执行" class="headerlink" title="3. 执行"></a>3. 执行</h3><p>准备好的目录结构：</p>
+<p><img src="/images/posts/grit/grit-tool-structure.jpg" alt=""></p>
+<p>运行根目录的 <code>run.bat</code>，它会根据上面的三个文件生成新的翻译文件 <code>xtb</code>。</p>
+<p><em>run.bat</em></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> handling chromium_strings.grd...</span><br><span class="line">python3 "generate_translation_bundle.py" "--old_grd" "old/chromium_strings.grd" "--old_xtb" "old/chromium_strings_zh-CN.xtb" "--new_grd" "new/chromium_strings.grd" "-o" "new/chromium_strings_zh-CN.xtb"</span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">ERRORLEVEL</span> <span class="number">0</span> <span class="built_in">ECHO</span> Success!</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> handling generated_resources.grd...</span><br><span class="line">python3 "generate_translation_bundle.py" "--old_grd" "old/generated_resources.grd" "--old_xtb" "old/generated_resources_zh-CN.xtb" "--new_grd" "new/generated_resources.grd" "-o" "new/generated_resources_zh-CN.xtb"</span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">ERRORLEVEL</span> <span class="number">0</span> <span class="built_in">ECHO</span> Success!</span><br><span class="line"></span><br><span class="line"><span class="built_in">cmd</span> /k</span><br></pre></td></tr></table></figure>
+<p>新生成的 xtb 实际是 xml 格式，将包含三种类型的结点（node）：</p>
+<ul>
+<li>未修改：该类结点和原结点格式一样</li>
+<li>修改：该类结点是修改了原文档内容，为了方便，生成文件会包含原翻译，用作参考。此类结点包含属性 <code>TODO=&quot;NEED_UPDATE&quot;</code></li>
+<li>新添加：该类结点是新添加的文本，为了方便，生成文件会包含默认语言（grd）的文本。此类结点包含属性 <code>TODO=&quot;NEED_TRANSLATE&quot;</code></li>
+</ul>
+<p>如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE translationbundle&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">translationbundle</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">id</span>=<span class="string">"6970811910055250180"</span>&gt;</span>正在更新设备...<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-UPDATE"</span> <span class="attr">id</span>=<span class="string">"4109624392265076313"</span>&gt;</span>Chromium<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-TRANSLATE"</span> <span class="attr">desc</span>=<span class="string">"Select the theme."</span> <span class="attr">id</span>=<span class="string">"233572109030077464"</span>&gt;</span></span><br><span class="line">    Select Theme</span><br><span class="line">  <span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">translationbundle</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>附： <a href="https://github.com/chengxuebin/chromium-grit" target="_blank" rel="noopener">Chromium-grit 工具</a></p>
+<h3 id="提醒："><a href="#提醒：" class="headerlink" title="提醒："></a><span class="text-danger">提醒：</span></h3><ul>
+<li>保证 <code>old</code> 和 <code>new</code> 中的 grd 文件行数对应，因为是按照行号对应查找旧翻译文的，否则编译时出现错误</li>
+<li>如果修改 zh-CN 以外的语言，需要手动修改生成的 xtb 文件中 <code>lang=&quot;zh-CN&quot;</code> 属性</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/29/chromium-grit/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2158,185 +2357,6 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/07/06/32bit-64bit-registry/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/07/06/32bit-64bit-registry/" itemprop="url">32位和64位程序的注册表知识点</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-06T00:00:00+08:00">
-                2014-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/07/06/32bit-64bit-registry/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/07/06/32bit-64bit-registry/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/07/06/32bit-64bit-registry/" class="leancloud_visitors" data-flag-title="32位和64位程序的注册表知识点">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>众所周知，注册表是windows系统的数据库，系统本身以及安装的程序都依赖注册表。当windows进化到64位，还要兼容大量的32位老程序，便碰到了注册表的问题。这里只讨论64位系统的注册表机制。</p>
-<p>注册表树最大可以有512级深度，通过注册表API一次可以创建32级深的键值。</p>
-<p>为了解决64位系统遇到的问题，Windows使用了三套方案，共享（Shared）、<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384232\(v=vs.85\" target="_blank" rel="noopener">注册表重定向（Registry Redirector）</a>.aspx)和<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384235\(v=vs.85\" target="_blank" rel="noopener">注册表反射（Registry Reflection）</a>.aspx)。</p>
-<ul>
-<li><p>共享，顾名思义，保存可以被32位和64位共同使用的注册表。</p>
-</li>
-<li><p>反射，这是一个早期的方案，只用于Windows Server 2008, Windows Vista, Windows Server 2003, 和Windows XP，从Windows 7 和 Windows Server 2008 R2 开始被移除。  </p>
-<p>  它的做法是备份和同步，就是把同一份注册表保存到两个物理位置，这两个位置会分别被32位或64位程序使用。保存发生在RegCloseKey调用结束。使用 RegDisableReflectionKey和RegEnableReflectionKey方法可以禁用/启用反射机制。</p>
-</li>
-<li><p>重定向，主要使用的机制，它会区分32位和64位程序（Application），分别提供给他们不同的注册表物理存储位置，但会映射成同一个逻辑视图（View），这个过程对程序本身是透明的。也就是说，一个32位程序可以像在32位系统中一样来使用注册表，虽然它们在64位系统上被存储在不同的物理位置。  </p>
-<p>  32位程序重定向的注册表存放在Wow6432Node下，例如, HKEY_LOCAL_MACHINE\Software 会被重定向到 HKEY_LOCAL_MACHINE\Software\Wow6432Node。但是，这些操作应该由系统而非程序本身来做。  </p>
-<p>  当注册表包含%ProgramFiles% 或 %commonprogramfiles%时，64位系统会自动替换为 “%ProgramFiles(x86)%” 和 “%commonprogramfiles(x86)%”，同样的system32 被替换为  syswow64。具体的替换规则请阅读 <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384232\(v=vs.85\" target="_blank" rel="noopener">MSDN</a>.aspx)</p>
-</li>
-</ul>
-<p>关于Windows系统中哪些目录使用的是哪种机制，请<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384253\(v=vs.85\" target="_blank" rel="noopener">更详细的列表</a>.aspx)。</p>
-<p>上面是系统的解决方案，如果你需要显式地访问64位注册表或32位注册表，可以使用KEY_WOW64_64KEY和KEY_WOW64_32KEY标识。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2391,7 +2411,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
