@@ -338,6 +338,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/07/03/php-code-conventions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/03/php-code-conventions/" itemprop="url">php 编码常规</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-03T00:00:00+08:00">
+                2015-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/07/03/php-code-conventions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/07/03/php-code-conventions/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/07/03/php-code-conventions/" class="leancloud_visitors" data-flag-title="php 编码常规">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action名、变量名、方法名采用小写camelCase： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action 名与 url 的映射关系： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
+<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>类方法和变量遵守小写camelCase</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
+<li>视图模板（tpl）文件路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目录名对应 <code>Controller</code>，首字母大写</li>
+<li>文件名对应 <code>action</code>，首字母小写</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/07/03/javascript-code-conventions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2127,239 +2318,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/02/15/deliver-to-app-store/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/02/15/deliver-to-app-store/" itemprop="url">发布到 App Store</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-15T00:00:00+08:00">
-                2015-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/02/15/deliver-to-app-store/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/02/15/deliver-to-app-store/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/02/15/deliver-to-app-store/" class="leancloud_visitors" data-flag-title="发布到 App Store">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一-一些名词"><a href="#一-一些名词" class="headerlink" title="一 一些名词"></a>一 一些名词</h2><h3 id="App-ID：应用的标识"><a href="#App-ID：应用的标识" class="headerlink" title="App ID：应用的标识"></a>App ID：应用的标识</h3><ul>
-<li><p>格式：上由2部分组成： <code>&lt;Bundle Seed ID&gt;.&lt;Bundle Identifier&gt;</code>，例如，<code>ABCDE12345.com.foocompany.appname</code>:</p>
-<ul>
-<li><code>ABCDE12345</code> 是 Bundle Seed ID (苹果生成)</li>
-<li><code>com.foocompany.appname</code> is the App ID’s Bundle Identifier and needs to be the same as your app’s Bundle Identifier</li>
-</ul>
-</li>
-<li><p>分类： 通配符方式（wildcard） VS 显示定义（explicit）</p>
-<ul>
-<li>通配符方式： 一般的ID都应该用此方式，理由是一个 Wildcard App ID 可用于编译和安装多个 App。注意星要放到最后<br><code>Example App ID: ABCDE12345.com.foocompany.*</code></li>
-<li>显示定义：只能用于一个 App，但是，如果你的应用需要诸如 In App Purchase and Apple Push Notification service 的功能，你就必须使用显示定义<br><code>Example App ID: ABCDE12345.com.foocompany.appname</code></li>
-</ul>
-</li>
-</ul>
-<p>扩展阅读：<a href="https://developer.apple.com/library/ios/qa/qa1713/_index.html" target="_blank" rel="noopener">Q:  When should I use a wildcard App ID vs. an explicit App ID?</a> </p>
-<ul>
-<li><a href="https://developer.apple.com/library/mac/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/CreatingYourTeamProvisioningProfile/CreatingYourTeamProvisioningProfile.html#//apple_ref/doc/uid/TP40013839-CH33-SW1" target="_blank" rel="noopener">Provisioning profile</a>：配置文件</li>
-</ul>
-<p>开始 ios 开发时，最大的不适就是复杂的测试发布限制，你不能简单的编译个 app 放到任一设备中运行。比如符合 Provisioning profile 的设定。A picture worth a thousand words，先看下面的图：</p>
-<p><img src="/images/posts/itunes_connect/teamprovisioningprofile_2x.png" alt=""></p>
-<p>一个 Provisioning profile 设置了 APP ID，证书和设备。当你使用某个 Provisioning profile 签名应用时，其实是使用它包含的证书来签名，并且签证对应的 APP ID，并只允许安装到被包含其中的设备中。</p>
-<h3 id="Certification：证书"><a href="#Certification：证书" class="headerlink" title="Certification：证书"></a>Certification：证书</h3><p><img src="/images/posts/itunes_connect/certificates_2x.png" alt=""></p>
-<p>如上图所示，证书的公钥保存在苹果的用户中心，公私钥对保存到开发者 keychain 中。你必须有私钥才可以签名应用。</p>
-<ul>
-<li>Development certification：开发证书</li>
-<li>Adhoc certification：真机部署测试证书</li>
-<li>Distribution certification：发布证书 </li>
-</ul>
-<h3 id="Deployment-Target：部署目标"><a href="#Deployment-Target：部署目标" class="headerlink" title="Deployment Target：部署目标"></a>Deployment Target：部署目标</h3><p>面向的 ios 版本</p>
-<h3 id="iTunes-Connect"><a href="#iTunes-Connect" class="headerlink" title="iTunes Connect"></a>iTunes Connect</h3><p>This is the version number shown in the App Store; This must be a pure version number like1.2.3</p>
-<h3 id="Bundle-Version-CFBundleVersion"><a href="#Bundle-Version-CFBundleVersion" class="headerlink" title="Bundle Version (CFBundleVersion)"></a>Bundle Version (CFBundleVersion)</h3><p>This doesn’t need to be a pure version number. This can be something like 12345 or 1.2.3 (Build 12345AB). This is shown in the About window for Mac OS X apps for example and is often more a “Build Number” than a “Version Number”. 真实版本号，用来判断版本信息的。</p>
-<h3 id="Bundle-Version-String-CFBundleShortVersionString"><a href="#Bundle-Version-String-CFBundleShortVersionString" class="headerlink" title="Bundle Version String (CFBundleShortVersionString)"></a>Bundle Version String (CFBundleShortVersionString)</h3><p>This value is used as the “real” version number. This must be the same string as used for the version in iTunes Connect. 面向用户市场的束的版本字符串–用户看到的版本号；</p>
-<h2 id="二-流程"><a href="#二-流程" class="headerlink" title="二 流程"></a>二 流程</h2><h3 id="下载安装证书"><a href="#下载安装证书" class="headerlink" title="下载安装证书"></a>下载安装证书</h3><h3 id="配置编译参数"><a href="#配置编译参数" class="headerlink" title="配置编译参数"></a>配置编译参数</h3><ul>
-<li>设置 Deployment Target (部署目标)<br>  首选最新的 IOS 版本作为发布版本</li>
-</ul>
-<h3 id="填写-iTunes-Connect-信息"><a href="#填写-iTunes-Connect-信息" class="headerlink" title="填写 iTunes Connect 信息"></a>填写 iTunes Connect 信息</h3><p>打开<a href="https://itunesconnect.apple.com" target="_blank" rel="noopener">iTunes Connect</a>，填表：  </p>
-<ol>
-<li><p>第一组：</p>
-<ul>
-<li>选择语言</li>
-<li>应用名称</li>
-<li>skunumber：一个用来识别app的特殊字符串。</li>
-<li>bundleID</li>
-</ul>
-</li>
-<li><p>第二组</p>
-<ul>
-<li>版本</li>
-<li>版权</li>
-<li>软件首类别</li>
-<li>次类别</li>
-<li>评级划分</li>
-<li>内容描述</li>
-<li>关键字</li>
-<li>技术支持url，以及下面的技术负责人的名字，姓，email，手机号码</li>
-</ul>
-</li>
-</ol>
-<p>填写完成后如下图所示：<br><img src="/images/posts/itunes_connect/itunes_connect.png" alt=""></p>
-<h3 id="上传安装包"><a href="#上传安装包" class="headerlink" title="上传安装包"></a>上传安装包</h3><h4 id="使用-xcode-直接上传："><a href="#使用-xcode-直接上传：" class="headerlink" title="使用 xcode 直接上传："></a>使用 xcode 直接上传：</h4><ol>
-<li>检查代码，去除 log，debug 等相关的信息</li>
-<li>清理项目（clean project）</li>
-<li>生成包文件（archive）</li>
-<li>发送包文件（submit）</li>
-<li>选择发布证书（注意要使用 Agent 账号上传）</li>
-<li>发布成功</li>
-</ol>
-<h4 id="使用-application-loader-上传"><a href="#使用-application-loader-上传" class="headerlink" title="使用 application loader 上传"></a>使用 application loader 上传</h4><p>以后补充</p>
-<h3 id="itunes-connect-关联上传的包文件"><a href="#itunes-connect-关联上传的包文件" class="headerlink" title="itunes connect 关联上传的包文件"></a>itunes connect 关联上传的包文件</h3><p>上传成功之后，在 Build 分类下，可以关联此包。</p>
-<h3 id="提交审核（submit-for-review）"><a href="#提交审核（submit-for-review）" class="headerlink" title="提交审核（submit for review）"></a>提交审核（submit for review）</h3><p>以后补充</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2414,7 +2372,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2425,7 +2383,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2436,7 +2394,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

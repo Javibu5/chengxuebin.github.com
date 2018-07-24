@@ -338,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/upgrade-mysql/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/12/20/about-cert-type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -357,7 +357,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/08/28/upgrade-mysql/" itemprop="url">MySQL升级到5.7</a></h2>
+                <a class="post-title-link" href="/2016/12/20/about-cert-type/" itemprop="url">关于证书类型</a></h2>
         
 
         <div class="post-meta">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
-                2016-08-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-20T00:00:00+08:00">
+                2016-12-20
               </time>
             
 
@@ -392,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
+                  <a href="/categories/crypto/" itemprop="url" rel="index">
+                    <span itemprop="name">crypto</span>
                   </a>
                 </span>
 
@@ -410,9 +410,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/08/28/upgrade-mysql/#comments" itemprop="discussionUrl">
+                <a href="/2016/12/20/about-cert-type/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/28/upgrade-mysql/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/12/20/about-cert-type/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -420,7 +420,7 @@
 
           
           
-             <span id="/2016/08/28/upgrade-mysql/" class="leancloud_visitors" data-flag-title="MySQL升级到5.7">
+             <span id="/2016/12/20/about-cert-type/" class="leancloud_visitors" data-flag-title="关于证书类型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -453,17 +453,39 @@
       
         
           
-            <p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql mysql-server</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum list installed | grep mysql</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql-client mysql-server mysql-common mysql-devel</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /var/lib/mysql/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
-<p>Step 2: Romove MySQL Directory<br>Now we need to remove MySQL data directory from system which by default exists at /var/lib/mysql. If you didn’t find this, It may be changed to some other place, which you can find in my.cnf file with variable datadir. Delete the /var/lib/mysql directory from system but we prefer to rename it to keep a backup of existing files.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mv /var/lib/mysql /var/lib/mysql_old_backup</span></span><br></pre></td></tr></table></figure>
-<p>Step 3: Install MySQL Packages Again<br>After removing MySQL completely, install it again using yum package manager, It will re create mysql directory under /var/lib/.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> yum install mysql mysql-server</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_upgrade -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_secure_installation</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> we can <span class="built_in">set</span> it <span class="keyword">in</span> my.cnf file</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> [mysqld]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> validate_password_policy=LOW</span></span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="http://www.tecmint.com/install-latest-mysql-on-rhel-centos-and-fedora/" target="_blank" rel="noopener">How to Install Latest MySQL 5.7.9 on RHEL/CentOS 7/6/5 and Fedora</a></p>
-</blockquote>
+            <h3 id="证书的编码（encoding）分类"><a href="#证书的编码（encoding）分类" class="headerlink" title="证书的编码（encoding）分类"></a>证书的编码（encoding）分类</h3><p>首先，ASN.1 定义了几个编码格式，成为了 <a href="https://en.wikipedia.org/wiki/X.690#DER_encoding" target="_blank" rel="noopener">X.690</a> 标准，它们是：</p>
+<ul>
+<li>Basic Encoding Rules (BER)</li>
+<li>Canonical Encoding Rules (CER)</li>
+<li>Distinguished Encoding Rules (DER)</li>
+</ul>
+<p>然后证书采用了 DER 作为 <strong>二进制</strong> 编码格式；但是为了便于阅读和传送，也可以将二进制转换为 base64 形式，又引入了 PEM 格式，如下所示：</p>
+<ul>
+<li>Privacy-enhanced Electronic Mail (PEM) ：将 DER 的做 base64 编码，并在开头和结尾加入标识：<code>&quot;-----BEGIN CERTIFICATE-----&quot;</code> 和 <code>&quot;-----END CERTIFICATE-----&quot;</code></li>
+</ul>
+<h3 id="证书的存储格式"><a href="#证书的存储格式" class="headerlink" title="证书的存储格式"></a>证书的存储格式</h3><ul>
+<li>.pem</li>
+<li>.cer, .crt, .der</li>
+<li>.p7b, .p7c</li>
+<li>.p12</li>
+<li>.pfx</li>
+<li>.key</li>
+</ul>
+<h4 id="pem"><a href="#pem" class="headerlink" title=".pem"></a>.pem</h4><p>存储的是 base64 格式，也就是 PEM 格式</p>
+<h4 id="cer-crt-der"><a href="#cer-crt-der" class="headerlink" title=".cer, .crt, .der"></a>.cer, .crt, .der</h4><p>通常存储的是 DER 编码的二进制格式</p>
+<h4 id="p7b-p7c"><a href="#p7b-p7c" class="headerlink" title=".p7b, .p7c"></a>.p7b, .p7c</h4><p>不包含数据的 PKCS#7 签名格式, 只包含证书或CRL<br>开头和结尾是：<code>&quot;-----BEGIN PKCS7-----&quot;</code> 和 <code>&quot;-----END PKCS7-----&quot;</code></p>
+<h4 id="pfx"><a href="#pfx" class="headerlink" title=".pfx"></a>.pfx</h4><p>personal information exchange (PFX) 也是 PKCS#12 格式，这是微软提出的格式</p>
+<h4 id="p12"><a href="#p12" class="headerlink" title=".p12"></a>.p12</h4><p>PKCS#12 格式，包含了证书和私钥，私钥有密码保护，Netscape 提出的格式</p>
+<h4 id="key"><a href="#key" class="headerlink" title=".key"></a>.key</h4><p>用于 PKCS#8 的公钥或私钥，编码支持 DER 或 PEM 2种格式</p>
+<h3 id="查看证书"><a href="#查看证书" class="headerlink" title="查看证书"></a>查看证书</h3><h4 id="查看-DER-证书"><a href="#查看-DER-证书" class="headerlink" title="查看 DER 证书"></a>查看 DER 证书</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in certificate.der -inform der -text -noout</span><br></pre></td></tr></table></figure>
+<h4 id="查看-PEM-证书"><a href="#查看-PEM-证书" class="headerlink" title="查看 PEM 证书"></a>查看 PEM 证书</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in cert.pem -text -noout</span><br><span class="line">openssl x509 -in cert.cer -text -noout</span><br><span class="line">openssl x509 -in cert.crt -text -noout</span><br></pre></td></tr></table></figure>
+<h3 id="编码转换"><a href="#编码转换" class="headerlink" title="编码转换"></a>编码转换</h3><h4 id="DER-gt-PEM"><a href="#DER-gt-PEM" class="headerlink" title="DER -&gt; PEM"></a>DER -&gt; PEM</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in cert.crt -inform der -outform pem -out cert.pem</span><br></pre></td></tr></table></figure>
+<h4 id="PEM-gt-DER"><a href="#PEM-gt-DER" class="headerlink" title="PEM -&gt; DER"></a>PEM -&gt; DER</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in cert.crt -outform der -out cert.der</span><br></pre></td></tr></table></figure>
+<h4 id="PEM-gt-P7B"><a href="#PEM-gt-P7B" class="headerlink" title="PEM -&gt; P7B"></a>PEM -&gt; P7B</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl crl2pkcs7 -nocrl -certfile certificate.cer -out certificate.p7b -certfile CACert.cer</span><br></pre></td></tr></table></figure>
+<h4 id="PEM-gt-PFX"><a href="#PEM-gt-PFX" class="headerlink" title="PEM -&gt; PFX"></a>PEM -&gt; PFX</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt</span><br></pre></td></tr></table></figure>
+<h4 id="PFX-gt-PEM"><a href="#PFX-gt-PEM" class="headerlink" title="PFX -&gt; PEM"></a>PFX -&gt; PEM</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -in certificate.pfx -out certificate.cer -nodes</span><br></pre></td></tr></table></figure>
+<h4 id="P7B-gt-PEM"><a href="#P7B-gt-PEM" class="headerlink" title="P7B -&gt; PEM"></a>P7B -&gt; PEM</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer</span><br></pre></td></tr></table></figure>
+<h4 id="P7B-gt-PFX"><a href="#P7B-gt-PFX" class="headerlink" title="P7B -&gt; PFX"></a>P7B -&gt; PFX</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer</span><br><span class="line"></span><br><span class="line">openssl pkcs12 -export -in certificate.cer -inkey privateKey.key -out certificate.pfx -certfile CACert.cer</span><br></pre></td></tr></table></figure>
 
           
         
@@ -629,6 +651,180 @@
           
             <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
 <p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/upgrade-mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/28/upgrade-mysql/" itemprop="url">MySQL升级到5.7</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
+                2016-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/28/upgrade-mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/28/upgrade-mysql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/28/upgrade-mysql/" class="leancloud_visitors" data-flag-title="MySQL升级到5.7">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql mysql-server</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum list installed | grep mysql</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql-client mysql-server mysql-common mysql-devel</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /var/lib/mysql/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
+<p>Step 2: Romove MySQL Directory<br>Now we need to remove MySQL data directory from system which by default exists at /var/lib/mysql. If you didn’t find this, It may be changed to some other place, which you can find in my.cnf file with variable datadir. Delete the /var/lib/mysql directory from system but we prefer to rename it to keep a backup of existing files.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mv /var/lib/mysql /var/lib/mysql_old_backup</span></span><br></pre></td></tr></table></figure>
+<p>Step 3: Install MySQL Packages Again<br>After removing MySQL completely, install it again using yum package manager, It will re create mysql directory under /var/lib/.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> yum install mysql mysql-server</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_upgrade -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_secure_installation</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> we can <span class="built_in">set</span> it <span class="keyword">in</span> my.cnf file</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> [mysqld]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> validate_password_policy=LOW</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="http://www.tecmint.com/install-latest-mysql-on-rhel-centos-and-fedora/" target="_blank" rel="noopener">How to Install Latest MySQL 5.7.9 on RHEL/CentOS 7/6/5 and Fedora</a></p>
 </blockquote>
 
           
@@ -1894,197 +2090,6 @@ For help, use /usr/bin/supervisord -h
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/07/03/php-code-conventions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/07/03/php-code-conventions/" itemprop="url">php 编码常规</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-03T00:00:00+08:00">
-                2015-07-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/07/03/php-code-conventions/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/07/03/php-code-conventions/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/07/03/php-code-conventions/" class="leancloud_visitors" data-flag-title="php 编码常规">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action名、变量名、方法名采用小写camelCase： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action 名与 url 的映射关系： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
-<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>类方法和变量遵守小写camelCase</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
-<li>视图模板（tpl）文件路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目录名对应 <code>Controller</code>，首字母大写</li>
-<li>文件名对应 <code>action</code>，首字母小写</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2139,7 +2144,7 @@ For help, use /usr/bin/supervisord -h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2150,7 +2155,7 @@ For help, use /usr/bin/supervisord -h
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2161,7 +2166,7 @@ For help, use /usr/bin/supervisord -h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

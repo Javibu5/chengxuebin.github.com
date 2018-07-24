@@ -338,6 +338,239 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/02/15/deliver-to-app-store/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/02/15/deliver-to-app-store/" itemprop="url">发布到 App Store</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-02-15T00:00:00+08:00">
+                2015-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/02/15/deliver-to-app-store/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/02/15/deliver-to-app-store/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/02/15/deliver-to-app-store/" class="leancloud_visitors" data-flag-title="发布到 App Store">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一-一些名词"><a href="#一-一些名词" class="headerlink" title="一 一些名词"></a>一 一些名词</h2><h3 id="App-ID：应用的标识"><a href="#App-ID：应用的标识" class="headerlink" title="App ID：应用的标识"></a>App ID：应用的标识</h3><ul>
+<li><p>格式：上由2部分组成： <code>&lt;Bundle Seed ID&gt;.&lt;Bundle Identifier&gt;</code>，例如，<code>ABCDE12345.com.foocompany.appname</code>:</p>
+<ul>
+<li><code>ABCDE12345</code> 是 Bundle Seed ID (苹果生成)</li>
+<li><code>com.foocompany.appname</code> is the App ID’s Bundle Identifier and needs to be the same as your app’s Bundle Identifier</li>
+</ul>
+</li>
+<li><p>分类： 通配符方式（wildcard） VS 显示定义（explicit）</p>
+<ul>
+<li>通配符方式： 一般的ID都应该用此方式，理由是一个 Wildcard App ID 可用于编译和安装多个 App。注意星要放到最后<br><code>Example App ID: ABCDE12345.com.foocompany.*</code></li>
+<li>显示定义：只能用于一个 App，但是，如果你的应用需要诸如 In App Purchase and Apple Push Notification service 的功能，你就必须使用显示定义<br><code>Example App ID: ABCDE12345.com.foocompany.appname</code></li>
+</ul>
+</li>
+</ul>
+<p>扩展阅读：<a href="https://developer.apple.com/library/ios/qa/qa1713/_index.html" target="_blank" rel="noopener">Q:  When should I use a wildcard App ID vs. an explicit App ID?</a> </p>
+<ul>
+<li><a href="https://developer.apple.com/library/mac/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/CreatingYourTeamProvisioningProfile/CreatingYourTeamProvisioningProfile.html#//apple_ref/doc/uid/TP40013839-CH33-SW1" target="_blank" rel="noopener">Provisioning profile</a>：配置文件</li>
+</ul>
+<p>开始 ios 开发时，最大的不适就是复杂的测试发布限制，你不能简单的编译个 app 放到任一设备中运行。比如符合 Provisioning profile 的设定。A picture worth a thousand words，先看下面的图：</p>
+<p><img src="/images/posts/itunes_connect/teamprovisioningprofile_2x.png" alt=""></p>
+<p>一个 Provisioning profile 设置了 APP ID，证书和设备。当你使用某个 Provisioning profile 签名应用时，其实是使用它包含的证书来签名，并且签证对应的 APP ID，并只允许安装到被包含其中的设备中。</p>
+<h3 id="Certification：证书"><a href="#Certification：证书" class="headerlink" title="Certification：证书"></a>Certification：证书</h3><p><img src="/images/posts/itunes_connect/certificates_2x.png" alt=""></p>
+<p>如上图所示，证书的公钥保存在苹果的用户中心，公私钥对保存到开发者 keychain 中。你必须有私钥才可以签名应用。</p>
+<ul>
+<li>Development certification：开发证书</li>
+<li>Adhoc certification：真机部署测试证书</li>
+<li>Distribution certification：发布证书 </li>
+</ul>
+<h3 id="Deployment-Target：部署目标"><a href="#Deployment-Target：部署目标" class="headerlink" title="Deployment Target：部署目标"></a>Deployment Target：部署目标</h3><p>面向的 ios 版本</p>
+<h3 id="iTunes-Connect"><a href="#iTunes-Connect" class="headerlink" title="iTunes Connect"></a>iTunes Connect</h3><p>This is the version number shown in the App Store; This must be a pure version number like1.2.3</p>
+<h3 id="Bundle-Version-CFBundleVersion"><a href="#Bundle-Version-CFBundleVersion" class="headerlink" title="Bundle Version (CFBundleVersion)"></a>Bundle Version (CFBundleVersion)</h3><p>This doesn’t need to be a pure version number. This can be something like 12345 or 1.2.3 (Build 12345AB). This is shown in the About window for Mac OS X apps for example and is often more a “Build Number” than a “Version Number”. 真实版本号，用来判断版本信息的。</p>
+<h3 id="Bundle-Version-String-CFBundleShortVersionString"><a href="#Bundle-Version-String-CFBundleShortVersionString" class="headerlink" title="Bundle Version String (CFBundleShortVersionString)"></a>Bundle Version String (CFBundleShortVersionString)</h3><p>This value is used as the “real” version number. This must be the same string as used for the version in iTunes Connect. 面向用户市场的束的版本字符串–用户看到的版本号；</p>
+<h2 id="二-流程"><a href="#二-流程" class="headerlink" title="二 流程"></a>二 流程</h2><h3 id="下载安装证书"><a href="#下载安装证书" class="headerlink" title="下载安装证书"></a>下载安装证书</h3><h3 id="配置编译参数"><a href="#配置编译参数" class="headerlink" title="配置编译参数"></a>配置编译参数</h3><ul>
+<li>设置 Deployment Target (部署目标)<br>  首选最新的 IOS 版本作为发布版本</li>
+</ul>
+<h3 id="填写-iTunes-Connect-信息"><a href="#填写-iTunes-Connect-信息" class="headerlink" title="填写 iTunes Connect 信息"></a>填写 iTunes Connect 信息</h3><p>打开<a href="https://itunesconnect.apple.com" target="_blank" rel="noopener">iTunes Connect</a>，填表：  </p>
+<ol>
+<li><p>第一组：</p>
+<ul>
+<li>选择语言</li>
+<li>应用名称</li>
+<li>skunumber：一个用来识别app的特殊字符串。</li>
+<li>bundleID</li>
+</ul>
+</li>
+<li><p>第二组</p>
+<ul>
+<li>版本</li>
+<li>版权</li>
+<li>软件首类别</li>
+<li>次类别</li>
+<li>评级划分</li>
+<li>内容描述</li>
+<li>关键字</li>
+<li>技术支持url，以及下面的技术负责人的名字，姓，email，手机号码</li>
+</ul>
+</li>
+</ol>
+<p>填写完成后如下图所示：<br><img src="/images/posts/itunes_connect/itunes_connect.png" alt=""></p>
+<h3 id="上传安装包"><a href="#上传安装包" class="headerlink" title="上传安装包"></a>上传安装包</h3><h4 id="使用-xcode-直接上传："><a href="#使用-xcode-直接上传：" class="headerlink" title="使用 xcode 直接上传："></a>使用 xcode 直接上传：</h4><ol>
+<li>检查代码，去除 log，debug 等相关的信息</li>
+<li>清理项目（clean project）</li>
+<li>生成包文件（archive）</li>
+<li>发送包文件（submit）</li>
+<li>选择发布证书（注意要使用 Agent 账号上传）</li>
+<li>发布成功</li>
+</ol>
+<h4 id="使用-application-loader-上传"><a href="#使用-application-loader-上传" class="headerlink" title="使用 application loader 上传"></a>使用 application loader 上传</h4><p>以后补充</p>
+<h3 id="itunes-connect-关联上传的包文件"><a href="#itunes-connect-关联上传的包文件" class="headerlink" title="itunes connect 关联上传的包文件"></a>itunes connect 关联上传的包文件</h3><p>上传成功之后，在 Build 分类下，可以关联此包。</p>
+<h3 id="提交审核（submit-for-review）"><a href="#提交审核（submit-for-review）" class="headerlink" title="提交审核（submit for review）"></a>提交审核（submit for review）</h3><p>以后补充</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/31/chromium-grit-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2171,192 +2404,6 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/07/26/chinese-charsets/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/07/26/chinese-charsets/" itemprop="url">常见的中文编码</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-26T00:00:00+08:00">
-                2014-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/07/26/chinese-charsets/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/07/26/chinese-charsets/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/07/26/chinese-charsets/" class="leancloud_visitors" data-flag-title="常见的中文编码">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>工作经常碰到编码、字符集等概念，下面收集了一下常见的中文编码，方便日后查阅。</p>
-<p>常见的有国家标准的<a href="http://zh.wikipedia.org/wiki/GB_2312" target="_blank" rel="noopener">GB 2312-80</a>，<a href="http://zh.wikipedia.org/wiki/GB18030" target="_blank" rel="noopener">GB 18030-2005</a>，以及并非国家标准但应用很广的<a href="http://zh.wikipedia.org/wiki/%E6%B1%89%E5%AD%97%E5%86%85%E7%A0%81%E6%89%A9%E5%B1%95%E8%A7%84%E8%8C%83" target="_blank" rel="noopener">GBK</a>。</p>
-<p>先说说这些名称的所表示的意思：标准类别代号 顺序号-年代号 中文名称。如”GB 2312-(19)80”, “GB 18030-2005”。</p>
-<h2 id="GB-2312"><a href="#GB-2312" class="headerlink" title="GB 2312"></a>GB 2312</h2><p>标准共收录6763个汉字，其中一级汉字3755个，二级汉字3008个；同时收录了包括拉丁字母、希腊字母、日文平假名及片假名字母、俄语西里尔字母在内的682个字符。</p>
-<p>在使用GB2312的程序通常采用EUC储存方法，以便兼容于ASCII。浏览器编码表上的“GB2312”，通常都是指“EUC-CN”表示法。</p>
-<p>每个汉字及符号以两个字节来表示。第一个字节称为“高位字节”，第二个字节称为“低位字节”。</p>
-<p>“高位字节”使用了0xA1-0xF7（把01-87区的区号加上0xA0），“低位字节”使用了0xA1-0xFE（把01-94加上0xA0）。 由于一级汉字从16区起始，汉字区的“高位字节”的范围是0xB0-0xF7，“低位字节”的范围是0xA1-0xFE，占用的码位是72*94=6768。其中有5个空位是D7FA-D7FE。</p>
-<p>例如“啊”字在大多数程序中，会以两个字节，0xB0（第一个字节）0xA1（第二个字节）储存。（与区位码对比：0xB0=0xA0+16,0xA1=0xA0+1）。</p>
-<h2 id="GBK"><a href="#GBK" class="headerlink" title="GBK"></a>GBK</h2><p>由于GB 2312-80只收录6763个汉字，有不少汉字，如部分在GB 2312-80推出以后才简化的汉字（如“啰”），部分人名用字（如中国前总理朱镕基的“镕”字），台湾及香港使用的繁体字，日语及朝鲜语汉字等，并未有收录在内。于是厂商微软利用GB 2312-80未使用的编码空间，收录GB 13000.1-93全部字符制定了GBK编码。</p>
-<p>根据微软资料，GBK是对GB2312-80的扩展，也就是CP936字码表 (Code Page 936)的扩展（之前CP936和GB 2312-80一模一样），最早实现于Windows 95简体中文版。虽然GBK收录GB 13000.1-93的全部字符，但编码方式并不相同。</p>
-<p>GBK自身并非国家标准，只是曾由国家技术监督局标准化司、电子工业部科技与质量监督司公布为“技术规范指导性文件”。原始GB13000一直未被业界采用，后续国家标准GB18030技术上兼容GBK而非GB13000。</p>
-<p>字符有一字节和双字节编码，00–7F范围内是一位，和ASCII保持一致，此范围内严格上说有96个文字和32个控制符号。</p>
-<p>之后的双字节中，前一字节是双字节的第一位。总体上说第一字节的范围是81–FE（也就是不含80和FF），第二字节的一部分领域在40–7E，其他领域在80–FE。</p>
-<h2 id="GB-18030"><a href="#GB-18030" class="headerlink" title="GB 18030"></a>GB 18030</h2><p>全称：国家标准GB 18030-2005《信息技术　中文编码字符集》，是中华人民共和国现时最新的内码字集，是GB 18030-2000《信息技术　信息交换用汉字编码字符集　基本集的扩充》的修订版。与GB 2312-1980完全兼容，与GBK基本兼容，支持GB 13000及Unicode的全部统一汉字，共收录汉字70244个。</p>
-<p>GB 18030主要有以下特点：</p>
-<p>代码页 54936<br>与 UTF-8 相同，采用多字节编码，每个字可以由1个、2个或4个字节组成。<br>编码空间庞大，最多可定义161万个字符。<br>支持中国国内少数民族的文字，不需要动用造字区。<br>汉字收录范围包含繁体汉字以及日韩汉字。</p>
-<p>单字节，其值从0到0x7F。<br>双字节，第一个字节的值从0x81到0xFE，第二个字节的值从0x40到0xFE（不包括0x7F）。<br>四字节，第一个字节的值从0x81到0xFE，第二个字节的值从0x30到0x39，第三个字节从0x81到0xFE，第四个字节从0x30到0x39。</p>
-<h2 id="区别与联系"><a href="#区别与联系" class="headerlink" title="区别与联系"></a>区别与联系</h2><ul>
-<li>容量：GB 2312 &lt; GBK &lt; GB 18030</li>
-<li>GB 2312 和 GBK 是16位的，GB 18030 是32位</li>
-<li>GB 18030, GBK 都是向后兼容，GB 18030兼容GBK，GBK兼容GB 2312</li>
-</ul>
-<p>平常使用中，应该首选Unicode编码，保证在多语言环境下的兼容性。如果需要使用中文编码，首选GB 18030，能保证更多的汉字正常显示，如果终端不支持，可以按序向后换小一些的编码集。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2411,7 +2458,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2422,7 +2469,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2433,7 +2480,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
