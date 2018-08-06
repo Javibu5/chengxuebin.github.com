@@ -338,6 +338,373 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/12/content-hugging-vs-content compression-resistance-priority/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="url">优先级：hugging vs compression resistance</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-12T00:00:00+08:00">
+                2014-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" class="leancloud_visitors" data-flag-title="优先级：hugging vs compression resistance">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>开发IOS应用最快速的手段就是自动布局（auto layout）以及它的约束（constraint）机制，下面说几个属性。</p>
+<h3 id="1-内嵌内容大小（Intrinsic-Content-Size）"><a href="#1-内嵌内容大小（Intrinsic-Content-Size）" class="headerlink" title="1.内嵌内容大小（Intrinsic Content Size）"></a>1.内嵌内容大小（Intrinsic Content Size）</h3><p>IOS本身依靠一套布局系统（layout system）完成计算各组件大小，最大限度满足尽可能多的约束，说尽可能多的原因是可能存在有冲突的约束，造成没法全部满足。回过头来说，设置了Intrinsic Content Size属性，一是就是通知布局系统本组件包含不容易知道大小的内容，二是会提示布局系统自身的大小，也就是组件本身可以知道自身内容大小。  </p>
+<p>常见的组件有UILabel, UIButton, 它们都设置了Intrinsic Content Size这个属性，也就是运行时会根据内容的大小来缩小或扩大。</p>
+<p>参见<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutoLayoutConcepts/AutoLayoutConcepts.html" target="_blank" rel="noopener">苹果开发文档</a></p>
+<h3 id="2-内容保持紧固的优先级（Content-hugging-priority）"><a href="#2-内容保持紧固的优先级（Content-hugging-priority）" class="headerlink" title="2.内容保持紧固的优先级（Content hugging priority）"></a>2.内容保持紧固的优先级（Content hugging priority）</h3><p>上面说组件会适应其内容大小。那会出现一个问题，例如，当组件还设置了其它约束条件，将左（leading）和右（trailing）边界固定（pinned）到了父视图（superview）上，假如内容宽度是200，父视图宽度是500，那么组件要应用哪个呢？</p>
+<p>这时就很有必要为每个条件设置一个优先级，ios默认有高（1000）、中（750）和低（250）3个级别，当然如果需要比较的情况复杂，也可以为优先级设置任意0至1000的数值。</p>
+<p>内容保持紧固的优先级指的是组件保持内容大小，<strong>不被拉伸</strong>的优先级别。</p>
+<p>回到刚才的例子，将组件的Content hugging priority设置为251，而左右约束设置为250，这时组件会维持自身大小，不会随着父视图拉伸。</p>
+<h3 id="3-内容抵抗压缩的优先级（content-compression-resistance-priority）"><a href="#3-内容抵抗压缩的优先级（content-compression-resistance-priority）" class="headerlink" title="3.内容抵抗压缩的优先级（content compression resistance priority）"></a>3.内容抵抗压缩的优先级（content compression resistance priority）</h3><p>思路与上边相似，本属性指的是组件保持内容大小，<strong>不被压缩</strong>的优先级别。</p>
+<p>试想上例中，如果父视图只有宽度只有100，组件内容是200，将组件的content compression resistance priority设置为751，而左右约束设置为750，这时组件会维持自身大小，不会随着父视图被压缩。</p>
+<h3 id="4-附上一个讲的很清楚的例子"><a href="#4-附上一个讲的很清楚的例子" class="headerlink" title="4. 附上一个讲的很清楚的例子"></a>4. 附上一个讲的很清楚的例子</h3><p>Say you’ve got button like this:</p>
+<p><strong>[       Click Me      ]</strong></p>
+<p>and you’ve pinned the edges to a larger superview with priority 500.</p>
+<p>Then, if Hugging priority &gt; 500 it’ll look like this:</p>
+<p><strong>[Click Me]</strong></p>
+<p>If Hugging priority &lt; 500 it’ll look like this:</p>
+<p><strong>[       Click Me      ]</strong></p>
+<p>If superview now shrinks then, if the Compression Resistance priority &gt; 500, it’ll look like this</p>
+<p><strong>[Click Me]</strong></p>
+<p>Else if Compression Resistance priority &lt; 500, it could look like this:</p>
+<p><strong>[Cli..]</strong></p>
+<p>from <a href="http://stackoverflow.com/questions/15850417/cocoa-autolayout-content-hugging-vs-content-compression-resistance-priority" target="_blank" rel="noopener">stackoverflow</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/08/09/android-nine-patch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/08/09/android-nine-patch/" itemprop="url">Android 9-Patch</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-09T00:00:00+08:00">
+                2014-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/08/09/android-nine-patch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/08/09/android-nine-patch/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/08/09/android-nine-patch/" class="leancloud_visitors" data-flag-title="Android 9-Patch">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>9-Patch是Android设备上处理可扩展图片的方式。众所周知，Android设备的屏幕尺寸和分辨率众多，为了图片能完美的适配各种屏幕，Android采用了支持可扩展的图片的方案。</p>
+<p>9-Patch的使用非常简便。围绕在图片周围的黑线便是定义之处。关于此格式需要注意的地方：</p>
+<ul>
+<li>png图片的一周有 <strong>1px的边框</strong>，用于定义可扩展区域和静态区域（黑线）</li>
+<li>图片一周，黑线标识可扩展区域，黑线必须是 <strong>纯黑</strong> (#000)，不透明的，添加深灰色的线都不能起作用，其它区域必须是完全透明或者纯白色。</li>
+<li>可以使用任意图片处理工具处理，比如Windows的画板（MS Paint）也没有问题</li>
+<li>保存时使用扩展名 <strong>.9.png</strong></li>
+</ul>
+<p>下面说明黑线的作用。</p>
+<p><img src="/images/posts/ninepatch_raw.png" alt=""></p>
+<h3 id="Top和Left"><a href="#Top和Left" class="headerlink" title="Top和Left"></a>Top和Left</h3><p>Top和Left定义了将要被拉伸的部分。要注意的点：</p>
+<ul>
+<li><p>9-Patch图 <strong>只能拉伸</strong>，不是整块复制，不能收缩<br>  <img src="/images/posts/greater-than-1px.jpg" alt=""></p>
+</li>
+<li><p>同一边可以定义多个区域，使用时将按照区域的宽度等比例拉伸<br>  <img src="/images/posts/multi-scretch-lines.jpg" alt=""></p>
+</li>
+</ul>
+<h3 id="Right和Bottom"><a href="#Right和Bottom" class="headerlink" title="Right和Bottom"></a>Right和Bottom</h3><p>Right和Bottom定义了内容的区域。</p>
+<p><img src="/images/posts/9-patch-content-area.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/07/26/chinese-charsets/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1572,7 +1939,7 @@ PluginObject.h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

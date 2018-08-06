@@ -338,6 +338,467 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/05/22/chromium-create-extension-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/05/22/chromium-create-extension-api/" itemprop="url">创建 Chromium Extension API</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-22T00:00:00+08:00">
+                2015-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/22/chromium-create-extension-api/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/05/22/chromium-create-extension-api/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/05/22/chromium-create-extension-api/" class="leancloud_visitors" data-flag-title="创建 Chromium Extension API">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、添加新接口描述文件"><a href="#一、添加新接口描述文件" class="headerlink" title="一、添加新接口描述文件"></a>一、添加新接口描述文件</h2><ol>
+<li><p>新建描述文件</p>
+<p> 创建 <code>chrome\common\extensions\api\wintrust.json</code></p>
+<p> 添加接口描述代码：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="comment">// 获取浏览器模块目录</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"versionDirectory"</span>,</span><br><span class="line">        <span class="string">"type"</span>: <span class="string">"function"</span>,</span><br><span class="line">        <span class="string">"parameters"</span>: [&#123;</span><br><span class="line">            <span class="string">"type"</span>: <span class="string">"function"</span>,</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"callback"</span>,</span><br><span class="line">            <span class="string">"parameters"</span>: [&#123;</span><br><span class="line">              <span class="string">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">              <span class="string">"name"</span>: <span class="string">"path"</span></span><br><span class="line">            &#125;]</span><br><span class="line">         &#125;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加新文件到 <code>GYP</code></p>
+<p> 打开 <code>src\chrome\common\extensions\api\api.gyp</code>, 添加：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="string">'schema_files'</span>: [</span><br><span class="line">  ...</span><br><span class="line">+  # 新接口	  </span><br><span class="line">+  <span class="string">'wintrust.json'</span>,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加新文件到 <code>grd</code> </p>
+<p> 打开 <code>src\chrome\common\extensions_api_resources.grd</code>，添加</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">grit</span> <span class="attr">latest_public_release</span>=<span class="string">"0"</span> <span class="attr">current_release</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">outputs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"grit/extensions_api_resources.h"</span> <span class="attr">type</span>=<span class="string">"rc_header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">emit</span> <span class="attr">emit_type</span>=<span class="string">'prepend'</span>&gt;</span><span class="tag">&lt;/<span class="name">emit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.pak"</span> <span class="attr">type</span>=<span class="string">"data_package"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.rc"</span> <span class="attr">type</span>=<span class="string">"rc_all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">outputs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">release</span> <span class="attr">seq</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">	  ...</span><br><span class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"IDR_EXTENSION_API_JSON_WINTRUST"</span> <span class="attr">file</span>=<span class="string">"extensions\api\wintrust.json"</span> <span class="attr">type</span>=<span class="string">"BINDATA"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">grit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="二、添加新接口头文件和实现"><a href="#二、添加新接口头文件和实现" class="headerlink" title="二、添加新接口头文件和实现"></a>二、添加新接口头文件和实现</h2><ol>
+<li><p>新建头文件和实现文件</p>
+<p> 创建 <code>src\chrome\browser\extensions\api\wintrust\wintrust_api.h</code> 和 <code>src\chrome\browser\extensions\api\wintrust\wintrust_api.cc</code></p>
+</li>
+<li><p>添加新文件到 <code>GYP</code></p>
+<p> 打开 <code>src\chrome\chrome_browser_extensions.gypi</code>, 添加：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'sources'</span>: [</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">   +   # win-trust 添加的插件接口</span><br><span class="line">   +    <span class="string">'browser/extensions/api/wintrust/wintrust_api.h'</span>,</span><br><span class="line">   +    <span class="string">'browser/extensions/api/wintrust/wintrust_api.cc'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现 <code>wintrust_api.h</code></p>
+</li>
+</ol>
+<pre><code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"chrome/browser/extensions/extension_function.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> extensions &#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">WintrustVersionDirectoryFunction</span> :</span> <span class="keyword">public</span> SyncExtensionFunction &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    WintrustVersionDirectoryFunction();</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">RunImpl</span><span class="params">()</span> OVERRIDE</span>;</span><br><span class="line">  <span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~WintrustVersionDirectoryFunction()&#123;&#125;;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    DECLARE_EXTENSION_FUNCTION(<span class="string">"wintrust.versionDirectory"</span>, WINTRUST_VERSIONDIRECTORY);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li>实现 <code>wintrust_api.cc</code></li>
+</ol>
+<pre><code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"chrome/browser/extensions/api/wintrust/wintrust_api.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"base/file_util.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"base/path_service.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"chrome/browser/profiles/profile.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> extensions&#123;</span><br><span class="line">  </span><br><span class="line">  WintrustVersionDirectoryFunction::WintrustVersionDirectoryFunction()&#123;&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">bool</span> WintrustVersionDirectoryFunction::RunImpl() &#123;</span><br><span class="line">    base::FilePath path;</span><br><span class="line">    PathService::Get(base::DIR_MODULE, &amp;path);</span><br><span class="line"></span><br><span class="line">    scoped_ptr&lt;base::StringValue&gt; value (base::Value::CreateStringValue(path.value().c_str()));</span><br><span class="line">    </span><br><span class="line">    SetResult(value.release());</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="三、重新生成项目（sln）"><a href="#三、重新生成项目（sln）" class="headerlink" title="三、重新生成项目（sln）"></a>三、重新生成项目（sln）</h2><p>执行 <code>python build\gyp_chromium</code></p>
+<h2 id="四、为新接口定义C-常量"><a href="#四、为新接口定义C-常量" class="headerlink" title="四、为新接口定义C++常量"></a>四、为新接口定义C++常量</h2><ul>
+<li>打开 <code>src\chrome\browser\extensions\extension_function_histogram_value.h</code></li>
+</ul>
+<p>添加下面代码, 转换示例： <code>Example: &quot;tabs.create&quot; -&gt; TABS_CREATE</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> HistogramValue &#123;</span><br><span class="line">  UNKNOWN = <span class="number">0</span>,</span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">+  <span class="comment">// 赢达信客户端添加的接口</span></span><br><span class="line">+  WINTRUST_VERSIONDIRECTORY,</span><br><span class="line"></span><br><span class="line">  ENUM_BOUNDARY <span class="comment">// Last entry: Add new entries above.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="五、注册新接口类（class）"><a href="#五、注册新接口类（class）" class="headerlink" title="五、注册新接口类（class）"></a>五、注册新接口类（class）</h2><ul>
+<li>打开 <code>src\chrome\browser\extensions\extension_function_registry.cc</code></li>
+</ul>
+<p>添加下面代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 赢达信客户端接口</span><br><span class="line">#include &quot;chrome/browser/extensions/api/wintrust/wintrust_api.h&quot;</span><br><span class="line"></span><br><span class="line">void ExtensionFunctionRegistry::ResetFunctions() &#123;</span><br><span class="line">#if defined(ENABLE_EXTENSIONS)</span><br><span class="line"></span><br><span class="line">  // Register all functions here.</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  // 赢达信客户端定义的接口</span><br><span class="line">  RegisterFunction&lt;extensions::WintrustVersionDirectoryFunction&gt;();</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">  // Generated APIs</span><br><span class="line">  extensions::api::GeneratedFunctionRegistry::RegisterAll(this);</span><br><span class="line">  </span><br><span class="line">#endif  // defined(ENABLE_EXTENSIONS)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="六、定义新接口的访问权限"><a href="#六、定义新接口的访问权限" class="headerlink" title="六、定义新接口的访问权限"></a>六、定义新接口的访问权限</h2><ol>
+<li><p>定义该接口可用于的扩展程序类型：</p>
+<p> 打开 <code>src\chrome\common\extensions\api\_permission_features.json</code></p>
+<p> 添加下面代码， <code>extension_types</code> 定义了哪些类型的扩展可以使用新接口。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Copyright (c) 2012 The Chromium Authors. All rights reserved.</span></span><br><span class="line"><span class="comment">// Use of this source code is governed by a BSD-style license that can be</span></span><br><span class="line"><span class="comment">// found in the LICENSE file.</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">+  <span class="comment">// 赢达信的接口</span></span><br><span class="line">+   <span class="string">"wintrust"</span>: &#123;</span><br><span class="line">+    <span class="string">"channel"</span>: <span class="string">"stable"</span>,</span><br><span class="line">+    <span class="string">"extension_types"</span>: [<span class="string">"extension"</span>, <span class="string">"packaged_app"</span>,<span class="string">"platform_app"</span>,<span class="string">"hosted_app"</span>]</span><br><span class="line">+  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义权限的键名，该常量也显示到 <code>manifest permission</code> 中</p>
+<p> 打开 <code>src\chrome\common\extensions\permissions\api_permission.h</code>，添加</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> ID &#123;</span><br><span class="line">	<span class="comment">// Error codes.</span></span><br><span class="line">	kInvalid = <span class="number">-2</span>,</span><br><span class="line">	kUnknown = <span class="number">-1</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Real permissions.</span></span><br><span class="line">	...</span><br><span class="line">+	kWintrust,</span><br><span class="line">	kEnumBoundary</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现该键名</p>
+<p> 打开 <code>src\chrome\common\extensions\permissions\chrome_api_permissions.cc</code>，添加</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;APIPermissionInfo*&gt; ChromeAPIPermissions::GetAllPermissions()</span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">PermissionRegistration</span> &#123;</span></span><br><span class="line">	APIPermission::ID id;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* name;</span><br><span class="line">	<span class="keyword">int</span> flags;</span><br><span class="line">	<span class="keyword">int</span> l10n_message_id;</span><br><span class="line">	PermissionMessage::ID message_id;</span><br><span class="line">	APIPermissionInfo::APIPermissionConstructor constructor;</span><br><span class="line">	&#125; PermissionsToRegister[] = &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Register extension permissions.</span></span><br><span class="line">	...</span><br><span class="line">	&#123; APIPermission::kWintrust, <span class="string">"wintrust"</span> &#125;,</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="七、测试新接口"><a href="#七、测试新接口" class="headerlink" title="七、测试新接口"></a>七、测试新接口</h2><ol>
+<li><p>创建扩展  <code>manifest</code> 文件</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"WinTrust API"</span>,</span><br><span class="line">  <span class="string">"manifest_version"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.1"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"Test new extenslion api"</span>,</span><br><span class="line">  </span><br><span class="line">  <span class="string">"browser_action"</span>: &#123;</span><br><span class="line">    <span class="string">"default_icon"</span>: &#123;                    </span><br><span class="line">      <span class="string">"19"</span>: <span class="string">"img/icon19.png"</span>,           </span><br><span class="line">      <span class="string">"38"</span>: <span class="string">"img/icon38.png"</span>            </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"default_title"</span>: <span class="string">"VPN"</span>, </span><br><span class="line">    <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>        </span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  <span class="string">"background"</span>: &#123;</span><br><span class="line">    <span class="string">"page"</span>: <span class="string">"background.html"</span></span><br><span class="line">  &#125;,  </span><br><span class="line">  </span><br><span class="line">  <span class="string">"permissions"</span>: [</span><br><span class="line">    <span class="string">"*://*/*"</span>,</span><br><span class="line">    <span class="string">"wintrust"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建扩展  <code>manifest</code> 文件</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrome.wintrust.versionDirectory(<span class="function"><span class="keyword">function</span>(<span class="params">path</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Test reust:'</span>, path);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/05/07/mac-install-nginx-php-mysql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/05/07/mac-install-nginx-php-mysql/" itemprop="url">Mac OS 安装 nginx, php, mysql</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-07T00:00:00+08:00">
+                2015-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index">
+                    <span itemprop="name">mac</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/07/mac-install-nginx-php-mysql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/05/07/mac-install-nginx-php-mysql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/05/07/mac-install-nginx-php-mysql/" class="leancloud_visitors" data-flag-title="Mac OS 安装 nginx, php, mysql">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="常用位置："><a href="#常用位置：" class="headerlink" title="常用位置："></a>常用位置：</h2><ol>
+<li><p>nginx: </p>
+<ul>
+<li>安装位置：<code>/usr/local/Cellar/nginx</code></li>
+<li>log: <code>/usr/local/var/log/nginx/error.log</code></li>
+<li>配置位置：<code>/usr/local/etc/nginx</code></li>
+<li>document root: <code>/var/www</code></li>
+</ul>
+</li>
+<li><p>php</p>
+<ul>
+<li>安装位置：<code>/usr/local/Cellar/php56/5.6.8/</code></li>
+<li>配置位置：<code>/usr/local/etc/php/5.6/php.ini</code></li>
+</ul>
+</li>
+<li><p>mysql</p>
+<ul>
+<li>查看server信息：<code>mysqld --help --verbose</code></li>
+<li>安装位置：<code>/usr/local/Cellar/mysql</code> </li>
+</ul>
+</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>引用一篇非常详细的博客：<a href="http://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/" target="_blank" rel="noopener">Install Nginx, PHP-FPM, MySQL and phpMyAdmin on OS X Mavericks or Yosemite</a></p>
+<h3 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>Check for any conflicts or problems (If you have confilcts, sort them out before you continue with this guide):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew doctor</span><br></pre></td></tr></table></figure>
+<p>Update and upgrade its formulas in case you already had Homebrew installed before:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update &amp;&amp; brew upgrade</span><br></pre></td></tr></table></figure>
+<h3 id="PHP-FPM"><a href="#PHP-FPM" class="headerlink" title="PHP-FPM"></a>PHP-FPM</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap homebrew/dupes</span><br><span class="line">brew tap homebrew/php</span><br></pre></td></tr></table></figure>
+<p>Now install it with the following arguments:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install --without-apache --with-fpm --with-mysql php56</span><br></pre></td></tr></table></figure>
+<p>Setup PHP CLI binary</p>
+<p>If you want to use the PHP command line binary, you need to update the $PATH environment variable of your shell profile:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># If you use Bash    </span><br><span class="line">echo &apos;export PATH=&quot;/usr/local/sbin:$PATH&quot;&apos; &gt;&gt; ~/.bash_profile</span><br><span class="line">. ~/.bash_profile</span><br><span class="line"></span><br><span class="line"># If you use ZSH</span><br><span class="line">echo &apos;export PATH=&quot;/usr/local/sbin:$PATH&quot;&apos; &gt;&gt; ~/.zshrc</span><br><span class="line">. ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>Setup auto start</p>
+<p>Create a folder for our LaunchAgents and symlink the start/stop service:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/Library/LaunchAgents</span><br><span class="line">ln -sfv /usr/local/opt/php56/homebrew.mxcl.php56.plist ~/Library/LaunchAgents/</span><br></pre></td></tr></table></figure>
+<p>And start PHP-FPM:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist</span><br></pre></td></tr></table></figure>
+<p>Make sure PHP-FPM is listening on port 9000:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -Pni4 | grep LISTEN | grep php</span><br></pre></td></tr></table></figure>
+<p>The output should look something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">php-fpm   69659  frdmn    6u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)</span><br><span class="line">php-fpm   69660  frdmn    0u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)</span><br><span class="line">php-fpm   69661  frdmn    0u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)</span><br><span class="line">php-fpm   69662  frdmn    0u  IPv4 0x8d8ebe505a1ae01      0t0  TCP 127.0.0.1:9000 (LISTEN)</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h3><p>Next step is to install MySQL:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install mysql</span><br></pre></td></tr></table></figure>
+<p>Setup auto start</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents</span><br></pre></td></tr></table></figure>
+<p>And start the database server:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<p>Test connection</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+<h3 id="phpMyAdmin"><a href="#phpMyAdmin" class="headerlink" title="phpMyAdmin"></a>phpMyAdmin</h3><p>Install autoconf, which is needed for the installation of phpMyAdmin:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install autoconf</span><br></pre></td></tr></table></figure>
+<p>Set $PHP_AUTOCONF:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># If you use Bash</span><br><span class="line">echo &apos;PHP_AUTOCONF=&quot;&apos;$(which autoconf)&apos;&quot;&apos; &gt;&gt; ~/.bash_profile &amp;&amp; . ~/.bash_profile</span><br><span class="line"># If you use ZSH</span><br><span class="line">echo &apos;PHP_AUTOCONF=&quot;&apos;$(which autoconf)&apos;&quot;&apos; &gt;&gt; ~/.zshrc &amp;&amp; . ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>Let’s start with the installation of phpMyAdmin:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install phpmyadmin</span><br></pre></td></tr></table></figure>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>Install the default Nginx with:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+<p>Setup auto start</p>
+<p>Since we want to use port 80 have to start the Nginx process as root:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -v /usr/local/opt/nginx/*.plist /Library/LaunchDaemons/</span><br><span class="line">sudo chown root:wheel /Library/LaunchDaemons/homebrew.mxcl.nginx.plist</span><br></pre></td></tr></table></figure>
+<p>Test web server</p>
+<p>Start Nginx for the first with:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist</span><br></pre></td></tr></table></figure>
+<p>Stop Nginx again:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist</span><br></pre></td></tr></table></figure>
+<p>Make alias:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">alias nginx.start=&apos;sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.nginx.plist&apos;</span><br><span class="line">alias nginx.stop=&apos;sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.nginx.plist&apos;</span><br><span class="line">alias nginx.restart=&apos;nginx.stop &amp;&amp; nginx.start&apos;</span><br><span class="line">alias php-fpm.start=&quot;launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist&quot;</span><br><span class="line">alias php-fpm.stop=&quot;launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.php56.plist&quot;</span><br><span class="line">alias php-fpm.restart=&apos;php-fpm.stop &amp;&amp; php-fpm.start&apos;</span><br><span class="line">alias mysql.start=&quot;launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist&quot;</span><br><span class="line">alias mysql.stop=&quot;launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist&quot;</span><br><span class="line">alias mysql.restart=&apos;mysql.stop &amp;&amp; mysql.start&apos;</span><br><span class="line">alias nginx.logs.error=&apos;tail -250f /usr/local/etc/nginx/logs/error.log&apos;</span><br><span class="line">alias nginx.logs.access=&apos;tail -250f /usr/local/etc/nginx/logs/access.log&apos;</span><br><span class="line">alias nginx.logs.default.access=&apos;tail -250f /usr/local/etc/nginx/logs/default.access.log&apos;</span><br><span class="line">alias nginx.logs.default-ssl.access=&apos;tail -250f /usr/local/etc/nginx/logs/default-ssl.access.log&apos;</span><br><span class="line">alias nginx.logs.phpmyadmin.error=&apos;tail -250f /usr/local/etc/nginx/logs/phpmyadmin.error.log&apos;</span><br><span class="line">alias nginx.logs.phpmyadmin.access=&apos;tail -250f /usr/local/etc/nginx/logs/phpmyadmin.access.log&apos;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/02/15/deliver-to-app-store/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -966,6 +1427,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/linux-commands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/25/linux-commands/" itemprop="url">Linux 常用命令</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-25T00:00:00+08:00">
+                2015-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/25/linux-commands/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/25/linux-commands/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/01/25/linux-commands/" class="leancloud_visitors" data-flag-title="Linux 常用命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+<li>启用被 iptables 禁用的 80 端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
+<li>启动、停止、重启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
+<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<ul>
+<li>设置开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/the-most-used-regular-expression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1127,192 +1774,6 @@
 <li><a href="http://www.regular-expressions.info/lookaround.html" target="_blank" rel="noopener">regular-expressions.info</a></li>
 <li><a href="http://regexr.com/30npe" target="_blank" rel="noopener">RegExr</a></li>
 </ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/linux-commands/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/01/25/linux-commands/" itemprop="url">Linux 常用命令</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-25T00:00:00+08:00">
-                2015-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/01/25/linux-commands/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/01/25/linux-commands/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/01/25/linux-commands/" class="leancloud_visitors" data-flag-title="Linux 常用命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
-<li>启用被 iptables 禁用的 80 端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
-<li>启动、停止、重启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
-<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
-<ul>
-<li>设置开机自启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
-<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
 
           
         
@@ -2037,373 +2498,6 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/12/content-hugging-vs-content compression-resistance-priority/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="url">优先级：hugging vs compression resistance</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-12T00:00:00+08:00">
-                2014-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" class="leancloud_visitors" data-flag-title="优先级：hugging vs compression resistance">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开发IOS应用最快速的手段就是自动布局（auto layout）以及它的约束（constraint）机制，下面说几个属性。</p>
-<h3 id="1-内嵌内容大小（Intrinsic-Content-Size）"><a href="#1-内嵌内容大小（Intrinsic-Content-Size）" class="headerlink" title="1.内嵌内容大小（Intrinsic Content Size）"></a>1.内嵌内容大小（Intrinsic Content Size）</h3><p>IOS本身依靠一套布局系统（layout system）完成计算各组件大小，最大限度满足尽可能多的约束，说尽可能多的原因是可能存在有冲突的约束，造成没法全部满足。回过头来说，设置了Intrinsic Content Size属性，一是就是通知布局系统本组件包含不容易知道大小的内容，二是会提示布局系统自身的大小，也就是组件本身可以知道自身内容大小。  </p>
-<p>常见的组件有UILabel, UIButton, 它们都设置了Intrinsic Content Size这个属性，也就是运行时会根据内容的大小来缩小或扩大。</p>
-<p>参见<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutoLayoutConcepts/AutoLayoutConcepts.html" target="_blank" rel="noopener">苹果开发文档</a></p>
-<h3 id="2-内容保持紧固的优先级（Content-hugging-priority）"><a href="#2-内容保持紧固的优先级（Content-hugging-priority）" class="headerlink" title="2.内容保持紧固的优先级（Content hugging priority）"></a>2.内容保持紧固的优先级（Content hugging priority）</h3><p>上面说组件会适应其内容大小。那会出现一个问题，例如，当组件还设置了其它约束条件，将左（leading）和右（trailing）边界固定（pinned）到了父视图（superview）上，假如内容宽度是200，父视图宽度是500，那么组件要应用哪个呢？</p>
-<p>这时就很有必要为每个条件设置一个优先级，ios默认有高（1000）、中（750）和低（250）3个级别，当然如果需要比较的情况复杂，也可以为优先级设置任意0至1000的数值。</p>
-<p>内容保持紧固的优先级指的是组件保持内容大小，<strong>不被拉伸</strong>的优先级别。</p>
-<p>回到刚才的例子，将组件的Content hugging priority设置为251，而左右约束设置为250，这时组件会维持自身大小，不会随着父视图拉伸。</p>
-<h3 id="3-内容抵抗压缩的优先级（content-compression-resistance-priority）"><a href="#3-内容抵抗压缩的优先级（content-compression-resistance-priority）" class="headerlink" title="3.内容抵抗压缩的优先级（content compression resistance priority）"></a>3.内容抵抗压缩的优先级（content compression resistance priority）</h3><p>思路与上边相似，本属性指的是组件保持内容大小，<strong>不被压缩</strong>的优先级别。</p>
-<p>试想上例中，如果父视图只有宽度只有100，组件内容是200，将组件的content compression resistance priority设置为751，而左右约束设置为750，这时组件会维持自身大小，不会随着父视图被压缩。</p>
-<h3 id="4-附上一个讲的很清楚的例子"><a href="#4-附上一个讲的很清楚的例子" class="headerlink" title="4. 附上一个讲的很清楚的例子"></a>4. 附上一个讲的很清楚的例子</h3><p>Say you’ve got button like this:</p>
-<p><strong>[       Click Me      ]</strong></p>
-<p>and you’ve pinned the edges to a larger superview with priority 500.</p>
-<p>Then, if Hugging priority &gt; 500 it’ll look like this:</p>
-<p><strong>[Click Me]</strong></p>
-<p>If Hugging priority &lt; 500 it’ll look like this:</p>
-<p><strong>[       Click Me      ]</strong></p>
-<p>If superview now shrinks then, if the Compression Resistance priority &gt; 500, it’ll look like this</p>
-<p><strong>[Click Me]</strong></p>
-<p>Else if Compression Resistance priority &lt; 500, it could look like this:</p>
-<p><strong>[Cli..]</strong></p>
-<p>from <a href="http://stackoverflow.com/questions/15850417/cocoa-autolayout-content-hugging-vs-content-compression-resistance-priority" target="_blank" rel="noopener">stackoverflow</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/08/09/android-nine-patch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/08/09/android-nine-patch/" itemprop="url">Android 9-Patch</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-09T00:00:00+08:00">
-                2014-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/08/09/android-nine-patch/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/08/09/android-nine-patch/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/08/09/android-nine-patch/" class="leancloud_visitors" data-flag-title="Android 9-Patch">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>9-Patch是Android设备上处理可扩展图片的方式。众所周知，Android设备的屏幕尺寸和分辨率众多，为了图片能完美的适配各种屏幕，Android采用了支持可扩展的图片的方案。</p>
-<p>9-Patch的使用非常简便。围绕在图片周围的黑线便是定义之处。关于此格式需要注意的地方：</p>
-<ul>
-<li>png图片的一周有 <strong>1px的边框</strong>，用于定义可扩展区域和静态区域（黑线）</li>
-<li>图片一周，黑线标识可扩展区域，黑线必须是 <strong>纯黑</strong> (#000)，不透明的，添加深灰色的线都不能起作用，其它区域必须是完全透明或者纯白色。</li>
-<li>可以使用任意图片处理工具处理，比如Windows的画板（MS Paint）也没有问题</li>
-<li>保存时使用扩展名 <strong>.9.png</strong></li>
-</ul>
-<p>下面说明黑线的作用。</p>
-<p><img src="/images/posts/ninepatch_raw.png" alt=""></p>
-<h3 id="Top和Left"><a href="#Top和Left" class="headerlink" title="Top和Left"></a>Top和Left</h3><p>Top和Left定义了将要被拉伸的部分。要注意的点：</p>
-<ul>
-<li><p>9-Patch图 <strong>只能拉伸</strong>，不是整块复制，不能收缩<br>  <img src="/images/posts/greater-than-1px.jpg" alt=""></p>
-</li>
-<li><p>同一边可以定义多个区域，使用时将按照区域的宽度等比例拉伸<br>  <img src="/images/posts/multi-scretch-lines.jpg" alt=""></p>
-</li>
-</ul>
-<h3 id="Right和Bottom"><a href="#Right和Bottom" class="headerlink" title="Right和Bottom"></a>Right和Bottom</h3><p>Right和Bottom定义了内容的区域。</p>
-<p><img src="/images/posts/9-patch-content-area.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2458,7 +2552,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
