@@ -338,6 +338,305 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/10/tls-1.2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/10/tls-1.2/" itemprop="url">TLS 协议</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-10T00:00:00+08:00">
+                2017-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OpenSSL/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenSSL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/10/tls-1.2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/10/tls-1.2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/10/tls-1.2/" class="leancloud_visitors" data-flag-title="TLS 协议">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>首先，这是 IETF 协会文档 <a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">Request for Comments (RFC) 5246</a></p>
+<h3 id="Alert-Messages"><a href="#Alert-Messages" class="headerlink" title="Alert Messages"></a><a href="https://tools.ietf.org/html/rfc5246#appendix-A.3" target="_blank" rel="noopener">Alert Messages</a></h3><p>在 TLS 协商握手阶段，遇到服务器返回的 Alert 消息时，能通过下表查找出对应的原因。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Alert Code</th>
+<th style="text-align:center">Alert Message</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">close_notify</td>
+<td style="text-align:left">Notifies the recipient that the sender will not send any more messages on this connection.</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">unexpected_message</td>
+<td style="text-align:left">Received an inappropriate message This alert should never be observed in communication between proper implementations. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:center">bad_record_mac</td>
+<td style="text-align:left">Received a record with an incorrect MAC. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">decryption_failed</td>
+<td style="text-align:left">Decryption of a TLSCiphertext record is decrypted in an invalid way: either it was not an even multiple of the block length or its padding values, when checked, were not correct. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:center">record_overflow</td>
+<td style="text-align:left">Received a TLSCiphertext record which had a length more than 2^14+2048 bytes, or a record decrypted to a TLSCompressed record with more than 2^14+1024 bytes. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:center">decompression_failure</td>
+<td style="text-align:left">Received improper input, such as data that would expand to excessive length, from the decompression function. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">40</td>
+<td style="text-align:center">handshake_failure</td>
+<td style="text-align:left">Indicates that the sender was unable to negotiate an acceptable set of security parameters given the options available. This is a fatal error.</td>
+</tr>
+<tr>
+<td style="text-align:center">42</td>
+<td style="text-align:center">bad_certificate</td>
+<td style="text-align:left">There is a problem with the certificate, for example, a certificate is corrupt, or a certificate contains signatures that cannot be verified.</td>
+</tr>
+<tr>
+<td style="text-align:center">43</td>
+<td style="text-align:center">unsupported_certificate</td>
+<td style="text-align:left">Received an unsupported certificate type.</td>
+</tr>
+<tr>
+<td style="text-align:center">44</td>
+<td style="text-align:center">certificate_revoked</td>
+<td style="text-align:left">Received a certificate that was revoked by its signer.</td>
+</tr>
+<tr>
+<td style="text-align:center">45</td>
+<td style="text-align:center">certificate_expired</td>
+<td style="text-align:left">Received a certificate has expired or is not currently valid.</td>
+</tr>
+<tr>
+<td style="text-align:center">46</td>
+<td style="text-align:center">certificate_unknown</td>
+<td style="text-align:left">An unspecified issue took place while processing the certificate that made it unacceptable.</td>
+</tr>
+<tr>
+<td style="text-align:center">47</td>
+<td style="text-align:center">illegal_parameter</td>
+<td style="text-align:left">Violated security parameters, such as a field in the handshake was out of range or inconsistent with other fields. This is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">48</td>
+<td style="text-align:center">unknown_ca</td>
+<td style="text-align:left">Received a valid certificate chain or partial chain, but the certificate was not accepted because the CA certificate could not be located or could not be matched with a known, trusted CA. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">49</td>
+<td style="text-align:center">access_denied</td>
+<td style="text-align:left">Received a valid certificate, but when access control was applied, the sender did not proceed with negotiation. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">50</td>
+<td style="text-align:center">decode_error</td>
+<td style="text-align:left">A message could not be decoded because some field was out of the specified range or the length of the message was incorrect. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">51</td>
+<td style="text-align:center">decrypt_error</td>
+<td style="text-align:left">Failed handshake cryptographic operation, including being unable to correctly verify a signature, decrypt a key exchange, or validate a finished message.</td>
+</tr>
+<tr>
+<td style="text-align:center">60</td>
+<td style="text-align:center">export_restriction</td>
+<td style="text-align:left">Detected a negotiation that was not in compliance with export restrictions; for example, attempting to transfer a 1024 bit ephemeral RSA key for the RSA_EXPORT handshake method. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">70</td>
+<td style="text-align:center">protocol_version</td>
+<td style="text-align:left">The protocol version the client attempted to negotiate is recognized, but not supported. For example, old protocol versions might be avoided for security reasons. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">71</td>
+<td style="text-align:center">insufficient_security</td>
+<td style="text-align:left">Failed negotiation specifically because the server requires ciphers more secure than those supported by the client. Returned instead of handshake_failure. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">80</td>
+<td style="text-align:center">internal_error</td>
+<td style="text-align:left">An internal error unrelated to the peer or the correctness of the protocol makes it impossible to continue, such as a memory allocation failure. The error is not related to protocol. This message is always fatal.</td>
+</tr>
+<tr>
+<td style="text-align:center">90</td>
+<td style="text-align:center">user_cancelled</td>
+<td style="text-align:left">Cancelled handshake for a reason that is unrelated to a protocol failure. If the user cancels an operation after the handshake is complete, just closing the connection by sending a close_notify is more appropriate. This alert should be followed by a close_notify. This message is generally a warning.</td>
+</tr>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center">no_renegotiation</td>
+<td style="text-align:left">Sent by the client in response to a hello request or sent by the server in response to a client hello after initial handshaking. Either of these would normally lead to renegotiation; when that is not appropriate, the recipient should respond with this alert; at that point, the original requester can decide whether to proceed with the connection. One case where this would be appropriate would be where a server has spawned a process to satisfy a request; the process might receive security parameters (key length, authentication, and so on) at start-up and it might be difficult to communicate changes to these parameters after that point. This message is always a warning.</td>
+</tr>
+<tr>
+<td style="text-align:center">255</td>
+<td style="text-align:center">unsupported_extension</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/10/tls-1.2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/10/mitm-proxy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1957,214 +2256,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/27/webbrowser-document-mode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/27/webbrowser-document-mode/" itemprop="url">设置 WebBrowser Document Mode</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T00:00:00+08:00">
-                2017-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ie/" itemprop="url" rel="index">
-                    <span itemprop="name">ie</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/27/webbrowser-document-mode/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/27/webbrowser-document-mode/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/03/27/webbrowser-document-mode/" class="leancloud_visitors" data-flag-title="设置 WebBrowser Document Mode">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="编辑注册表"><a href="#编辑注册表" class="headerlink" title="编辑注册表"></a>编辑注册表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION</span><br></pre></td></tr></table></figure>
-<h3 id="设置值"><a href="#设置值" class="headerlink" title="设置值"></a>设置值</h3><table>
-<thead>
-<tr>
-<th style="text-align:left">值</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">10001 (0x2711)</td>
-<td style="text-align:left">Internet Explorer 10。网页以IE 10的标准模式展现，页面!DOCTYPE无效</td>
-</tr>
-<tr>
-<td style="text-align:left">10000 (0x02710)</td>
-<td style="text-align:left">Internet Explorer 10。在IE 10标准模式中按照网页上!DOCTYPE指令来显示网页。Internet Explorer 10 默认值。</td>
-</tr>
-<tr>
-<td style="text-align:left">9999 (0x270F)</td>
-<td style="text-align:left">Windows Internet Explorer 9. 强制IE9显示，忽略!DOCTYPE指令</td>
-</tr>
-<tr>
-<td style="text-align:left">9000 (0x2328)</td>
-<td style="text-align:left">Internet Explorer 9. Internet Explorer 9默认值，在IE9标准模式中按照网页上!DOCTYPE指令来显示网页。</td>
-</tr>
-<tr>
-<td style="text-align:left">8888 (0x22B8)</td>
-<td style="text-align:left">Internet Explorer 8，强制IE8标准模式显示，忽略!DOCTYPE指令</td>
-</tr>
-<tr>
-<td style="text-align:left">8000 (0x1F40)</td>
-<td style="text-align:left">Internet Explorer 8默认设置，在IE8标准模式中按照网页上!DOCTYPE指令展示网页</td>
-</tr>
-<tr>
-<td style="text-align:left">7000 (0x1B58)</td>
-<td style="text-align:left">使用WebBrowser Control控件的应用程序所使用的默认值，在IE7标准模式中按照网页上!DOCTYPE指令来展示网页。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><p><img src="/images/posts/ie/set-reg.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2214,7 +2310,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

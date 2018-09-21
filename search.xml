@@ -3,6 +3,107 @@
   
     
     <entry>
+      <title><![CDATA[Image 格式]]></title>
+      <url>/2018/09/21/image-formats/</url>
+      <content type="html"><![CDATA[<h3 id="文件标识"><a href="#文件标识" class="headerlink" title="文件标识"></a>文件标识</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">开头HEX</th>
+<th style="text-align:left">开头字节</th>
+<th style="text-align:left">结束HEX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">jpg</td>
+<td style="text-align:left">FF D8 FF DB</td>
+<td style="text-align:left">ÿØÿÛ</td>
+<td style="text-align:left">FF D9</td>
+</tr>
+<tr>
+<td style="text-align:left">jpg</td>
+<td style="text-align:left">FF D8 FF E0 00 10 4A 46 49 46 00 01</td>
+<td style="text-align:left">ÿØÿà..JFIF..</td>
+<td style="text-align:left">FF D9</td>
+</tr>
+<tr>
+<td style="text-align:left">jpg</td>
+<td style="text-align:left">FF D8 FF E1 ?? ?? 45 78 69 66 00 00</td>
+<td style="text-align:left">ÿØÿá..Exif..</td>
+<td style="text-align:left">FF D9</td>
+</tr>
+<tr>
+<td style="text-align:left">png</td>
+<td style="text-align:left">89 50 4E 47 0D 0A 1A 0A</td>
+<td style="text-align:left">.PNG….</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">gif</td>
+<td style="text-align:left">47 49 46 38 37 61</td>
+<td style="text-align:left">GIF87a</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">gif</td>
+<td style="text-align:left">47 49 46 38 39 61</td>
+<td style="text-align:left">GIF89a</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">bmp</td>
+<td style="text-align:left">42 4D</td>
+<td style="text-align:left">BM</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">tiff</td>
+<td style="text-align:left">49 49 2A 00</td>
+<td style="text-align:left">II*.</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">tiff</td>
+<td style="text-align:left">4D 4D 00 2A</td>
+<td style="text-align:left">MM.*</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">webp</td>
+<td style="text-align:left">52 49 46 46 ?? ?? ?? ?? 57 45 42 50</td>
+<td style="text-align:left">RIFF….WEBP</td>
+<td style="text-align:left">-</td>
+</tr>
+<tr>
+<td style="text-align:left">ico</td>
+<td style="text-align:left">00 00 01 00</td>
+<td style="text-align:left">….</td>
+<td style="text-align:left">-</td>
+</tr>
+</tbody>
+</table>
+<p>更多请参考 <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" target="_blank" rel="noopener"><br>List of file signatures</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> server </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> server </tag>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Nginx 配置]]></title>
       <url>/2018/08/31/nginx-usage/</url>
       <content type="html"><![CDATA[<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>查看 <a href="http://nginx.org/en/docs/varindex.html" target="_blank" rel="noopener">官方文档-变量</a></p>
@@ -545,6 +646,29 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Windows 钩子]]></title>
+      <url>/2017/12/07/windows-hooks/</url>
+      <content type="html"><![CDATA[<p>未完成</p>
+]]></content>
+      
+        <categories>
+            
+            <category> c++ </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> vc++ </tag>
+            
+            <tag> Windows </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[使用 deployer 自动化部署 laravel]]></title>
       <url>/2017/12/07/deploer-for-laravel-usage/</url>
       <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="phar-包方式"><a href="#phar-包方式" class="headerlink" title="phar 包方式"></a>phar 包方式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> curl -LO https://deployer.org/deployer.phar</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mv deployer.phar /usr/<span class="built_in">local</span>/bin/dep</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> chmod +x /usr/<span class="built_in">local</span>/bin/dep</span></span><br></pre></td></tr></table></figure>
@@ -584,29 +708,6 @@
             <tag> laravel </tag>
             
             <tag> deployer </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Windows 钩子]]></title>
-      <url>/2017/12/07/windows-hooks/</url>
-      <content type="html"><![CDATA[<p>未完成</p>
-]]></content>
-      
-        <categories>
-            
-            <category> c++ </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> vc++ </tag>
-            
-            <tag> Windows </tag>
             
         </tags>
         
@@ -1211,19 +1312,19 @@
 <li>Twitter app</li>
 </ul>
 <p><a href="https://security.stackexchange.com/questions/29988/what-is-certificate-pinning/" target="_blank" rel="noopener">扩展阅读</a></p>
-<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10" target="_blank" rel="noopener">文档</a>.aspx#BKMK_5)</p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10).aspx#BKMK_5" target="_blank" rel="noopener">文档</a></p>
 <p>设置代理：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set proxy 127.0.0.1:8080 "&lt;local&gt;"</span><br></pre></td></tr></table></figure>
-<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85" target="_blank" rel="noopener">文档</a>.aspx)</p>
-<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85" target="_blank" rel="noopener">参考</a>.aspx)</p>
+<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
+<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
 <p>选择 WinINet 的原因：</p>
 <ul>
 <li>支持 cookies</li>
 <li>Credential Cache (和SSL证书相关？)</li>
 <li>Credential Prompting (和SSL证书相关？)</li>
 </ul>
-<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a>.aspx)</p>
-<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85).aspx" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a></p>
+<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line"><span class="comment">// 根据协议来设置代理，比如 FTP, HTTPS 等，使用下面的字符串</span></span><br><span class="line"><span class="comment">// ftp=http://&lt;ProxyServerName&gt;:80; https=https://&lt;ProxyServerName&gt;:80)</span></span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
 <h3 id="设置自动代理"><a href="#设置自动代理" class="headerlink" title="设置自动代理"></a>设置自动代理</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> wzsPath[MAX_PATH];</span><br><span class="line"><span class="keyword">wchar_t</span> wszProxyUrl[INTERNET_MAX_URL_LENGTH];</span><br><span class="line">SHGetFolderPath ( <span class="literal">NULL</span>, CSIDL_APPDATA | CSIDL_FLAG_CREATE, <span class="literal">NULL</span>, <span class="number">0</span>, wszPath );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Construct Pac file path. – %appdata%\MyAppFolder\redirect.pac</span></span><br><span class="line">StringCbPrintf (wszProxyUrl, <span class="keyword">sizeof</span>(wszProxyUrl), </span><br><span class="line">        <span class="string">L"file://%s\\MyAppFolder\\redirect.pac"</span>, wszPath );</span><br><span class="line"></span><br><span class="line">INTERNET_PER_CONN_OPTION_LIST *optionList = <span class="number">0</span>;</span><br><span class="line">optionList-&gt;pOptions[INDEX].Value.pszValue = wszPath;</span><br><span class="line"></span><br><span class="line">InternetSetOption ( <span class="literal">NULL</span>, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">        optionList, <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST) );</span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PER_CONN_OPTION_LIST    List;</span><br><span class="line">INTERNET_PER_CONN_OPTION         Option[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span>                    nSize =</span><br><span class="line"><span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line"></span><br><span class="line">Option[<span class="number">0</span>].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;</span><br><span class="line">Option[<span class="number">0</span>].Value.pszValue = <span class="string">"http://myserver/proxy.pacl"</span>;</span><br><span class="line">Option[<span class="number">1</span>].dwOption = INTERNET_PER_CONN_FLAGS;</span><br><span class="line">Option[<span class="number">1</span>].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL;</span><br><span class="line"></span><br><span class="line">List.dwSize = <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line">List.pszConnection = <span class="literal">NULL</span>;</span><br><span class="line">List.dwOptionCount = <span class="number">2</span>;</span><br><span class="line">List.dwOptionError = <span class="number">0</span>;</span><br><span class="line">List.pOptions = Option;</span><br><span class="line"></span><br><span class="line">hMyHandle =  InternetOpen(<span class="string">""</span>, INTERNET_OPEN_TYPE_DIRECT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!InternetSetOption(hMyHandle, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">&amp;List, nSize))</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"InternetQueryOption failed! (%d)\n"</span>, GetLastError());</span><br></pre></td></tr></table></figure>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
@@ -1874,6 +1975,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SSLKEYLOGFILE  C:\Users\Jonathan\Documents\SSLKEYLOGFILE.txt</span><br></pre></td></tr></table></figure>
 <h4 id="可用的命令行参数"><a href="#可用的命令行参数" class="headerlink" title="可用的命令行参数"></a>可用的命令行参数</h4><p><a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">参考</a></p>
 <h4 id="Chrome-发布日历"><a href="#Chrome-发布日历" class="headerlink" title="Chrome 发布日历"></a>Chrome 发布日历</h4><p><a href="https://www.chromium.org/developers/calendar" target="_blank" rel="noopener">Chromium Development Calendar and Release Info</a></p>
+<h4 id="Chrome-功能更新"><a href="#Chrome-功能更新" class="headerlink" title="Chrome 功能更新"></a>Chrome 功能更新</h4><p>查看 <a href="https://www.chromestatus.com/features#milestone%3D68" target="_blank" rel="noopener">这里</a></p>
+<h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
 <h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
 <p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
 ]]></content>
@@ -1920,31 +2023,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[SourceTree 操作被挂起]]></title>
-      <url>/2017/01/17/source-tree-hungs/</url>
-      <content type="html"><![CDATA[<h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> git </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> git </tag>
-            
-            <tag> SourceTree </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Windows Batch 用法]]></title>
       <url>/2017/01/17/batch-usage/</url>
       <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
@@ -1964,6 +2042,54 @@
             <tag> windows </tag>
             
             <tag> bat </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[编译 Chromium 常见问题]]></title>
+      <url>/2017/01/17/build-chromium-issues/</url>
+      <content type="html"><![CDATA[<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<p>解决办法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> chromium </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> chromium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[SourceTree 操作被挂起]]></title>
+      <url>/2017/01/17/source-tree-hungs/</url>
+      <content type="html"><![CDATA[<h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> git </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+            <tag> SourceTree </tag>
             
         </tags>
         
@@ -1991,29 +2117,6 @@
             <tag> activex </tag>
             
             <tag> webbrowser </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[编译 Chromium 常见问题]]></title>
-      <url>/2017/01/17/build-chromium-issues/</url>
-      <content type="html"><![CDATA[<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p>解决办法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> chromium </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> chromium </tag>
             
         </tags>
         
@@ -2215,9 +2318,9 @@
         
         <tags>
             
-            <tag> mac </tag>
-            
             <tag> server </tag>
+            
+            <tag> mac </tag>
             
             <tag> java </tag>
             
@@ -2267,11 +2370,11 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> mac </tag>
-            
             <tag> linux </tag>
             
             <tag> server </tag>
+            
+            <tag> mac </tag>
             
         </tags>
         
@@ -2420,37 +2523,6 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[url 编码常规]]></title>
-      <url>/2015/07/03/url-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
-<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
-<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
-<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
-</ul>
-<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
-<li><code>SEO</code> 模式</li>
-<li>使用连字符规则，不使用大写</li>
-<li>命名首选 <code>RESTful</code> 方式</li>
-<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> url </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[php 编码常规]]></title>
       <url>/2015/07/03/php-code-conventions/</url>
       <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
@@ -2493,6 +2565,37 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> php </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[url 编码常规]]></title>
+      <url>/2015/07/03/url-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+</ul>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> url </tag>
             
         </tags>
         
@@ -3212,6 +3315,51 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
+      <title><![CDATA[Linux 常用命令]]></title>
+      <url>/2015/01/25/linux-commands/</url>
+      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+<li>启用被 iptables 禁用的 80 端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
+<li>启动、停止、重启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
+<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<ul>
+<li>设置开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> server </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[常用的正则表达式]]></title>
       <url>/2015/01/25/the-most-used-regular-expression/</url>
       <content type="html"><![CDATA[<h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
@@ -3272,51 +3420,6 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> regexp </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Linux 常用命令]]></title>
-      <url>/2015/01/25/linux-commands/</url>
-      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
-<li>启用被 iptables 禁用的 80 端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
-<li>启动、停止、重启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
-<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
-<ul>
-<li>设置开机自启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
-<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> server </tag>
             
         </tags>
         
