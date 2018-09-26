@@ -338,6 +338,392 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/05/16/xcode5-delete-duplicate-line/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/05/16/xcode5-delete-duplicate-line/" itemprop="url">XCode 5 添加复制/删除行快捷键</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-16T00:00:00+08:00">
+                2014-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/05/16/xcode5-delete-duplicate-line/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/05/16/xcode5-delete-duplicate-line/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/05/16/xcode5-delete-duplicate-line/" class="leancloud_visitors" data-flag-title="XCode 5 添加复制/删除行快捷键">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>习惯了某些编辑器的复制一行和删除一行快捷方式后，使用xcode时没有相应快捷键有些不适应，下面是一种为其添加快捷键的方式。</p>
+<h3 id="修改快捷键配置文件的权限"><a href="#修改快捷键配置文件的权限" class="headerlink" title="修改快捷键配置文件的权限"></a>修改快捷键配置文件的权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 666 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist</span><br><span class="line"></span><br><span class="line">sudo chmod 777 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/</span><br></pre></td></tr></table></figure>
+<p><img src="/images/posts/duplicate_delete_line_2.png" alt=""></p>
+<h3 id="修改快捷键配置文件"><a href="#修改快捷键配置文件" class="headerlink" title="修改快捷键配置文件"></a>修改快捷键配置文件</h3><ol>
+<li>添加Customized类别</li>
+<li><p>添加Delete Current Line宏（macro）  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectLine:, cut:</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加Duplicate Current Line宏  </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectLine:, copy:, moveToEndOfLine:, insertNewline:, paste:, deleteBackward:</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>&nbsp;<br><img src="/images/posts/duplicate_delete_line_1.png" alt=""></p>
+<h3 id="绑定快捷键"><a href="#绑定快捷键" class="headerlink" title="绑定快捷键"></a>绑定快捷键</h3><p>重启 Xcode，打开菜单 <code>Xcode &gt; Preferences &gt; KeyBindings</code>。 找到上面定义的宏，为其定义快捷键。</p>
+<p><img src="/images/posts/duplicate_delete_line_3.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/05/05/chromium-ui-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/05/05/chromium-ui-1/" itemprop="url">Chromium 用户界面分析（1）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-05T00:00:00+08:00">
+                2014-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/05/05/chromium-ui-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/05/05/chromium-ui-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/05/05/chromium-ui-1/" class="leancloud_visitors" data-flag-title="Chromium 用户界面分析（1）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="基础界面库的类结构"><a href="#基础界面库的类结构" class="headerlink" title="基础界面库的类结构"></a>基础界面库的类结构</h2><p>基础界面库位于src\ui\views目录下，定义了 <strong>跨平台</strong> 的组件，是Chromium界面的基础，顶层chrome/browser/ui/下的类都继承或使用这些基础类。</p>
+<h3 id="关于Widget静态图"><a href="#关于Widget静态图" class="headerlink" title="关于Widget静态图"></a>关于Widget静态图</h3><p>下面是Widget及内部结构的类图，类关系做了简化，只显示较关键的联系。<br><img src="/images/posts/chromium_ui_hierarchy.jpg" alt="chromium ui hierarchy"></p>
+<h3 id="Widget内组件布局"><a href="#Widget内组件布局" class="headerlink" title="Widget内组件布局"></a>Widget内组件布局</h3><ul>
+<li>总体来说，Widget是最底层的UI组件（此处不区分Widget和NativeWidget，后面讨论其关系），与本地（Native）平台交互，处理平台相关的消息、事件等，转换到Chromium UI体系内。  </li>
+<li>为了统一处理视图组件的消息事件，Widget内定义了一个根视图RootView    </li>
+<li>NonClientView是RootView的唯一孩子，也是其它所有视图的逻辑根  （<strong>为什么RootView和NonClientView不合并为一个视图？</strong>） </li>
+<li>NonClientFrameView 是NonClientView孩子之一，负责非客户区的绘制和消息处理，根据不同的系统会有不同的实现，比如Windows下有OpaqueFrameView和GlassFrameView，非客户区一般包括窗口控制按钮（最大化，最小化，关闭）和标题栏（Title bar） </li>
+<li>ClientView 是另一个孩子，负责客户区的绘制和消息处理，客户区包括工具栏、标签栏、地址栏、页面等。  </li>
+</ul>
+<p>&nbsp;</p>
+<pre><code>//  The NonClientView is the logical root of all Views contained within a
+//  Window, except for the RootView which is its parent and of which it is the
+//  sole child. The NonClientView has two children, the NonClientFrameView which
+//  is responsible for painting and responding to events from the non-client
+//  portions of the window, and the ClientView, which is responsible for the
+//  same for the client area of the window:
+//
+//  +- views::Widget ------------------------------------+
+//  | +- views::RootView ------------------------------+ |
+//  | | +- views::NonClientView ---------------------+ | |
+//  | | | +- views::NonClientFrameView subclas  ---+ | | |
+//  | | | |                                        | | | |
+//  | | | | &lt;&lt; all painting and event receiving &gt;&gt; | | | |
+//  | | | | &lt;&lt; of the non-client areas of a     &gt;&gt; | | | |
+//  | | | | &lt;&lt; views::Widget.                   &gt;&gt; | | | |
+//  | | | |                                        | | | |
+//  | | | +----------------------------------------+ | | |
+//  | | | +- views::ClientView or subclass --------+ | | |
+//  | | | |                                        | | | |
+//  | | | | &lt;&lt; all painting and event receiving &gt;&gt; | | | |
+//  | | | | &lt;&lt; of the client areas of a         &gt;&gt; | | | |
+//  | | | | &lt;&lt; views::Widget.                   &gt;&gt; | | | |
+//  | | | |                                        | | | |
+//  | | | +----------------------------------------+ | | |
+//  | | +--------------------------------------------+ | |
+//  | +------------------------------------------------+ |
+//  +----------------------------------------------------+
+//
+// The NonClientFrameView and ClientView are siblings because due to theme
+// changes the NonClientFrameView may be replaced with different
+// implementations (e.g. during the switch from DWM/Aero-Glass to Vista Basic/
+// Classic rendering).
+</code></pre><h3 id="类关系（Class-Relationship）的建立"><a href="#类关系（Class-Relationship）的建立" class="headerlink" title="类关系（Class Relationship）的建立"></a>类关系（Class Relationship）的建立</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Widget::Init(<span class="keyword">const</span> InitParams&amp; params) &#123;</span><br><span class="line">  ...</span><br><span class="line">  root_view_.reset(CreateRootView());                                               --&gt;<span class="number">1</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span> (RequiresNonClientView(params.type)) &#123;</span><br><span class="line">    non_client_view_ = <span class="keyword">new</span> NonClientView;                                           --&gt;<span class="number">2</span></span><br><span class="line">    non_client_view_-&gt;SetFrameView(CreateNonClientFrameView());                     --&gt;<span class="number">3</span></span><br><span class="line">    <span class="comment">// Create the ClientView, add it to the NonClientView and add the          </span></span><br><span class="line">    <span class="comment">// NonClientView to the RootView. This will cause everything to be parented.</span></span><br><span class="line">    non_client_view_-&gt;set_client_view(widget_delegate_-&gt;CreateClientView(<span class="keyword">this</span>));    --&gt;<span class="number">4</span></span><br><span class="line">    SetContentsView(non_client_view_);                                              --&gt;<span class="number">5</span></span><br><span class="line">    ...	</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (params.delegate) &#123;</span><br><span class="line">    SetContentsView(params.delegate-&gt;GetContentsView());</span><br><span class="line">    ...</span><br><span class="line">  &#125;	</span><br><span class="line">  ...  </span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> Create root view</span><br><span class="line"><span class="number">1.</span> Create NonClientView <span class="keyword">and</span> make Widget::non_client_view_ point to it</span><br><span class="line"><span class="number">1.</span> Create NonClientFrameView <span class="keyword">and</span> add it to NonClientView</span><br><span class="line"><span class="number">1.</span> Create ClientFrameView <span class="keyword">and</span> add it to NonClientView</span><br><span class="line"><span class="number">1.</span> Add NonClientView to RootView  </span><br><span class="line"></span><br><span class="line">### RootView类</span><br><span class="line">要注意的几点：  </span><br><span class="line">- 从名字便可知，RootView是View体系（hierarchy）的根  </span><br><span class="line">- RootView起到中转的作用，把本地Widget相关的事件等转换到Chromium View体系中  </span><br><span class="line">- RootView只有一个孩子ContentView，大小正好布满整个区域  </span><br><span class="line"></span><br><span class="line">原文：</span><br><span class="line"></span><br><span class="line">	<span class="comment">// RootView class</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  The RootView is the root of a View hierarchy. A RootView is attached to a</span></span><br><span class="line">	<span class="comment">//  Widget. The Widget is responsible for receiving events from the host</span></span><br><span class="line">	<span class="comment">//  environment, converting them to views-compatible events and then forwarding</span></span><br><span class="line">	<span class="comment">//  them to the RootView for propagation into the View hierarchy.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  A RootView can have only one child, called its "Contents View" which is</span></span><br><span class="line">	<span class="comment">//  sized to fill the bounds of the RootView (and hence the client area of the</span></span><br><span class="line">	<span class="comment">//  Widget). Call SetContentsView() after the associated Widget has been</span></span><br><span class="line">	<span class="comment">//  initialized to attach the contents view to the RootView.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">### Widget和NativeWidget的关系</span><br><span class="line"></span><br><span class="line">Chromium UI的一个目标是实现 **跨平台** ，这样就抽象出一个与平台无关的Widget，而与平台相关特性则由NativeWidget处理。它们两个一一对应，可以设置为Widget拥有（owns）NativeWidget或NativeWidget拥有Widget。</span><br><span class="line"></span><br><span class="line">	<span class="comment">////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line">	<span class="comment">// Widget class</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  Encapsulates the platform-specific rendering, event receiving and widget</span></span><br><span class="line">	<span class="comment">//  management aspects of the UI framework.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  Owns a RootView and thus a View hierarchy. Can contain child Widgets.</span></span><br><span class="line">	<span class="comment">//  Widget is a platform-independent type that communicates with a platform or</span></span><br><span class="line">	<span class="comment">//  context specific NativeWidget implementation.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  A special note on ownership:</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//    Depending on the value of the InitParams' ownership field, the Widget</span></span><br><span class="line">	<span class="comment">//    either owns or is owned by its NativeWidget:</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//    ownership = NATIVE_WIDGET_OWNS_WIDGET (default)</span></span><br><span class="line">	<span class="comment">//      The Widget instance is owned by its NativeWidget. When the NativeWidget</span></span><br><span class="line">	<span class="comment">//      is destroyed (in response to a native destruction message), it deletes</span></span><br><span class="line">	<span class="comment">//      the Widget from its destructor.</span></span><br><span class="line">	<span class="comment">//    ownership = WIDGET_OWNS_NATIVE_WIDGET (non-default)</span></span><br><span class="line">	<span class="comment">//      The Widget instance owns its NativeWidget. This state implies someone</span></span><br><span class="line">	<span class="comment">//      else wants to control the lifetime of this object. When they destroy</span></span><br><span class="line">	<span class="comment">//      the Widget it is responsible for destroying the NativeWidget (from its</span></span><br><span class="line">	<span class="comment">//      destructor).</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">&amp;nbsp;</span><br><span class="line">&amp;nbsp;</span><br><span class="line">&amp;nbsp;</span><br><span class="line"></span><br><span class="line">## Chromium界面的类结构</span><br><span class="line"></span><br><span class="line">### 静态图</span><br><span class="line">![chromium browser hierarchy](/images/posts/chromium_browser_hierarchy.jpg)</span><br><span class="line"></span><br><span class="line">### 类关系（Class Relationship）的建立</span><br><span class="line"><span class="number">1.</span> Enter <span class="string">"Browser::Create"</span> method</span><br><span class="line"><span class="number">1.</span> Call <span class="string">"InitBrowserWindow"</span> </span><br><span class="line"><span class="number">1.</span> Call <span class="string">"CreateBrowserWindow"</span> with the parameter <span class="string">"browser"</span>(<span class="keyword">this</span>)</span><br><span class="line"><span class="number">1.</span> Create <span class="string">"BrowserView"</span> which is the subclass of <span class="string">"BrowserWindow"</span></span><br><span class="line"><span class="number">1.</span> Set up the relation of <span class="string">"BrowserView"</span> <span class="keyword">and</span> <span class="string">"BrowserFrame"</span></span><br><span class="line"><span class="number">1.</span> Return back the <span class="string">"Browser::window_"</span> to <span class="string">"BrowserView"</span> instance</span><br><span class="line"></span><br><span class="line">Pseudo code:</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">Browser::Create()&#123;                                                         --&gt;<span class="number">1</span></span><br><span class="line">    ...</span><br><span class="line">    browser-&gt;InitBrowserWindow()&#123;                                          --&gt;<span class="number">2</span></span><br><span class="line">        ...</span><br><span class="line">        browser.window_ = BrowserWindow::CreateBrowserWindow(browser)&#123;     --&gt;<span class="number">3</span>,<span class="number">6</span></span><br><span class="line">            BrowserView* view = <span class="keyword">new</span> BrowserView(browser);                  --&gt;<span class="number">4</span></span><br><span class="line">            (<span class="keyword">new</span> BrowserFrame(view))-&gt;InitBrowserFrame();                  --&gt;<span class="number">5</span></span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">return</span> view;                                                   --&gt;<span class="number">6</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Chromium UI的目标是一套跨平台的方案，其中NativeWidget实现了平台相关的细节，Widget才是跨平台的组件，与NativeWidget做了映射。Widget是Windows组件，而Chromium UI的其它组件都是基于View建立的，所以需要一个RootView做中转，将窗口事件转换到View体系中，又作为其它View的根。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/04/24/chrome-extension-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -625,7 +1011,7 @@ PluginObject.h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -636,7 +1022,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -647,7 +1033,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -3,6 +3,121 @@
   
     
     <entry>
+      <title><![CDATA[mysqldump 用法]]></title>
+      <url>/2018/09/26/mysqldump/</url>
+      <content type="html"><![CDATA[<h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
+<h3 id="只导出数据"><a href="#只导出数据" class="headerlink" title="只导出数据"></a>只导出数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+]]></content>
+      
+        <categories>
+            
+            <category> database </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> database </tag>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[H2 数据库]]></title>
+      <url>/2018/09/26/h2-database/</url>
+      <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li>从<a href="http://www.h2database.com/html/main.html" target="_blank" rel="noopener">官网</a>下载压缩包</li>
+<li>解压到任意目录</li>
+<li>进入 <code>h2/bin</code> 目录，运行 <code>java -jar h2*.jar</code> </li>
+</ol>
+<p>h2 数据库启动后，会自动使用默认浏览器打开管理页面 <a href="http://localhost:8082" target="_blank" rel="noopener">http://localhost:8082</a></p>
+<a id="more"></a>
+<h3 id="使用-H2-控制台"><a href="#使用-H2-控制台" class="headerlink" title="使用 H2 控制台"></a>使用 H2 控制台</h3><p><strong>登录界面</strong></p>
+<p><img src="/images/posts/h2database/login.png" alt=""></p>
+<ul>
+<li>选择 “Generic H2 (Embedded)” 配置</li>
+<li>JDBC URL 输入 <code>jdbc:h2:~/db_name;</code>，其它 <code>~/db_name</code> 对应用户目录下的 db_name 文件</li>
+<li>用户名默认为 sa</li>
+<li>密码可以为空</li>
+</ul>
+<p>点击连接后，进入到管理界面</p>
+<p><strong>管理界面</strong></p>
+<p><img src="/images/posts/h2database/console.png" alt=""></p>
+<p>管理页面按钮不多，每个按钮的作用，可以将鼠标悬浮到上面，查看 tooltip</p>
+<h3 id="导入导出数据库"><a href="#导入导出数据库" class="headerlink" title="导入导出数据库"></a>导入导出数据库</h3><h4 id="导入数据库"><a href="#导入数据库" class="headerlink" title="导入数据库"></a>导入数据库</h4><p><strong>通过命令行</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -cp h2*.jar org.h2.tools.Script -url jdbc:h2:~/zhp1 -user sa -script zahuopu.sql</span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用压缩文件</span></span><br><span class="line">java -cp h2*.jar org.h2.tools.Script -url jdbc:h2:~/config -user sa -script test.zip -options compression zip</span><br></pre></td></tr></table></figure>
+<p><strong>通过控制台</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RUNSCRIPT FROM 'test.sql'</span><br></pre></td></tr></table></figure>
+<h4 id="导出数据库"><a href="#导出数据库" class="headerlink" title="导出数据库"></a>导出数据库</h4><p><strong>通过命令行</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -cp h2*.jar org.h2.tools.Script -url jdbc:h2:~/config -user sa -script zahuopu.sql</span><br><span class="line"><span class="meta">#</span><span class="bash"> 导出压缩文件</span></span><br><span class="line">java -cp h2*.jar org.h2.tools.Script -url jdbc:h2:~/config -user sa -script test.zip -options compression zip</span><br></pre></td></tr></table></figure>
+<p><strong>通过控制台</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SCRIPT 'test.sql'</span><br></pre></td></tr></table></figure>
+<h3 id="springboot-单元测试中使用"><a href="#springboot-单元测试中使用" class="headerlink" title="springboot 单元测试中使用"></a>springboot 单元测试中使用</h3><h4 id="1-放置文件"><a href="#1-放置文件" class="headerlink" title="1 放置文件"></a>1 放置文件</h4><p>将 schema.sql 和 data.sql 放置在 <code>src/test/resources/db/</code> 目录</p>
+<h4 id="2-修改配置"><a href="#2-修改配置" class="headerlink" title="2 修改配置"></a>2 修改配置</h4><p>打开 application-test.yml，添加 h2 数据库配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">   datasource:</span><br><span class="line">     driver-class-name: org.h2.Driver</span><br><span class="line">     url: jdbc:h2:mem:zhp_test;mode=mysql;</span><br><span class="line">     username: root</span><br><span class="line">     schema: classpath:db/schema.sql</span><br><span class="line">     data: classpath:db/data.sql</span><br></pre></td></tr></table></figure>
+<h3 id="H2-的一些配置"><a href="#H2-的一些配置" class="headerlink" title="H2 的一些配置"></a>H2 的一些配置</h3><h4 id="mode-mysql"><a href="#mode-mysql" class="headerlink" title="mode=mysql"></a>mode=mysql</h4><p>以 mysql 方式运行，对于从 mysql 导出的脚本，会提供很好的兼容性。使用方式有两种：</p>
+<ul>
+<li>加到 url 中：<code>url: jdbc:h2:mem:zhp_test;mode=mysql;</code></li>
+<li>加到 sql 脚本开头：<code>SET MODE MYSQL;</code></li>
+</ul>
+<h4 id="REFERENTIAL-INTEGRITY"><a href="#REFERENTIAL-INTEGRITY" class="headerlink" title="REFERENTIAL_INTEGRITY"></a>REFERENTIAL_INTEGRITY</h4><p>关闭 REFERENTIAL_INTEGRITY，可以让脚本忽略外键约束，比如插入数据时。加在脚本中的做法是<code>SET REFERENTIAL_INTEGRITY FALSE;</code></p>
+<h3 id="MySQL-脚本转换-H2-脚本"><a href="#MySQL-脚本转换-H2-脚本" class="headerlink" title="MySQL 脚本转换 H2 脚本"></a>MySQL 脚本转换 H2 脚本</h3><p>直接导出的 MySQL 脚本，并不能直接用于 H2 数据库，存在语法兼容问题。比如<a href="http://matthewcasperson.blogspot.com/2013/07/exporting-from-mysql-to-h2.html" target="_blank" rel="noopener">这里</a>所列。</p>
+<p>常用导出方法</p>
+<p><strong>mysqldump</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
+<p><strong>phpmyadmin</strong></p>
+<p>phpmyadmin 有非常好用的 UI，可以通过配置规则导出，比如：</p>
+<ul>
+<li>不包含符号 `</li>
+<li>不包含注释</li>
+</ul>
+<p>导出后，比较简单的做法是用正则表达式替换，下面列出了一些：</p>
+<h4 id="1-替换注释"><a href="#1-替换注释" class="headerlink" title="1 替换注释"></a>1 替换注释</h4><ul>
+<li><code>COMMENT &#39;[^&#39;]+?&#39;</code> 替换为空</li>
+<li><code>COMMENT=&#39;[^&#39;]+?&#39;</code> 替换为空</li>
+</ul>
+<h4 id="2-替换-charset"><a href="#2-替换-charset" class="headerlink" title="2 替换 charset"></a>2 替换 charset</h4><ul>
+<li><code>CHARACTER SET utf8 COLLATE utf8_bin</code> 替换为空</li>
+<li><code>COLLATE utf8_unicode_ci</code> 替换为空</li>
+<li><code>COLLATE=utf8_unicode_ci</code> 替换为空</li>
+</ul>
+<h4 id="3-替换数据类型"><a href="#3-替换数据类型" class="headerlink" title="3 替换数据类型"></a>3 替换数据类型</h4><ul>
+<li><code>float(</code> 替换为 <code>decimal(</code></li>
+<li><code>double(</code> 替换为 <code>decimal(</code></li>
+</ul>
+<h4 id="4-一次性修改表变为多条"><a href="#4-一次性修改表变为多条" class="headerlink" title="4 一次性修改表变为多条"></a>4 一次性修改表变为多条</h4><p><strong>2层</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^(ALTER TABLE .+)\n(  ADD .+),\n(  ADD .+;)</span><br><span class="line">$1\n$2;\n$1\n$3</span><br></pre></td></tr></table></figure>
+<p><strong>3层</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^(ALTER TABLE .+)\n(  ADD .+),\n(  ADD .+),\n(  ADD .+;)</span><br><span class="line">$1\n$2;\n$1\n$3;\n$1\n$4</span><br></pre></td></tr></table></figure>
+<p><strong>4层</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^(ALTER TABLE .+)\n(  ADD .+),\n(  ADD .+),\n(  ADD .+),\n(  ADD .+;)</span><br><span class="line">$1\n$2;\n$1\n$3;\n$1\n$4;\n$1\n$5</span><br></pre></td></tr></table></figure>
+<p><strong>5层</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">^(ALTER TABLE .+)\n(  ADD .+),\n(  ADD .+),\n(  ADD .+),\n(  ADD .+),\n(  ADD .+;)</span><br><span class="line">$1\n$2;\n$1\n$3;\n$1\n$4;\n$1\n$5;\n$1\n$6</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> database </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Image 格式]]></title>
       <url>/2018/09/21/image-formats/</url>
       <content type="html"><![CDATA[<h3 id="文件标识"><a href="#文件标识" class="headerlink" title="文件标识"></a>文件标识</h3><table>
@@ -574,31 +689,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Java 编程规范]]></title>
-      <url>/2018/03/26/java-code-style/</url>
-      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
-<ul>
-<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
-<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Hibernate 用法]]></title>
       <url>/2018/03/26/hibernate-usage/</url>
       <content type="html"><![CDATA[<h3 id="操作-m-n-关联表"><a href="#操作-m-n-关联表" class="headerlink" title="操作 m-n 关联表"></a>操作 m-n 关联表</h3><ul>
@@ -625,6 +715,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Java 编程规范]]></title>
+      <url>/2018/03/26/java-code-style/</url>
+      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
+<ul>
+<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
+<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Boost Logger 使用]]></title>
       <url>/2017/12/08/boost-logger/</url>
       <content type="html"><![CDATA[<p>未完成</p>
@@ -640,29 +755,6 @@
         <tags>
             
             <tag> vc++ </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Windows 钩子]]></title>
-      <url>/2017/12/07/windows-hooks/</url>
-      <content type="html"><![CDATA[<p>未完成</p>
-]]></content>
-      
-        <categories>
-            
-            <category> c++ </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> vc++ </tag>
-            
-            <tag> Windows </tag>
             
         </tags>
         
@@ -708,6 +800,29 @@
             <tag> laravel </tag>
             
             <tag> deployer </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Windows 钩子]]></title>
+      <url>/2017/12/07/windows-hooks/</url>
+      <content type="html"><![CDATA[<p>未完成</p>
+]]></content>
+      
+        <categories>
+            
+            <category> c++ </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> vc++ </tag>
+            
+            <tag> Windows </tag>
             
         </tags>
         
@@ -1131,6 +1246,76 @@
     </entry>
     
     <entry>
+      <title><![CDATA[中间人劫持代理]]></title>
+      <url>/2017/06/10/mitm-proxy/</url>
+      <content type="html"><![CDATA[<h2 id="中间人劫持代理"><a href="#中间人劫持代理" class="headerlink" title="中间人劫持代理"></a>中间人劫持代理</h2><p><img src="/images/posts/mitm_proxy/how-mitmproxy-works-explicit-https.png" alt=""></p>
+<p>注：图片来源于 mitmproxy</p>
+<h4 id="本代理基于-TCP，是一个不关心协议的代理？"><a href="#本代理基于-TCP，是一个不关心协议的代理？" class="headerlink" title="本代理基于 TCP，是一个不关心协议的代理？"></a>本代理基于 TCP，是一个不关心协议的代理？</h4><p>是的</p>
+<h4 id="HTTP-代理-VS-Socks-代理"><a href="#HTTP-代理-VS-Socks-代理" class="headerlink" title="HTTP 代理 VS Socks 代理"></a>HTTP 代理 VS Socks 代理</h4><h2 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h2><h3 id="获取远端主机名（Host）"><a href="#获取远端主机名（Host）" class="headerlink" title="获取远端主机名（Host）"></a>获取远端主机名（Host）</h3><p>当应用设置了代理后，在 TLS 协商前，应用首先会发一条 CONNECT 请求，期待通过代理和远端服务器建立 TLS 隧道（tunnel）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT 10.1.1.1:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
+<p>作为中间人代理，并不帮助建立隧道，而是需要解析 CONNECT 请求，并从中获得远端服务器主机名。同时返回给被代理程序隧道建立成功的回复：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 根据请求指定版本号</span><br><span class="line">HTTP/1.0 200 Connection established\r\n\r\n</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Subject-Alternative-Name"><a href="#Subject-Alternative-Name" class="headerlink" title="Subject Alternative Name"></a>Subject Alternative Name</h3><p>这是服务器证书包含的一个字段，用于标识证书签发的域名。</p>
+<p>通常服务器的域名保存在 <code>Common name</code> 字段，只保存一个域名，而 <code>Subject Alternative Name</code> 可保存多个域名，并支持通配符。也就是，有的时候访问的服务器主机并不和 <code>Common name</code> 匹配，但匹配 <code>SAN</code>，这样的证书也是合法的。</p>
+<h3 id="服务器名称指示（SNI）"><a href="#服务器名称指示（SNI）" class="headerlink" title="服务器名称指示（SNI）"></a>服务器名称指示（SNI）</h3><p>这是识别同一 IP 部署的多个带证书虚拟主机（Virtual Host）的技术。</p>
+<p>基于名称的虚拟主机允许多个域名由同一IP地址上的单个服务器（通常为Web服务器）托管。使用 HTTP 时，其必须包含的协议头 <a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="noopener"><code>Host</code></a> 字段标识了欲访问的域名，据此分辨出虚拟主机。但是，由于 HTTPS 握手发生在服务器看到任何 HTTP 头之前，这时并不知道要访问哪个虚拟主机，也就不能把对应的服务器证书发给客户端，以完成 TLS 协商。</p>
+<p>SNI 通过让客户端发送虚拟域名的名称作为TLS协商的一部分来解决此问题。</p>
+<p>OpenSSL 客户端实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set host name before initiating the SSL connection</span></span><br><span class="line">SSL_set_tlsext_host_name(ssl, hostName)</span><br></pre></td></tr></table></figure>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA" target="_blank" rel="noopener">扩展阅读</a></p>
+<h3 id="Certificate-Pinning"><a href="#Certificate-Pinning" class="headerlink" title="Certificate Pinning"></a>Certificate Pinning</h3><p>简单地说，就是某些程序（比如浏览器）只相信某些根证书签发的服务器证书。</p>
+<p>通常证书通过证书链验证合法性，<code>MyCert</code> 由 <code>IntermediateCert</code> 签发，它又由 <code>RootCert</code> 签发，<code>RootCert</code> 已经内置在操作系统的可信任根证书中。 这样，<code>MyCert</code> 是合法的。常见内置的根证书有：Verisign, Digicert, Thawte等。</p>
+<p>但是，Certificate pinning 的作用是，即使通过了上面的验证，如果不是某个指定 RootCert 签发的证书，也认为其不合法。这在一定程序上避免中间人攻击，但没有真的解决。</p>
+<p>下面是一些使用 Certificate pinning 的应用：</p>
+<ul>
+<li>微软的自动更新</li>
+<li>苹果 App Store</li>
+<li>Twitter app</li>
+</ul>
+<p><a href="https://security.stackexchange.com/questions/29988/what-is-certificate-pinning/" target="_blank" rel="noopener">扩展阅读</a></p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10).aspx#BKMK_5" target="_blank" rel="noopener">文档</a></p>
+<p>设置代理：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set proxy 127.0.0.1:8080 "&lt;local&gt;"</span><br></pre></td></tr></table></figure>
+<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
+<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
+<p>选择 WinINet 的原因：</p>
+<ul>
+<li>支持 cookies</li>
+<li>Credential Cache (和SSL证书相关？)</li>
+<li>Credential Prompting (和SSL证书相关？)</li>
+</ul>
+<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85).aspx" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a></p>
+<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line"><span class="comment">// 根据协议来设置代理，比如 FTP, HTTPS 等，使用下面的字符串</span></span><br><span class="line"><span class="comment">// ftp=http://&lt;ProxyServerName&gt;:80; https=https://&lt;ProxyServerName&gt;:80)</span></span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="设置自动代理"><a href="#设置自动代理" class="headerlink" title="设置自动代理"></a>设置自动代理</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> wzsPath[MAX_PATH];</span><br><span class="line"><span class="keyword">wchar_t</span> wszProxyUrl[INTERNET_MAX_URL_LENGTH];</span><br><span class="line">SHGetFolderPath ( <span class="literal">NULL</span>, CSIDL_APPDATA | CSIDL_FLAG_CREATE, <span class="literal">NULL</span>, <span class="number">0</span>, wszPath );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Construct Pac file path. – %appdata%\MyAppFolder\redirect.pac</span></span><br><span class="line">StringCbPrintf (wszProxyUrl, <span class="keyword">sizeof</span>(wszProxyUrl), </span><br><span class="line">        <span class="string">L"file://%s\\MyAppFolder\\redirect.pac"</span>, wszPath );</span><br><span class="line"></span><br><span class="line">INTERNET_PER_CONN_OPTION_LIST *optionList = <span class="number">0</span>;</span><br><span class="line">optionList-&gt;pOptions[INDEX].Value.pszValue = wszPath;</span><br><span class="line"></span><br><span class="line">InternetSetOption ( <span class="literal">NULL</span>, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">        optionList, <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST) );</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PER_CONN_OPTION_LIST    List;</span><br><span class="line">INTERNET_PER_CONN_OPTION         Option[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span>                    nSize =</span><br><span class="line"><span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line"></span><br><span class="line">Option[<span class="number">0</span>].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;</span><br><span class="line">Option[<span class="number">0</span>].Value.pszValue = <span class="string">"http://myserver/proxy.pacl"</span>;</span><br><span class="line">Option[<span class="number">1</span>].dwOption = INTERNET_PER_CONN_FLAGS;</span><br><span class="line">Option[<span class="number">1</span>].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL;</span><br><span class="line"></span><br><span class="line">List.dwSize = <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line">List.pszConnection = <span class="literal">NULL</span>;</span><br><span class="line">List.dwOptionCount = <span class="number">2</span>;</span><br><span class="line">List.dwOptionError = <span class="number">0</span>;</span><br><span class="line">List.pOptions = Option;</span><br><span class="line"></span><br><span class="line">hMyHandle =  InternetOpen(<span class="string">""</span>, INTERNET_OPEN_TYPE_DIRECT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!InternetSetOption(hMyHandle, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">&amp;List, nSize))</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"InternetQueryOption failed! (%d)\n"</span>, GetLastError());</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://docs.mitmproxy.org/en/stable/howmitmproxy.html" target="_blank" rel="noopener">mitmproxy</a></li>
+<li><a href="http://www.5icpp.com/?p=139" target="_blank" rel="noopener">如何给CHtmlView添加代理——MFC</a></li>
+<li><a href="http://www.lai18.com/content/2206252.html" target="_blank" rel="noopener">为网络程序添加代理设置</a>：带 VC6 示例程序</li>
+<li><a href="http://www.cnblogs.com/duanshuiliu/archive/2013/03/18/2965405.html" target="_blank" rel="noopener">查询代理和设置代理</a></li>
+<li><a href="http://blog.csdn.net/ba_jie/article/details/43564385" target="_blank" rel="noopener">写C++程序绕过IE的限制：“某些设置由系统管理员进行管理”</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> OpenSSL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> openssl </tag>
+            
+            <tag> proxy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[TLS 协议]]></title>
       <url>/2017/06/10/tls-1.2/</url>
       <content type="html"><![CDATA[<p>首先，这是 IETF 协会文档 <a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">Request for Comments (RFC) 5246</a></p>
@@ -1278,76 +1463,6 @@
         <tags>
             
             <tag> openssl </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[中间人劫持代理]]></title>
-      <url>/2017/06/10/mitm-proxy/</url>
-      <content type="html"><![CDATA[<h2 id="中间人劫持代理"><a href="#中间人劫持代理" class="headerlink" title="中间人劫持代理"></a>中间人劫持代理</h2><p><img src="/images/posts/mitm_proxy/how-mitmproxy-works-explicit-https.png" alt=""></p>
-<p>注：图片来源于 mitmproxy</p>
-<h4 id="本代理基于-TCP，是一个不关心协议的代理？"><a href="#本代理基于-TCP，是一个不关心协议的代理？" class="headerlink" title="本代理基于 TCP，是一个不关心协议的代理？"></a>本代理基于 TCP，是一个不关心协议的代理？</h4><p>是的</p>
-<h4 id="HTTP-代理-VS-Socks-代理"><a href="#HTTP-代理-VS-Socks-代理" class="headerlink" title="HTTP 代理 VS Socks 代理"></a>HTTP 代理 VS Socks 代理</h4><h2 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h2><h3 id="获取远端主机名（Host）"><a href="#获取远端主机名（Host）" class="headerlink" title="获取远端主机名（Host）"></a>获取远端主机名（Host）</h3><p>当应用设置了代理后，在 TLS 协商前，应用首先会发一条 CONNECT 请求，期待通过代理和远端服务器建立 TLS 隧道（tunnel）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT 10.1.1.1:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
-<p>作为中间人代理，并不帮助建立隧道，而是需要解析 CONNECT 请求，并从中获得远端服务器主机名。同时返回给被代理程序隧道建立成功的回复：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 根据请求指定版本号</span><br><span class="line">HTTP/1.0 200 Connection established\r\n\r\n</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="Subject-Alternative-Name"><a href="#Subject-Alternative-Name" class="headerlink" title="Subject Alternative Name"></a>Subject Alternative Name</h3><p>这是服务器证书包含的一个字段，用于标识证书签发的域名。</p>
-<p>通常服务器的域名保存在 <code>Common name</code> 字段，只保存一个域名，而 <code>Subject Alternative Name</code> 可保存多个域名，并支持通配符。也就是，有的时候访问的服务器主机并不和 <code>Common name</code> 匹配，但匹配 <code>SAN</code>，这样的证书也是合法的。</p>
-<h3 id="服务器名称指示（SNI）"><a href="#服务器名称指示（SNI）" class="headerlink" title="服务器名称指示（SNI）"></a>服务器名称指示（SNI）</h3><p>这是识别同一 IP 部署的多个带证书虚拟主机（Virtual Host）的技术。</p>
-<p>基于名称的虚拟主机允许多个域名由同一IP地址上的单个服务器（通常为Web服务器）托管。使用 HTTP 时，其必须包含的协议头 <a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="noopener"><code>Host</code></a> 字段标识了欲访问的域名，据此分辨出虚拟主机。但是，由于 HTTPS 握手发生在服务器看到任何 HTTP 头之前，这时并不知道要访问哪个虚拟主机，也就不能把对应的服务器证书发给客户端，以完成 TLS 协商。</p>
-<p>SNI 通过让客户端发送虚拟域名的名称作为TLS协商的一部分来解决此问题。</p>
-<p>OpenSSL 客户端实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set host name before initiating the SSL connection</span></span><br><span class="line">SSL_set_tlsext_host_name(ssl, hostName)</span><br></pre></td></tr></table></figure>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA" target="_blank" rel="noopener">扩展阅读</a></p>
-<h3 id="Certificate-Pinning"><a href="#Certificate-Pinning" class="headerlink" title="Certificate Pinning"></a>Certificate Pinning</h3><p>简单地说，就是某些程序（比如浏览器）只相信某些根证书签发的服务器证书。</p>
-<p>通常证书通过证书链验证合法性，<code>MyCert</code> 由 <code>IntermediateCert</code> 签发，它又由 <code>RootCert</code> 签发，<code>RootCert</code> 已经内置在操作系统的可信任根证书中。 这样，<code>MyCert</code> 是合法的。常见内置的根证书有：Verisign, Digicert, Thawte等。</p>
-<p>但是，Certificate pinning 的作用是，即使通过了上面的验证，如果不是某个指定 RootCert 签发的证书，也认为其不合法。这在一定程序上避免中间人攻击，但没有真的解决。</p>
-<p>下面是一些使用 Certificate pinning 的应用：</p>
-<ul>
-<li>微软的自动更新</li>
-<li>苹果 App Store</li>
-<li>Twitter app</li>
-</ul>
-<p><a href="https://security.stackexchange.com/questions/29988/what-is-certificate-pinning/" target="_blank" rel="noopener">扩展阅读</a></p>
-<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10).aspx#BKMK_5" target="_blank" rel="noopener">文档</a></p>
-<p>设置代理：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set proxy 127.0.0.1:8080 "&lt;local&gt;"</span><br></pre></td></tr></table></figure>
-<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
-<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
-<p>选择 WinINet 的原因：</p>
-<ul>
-<li>支持 cookies</li>
-<li>Credential Cache (和SSL证书相关？)</li>
-<li>Credential Prompting (和SSL证书相关？)</li>
-</ul>
-<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85).aspx" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a></p>
-<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line"><span class="comment">// 根据协议来设置代理，比如 FTP, HTTPS 等，使用下面的字符串</span></span><br><span class="line"><span class="comment">// ftp=http://&lt;ProxyServerName&gt;:80; https=https://&lt;ProxyServerName&gt;:80)</span></span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="设置自动代理"><a href="#设置自动代理" class="headerlink" title="设置自动代理"></a>设置自动代理</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> wzsPath[MAX_PATH];</span><br><span class="line"><span class="keyword">wchar_t</span> wszProxyUrl[INTERNET_MAX_URL_LENGTH];</span><br><span class="line">SHGetFolderPath ( <span class="literal">NULL</span>, CSIDL_APPDATA | CSIDL_FLAG_CREATE, <span class="literal">NULL</span>, <span class="number">0</span>, wszPath );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Construct Pac file path. – %appdata%\MyAppFolder\redirect.pac</span></span><br><span class="line">StringCbPrintf (wszProxyUrl, <span class="keyword">sizeof</span>(wszProxyUrl), </span><br><span class="line">        <span class="string">L"file://%s\\MyAppFolder\\redirect.pac"</span>, wszPath );</span><br><span class="line"></span><br><span class="line">INTERNET_PER_CONN_OPTION_LIST *optionList = <span class="number">0</span>;</span><br><span class="line">optionList-&gt;pOptions[INDEX].Value.pszValue = wszPath;</span><br><span class="line"></span><br><span class="line">InternetSetOption ( <span class="literal">NULL</span>, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">        optionList, <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST) );</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PER_CONN_OPTION_LIST    List;</span><br><span class="line">INTERNET_PER_CONN_OPTION         Option[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span>                    nSize =</span><br><span class="line"><span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line"></span><br><span class="line">Option[<span class="number">0</span>].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;</span><br><span class="line">Option[<span class="number">0</span>].Value.pszValue = <span class="string">"http://myserver/proxy.pacl"</span>;</span><br><span class="line">Option[<span class="number">1</span>].dwOption = INTERNET_PER_CONN_FLAGS;</span><br><span class="line">Option[<span class="number">1</span>].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL;</span><br><span class="line"></span><br><span class="line">List.dwSize = <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line">List.pszConnection = <span class="literal">NULL</span>;</span><br><span class="line">List.dwOptionCount = <span class="number">2</span>;</span><br><span class="line">List.dwOptionError = <span class="number">0</span>;</span><br><span class="line">List.pOptions = Option;</span><br><span class="line"></span><br><span class="line">hMyHandle =  InternetOpen(<span class="string">""</span>, INTERNET_OPEN_TYPE_DIRECT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!InternetSetOption(hMyHandle, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">&amp;List, nSize))</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"InternetQueryOption failed! (%d)\n"</span>, GetLastError());</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://docs.mitmproxy.org/en/stable/howmitmproxy.html" target="_blank" rel="noopener">mitmproxy</a></li>
-<li><a href="http://www.5icpp.com/?p=139" target="_blank" rel="noopener">如何给CHtmlView添加代理——MFC</a></li>
-<li><a href="http://www.lai18.com/content/2206252.html" target="_blank" rel="noopener">为网络程序添加代理设置</a>：带 VC6 示例程序</li>
-<li><a href="http://www.cnblogs.com/duanshuiliu/archive/2013/03/18/2965405.html" target="_blank" rel="noopener">查询代理和设置代理</a></li>
-<li><a href="http://blog.csdn.net/ba_jie/article/details/43564385" target="_blank" rel="noopener">写C++程序绕过IE的限制：“某些设置由系统管理员进行管理”</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> OpenSSL </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> openssl </tag>
-            
-            <tag> proxy </tag>
             
         </tags>
         
@@ -2023,48 +2138,27 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Windows Batch 用法]]></title>
-      <url>/2017/01/17/batch-usage/</url>
-      <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
-<h4 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%* in (.) do set CurrentDirName=%%~nx*</span><br></pre></td></tr></table></figure>
-<h4 id="当前目录（不带斜线-）"><a href="#当前目录（不带斜线-）" class="headerlink" title="当前目录（不带斜线 ）"></a>当前目录（不带斜线 ）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET mypath=%~dp0</span><br><span class="line">echo %mypath:~0,-1%</span><br></pre></td></tr></table></figure>
+      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
+      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
+      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
+</blockquote>
 ]]></content>
       
         <categories>
             
-            <category> windows </category>
+            <category> activex </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> windows </tag>
+            <tag> activex </tag>
             
-            <tag> bat </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[编译 Chromium 常见问题]]></title>
-      <url>/2017/01/17/build-chromium-issues/</url>
-      <content type="html"><![CDATA[<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p>解决办法：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> chromium </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> chromium </tag>
+            <tag> webbrowser </tag>
             
         </tags>
         
@@ -2096,27 +2190,48 @@
     </entry>
     
     <entry>
-      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
-      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
-      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
-</blockquote>
+      <title><![CDATA[编译 Chromium 常见问题]]></title>
+      <url>/2017/01/17/build-chromium-issues/</url>
+      <content type="html"><![CDATA[<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<p>解决办法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
             
-            <category> activex </category>
+            <category> chromium </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> activex </tag>
+            <tag> chromium </tag>
             
-            <tag> webbrowser </tag>
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Windows Batch 用法]]></title>
+      <url>/2017/01/17/batch-usage/</url>
+      <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
+<h4 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%* in (.) do set CurrentDirName=%%~nx*</span><br></pre></td></tr></table></figure>
+<h4 id="当前目录（不带斜线-）"><a href="#当前目录（不带斜线-）" class="headerlink" title="当前目录（不带斜线 ）"></a>当前目录（不带斜线 ）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET mypath=%~dp0</span><br><span class="line">echo %mypath:~0,-1%</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> windows </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> bat </tag>
             
         </tags>
         
@@ -2219,31 +2334,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
-      <url>/2016/08/28/install-nmp-on-centos6/</url>
-      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> cenos </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[MySQL升级到5.7]]></title>
       <url>/2016/08/28/upgrade-mysql/</url>
       <content type="html"><![CDATA[<p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
@@ -2262,6 +2352,31 @@
         <categories>
             
             <category> mysql </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> cenos </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
+      <url>/2016/08/28/install-nmp-on-centos6/</url>
+      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
             
         </categories>
         
@@ -2400,9 +2515,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> php </tag>
-            
             <tag> server </tag>
+            
+            <tag> php </tag>
             
         </tags>
         
@@ -2523,6 +2638,37 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
+      <title><![CDATA[url 编码常规]]></title>
+      <url>/2015/07/03/url-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+</ul>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> url </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[php 编码常规]]></title>
       <url>/2015/07/03/php-code-conventions/</url>
       <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
@@ -2565,37 +2711,6 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> php </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[url 编码常规]]></title>
-      <url>/2015/07/03/url-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
-<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
-<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
-<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
-</ul>
-<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
-<li><code>SEO</code> 模式</li>
-<li>使用连字符规则，不使用大写</li>
-<li>命名首选 <code>RESTful</code> 方式</li>
-<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> url </tag>
             
         </tags>
         
@@ -2791,9 +2906,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> extension </tag>
-            
             <tag> osx </tag>
+            
+            <tag> extension </tag>
             
         </tags>
         
@@ -3089,9 +3204,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> php </tag>
-            
             <tag> mac </tag>
+            
+            <tag> php </tag>
             
             <tag> nginx </tag>
             
@@ -3315,51 +3430,6 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[Linux 常用命令]]></title>
-      <url>/2015/01/25/linux-commands/</url>
-      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
-<li>启用被 iptables 禁用的 80 端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
-<li>启动、停止、重启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
-<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
-<ul>
-<li>设置开机自启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
-<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> server </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[常用的正则表达式]]></title>
       <url>/2015/01/25/the-most-used-regular-expression/</url>
       <content type="html"><![CDATA[<h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
@@ -3420,6 +3490,51 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> regexp </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Linux 常用命令]]></title>
+      <url>/2015/01/25/linux-commands/</url>
+      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+<li>启用被 iptables 禁用的 80 端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
+<li>启动、停止、重启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
+<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<ul>
+<li>设置开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> server </tag>
             
         </tags>
         
