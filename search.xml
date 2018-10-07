@@ -3,6 +3,58 @@
   
     
     <entry>
+      <title><![CDATA[Homebrew 用法]]></title>
+      <url>/2018/09/29/nvm-usage/</url>
+      <content type="html"><![CDATA[<h3 id="列出已安装软件"><a href="#列出已安装软件" class="headerlink" title="列出已安装软件"></a>列出已安装软件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew list </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果</span></span><br><span class="line">autoconf        flyway          libgpg-error    libyaml         mysql           php71           pkg-config      ruby-build</span><br><span class="line">automake        freetype        libksba         makedepend      nginx           php71-mcrypt    proxychains-ng  sphinx-doc</span><br><span class="line">boost           gettext         libmemcached    maven           node            php71-xdebug    putty           telnet</span><br><span class="line">cmake           icu4c           libpng          mcrypt          openssl         php@7.1         readline        unixodbc</span><br><span class="line">composer        jpeg            libtool         memcached       openssl@1.1     phpmyadmin      rename          xz</span><br><span class="line">coreutils       libevent        libxml2         mhash           pcre            phpunit         ruby            zlib</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
+<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> mac </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+            <tag> homebrew </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Homebrew 用法]]></title>
+      <url>/2018/09/29/brew-usage/</url>
+      <content type="html"><![CDATA[<h3 id="列出已安装软件"><a href="#列出已安装软件" class="headerlink" title="列出已安装软件"></a>列出已安装软件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew list </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果</span></span><br><span class="line">autoconf        flyway          libgpg-error    libyaml         mysql           php71           pkg-config      ruby-build</span><br><span class="line">automake        freetype        libksba         makedepend      nginx           php71-mcrypt    proxychains-ng  sphinx-doc</span><br><span class="line">boost           gettext         libmemcached    maven           node            php71-xdebug    putty           telnet</span><br><span class="line">cmake           icu4c           libpng          mcrypt          openssl         php@7.1         readline        unixodbc</span><br><span class="line">composer        jpeg            libtool         memcached       openssl@1.1     phpmyadmin      rename          xz</span><br><span class="line">coreutils       libevent        libxml2         mhash           pcre            phpunit         ruby            zlib</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
+<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> mac </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+            <tag> homebrew </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[mysqldump 用法]]></title>
       <url>/2018/09/26/mysqldump/</url>
       <content type="html"><![CDATA[<h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
@@ -689,6 +741,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Java 编程规范]]></title>
+      <url>/2018/03/26/java-code-style/</url>
+      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
+<ul>
+<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
+<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Hibernate 用法]]></title>
       <url>/2018/03/26/hibernate-usage/</url>
       <content type="html"><![CDATA[<h3 id="操作-m-n-关联表"><a href="#操作-m-n-关联表" class="headerlink" title="操作 m-n 关联表"></a>操作 m-n 关联表</h3><ul>
@@ -709,31 +786,6 @@
             <tag> java </tag>
             
             <tag> hibernate </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Java 编程规范]]></title>
-      <url>/2018/03/26/java-code-style/</url>
-      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
-<ul>
-<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
-<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> java </tag>
             
         </tags>
         
@@ -2165,6 +2217,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Windows Batch 用法]]></title>
+      <url>/2017/01/17/batch-usage/</url>
+      <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
+<h4 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%* in (.) do set CurrentDirName=%%~nx*</span><br></pre></td></tr></table></figure>
+<h4 id="当前目录（不带斜线-）"><a href="#当前目录（不带斜线-）" class="headerlink" title="当前目录（不带斜线 ）"></a>当前目录（不带斜线 ）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET mypath=%~dp0</span><br><span class="line">echo %mypath:~0,-1%</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> windows </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> bat </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[SourceTree 操作被挂起]]></title>
       <url>/2017/01/17/source-tree-hungs/</url>
       <content type="html"><![CDATA[<h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
@@ -2207,31 +2284,6 @@
         <tags>
             
             <tag> chromium </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Windows Batch 用法]]></title>
-      <url>/2017/01/17/batch-usage/</url>
-      <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
-<h4 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%* in (.) do set CurrentDirName=%%~nx*</span><br></pre></td></tr></table></figure>
-<h4 id="当前目录（不带斜线-）"><a href="#当前目录（不带斜线-）" class="headerlink" title="当前目录（不带斜线 ）"></a>当前目录（不带斜线 ）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET mypath=%~dp0</span><br><span class="line">echo %mypath:~0,-1%</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> windows </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> windows </tag>
-            
-            <tag> bat </tag>
             
         </tags>
         
@@ -2334,6 +2386,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
+      <url>/2016/08/28/install-nmp-on-centos6/</url>
+      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> cenos </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[MySQL升级到5.7]]></title>
       <url>/2016/08/28/upgrade-mysql/</url>
       <content type="html"><![CDATA[<p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
@@ -2352,31 +2429,6 @@
         <categories>
             
             <category> mysql </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> cenos </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
-      <url>/2016/08/28/install-nmp-on-centos6/</url>
-      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
             
         </categories>
         
@@ -2433,9 +2485,9 @@
         
         <tags>
             
-            <tag> server </tag>
-            
             <tag> mac </tag>
+            
+            <tag> server </tag>
             
             <tag> java </tag>
             
@@ -2485,11 +2537,11 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
+            <tag> mac </tag>
+            
             <tag> linux </tag>
             
             <tag> server </tag>
-            
-            <tag> mac </tag>
             
         </tags>
         
@@ -2515,9 +2567,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> server </tag>
-            
             <tag> php </tag>
+            
+            <tag> server </tag>
             
         </tags>
         
@@ -2638,37 +2690,6 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[url 编码常规]]></title>
-      <url>/2015/07/03/url-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
-<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
-<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
-<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
-</ul>
-<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
-<li><code>SEO</code> 模式</li>
-<li>使用连字符规则，不使用大写</li>
-<li>命名首选 <code>RESTful</code> 方式</li>
-<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> url </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[php 编码常规]]></title>
       <url>/2015/07/03/php-code-conventions/</url>
       <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
@@ -2711,6 +2732,37 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> php </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[url 编码常规]]></title>
+      <url>/2015/07/03/url-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+</ul>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> url </tag>
             
         </tags>
         
@@ -3358,9 +3410,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> chromium </tag>
-            
             <tag> grit </tag>
+            
+            <tag> chromium </tag>
             
             <tag> i18n </tag>
             
@@ -3417,13 +3469,58 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> chromium </tag>
-            
             <tag> grit </tag>
+            
+            <tag> chromium </tag>
             
             <tag> i18n </tag>
             
             <tag> l10n </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Linux 常用命令]]></title>
+      <url>/2015/01/25/linux-commands/</url>
+      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+<li>启用被 iptables 禁用的 80 端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
+<li>启动、停止、重启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
+<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<ul>
+<li>设置开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> server </tag>
             
         </tags>
         
@@ -3490,51 +3587,6 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> regexp </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Linux 常用命令]]></title>
-      <url>/2015/01/25/linux-commands/</url>
-      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
-<li>启用被 iptables 禁用的 80 端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
-<li>启动、停止、重启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
-<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
-<ul>
-<li>设置开机自启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
-<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> server </tag>
             
         </tags>
         
@@ -3641,9 +3693,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> chrome </tag>
-            
             <tag> shortcut </tag>
+            
+            <tag> chrome </tag>
             
             <tag> mac </tag>
             
@@ -4129,9 +4181,9 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
             
             <tag> chrome </tag>
             
-            <tag> c/c++ </tag>
-            
             <tag> chromium </tag>
+            
+            <tag> c/c++ </tag>
             
         </tags>
         

@@ -338,6 +338,381 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/07/06/32bit-64bit-registry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/07/06/32bit-64bit-registry/" itemprop="url">32位和64位程序的注册表知识点</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-06T00:00:00+08:00">
+                2014-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/07/06/32bit-64bit-registry/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/07/06/32bit-64bit-registry/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/07/06/32bit-64bit-registry/" class="leancloud_visitors" data-flag-title="32位和64位程序的注册表知识点">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>众所周知，注册表是windows系统的数据库，系统本身以及安装的程序都依赖注册表。当windows进化到64位，还要兼容大量的32位老程序，便碰到了注册表的问题。这里只讨论64位系统的注册表机制。</p>
+<p>注册表树最大可以有512级深度，通过注册表API一次可以创建32级深的键值。</p>
+<p>为了解决64位系统遇到的问题，Windows使用了三套方案，共享（Shared）、<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384232\(v=vs.85\" target="_blank" rel="noopener">注册表重定向（Registry Redirector）</a>.aspx)和<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384235\(v=vs.85\" target="_blank" rel="noopener">注册表反射（Registry Reflection）</a>.aspx)。</p>
+<ul>
+<li><p>共享，顾名思义，保存可以被32位和64位共同使用的注册表。</p>
+</li>
+<li><p>反射，这是一个早期的方案，只用于Windows Server 2008, Windows Vista, Windows Server 2003, 和Windows XP，从Windows 7 和 Windows Server 2008 R2 开始被移除。  </p>
+<p>  它的做法是备份和同步，就是把同一份注册表保存到两个物理位置，这两个位置会分别被32位或64位程序使用。保存发生在RegCloseKey调用结束。使用 RegDisableReflectionKey和RegEnableReflectionKey方法可以禁用/启用反射机制。</p>
+</li>
+<li><p>重定向，主要使用的机制，它会区分32位和64位程序（Application），分别提供给他们不同的注册表物理存储位置，但会映射成同一个逻辑视图（View），这个过程对程序本身是透明的。也就是说，一个32位程序可以像在32位系统中一样来使用注册表，虽然它们在64位系统上被存储在不同的物理位置。  </p>
+<p>  32位程序重定向的注册表存放在Wow6432Node下，例如, HKEY_LOCAL_MACHINE\Software 会被重定向到 HKEY_LOCAL_MACHINE\Software\Wow6432Node。但是，这些操作应该由系统而非程序本身来做。  </p>
+<p>  当注册表包含%ProgramFiles% 或 %commonprogramfiles%时，64位系统会自动替换为 “%ProgramFiles(x86)%” 和 “%commonprogramfiles(x86)%”，同样的system32 被替换为  syswow64。具体的替换规则请阅读 <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384232\(v=vs.85\" target="_blank" rel="noopener">MSDN</a>.aspx)</p>
+</li>
+</ul>
+<p>关于Windows系统中哪些目录使用的是哪种机制，请<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384253\(v=vs.85\" target="_blank" rel="noopener">更详细的列表</a>.aspx)。</p>
+<p>上面是系统的解决方案，如果你需要显式地访问64位注册表或32位注册表，可以使用KEY_WOW64_64KEY和KEY_WOW64_32KEY标识。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/06/16/ios-bullet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/06/16/ios-bullet/" itemprop="url">IOS要点总结</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-16T00:00:00+08:00">
+                2014-06-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/06/16/ios-bullet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/06/16/ios-bullet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/06/16/ios-bullet/" class="leancloud_visitors" data-flag-title="IOS要点总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>总结ios开发遇到的易混知识点、陷阱</p>
+<h2 id="Frame-VS-Bounds"><a href="#Frame-VS-Bounds" class="headerlink" title="Frame VS Bounds"></a>Frame VS Bounds</h2><p>A picture worth thousand words! 见下图。</p>
+<ul>
+<li><p><strong>Frame</strong>： 视图的frame是相对父坐标系的原点和矩形，默认从左上点开始。</p>
+</li>
+<li><p><strong>Bounds</strong>： 视图的bounds是相对自身坐标系的原点和区域。</p>
+</li>
+<li><p><strong>Center</strong>： 中点是相对父坐标系的中心点。 注意<strong>middle</strong>是相对自身坐标系的中心点</p>
+</li>
+</ul>
+<p>注意，当view旋转（rotate）时：</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame.size != bounds.size</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.stack.imgur.com/3jcne.jpg" alt="The Kitchen Drawer based on Stanford CS193p course"></p>
+<h2 id="initWithFrame-VS-initWithCoder-VS-awakeFromNib"><a href="#initWithFrame-VS-initWithCoder-VS-awakeFromNib" class="headerlink" title="initWithFrame VS initWithCoder VS awakeFromNib"></a>initWithFrame VS initWithCoder VS awakeFromNib</h2><ul>
+<li>initWithFrame 是用户主动调用的，传入用来初始化的frame</li>
+<li>initWithCoder 是被触发的。当UIView被反序列化（deserialize）后，被触发。</li>
+<li>awakeFromNib 是被触发的。当UIView与xib内组件建立好连接（connection）后被触发。</li>
+</ul>
+<p>注：initWithNibName:boundle是发送到UIViewController的消息，与上面的方法对象不同。</p>
+<p><img src="/images/posts/view-init.png" alt=""></p>
+<h2 id="extension-VS-category"><a href="#extension-VS-category" class="headerlink" title="extension VS category"></a>extension VS category</h2><ul>
+<li><p>category是一种扩展已经存在的Class的方法。当你不能接触到Class的源码时，这是一种很有用的方式. 它常把文件取名为 “Class+CategoryName.h”, 比如 “NSView+CustomAdditions.h”， 包括.m的命名.</p>
+</li>
+<li><p>extension是一种特殊的category, 有以下两个不同：</p>
+<ul>
+<li><p>没有被扩展类名的category. 它的声明像这样:</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SomeClass</span> ()</span></span><br><span class="line">	- (<span class="keyword">void</span>) anAdditionalMethod;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>extension常定义在实现（.m）文件的顶部，然后在其下@implementation部分实现它。这也成为一种实现“伪私有”（pseudo-private）成员的方式。伪私有顾名思义，并不是真的声明了私有成员，只是达到了不能在外部访问的目的。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/05/16/xcode5-delete-duplicate-line/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1011,7 +1386,7 @@ PluginObject.h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1033,7 +1408,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
