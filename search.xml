@@ -3,18 +3,94 @@
   
     
     <entry>
-      <title><![CDATA[NVM 用法]]></title>
-      <url>/2018/09/29/nvm-usage/</url>
-      <content type="html"><![CDATA[<h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
-<h3 id="通过-Homebrew-安装-1"><a href="#通过-Homebrew-安装-1" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
-<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
+      <title><![CDATA[移动设备特征值]]></title>
+      <url>/2018/10/26/mobile-device-fingerprint/</url>
+      <content type="html"><![CDATA[<h2 id="iOS-设备"><a href="#iOS-设备" class="headerlink" title="iOS 设备"></a>iOS 设备</h2><h3 id="UDID-iOS-Unique-Device-ID"><a href="#UDID-iOS-Unique-Device-ID" class="headerlink" title="UDID - iOS Unique Device ID"></a>UDID - iOS Unique Device ID</h3><ul>
+<li>设备的唯一识别符，移动广告商和游戏网络运营商往往需要通过UDID用来识别玩家用户，并对用户活动进行跟踪。</li>
+<li>小于 iOS5.0</li>
+<li><strong>不再可用</strong></li>
+</ul>
+<h3 id="Device-Token"><a href="#Device-Token" class="headerlink" title="Device Token"></a>Device Token</h3><ul>
+<li>用于向 iOS 设备推送消息的标识（Apple Push Notification System）。每个 App 有两个标识，一个用于开发推送，一个用于生产推送（ad hoc or app store builds）</li>
+<li>iOS7 及以后</li>
+<li>64位十六进制序列（hexadecimal characters）</li>
+<li>往另一台设备恢复数据或重装系统（抹掉系统数据），会造成 device token 改变，所以不能用它来唯一标识一台设备。参考<a href="https://stackoverflow.com/questions/40169404/does-a-ios-push-notification-device-token-change/40169657" target="_blank" rel="noopener">这里</a></li>
+</ul>
+<h3 id="UUID-Universally-Unique-Identifier"><a href="#UUID-Universally-Unique-Identifier" class="headerlink" title="UUID - Universally Unique Identifier"></a>UUID - Universally Unique Identifier</h3><ul>
+<li>通用唯一识别码，它保证每台机器都是唯一的。每次生成都会不一样，所以第一次启动获取后，存储在钥匙串Keychain中，这样app被删除了，Keychain里的数据依然存在，除非系统重置</li>
+<li>32位的十六进制序列</li>
+<li>抹掉或重装系统会造成改变</li>
+</ul>
+<h3 id="IDFA-—-Identifier-For-Advertisers"><a href="#IDFA-—-Identifier-For-Advertisers" class="headerlink" title="IDFA — Identifier For Advertisers"></a>IDFA — Identifier For Advertisers</h3><ul>
+<li>广告标示符，苹果专门给各广告提供商用来追踪用户而设的标识</li>
+<li>iOS6及之后</li>
+<li>iOS10 后，苹果推出了“限制广告追踪”功能，参考<a href="https://mobiledevmemo.com/idfa-zeroing-ios-10-change-mobile-advertising/" target="_blank" rel="noopener">这里</a>，用户可以在iPhone 设置中选择关掉 IDFA 获取权限。</li>
+</ul>
+<h3 id="IDFV-—-Identifier-For-Vendors"><a href="#IDFV-—-Identifier-For-Vendors" class="headerlink" title="IDFV — Identifier For Vendors"></a>IDFV — Identifier For Vendors</h3><ul>
+<li>运营商标示符，来自同一个运营商的应用运行在同一个设备上，此ID的值是相同的，不同的运营商应用在同一个设备上的值不同。</li>
+<li>iOS6 及之后</li>
+<li>如果同一运营商的 app 全部删除，重新安装后的ID值会改变，参考<a href="https://stackoverflow.com/questions/48153518/does-identifierforvendor-change-on-app-update" target="_blank" rel="noopener">这里</a></li>
+</ul>
+<h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><ul>
+<li>iOS7 后禁止使用。返回同一值：<code>02:00:00:00:00:00</code></li>
+</ul>
+<h3 id="IMEI"><a href="#IMEI" class="headerlink" title="IMEI"></a>IMEI</h3><ul>
+<li>苹果不允许获取 IMEI</li>
+</ul>
+<h2 id="Android-设备"><a href="#Android-设备" class="headerlink" title="Android 设备"></a>Android 设备</h2><h3 id="IMEI-International-Mobile-Equipment-Identity"><a href="#IMEI-International-Mobile-Equipment-Identity" class="headerlink" title="IMEI - International Mobile Equipment Identity"></a>IMEI - International Mobile Equipment Identity</h3><ul>
+<li>国际移动设备身份码的缩写，国际移动装备辨识码，是由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的</li>
+<li>15位</li>
+<li>用户设置权限时禁止，将获取不到</li>
+</ul>
+<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><ul>
+<li>android 6.0 以后，googel官方为了加强权限管理而禁用了getSYstemService，不管任何手机都会返回”02:00:00:00:00:00”这个默认的mac地址</li>
+</ul>
+<h3 id="ANDROID-ID"><a href="#ANDROID-ID" class="headerlink" title="ANDROID_ID"></a>ANDROID_ID</h3><ul>
+<li>在设备首次运行的时候，系统会随机生成一64位的数字，并把这个数值以16进制保存下来，这个16进制的数字就是ANDROID_ID，但是如果手机恢复出厂设置这个值会发生改变。</li>
+<li>手机恢复出厂设置以后该值会发生变化</li>
+<li>在国内Android定制的大环境下，有些设备是不会返回ANDROID_ID的</li>
+</ul>
+<h3 id="SN-Serial-Number"><a href="#SN-Serial-Number" class="headerlink" title="SN - Serial Number"></a>SN - Serial Number</h3><ul>
+<li>设备序列号</li>
+<li>获取序列号不需要权限，但是有一定的局限性，在有些手机上会出现垃圾数据，比如红米手机返回的就是连续的非随机数</li>
+</ul>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="https://www.jianshu.com/p/178786f833b6" target="_blank" rel="noopener">如何唯一的标识一台Android设备？</a></li>
+</ol>
 ]]></content>
       
         <categories>
             
-            <category> node </category>
+            <category> mobile </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> ios </tag>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Mac 系统检测浏览器插件]]></title>
+      <url>/2018/10/11/detect-internet-plugins-on-mac/</url>
+      <content type="html"><![CDATA[<h3 id="通过插件版本号检测"><a href="#通过插件版本号检测" class="headerlink" title="通过插件版本号检测"></a>通过插件版本号检测</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> /usr/libexec/PlistBuddy -c <span class="string">'Print CFBundleVersion'</span> /Library/Internet\ Plug-Ins/npSecEditCtl.MAC.BOC.plugin/Contents/Info.plist</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果</span></span><br><span class="line">03002</span><br></pre></td></tr></table></figure>
+<h3 id="通过遍历插件目录检测"><a href="#通过遍历插件目录检测" class="headerlink" title="通过遍历插件目录检测"></a>通过遍历插件目录检测</h3><p>遍历 <code>/Library/Internet Plug-Ins/</code> 目录</p>
+<h3 id="通过-javascript-检测"><a href="#通过-javascript-检测" class="headerlink" title="通过 javascript 检测"></a>通过 javascript 检测</h3><p>如果使用 javascript，首选需要借助 safari 的 webbrowser 组件来运行。检测的代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pluginCount = navigator.plugins.length;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; pluginCount; i++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(navigator.plugins[i].name==<span class="string">"Shockwave Flash"</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">"Flash version "</span> + navigator.plugins[i].version);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="https://stackoverflow.com/questions/7603513/mac-os-x-check-if-flash-is-installed" target="_blank" rel="noopener">Mac OS X check if flash is installed</a></li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> mac </category>
             
         </categories>
         
@@ -23,7 +99,45 @@
             
             <tag> mac </tag>
             
-            <tag> node </tag>
+            <tag> npplugin </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[集成微信和支付宝支付]]></title>
+      <url>/2018/10/09/payments/</url>
+      <content type="html"><![CDATA[<h2 id="微信-H5-支付"><a href="#微信-H5-支付" class="headerlink" title="微信 H5 支付"></a>微信 H5 支付</h2><p>微信开发文档看 <a href="https://pay.weixin.qq.com/wiki/doc/api/H5.php?chapter=15_4" target="_blank" rel="noopener">这里</a></p>
+<p><img src="https://pay.weixin.qq.com/wiki/doc/api/img/chapter15_1.png" alt=""></p>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><ol>
+<li>关于回调 URL</li>
+</ol>
+<blockquote>
+<p>由于设置redirect_url后, 回跳指定页面的操作可能发生在：<br>1,微信支付中间页调起微信收银台后超过5秒<br>2,用户点击“取消支付“或支付完成后点“完成”按钮。<br>因此无法保证页面回跳时，支付流程已结束，所以商户设置的redirect_url地址不能自动执行查单操作，应让用户去点击按钮触发查单操作。回跳页面展示效果可参考下图</p>
+</blockquote>
+<p><img src="https://pay.weixin.qq.com/wiki/doc/api/img/chapter15_4_5.jpg" alt=""></p>
+<h2 id="支付宝-H5-支付"><a href="#支付宝-H5-支付" class="headerlink" title="支付宝 H5 支付"></a>支付宝 H5 支付</h2><p>支付宝文档看 <a href="https://docs.open.alipay.com/203" target="_blank" rel="noopener">这里</a></p>
+<h2 id="Native-H5-混合-APP-调用支付宝"><a href="#Native-H5-混合-APP-调用支付宝" class="headerlink" title="Native-H5 混合 APP 调用支付宝"></a>Native-H5 混合 APP 调用支付宝</h2><p>支付宝文档看 <a href="https://docs.open.alipay.com/203/106493/" target="_blank" rel="noopener">这里</a></p>
+<p>使用这种方式注意点</p>
+<ul>
+<li>App 需要集成支付宝 SDK</li>
+<li></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> javascript </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> payment </tag>
             
         </tags>
         
@@ -56,25 +170,26 @@
     </entry>
     
     <entry>
-      <title><![CDATA[mysqldump 用法]]></title>
-      <url>/2018/09/26/mysqldump/</url>
-      <content type="html"><![CDATA[<h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
-<h3 id="只导出数据"><a href="#只导出数据" class="headerlink" title="只导出数据"></a>只导出数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
+      <title><![CDATA[NVM 用法]]></title>
+      <url>/2018/09/29/nvm-usage/</url>
+      <content type="html"><![CDATA[<h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
+<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
+<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
             
-            <category> database </category>
+            <category> node </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> database </tag>
+            <tag> mac </tag>
             
-            <tag> MySQL </tag>
+            <tag> node </tag>
             
         </tags>
         
@@ -165,6 +280,31 @@
             <tag> java </tag>
             
             <tag> database </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[mysqldump 用法]]></title>
+      <url>/2018/09/26/mysqldump/</url>
+      <content type="html"><![CDATA[<h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
+<h3 id="只导出数据"><a href="#只导出数据" class="headerlink" title="只导出数据"></a>只导出数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+]]></content>
+      
+        <categories>
+            
+            <category> database </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> database </tag>
+            
+            <tag> MySQL </tag>
             
         </tags>
         
@@ -923,7 +1063,7 @@
 <li>迁移时按照版本号顺序执行</li>
 </ul>
 <h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><h4 id="1-迁移"><a href="#1-迁移" class="headerlink" title="1. 迁移"></a>1. 迁移</h4><p><img src="https://flywaydb.org/assets/balsamiq/command-migrate.png" alt=""></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> flyway -configFile=./flyway.conf migrate</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> flyway -configFiles=./flyway.conf migrate</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -1904,6 +2044,44 @@
     </entry>
     
     <entry>
+      <title><![CDATA[CEF 的使用]]></title>
+      <url>/2017/03/17/cef-tutorial/</url>
+      <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
+<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
+<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
+<li>创建新的项目</li>
+<li>设置 include 目录到 cef 头文件目录</li>
+<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
+<li>添加 resource.rc</li>
+<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
+<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
+</ol>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
+<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
+<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
+<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
+]]></content>
+      
+        <categories>
+            
+            <category> c++ </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> c++ </tag>
+            
+            <tag> cef </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[DuiLib 的使用]]></title>
       <url>/2017/03/17/duilib-tutorial/</url>
       <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p>本文下载的是 <a href="https://github.com/redrains/DuiLib_Redrain" target="_blank" rel="noopener">Redrain 维护的版本</a>，原始的 DuiLib 版本从<a href="https://github.com/duilib/duilib" target="_blank" rel="noopener">这里</a>下载。</p>
@@ -1939,44 +2117,6 @@
             <tag> c++ </tag>
             
             <tag> duilib </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[CEF 的使用]]></title>
-      <url>/2017/03/17/cef-tutorial/</url>
-      <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
-<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
-<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
-<li>创建新的项目</li>
-<li>设置 include 目录到 cef 头文件目录</li>
-<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
-<li>添加 resource.rc</li>
-<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
-<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
-</ol>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
-<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
-<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
-<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
-]]></content>
-      
-        <categories>
-            
-            <category> c++ </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> windows </tag>
-            
-            <tag> c++ </tag>
-            
-            <tag> cef </tag>
             
         </tags>
         
@@ -2137,34 +2277,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Chromium 拾遗]]></title>
-      <url>/2017/01/19/chrome-tips/</url>
-      <content type="html"><![CDATA[<h4 id="记录-SSL-的-Session-Key"><a href="#记录-SSL-的-Session-Key" class="headerlink" title="记录 SSL 的 Session Key"></a>记录 SSL 的 Session Key</h4><p>在环境变量中添加一个变量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SSLKEYLOGFILE  C:\Users\Jonathan\Documents\SSLKEYLOGFILE.txt</span><br></pre></td></tr></table></figure>
-<h4 id="可用的命令行参数"><a href="#可用的命令行参数" class="headerlink" title="可用的命令行参数"></a>可用的命令行参数</h4><p><a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">参考</a></p>
-<h4 id="Chrome-发布日历"><a href="#Chrome-发布日历" class="headerlink" title="Chrome 发布日历"></a>Chrome 发布日历</h4><p><a href="https://www.chromium.org/developers/calendar" target="_blank" rel="noopener">Chromium Development Calendar and Release Info</a></p>
-<h4 id="Chrome-功能更新"><a href="#Chrome-功能更新" class="headerlink" title="Chrome 功能更新"></a>Chrome 功能更新</h4><p>查看 <a href="https://www.chromestatus.com/features#milestone%3D68" target="_blank" rel="noopener">这里</a></p>
-<h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
-<h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
-<p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> chromium </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> chromium </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[PHPStorm 设置 watcher]]></title>
       <url>/2017/01/19/phpstorm-file-watcher/</url>
       <content type="html"><![CDATA[<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p><img src="/images/posts/phpstorm_watch/pic-1.png" alt=""></p>
@@ -2191,27 +2303,28 @@
     </entry>
     
     <entry>
-      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
-      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
-      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
-</blockquote>
+      <title><![CDATA[Chromium 拾遗]]></title>
+      <url>/2017/01/19/chrome-tips/</url>
+      <content type="html"><![CDATA[<h4 id="记录-SSL-的-Session-Key"><a href="#记录-SSL-的-Session-Key" class="headerlink" title="记录 SSL 的 Session Key"></a>记录 SSL 的 Session Key</h4><p>在环境变量中添加一个变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SSLKEYLOGFILE  C:\Users\Jonathan\Documents\SSLKEYLOGFILE.txt</span><br></pre></td></tr></table></figure>
+<h4 id="可用的命令行参数"><a href="#可用的命令行参数" class="headerlink" title="可用的命令行参数"></a>可用的命令行参数</h4><p><a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">参考</a></p>
+<h4 id="Chrome-发布日历"><a href="#Chrome-发布日历" class="headerlink" title="Chrome 发布日历"></a>Chrome 发布日历</h4><p><a href="https://www.chromium.org/developers/calendar" target="_blank" rel="noopener">Chromium Development Calendar and Release Info</a></p>
+<h4 id="Chrome-功能更新"><a href="#Chrome-功能更新" class="headerlink" title="Chrome 功能更新"></a>Chrome 功能更新</h4><p>查看 <a href="https://www.chromestatus.com/features#milestone%3D68" target="_blank" rel="noopener">这里</a></p>
+<h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
+<h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
+<p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
 ]]></content>
       
         <categories>
             
-            <category> activex </category>
+            <category> chromium </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> activex </tag>
-            
-            <tag> webbrowser </tag>
+            <tag> chromium </tag>
             
         </tags>
         
@@ -2270,9 +2383,34 @@
     <entry>
       <title><![CDATA[编译 Chromium 常见问题]]></title>
       <url>/2017/01/17/build-chromium-issues/</url>
-      <content type="html"><![CDATA[<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p>解决办法：</p>
+      <content type="html"><![CDATA[<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="命令行翻墙设置"><a href="#命令行翻墙设置" class="headerlink" title="命令行翻墙设置"></a>命令行翻墙设置</h3><p><strong>Windows 命令行设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=127.0.0.1:1080</span><br><span class="line">set https_proxy=127.0.0.1:1080</span><br><span class="line">set socks5_proxy=127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<p><strong>Git 设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><h3 id="gclient-sync-参数"><a href="#gclient-sync-参数" class="headerlink" title="gclient sync 参数"></a>gclient sync 参数</h3><h4 id="–nohooks"><a href="#–nohooks" class="headerlink" title="–nohooks"></a>–nohooks</h4><h4 id="–no-history"><a href="#–no-history" class="headerlink" title="–no-history"></a>–no-history</h4><h4 id="–with-branch-heads"><a href="#–with-branch-heads" class="headerlink" title="–with_branch_heads"></a>–with_branch_heads</h4><h4 id="–with-tags"><a href="#–with-tags" class="headerlink" title="–with_tags"></a>–with_tags</h4><h4 id="–output-json"><a href="#–output-json" class="headerlink" title="–output-json"></a>–output-json</h4><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="DEPOT-TOOLS-WIN-TOOLCHAIN"><a href="#DEPOT-TOOLS-WIN-TOOLCHAIN" class="headerlink" title="DEPOT_TOOLS_WIN_TOOLCHAIN"></a>DEPOT_TOOLS_WIN_TOOLCHAIN</h3><h3 id="GYP-GENERATORS-msvs-ninja-ninja"><a href="#GYP-GENERATORS-msvs-ninja-ninja" class="headerlink" title="GYP_GENERATORS=msvs-ninja,ninja"></a>GYP_GENERATORS=msvs-ninja,ninja</h3><h3 id="GYP-DEFINES"><a href="#GYP-DEFINES" class="headerlink" title="GYP_DEFINES"></a>GYP_DEFINES</h3><h3 id="buildtype-Official"><a href="#buildtype-Official" class="headerlink" title="buildtype=Official"></a>buildtype=Official</h3><p>如果不添加 <code>buildtype=Official</code> 可能会遇到下面问题：</p>
+<ol>
+<li>XP 系统不能正常运行</li>
+</ol>
+<p>在添加了该编译参数情况下，也会遇到某些奇怪问题：</p>
+<ol>
+<li>在某些机器上，当打开某些页面，比如<a href="http://video.sina.com.cn/p/news/o/doc/2018-06-12/151568884855.html" target="_blank" rel="noopener">新浪视频</a>，退出浏览器后，会收到网络层不能析构的 bug</li>
+</ol>
+<h3 id="gclient-runhooks"><a href="#gclient-runhooks" class="headerlink" title="gclient runhooks"></a>gclient runhooks</h3><p>gclient runhooks 会做二件事：一是检查编译环境，二是生成编译脚本。我们也可以跳过检查编译环境，直接生成编译脚本：</p>
+<p><strong>生成全部脚本</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src\build\gyp_chromium</span><br></pre></td></tr></table></figure>
+<p><strong>生成某个工程</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome 工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\chrome.gyp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装包工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\installer\mini_installer.gyp</span><br></pre></td></tr></table></figure>
+<p>Goutput_dir</p>
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
+<h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
+<h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
+<p>点击 Change system locale…，切换为 English (United State)</p>
 ]]></content>
       
         <categories>
@@ -2285,6 +2423,33 @@
         <tags>
             
             <tag> chromium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
+      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
+      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> activex </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> activex </tag>
+            
+            <tag> webbrowser </tag>
             
         </tags>
         
@@ -2387,31 +2552,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
-      <url>/2016/08/28/install-nmp-on-centos6/</url>
-      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> cenos </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[MySQL升级到5.7]]></title>
       <url>/2016/08/28/upgrade-mysql/</url>
       <content type="html"><![CDATA[<p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
@@ -2430,6 +2570,31 @@
         <categories>
             
             <category> mysql </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> cenos </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
+      <url>/2016/08/28/install-nmp-on-centos6/</url>
+      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
             
         </categories>
         
@@ -2486,9 +2651,9 @@
         
         <tags>
             
-            <tag> mac </tag>
-            
             <tag> server </tag>
+            
+            <tag> mac </tag>
             
             <tag> java </tag>
             
@@ -2538,11 +2703,11 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> mac </tag>
-            
             <tag> linux </tag>
             
             <tag> server </tag>
+            
+            <tag> mac </tag>
             
         </tags>
         
@@ -2691,35 +2856,18 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[php 编码常规]]></title>
-      <url>/2015/07/03/php-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
+      <title><![CDATA[url 编码常规]]></title>
+      <url>/2015/07/03/url-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action名、变量名、方法名采用小写camelCase： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action 名与 url 的映射关系： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
-<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>类方法和变量遵守小写camelCase</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
-<li>视图模板（tpl）文件路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目录名对应 <code>Controller</code>，首字母大写</li>
-<li>文件名对应 <code>action</code>，首字母小写</li>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
 </ul>
 ]]></content>
       
@@ -2732,7 +2880,7 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> php </tag>
+            <tag> url </tag>
             
         </tags>
         
@@ -2811,18 +2959,35 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[url 编码常规]]></title>
-      <url>/2015/07/03/url-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
-<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
-<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
-<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+      <title><![CDATA[php 编码常规]]></title>
+      <url>/2015/07/03/php-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
 </ul>
-<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
-<li><code>SEO</code> 模式</li>
-<li>使用连字符规则，不使用大写</li>
-<li>命名首选 <code>RESTful</code> 方式</li>
-<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action名、变量名、方法名采用小写camelCase： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action 名与 url 的映射关系： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
+<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>类方法和变量遵守小写camelCase</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
+<li>视图模板（tpl）文件路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目录名对应 <code>Controller</code>，首字母大写</li>
+<li>文件名对应 <code>action</code>，首字母小写</li>
 </ul>
 ]]></content>
       
@@ -2835,7 +3000,7 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> url </tag>
+            <tag> php </tag>
             
         </tags>
         
@@ -3257,9 +3422,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> mac </tag>
-            
             <tag> php </tag>
+            
+            <tag> mac </tag>
             
             <tag> nginx </tag>
             

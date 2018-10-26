@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="gclient sync 错误12345fatal: Needed a single revisionDoes not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb178232&amp;gt; Unrecognized error, plea">
+<meta name="description" content="配置命令行翻墙设置Windows 命令行设置 123set http_proxy=127.0.0.1:1080set https_proxy=127.0.0.1:1080set socks5_proxy=127.0.0.1:1080 Git 设置 12git config --global http.proxy 127">
 <meta name="keywords" content="chromium">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编译 Chromium 常见问题">
 <meta property="og:url" content="http://onthink.com/2017/01/17/build-chromium-issues/index.html">
 <meta property="og:site_name" content="Ironbin">
-<meta property="og:description" content="gclient sync 错误12345fatal: Needed a single revisionDoes not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb178232&amp;gt; Unrecognized error, please merge or rebase manually.  32&amp;gt; cd src\">
+<meta property="og:description" content="配置命令行翻墙设置Windows 命令行设置 123set http_proxy=127.0.0.1:1080set https_proxy=127.0.0.1:1080set socks5_proxy=127.0.0.1:1080 Git 设置 12git config --global http.proxy 127.0.0.1:1080git config --global https.pro">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-18T03:00:23.000Z">
+<meta property="og:updated_time" content="2018-10-22T01:32:56.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译 Chromium 常见问题">
-<meta name="twitter:description" content="gclient sync 错误12345fatal: Needed a single revisionDoes not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb178232&amp;gt; Unrecognized error, please merge or rebase manually.  32&amp;gt; cd src\">
+<meta name="twitter:description" content="配置命令行翻墙设置Windows 命令行设置 123set http_proxy=127.0.0.1:1080set https_proxy=127.0.0.1:1080set socks5_proxy=127.0.0.1:1080 Git 设置 12git config --global http.proxy 127.0.0.1:1080git config --global https.pro">
 
 
 
@@ -453,9 +453,34 @@
       
 
       
-        <h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p>解决办法：</p>
+        <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="命令行翻墙设置"><a href="#命令行翻墙设置" class="headerlink" title="命令行翻墙设置"></a>命令行翻墙设置</h3><p><strong>Windows 命令行设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=127.0.0.1:1080</span><br><span class="line">set https_proxy=127.0.0.1:1080</span><br><span class="line">set socks5_proxy=127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<p><strong>Git 设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><h3 id="gclient-sync-参数"><a href="#gclient-sync-参数" class="headerlink" title="gclient sync 参数"></a>gclient sync 参数</h3><h4 id="–nohooks"><a href="#–nohooks" class="headerlink" title="–nohooks"></a>–nohooks</h4><h4 id="–no-history"><a href="#–no-history" class="headerlink" title="–no-history"></a>–no-history</h4><h4 id="–with-branch-heads"><a href="#–with-branch-heads" class="headerlink" title="–with_branch_heads"></a>–with_branch_heads</h4><h4 id="–with-tags"><a href="#–with-tags" class="headerlink" title="–with_tags"></a>–with_tags</h4><h4 id="–output-json"><a href="#–output-json" class="headerlink" title="–output-json"></a>–output-json</h4><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="DEPOT-TOOLS-WIN-TOOLCHAIN"><a href="#DEPOT-TOOLS-WIN-TOOLCHAIN" class="headerlink" title="DEPOT_TOOLS_WIN_TOOLCHAIN"></a>DEPOT_TOOLS_WIN_TOOLCHAIN</h3><h3 id="GYP-GENERATORS-msvs-ninja-ninja"><a href="#GYP-GENERATORS-msvs-ninja-ninja" class="headerlink" title="GYP_GENERATORS=msvs-ninja,ninja"></a>GYP_GENERATORS=msvs-ninja,ninja</h3><h3 id="GYP-DEFINES"><a href="#GYP-DEFINES" class="headerlink" title="GYP_DEFINES"></a>GYP_DEFINES</h3><h3 id="buildtype-Official"><a href="#buildtype-Official" class="headerlink" title="buildtype=Official"></a>buildtype=Official</h3><p>如果不添加 <code>buildtype=Official</code> 可能会遇到下面问题：</p>
+<ol>
+<li>XP 系统不能正常运行</li>
+</ol>
+<p>在添加了该编译参数情况下，也会遇到某些奇怪问题：</p>
+<ol>
+<li>在某些机器上，当打开某些页面，比如<a href="http://video.sina.com.cn/p/news/o/doc/2018-06-12/151568884855.html" target="_blank" rel="noopener">新浪视频</a>，退出浏览器后，会收到网络层不能析构的 bug</li>
+</ol>
+<h3 id="gclient-runhooks"><a href="#gclient-runhooks" class="headerlink" title="gclient runhooks"></a>gclient runhooks</h3><p>gclient runhooks 会做二件事：一是检查编译环境，二是生成编译脚本。我们也可以跳过检查编译环境，直接生成编译脚本：</p>
+<p><strong>生成全部脚本</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src\build\gyp_chromium</span><br></pre></td></tr></table></figure>
+<p><strong>生成某个工程</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome 工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\chrome.gyp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装包工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\installer\mini_installer.gyp</span><br></pre></td></tr></table></figure>
+<p>Goutput_dir</p>
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
+<h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
+<h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
+<p>点击 Change system locale…，切换为 English (United State)</p>
 
       
     </div>
@@ -504,8 +529,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/16/build-openssl-with-vs2015/" rel="next" title="使用 vs2015 编译 OpenSSL">
-                <i class="fa fa-chevron-left"></i> 使用 vs2015 编译 OpenSSL
+              <a href="/2017/01/17/webbrowser-nxcompat-issue/" rel="next" title="WebBrowser 运行 ActiveX 异常">
+                <i class="fa fa-chevron-left"></i> WebBrowser 运行 ActiveX 异常
               </a>
             
           </div>
@@ -604,7 +629,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -615,7 +640,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -626,7 +651,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -713,7 +738,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#gclient-sync-错误"><span class="nav-number">1.</span> <span class="nav-text">gclient sync 错误</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行翻墙设置"><span class="nav-number">1.1.</span> <span class="nav-text">命令行翻墙设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取代码"><span class="nav-number">2.</span> <span class="nav-text">获取代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gclient-sync-参数"><span class="nav-number">2.1.</span> <span class="nav-text">gclient sync 参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#–nohooks"><span class="nav-number">2.1.1.</span> <span class="nav-text">–nohooks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–no-history"><span class="nav-number">2.1.2.</span> <span class="nav-text">–no-history</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–with-branch-heads"><span class="nav-number">2.1.3.</span> <span class="nav-text">–with_branch_heads</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–with-tags"><span class="nav-number">2.1.4.</span> <span class="nav-text">–with_tags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#–output-json"><span class="nav-number">2.1.5.</span> <span class="nav-text">–output-json</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">3.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DEPOT-TOOLS-WIN-TOOLCHAIN"><span class="nav-number">3.1.</span> <span class="nav-text">DEPOT_TOOLS_WIN_TOOLCHAIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GYP-GENERATORS-msvs-ninja-ninja"><span class="nav-number">3.2.</span> <span class="nav-text">GYP_GENERATORS=msvs-ninja,ninja</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GYP-DEFINES"><span class="nav-number">3.3.</span> <span class="nav-text">GYP_DEFINES</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#buildtype-Official"><span class="nav-number">3.4.</span> <span class="nav-text">buildtype=Official</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gclient-runhooks"><span class="nav-number">3.5.</span> <span class="nav-text">gclient runhooks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误"><span class="nav-number">4.</span> <span class="nav-text">错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找错误"><span class="nav-number">4.1.</span> <span class="nav-text">查找错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VS-忽略错误"><span class="nav-number">4.2.</span> <span class="nav-text">VS 忽略错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gclient-sync-错误"><span class="nav-number">4.3.</span> <span class="nav-text">gclient sync 错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows-系统语言错误"><span class="nav-number">4.4.</span> <span class="nav-text">Windows 系统语言错误</span></a></li></ol></li></ol></div>
             
 
           </div>
