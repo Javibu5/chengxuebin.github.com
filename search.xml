@@ -3,6 +3,81 @@
   
     
     <entry>
+      <title><![CDATA[Mac 系统 LaunchAgents]]></title>
+      <url>/2018/12/14/mac-launchagents/</url>
+      <content type="html"><![CDATA[<p>launchctl是一个统一的服务管理框架，可以启动、停止和管理守护进程、应用程序、进程和脚本等。</p>
+<h2 id="LaunchDaemons-启动时执行"><a href="#LaunchDaemons-启动时执行" class="headerlink" title="LaunchDaemons - 启动时执行"></a>LaunchDaemons - 启动时执行</h2><p>添加本类脚本，需要注意以下几点：</p>
+<ul>
+<li>放置到目录 /Library/LaunchDaemons/</li>
+<li>确保文件的用户为 root 并且组为 wheel </li>
+<li>拥有权限（permissions） “644”: Owner – read/write, group – read, everyone – read</li>
+</ul>
+<h2 id="LaunchAgents-登录时执行"><a href="#LaunchAgents-登录时执行" class="headerlink" title="LaunchAgents - 登录时执行"></a>LaunchAgents - 登录时执行</h2><ul>
+<li>该类脚本可以放置在以下位置:<ul>
+<li>/Library/LaunchAgents/  – (For all users)</li>
+<li>~/Library/LaunchAgents/  – (For a specific user)</li>
+<li>/System/Library/LaunchAgents/ – (For OS X use only)</li>
+</ul>
+</li>
+<li>文件的用户为 root 并且组为 wheel<br>  注意: 当放置在 ~/Library/LaunchAgents/ 时， 用户应该为当前拥有 home 目录的用户</li>
+<li>拥有权限（permissions） “644”: Owner – read/write, group – read, everyone – read</li>
+</ul>
+<h2 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 加载任务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl load -w /Library/LaunchAgents/com.onthink.plist </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除任务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl unload -w /Library/LaunchAgents/com.onthink.plist </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看任务列表</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl list | grep <span class="string">'com.onthink'</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://tengj.top/2017/02/26/springboot1/" target="_blank" rel="noopener">Spring Boot干货系列：（一）优雅的入门篇</a></li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> mac </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Maven 和 SpringBoot]]></title>
+      <url>/2018/10/28/maven-and-springboot/</url>
+      <content type="html"><![CDATA[<h2 id="Maven-常用依赖"><a href="#Maven-常用依赖" class="headerlink" title="Maven 常用依赖"></a>Maven 常用依赖</h2><h3 id="dependencies-vs-dependencyManagement"><a href="#dependencies-vs-dependencyManagement" class="headerlink" title="dependencies vs dependencyManagement"></a>dependencies vs dependencyManagement</h3><ul>
+<li><strong>dependencies</strong>：引入依赖。子项目会从父项目中继承该依赖项</li>
+<li><strong>dependencyManagement</strong>：声明依赖，并不实现引入。因此子项目需要显示的声明需要用的依赖。如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且 version，scope 都读取自父pom；另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本</li>
+</ul>
+<h3 id="spring-boot-starter-parent"><a href="#spring-boot-starter-parent" class="headerlink" title="spring-boot-starter-parent"></a>spring-boot-starter-parent</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>spring-boot-starter-parent 是一个特殊的 starter，它用来提供相关的Maven默认依赖，使用它之后，常用的包依赖可以省去version标签。可查看 <code>.m2\repository\org\springframework\boot\spring-boot-dependencies\1.5.10.RELEASE\spring-boot-dependencies-1.5.10.RELEASE.pom</code> </p>
+<h3 id="maven-surefire-plugin"><a href="#maven-surefire-plugin" class="headerlink" title="maven-surefire-plugin"></a><a href="https://maven.apache.org/surefire/maven-surefire-plugin/" target="_blank" rel="noopener">maven-surefire-plugin</a></h3><blockquote>
+<p>The Surefire Plugin is used during the test phase of the build lifecycle to execute the unit tests of an application. It generates reports in two different file formats Plain text files (.txt) XML files (.xml)</p>
+</blockquote>
+<h3 id="maven-resources-plugin"><a href="#maven-resources-plugin" class="headerlink" title="maven-resources-plugin"></a>maven-resources-plugin</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://tengj.top/2017/02/26/springboot1/" target="_blank" rel="noopener">Spring Boot干货系列：（一）优雅的入门篇</a></li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> spring </tag>
+            
+            <tag> maven </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[移动设备特征值]]></title>
       <url>/2018/10/26/mobile-device-fingerprint/</url>
       <content type="html"><![CDATA[<h2 id="iOS-设备"><a href="#iOS-设备" class="headerlink" title="iOS 设备"></a>iOS 设备</h2><h3 id="UDID-iOS-Unique-Device-ID"><a href="#UDID-iOS-Unique-Device-ID" class="headerlink" title="UDID - iOS Unique Device ID"></a>UDID - iOS Unique Device ID</h3><ul>
@@ -34,10 +109,10 @@
 <h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><ul>
 <li>iOS7 后禁止使用。返回同一值：<code>02:00:00:00:00:00</code></li>
 </ul>
-<h3 id="IMEI"><a href="#IMEI" class="headerlink" title="IMEI"></a>IMEI</h3><ul>
+<h3 id="IMEI-International-Mobile-Equipment-Identity"><a href="#IMEI-International-Mobile-Equipment-Identity" class="headerlink" title="IMEI - International Mobile Equipment Identity"></a>IMEI - International Mobile Equipment Identity</h3><ul>
 <li>苹果不允许获取 IMEI</li>
 </ul>
-<h2 id="Android-设备"><a href="#Android-设备" class="headerlink" title="Android 设备"></a>Android 设备</h2><h3 id="IMEI-International-Mobile-Equipment-Identity"><a href="#IMEI-International-Mobile-Equipment-Identity" class="headerlink" title="IMEI - International Mobile Equipment Identity"></a>IMEI - International Mobile Equipment Identity</h3><ul>
+<h2 id="Android-设备"><a href="#Android-设备" class="headerlink" title="Android 设备"></a>Android 设备</h2><h3 id="IMEI-International-Mobile-Equipment-Identity-1"><a href="#IMEI-International-Mobile-Equipment-Identity-1" class="headerlink" title="IMEI - International Mobile Equipment Identity"></a>IMEI - International Mobile Equipment Identity</h3><ul>
 <li>国际移动设备身份码的缩写，国际移动装备辨识码，是由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的</li>
 <li>15位</li>
 <li>用户设置权限时禁止，将获取不到</li>
@@ -144,6 +219,32 @@
     </entry>
     
     <entry>
+      <title><![CDATA[NVM 用法]]></title>
+      <url>/2018/09/29/nvm-usage/</url>
+      <content type="html"><![CDATA[<h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
+<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> node </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+            <tag> node </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Homebrew 用法]]></title>
       <url>/2018/09/29/brew-usage/</url>
       <content type="html"><![CDATA[<h3 id="列出已安装软件"><a href="#列出已安装软件" class="headerlink" title="列出已安装软件"></a>列出已安装软件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew list </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果</span></span><br><span class="line">autoconf        flyway          libgpg-error    libyaml         mysql           php71           pkg-config      ruby-build</span><br><span class="line">automake        freetype        libksba         makedepend      nginx           php71-mcrypt    proxychains-ng  sphinx-doc</span><br><span class="line">boost           gettext         libmemcached    maven           node            php71-xdebug    putty           telnet</span><br><span class="line">cmake           icu4c           libpng          mcrypt          openssl         php@7.1         readline        unixodbc</span><br><span class="line">composer        jpeg            libtool         memcached       openssl@1.1     phpmyadmin      rename          xz</span><br><span class="line">coreutils       libevent        libxml2         mhash           pcre            phpunit         ruby            zlib</span><br></pre></td></tr></table></figure>
@@ -170,26 +271,25 @@
     </entry>
     
     <entry>
-      <title><![CDATA[NVM 用法]]></title>
-      <url>/2018/09/29/nvm-usage/</url>
-      <content type="html"><![CDATA[<h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
+      <title><![CDATA[mysqldump 用法]]></title>
+      <url>/2018/09/26/mysqldump/</url>
+      <content type="html"><![CDATA[<h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
+<h3 id="只导出数据"><a href="#只导出数据" class="headerlink" title="只导出数据"></a>只导出数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
-<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
             
-            <category> node </category>
+            <category> database </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> mac </tag>
+            <tag> database </tag>
             
-            <tag> node </tag>
+            <tag> MySQL </tag>
             
         </tags>
         
@@ -280,31 +380,6 @@
             <tag> java </tag>
             
             <tag> database </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[mysqldump 用法]]></title>
-      <url>/2018/09/26/mysqldump/</url>
-      <content type="html"><![CDATA[<h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
-<h3 id="只导出数据"><a href="#只导出数据" class="headerlink" title="只导出数据"></a>只导出数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-]]></content>
-      
-        <categories>
-            
-            <category> database </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> database </tag>
-            
-            <tag> MySQL </tag>
             
         </tags>
         
@@ -882,31 +957,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Java 编程规范]]></title>
-      <url>/2018/03/26/java-code-style/</url>
-      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
-<ul>
-<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
-<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Hibernate 用法]]></title>
       <url>/2018/03/26/hibernate-usage/</url>
       <content type="html"><![CDATA[<h3 id="操作-m-n-关联表"><a href="#操作-m-n-关联表" class="headerlink" title="操作 m-n 关联表"></a>操作 m-n 关联表</h3><ul>
@@ -927,6 +977,31 @@
             <tag> java </tag>
             
             <tag> hibernate </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Java 编程规范]]></title>
+      <url>/2018/03/26/java-code-style/</url>
+      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
+<ul>
+<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
+<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
         
@@ -1439,6 +1514,76 @@
     </entry>
     
     <entry>
+      <title><![CDATA[中间人劫持代理]]></title>
+      <url>/2017/06/10/mitm-proxy/</url>
+      <content type="html"><![CDATA[<h2 id="中间人劫持代理"><a href="#中间人劫持代理" class="headerlink" title="中间人劫持代理"></a>中间人劫持代理</h2><p><img src="/images/posts/mitm_proxy/how-mitmproxy-works-explicit-https.png" alt=""></p>
+<p>注：图片来源于 mitmproxy</p>
+<h4 id="本代理基于-TCP，是一个不关心协议的代理？"><a href="#本代理基于-TCP，是一个不关心协议的代理？" class="headerlink" title="本代理基于 TCP，是一个不关心协议的代理？"></a>本代理基于 TCP，是一个不关心协议的代理？</h4><p>是的</p>
+<h4 id="HTTP-代理-VS-Socks-代理"><a href="#HTTP-代理-VS-Socks-代理" class="headerlink" title="HTTP 代理 VS Socks 代理"></a>HTTP 代理 VS Socks 代理</h4><h2 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h2><h3 id="获取远端主机名（Host）"><a href="#获取远端主机名（Host）" class="headerlink" title="获取远端主机名（Host）"></a>获取远端主机名（Host）</h3><p>当应用设置了代理后，在 TLS 协商前，应用首先会发一条 CONNECT 请求，期待通过代理和远端服务器建立 TLS 隧道（tunnel）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT 10.1.1.1:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
+<p>作为中间人代理，并不帮助建立隧道，而是需要解析 CONNECT 请求，并从中获得远端服务器主机名。同时返回给被代理程序隧道建立成功的回复：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 根据请求指定版本号</span><br><span class="line">HTTP/1.0 200 Connection established\r\n\r\n</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Subject-Alternative-Name"><a href="#Subject-Alternative-Name" class="headerlink" title="Subject Alternative Name"></a>Subject Alternative Name</h3><p>这是服务器证书包含的一个字段，用于标识证书签发的域名。</p>
+<p>通常服务器的域名保存在 <code>Common name</code> 字段，只保存一个域名，而 <code>Subject Alternative Name</code> 可保存多个域名，并支持通配符。也就是，有的时候访问的服务器主机并不和 <code>Common name</code> 匹配，但匹配 <code>SAN</code>，这样的证书也是合法的。</p>
+<h3 id="服务器名称指示（SNI）"><a href="#服务器名称指示（SNI）" class="headerlink" title="服务器名称指示（SNI）"></a>服务器名称指示（SNI）</h3><p>这是识别同一 IP 部署的多个带证书虚拟主机（Virtual Host）的技术。</p>
+<p>基于名称的虚拟主机允许多个域名由同一IP地址上的单个服务器（通常为Web服务器）托管。使用 HTTP 时，其必须包含的协议头 <a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="noopener"><code>Host</code></a> 字段标识了欲访问的域名，据此分辨出虚拟主机。但是，由于 HTTPS 握手发生在服务器看到任何 HTTP 头之前，这时并不知道要访问哪个虚拟主机，也就不能把对应的服务器证书发给客户端，以完成 TLS 协商。</p>
+<p>SNI 通过让客户端发送虚拟域名的名称作为TLS协商的一部分来解决此问题。</p>
+<p>OpenSSL 客户端实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set host name before initiating the SSL connection</span></span><br><span class="line">SSL_set_tlsext_host_name(ssl, hostName)</span><br></pre></td></tr></table></figure>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA" target="_blank" rel="noopener">扩展阅读</a></p>
+<h3 id="Certificate-Pinning"><a href="#Certificate-Pinning" class="headerlink" title="Certificate Pinning"></a>Certificate Pinning</h3><p>简单地说，就是某些程序（比如浏览器）只相信某些根证书签发的服务器证书。</p>
+<p>通常证书通过证书链验证合法性，<code>MyCert</code> 由 <code>IntermediateCert</code> 签发，它又由 <code>RootCert</code> 签发，<code>RootCert</code> 已经内置在操作系统的可信任根证书中。 这样，<code>MyCert</code> 是合法的。常见内置的根证书有：Verisign, Digicert, Thawte等。</p>
+<p>但是，Certificate pinning 的作用是，即使通过了上面的验证，如果不是某个指定 RootCert 签发的证书，也认为其不合法。这在一定程序上避免中间人攻击，但没有真的解决。</p>
+<p>下面是一些使用 Certificate pinning 的应用：</p>
+<ul>
+<li>微软的自动更新</li>
+<li>苹果 App Store</li>
+<li>Twitter app</li>
+</ul>
+<p><a href="https://security.stackexchange.com/questions/29988/what-is-certificate-pinning/" target="_blank" rel="noopener">扩展阅读</a></p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10).aspx#BKMK_5" target="_blank" rel="noopener">文档</a></p>
+<p>设置代理：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set proxy 127.0.0.1:8080 "&lt;local&gt;"</span><br></pre></td></tr></table></figure>
+<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
+<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
+<p>选择 WinINet 的原因：</p>
+<ul>
+<li>支持 cookies</li>
+<li>Credential Cache (和SSL证书相关？)</li>
+<li>Credential Prompting (和SSL证书相关？)</li>
+</ul>
+<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85).aspx" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a></p>
+<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line"><span class="comment">// 根据协议来设置代理，比如 FTP, HTTPS 等，使用下面的字符串</span></span><br><span class="line"><span class="comment">// ftp=http://&lt;ProxyServerName&gt;:80; https=https://&lt;ProxyServerName&gt;:80)</span></span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="设置自动代理"><a href="#设置自动代理" class="headerlink" title="设置自动代理"></a>设置自动代理</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> wzsPath[MAX_PATH];</span><br><span class="line"><span class="keyword">wchar_t</span> wszProxyUrl[INTERNET_MAX_URL_LENGTH];</span><br><span class="line">SHGetFolderPath ( <span class="literal">NULL</span>, CSIDL_APPDATA | CSIDL_FLAG_CREATE, <span class="literal">NULL</span>, <span class="number">0</span>, wszPath );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Construct Pac file path. – %appdata%\MyAppFolder\redirect.pac</span></span><br><span class="line">StringCbPrintf (wszProxyUrl, <span class="keyword">sizeof</span>(wszProxyUrl), </span><br><span class="line">        <span class="string">L"file://%s\\MyAppFolder\\redirect.pac"</span>, wszPath );</span><br><span class="line"></span><br><span class="line">INTERNET_PER_CONN_OPTION_LIST *optionList = <span class="number">0</span>;</span><br><span class="line">optionList-&gt;pOptions[INDEX].Value.pszValue = wszPath;</span><br><span class="line"></span><br><span class="line">InternetSetOption ( <span class="literal">NULL</span>, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">        optionList, <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST) );</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PER_CONN_OPTION_LIST    List;</span><br><span class="line">INTERNET_PER_CONN_OPTION         Option[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span>                    nSize =</span><br><span class="line"><span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line"></span><br><span class="line">Option[<span class="number">0</span>].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;</span><br><span class="line">Option[<span class="number">0</span>].Value.pszValue = <span class="string">"http://myserver/proxy.pacl"</span>;</span><br><span class="line">Option[<span class="number">1</span>].dwOption = INTERNET_PER_CONN_FLAGS;</span><br><span class="line">Option[<span class="number">1</span>].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL;</span><br><span class="line"></span><br><span class="line">List.dwSize = <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line">List.pszConnection = <span class="literal">NULL</span>;</span><br><span class="line">List.dwOptionCount = <span class="number">2</span>;</span><br><span class="line">List.dwOptionError = <span class="number">0</span>;</span><br><span class="line">List.pOptions = Option;</span><br><span class="line"></span><br><span class="line">hMyHandle =  InternetOpen(<span class="string">""</span>, INTERNET_OPEN_TYPE_DIRECT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!InternetSetOption(hMyHandle, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">&amp;List, nSize))</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"InternetQueryOption failed! (%d)\n"</span>, GetLastError());</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://docs.mitmproxy.org/en/stable/howmitmproxy.html" target="_blank" rel="noopener">mitmproxy</a></li>
+<li><a href="http://www.5icpp.com/?p=139" target="_blank" rel="noopener">如何给CHtmlView添加代理——MFC</a></li>
+<li><a href="http://www.lai18.com/content/2206252.html" target="_blank" rel="noopener">为网络程序添加代理设置</a>：带 VC6 示例程序</li>
+<li><a href="http://www.cnblogs.com/duanshuiliu/archive/2013/03/18/2965405.html" target="_blank" rel="noopener">查询代理和设置代理</a></li>
+<li><a href="http://blog.csdn.net/ba_jie/article/details/43564385" target="_blank" rel="noopener">写C++程序绕过IE的限制：“某些设置由系统管理员进行管理”</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> OpenSSL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> openssl </tag>
+            
+            <tag> proxy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[TLS 协议]]></title>
       <url>/2017/06/10/tls-1.2/</url>
       <content type="html"><![CDATA[<p>首先，这是 IETF 协会文档 <a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">Request for Comments (RFC) 5246</a></p>
@@ -1586,76 +1731,6 @@
         <tags>
             
             <tag> openssl </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[中间人劫持代理]]></title>
-      <url>/2017/06/10/mitm-proxy/</url>
-      <content type="html"><![CDATA[<h2 id="中间人劫持代理"><a href="#中间人劫持代理" class="headerlink" title="中间人劫持代理"></a>中间人劫持代理</h2><p><img src="/images/posts/mitm_proxy/how-mitmproxy-works-explicit-https.png" alt=""></p>
-<p>注：图片来源于 mitmproxy</p>
-<h4 id="本代理基于-TCP，是一个不关心协议的代理？"><a href="#本代理基于-TCP，是一个不关心协议的代理？" class="headerlink" title="本代理基于 TCP，是一个不关心协议的代理？"></a>本代理基于 TCP，是一个不关心协议的代理？</h4><p>是的</p>
-<h4 id="HTTP-代理-VS-Socks-代理"><a href="#HTTP-代理-VS-Socks-代理" class="headerlink" title="HTTP 代理 VS Socks 代理"></a>HTTP 代理 VS Socks 代理</h4><h2 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h2><h3 id="获取远端主机名（Host）"><a href="#获取远端主机名（Host）" class="headerlink" title="获取远端主机名（Host）"></a>获取远端主机名（Host）</h3><p>当应用设置了代理后，在 TLS 协商前，应用首先会发一条 CONNECT 请求，期待通过代理和远端服务器建立 TLS 隧道（tunnel）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT 10.1.1.1:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
-<p>作为中间人代理，并不帮助建立隧道，而是需要解析 CONNECT 请求，并从中获得远端服务器主机名。同时返回给被代理程序隧道建立成功的回复：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 根据请求指定版本号</span><br><span class="line">HTTP/1.0 200 Connection established\r\n\r\n</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="Subject-Alternative-Name"><a href="#Subject-Alternative-Name" class="headerlink" title="Subject Alternative Name"></a>Subject Alternative Name</h3><p>这是服务器证书包含的一个字段，用于标识证书签发的域名。</p>
-<p>通常服务器的域名保存在 <code>Common name</code> 字段，只保存一个域名，而 <code>Subject Alternative Name</code> 可保存多个域名，并支持通配符。也就是，有的时候访问的服务器主机并不和 <code>Common name</code> 匹配，但匹配 <code>SAN</code>，这样的证书也是合法的。</p>
-<h3 id="服务器名称指示（SNI）"><a href="#服务器名称指示（SNI）" class="headerlink" title="服务器名称指示（SNI）"></a>服务器名称指示（SNI）</h3><p>这是识别同一 IP 部署的多个带证书虚拟主机（Virtual Host）的技术。</p>
-<p>基于名称的虚拟主机允许多个域名由同一IP地址上的单个服务器（通常为Web服务器）托管。使用 HTTP 时，其必须包含的协议头 <a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="noopener"><code>Host</code></a> 字段标识了欲访问的域名，据此分辨出虚拟主机。但是，由于 HTTPS 握手发生在服务器看到任何 HTTP 头之前，这时并不知道要访问哪个虚拟主机，也就不能把对应的服务器证书发给客户端，以完成 TLS 协商。</p>
-<p>SNI 通过让客户端发送虚拟域名的名称作为TLS协商的一部分来解决此问题。</p>
-<p>OpenSSL 客户端实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set host name before initiating the SSL connection</span></span><br><span class="line">SSL_set_tlsext_host_name(ssl, hostName)</span><br></pre></td></tr></table></figure>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA" target="_blank" rel="noopener">扩展阅读</a></p>
-<h3 id="Certificate-Pinning"><a href="#Certificate-Pinning" class="headerlink" title="Certificate Pinning"></a>Certificate Pinning</h3><p>简单地说，就是某些程序（比如浏览器）只相信某些根证书签发的服务器证书。</p>
-<p>通常证书通过证书链验证合法性，<code>MyCert</code> 由 <code>IntermediateCert</code> 签发，它又由 <code>RootCert</code> 签发，<code>RootCert</code> 已经内置在操作系统的可信任根证书中。 这样，<code>MyCert</code> 是合法的。常见内置的根证书有：Verisign, Digicert, Thawte等。</p>
-<p>但是，Certificate pinning 的作用是，即使通过了上面的验证，如果不是某个指定 RootCert 签发的证书，也认为其不合法。这在一定程序上避免中间人攻击，但没有真的解决。</p>
-<p>下面是一些使用 Certificate pinning 的应用：</p>
-<ul>
-<li>微软的自动更新</li>
-<li>苹果 App Store</li>
-<li>Twitter app</li>
-</ul>
-<p><a href="https://security.stackexchange.com/questions/29988/what-is-certificate-pinning/" target="_blank" rel="noopener">扩展阅读</a></p>
-<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10).aspx#BKMK_5" target="_blank" rel="noopener">文档</a></p>
-<p>设置代理：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set proxy 127.0.0.1:8080 "&lt;local&gt;"</span><br></pre></td></tr></table></figure>
-<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
-<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
-<p>选择 WinINet 的原因：</p>
-<ul>
-<li>支持 cookies</li>
-<li>Credential Cache (和SSL证书相关？)</li>
-<li>Credential Prompting (和SSL证书相关？)</li>
-</ul>
-<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85).aspx" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a></p>
-<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line"><span class="comment">// 根据协议来设置代理，比如 FTP, HTTPS 等，使用下面的字符串</span></span><br><span class="line"><span class="comment">// ftp=http://&lt;ProxyServerName&gt;:80; https=https://&lt;ProxyServerName&gt;:80)</span></span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="设置自动代理"><a href="#设置自动代理" class="headerlink" title="设置自动代理"></a>设置自动代理</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> wzsPath[MAX_PATH];</span><br><span class="line"><span class="keyword">wchar_t</span> wszProxyUrl[INTERNET_MAX_URL_LENGTH];</span><br><span class="line">SHGetFolderPath ( <span class="literal">NULL</span>, CSIDL_APPDATA | CSIDL_FLAG_CREATE, <span class="literal">NULL</span>, <span class="number">0</span>, wszPath );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Construct Pac file path. – %appdata%\MyAppFolder\redirect.pac</span></span><br><span class="line">StringCbPrintf (wszProxyUrl, <span class="keyword">sizeof</span>(wszProxyUrl), </span><br><span class="line">        <span class="string">L"file://%s\\MyAppFolder\\redirect.pac"</span>, wszPath );</span><br><span class="line"></span><br><span class="line">INTERNET_PER_CONN_OPTION_LIST *optionList = <span class="number">0</span>;</span><br><span class="line">optionList-&gt;pOptions[INDEX].Value.pszValue = wszPath;</span><br><span class="line"></span><br><span class="line">InternetSetOption ( <span class="literal">NULL</span>, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">        optionList, <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST) );</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PER_CONN_OPTION_LIST    List;</span><br><span class="line">INTERNET_PER_CONN_OPTION         Option[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span>                    nSize =</span><br><span class="line"><span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line"></span><br><span class="line">Option[<span class="number">0</span>].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;</span><br><span class="line">Option[<span class="number">0</span>].Value.pszValue = <span class="string">"http://myserver/proxy.pacl"</span>;</span><br><span class="line">Option[<span class="number">1</span>].dwOption = INTERNET_PER_CONN_FLAGS;</span><br><span class="line">Option[<span class="number">1</span>].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL;</span><br><span class="line"></span><br><span class="line">List.dwSize = <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line">List.pszConnection = <span class="literal">NULL</span>;</span><br><span class="line">List.dwOptionCount = <span class="number">2</span>;</span><br><span class="line">List.dwOptionError = <span class="number">0</span>;</span><br><span class="line">List.pOptions = Option;</span><br><span class="line"></span><br><span class="line">hMyHandle =  InternetOpen(<span class="string">""</span>, INTERNET_OPEN_TYPE_DIRECT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!InternetSetOption(hMyHandle, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">&amp;List, nSize))</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"InternetQueryOption failed! (%d)\n"</span>, GetLastError());</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://docs.mitmproxy.org/en/stable/howmitmproxy.html" target="_blank" rel="noopener">mitmproxy</a></li>
-<li><a href="http://www.5icpp.com/?p=139" target="_blank" rel="noopener">如何给CHtmlView添加代理——MFC</a></li>
-<li><a href="http://www.lai18.com/content/2206252.html" target="_blank" rel="noopener">为网络程序添加代理设置</a>：带 VC6 示例程序</li>
-<li><a href="http://www.cnblogs.com/duanshuiliu/archive/2013/03/18/2965405.html" target="_blank" rel="noopener">查询代理和设置代理</a></li>
-<li><a href="http://blog.csdn.net/ba_jie/article/details/43564385" target="_blank" rel="noopener">写C++程序绕过IE的限制：“某些设置由系统管理员进行管理”</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> OpenSSL </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> openssl </tag>
-            
-            <tag> proxy </tag>
             
         </tags>
         
@@ -1845,6 +1920,9 @@
 <h3 id="打包导出"><a href="#打包导出" class="headerlink" title="打包导出"></a>打包导出</h3><p>执行打包脚本</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src\cef\tools</span><br><span class="line">make_distrib.bat --ninja-build</span><br></pre></td></tr></table></figure>
 <p>打包成功后，在 <code>src/cef/binary_distrib</code> 目录会生成二进制的包</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="NPAPI-启用情况"><a href="#NPAPI-启用情况" class="headerlink" title="NPAPI 启用情况"></a>NPAPI 启用情况</h3><p>查看当前版本 NPAPI 是否已经启用，可以打开 <code>Dev Tools</code> -&gt; <code>Console</code> 执行：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">navigator.plugins</span><br></pre></td></tr></table></figure>
+<p>检查每个插件的情况，一般 NPAPI 插件会以 np 开头。</p>
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
 <li><a href="https://bitbucket.org/chromiumembedded/cef/downloads/?tab=branches" target="_blank" rel="noopener">CEF branches</a></li>
 </ul>
@@ -2309,6 +2387,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SSLKEYLOGFILE  C:\Users\Jonathan\Documents\SSLKEYLOGFILE.txt</span><br></pre></td></tr></table></figure>
 <h4 id="可用的命令行参数"><a href="#可用的命令行参数" class="headerlink" title="可用的命令行参数"></a>可用的命令行参数</h4><p><a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">参考</a></p>
 <h4 id="Chrome-发布日历"><a href="#Chrome-发布日历" class="headerlink" title="Chrome 发布日历"></a>Chrome 发布日历</h4><p><a href="https://www.chromium.org/developers/calendar" target="_blank" rel="noopener">Chromium Development Calendar and Release Info</a></p>
+<h4 id="Chromium-分支和标签"><a href="#Chromium-分支和标签" class="headerlink" title="Chromium 分支和标签"></a>Chromium 分支和标签</h4><p><a href="https://chromium.googlesource.com/chromium/src.git/+refs" target="_blank" rel="noopener">src.git/+refs</a></p>
 <h4 id="Chrome-功能更新"><a href="#Chrome-功能更新" class="headerlink" title="Chrome 功能更新"></a>Chrome 功能更新</h4><p>查看 <a href="https://www.chromestatus.com/features#milestone%3D68" target="_blank" rel="noopener">这里</a></p>
 <h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
 <h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
@@ -2325,6 +2404,33 @@
         <tags>
             
             <tag> chromium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
+      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
+      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> activex </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> activex </tag>
+            
+            <tag> webbrowser </tag>
             
         </tags>
         
@@ -2404,9 +2510,13 @@
 <h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
 <h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
-<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误-1"><a href="#gclient-sync-错误-1" class="headerlink" title="gclient sync 错误 1"></a>gclient sync 错误 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
 <p><strong>解决办法：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误-2"><a href="#gclient-sync-错误-2" class="headerlink" title="gclient sync 错误 2"></a>gclient sync 错误 2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> Cannot rebase:You have unstaged changes.</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Please commit or stash them.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>忽略行结尾的不一致：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf true</span><br></pre></td></tr></table></figure>
 <h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
 <p><strong>解决办法：</strong></p>
 <p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
@@ -2423,33 +2533,6 @@
         <tags>
             
             <tag> chromium </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
-      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
-      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> activex </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> activex </tag>
-            
-            <tag> webbrowser </tag>
             
         </tags>
         
@@ -2651,9 +2734,9 @@
         
         <tags>
             
-            <tag> server </tag>
-            
             <tag> mac </tag>
+            
+            <tag> server </tag>
             
             <tag> java </tag>
             
@@ -2703,11 +2786,11 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
+            <tag> mac </tag>
+            
             <tag> linux </tag>
             
             <tag> server </tag>
-            
-            <tag> mac </tag>
             
         </tags>
         
@@ -2733,9 +2816,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> server </tag>
-            
             <tag> php </tag>
+            
+            <tag> server </tag>
             
         </tags>
         
@@ -2856,6 +2939,54 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
+      <title><![CDATA[php 编码常规]]></title>
+      <url>/2015/07/03/php-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action名、变量名、方法名采用小写camelCase： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action 名与 url 的映射关系： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
+<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>类方法和变量遵守小写camelCase</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
+<li>视图模板（tpl）文件路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目录名对应 <code>Controller</code>，首字母大写</li>
+<li>文件名对应 <code>action</code>，首字母小写</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> php </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[url 编码常规]]></title>
       <url>/2015/07/03/url-code-conventions/</url>
       <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
@@ -2953,54 +3084,6 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> javascript </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[php 编码常规]]></title>
-      <url>/2015/07/03/php-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action名、变量名、方法名采用小写camelCase： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action 名与 url 的映射关系： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
-<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>类方法和变量遵守小写camelCase</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
-<li>视图模板（tpl）文件路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目录名对应 <code>Controller</code>，首字母大写</li>
-<li>文件名对应 <code>action</code>，首字母小写</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> php </tag>
             
         </tags>
         

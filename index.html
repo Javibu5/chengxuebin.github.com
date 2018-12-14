@@ -338,6 +338,365 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/12/14/mac-launchagents/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14/mac-launchagents/" itemprop="url">Mac 系统 LaunchAgents</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T00:00:00+08:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mac/" itemprop="url" rel="index">
+                    <span itemprop="name">mac</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/14/mac-launchagents/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/12/14/mac-launchagents/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/14/mac-launchagents/" class="leancloud_visitors" data-flag-title="Mac 系统 LaunchAgents">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>launchctl是一个统一的服务管理框架，可以启动、停止和管理守护进程、应用程序、进程和脚本等。</p>
+<h2 id="LaunchDaemons-启动时执行"><a href="#LaunchDaemons-启动时执行" class="headerlink" title="LaunchDaemons - 启动时执行"></a>LaunchDaemons - 启动时执行</h2><p>添加本类脚本，需要注意以下几点：</p>
+<ul>
+<li>放置到目录 /Library/LaunchDaemons/</li>
+<li>确保文件的用户为 root 并且组为 wheel </li>
+<li>拥有权限（permissions） “644”: Owner – read/write, group – read, everyone – read</li>
+</ul>
+<h2 id="LaunchAgents-登录时执行"><a href="#LaunchAgents-登录时执行" class="headerlink" title="LaunchAgents - 登录时执行"></a>LaunchAgents - 登录时执行</h2><ul>
+<li>该类脚本可以放置在以下位置:<ul>
+<li>/Library/LaunchAgents/  – (For all users)</li>
+<li>~/Library/LaunchAgents/  – (For a specific user)</li>
+<li>/System/Library/LaunchAgents/ – (For OS X use only)</li>
+</ul>
+</li>
+<li>文件的用户为 root 并且组为 wheel<br>  注意: 当放置在 ~/Library/LaunchAgents/ 时， 用户应该为当前拥有 home 目录的用户</li>
+<li>拥有权限（permissions） “644”: Owner – read/write, group – read, everyone – read</li>
+</ul>
+<h2 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 加载任务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl load -w /Library/LaunchAgents/com.onthink.plist </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除任务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl unload -w /Library/LaunchAgents/com.onthink.plist </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看任务列表</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl list | grep <span class="string">'com.onthink'</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://tengj.top/2017/02/26/springboot1/" target="_blank" rel="noopener">Spring Boot干货系列：（一）优雅的入门篇</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/10/28/maven-and-springboot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/28/maven-and-springboot/" itemprop="url">Maven 和 SpringBoot</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-28T00:00:00+08:00">
+                2018-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/28/maven-and-springboot/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/28/maven-and-springboot/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/10/28/maven-and-springboot/" class="leancloud_visitors" data-flag-title="Maven 和 SpringBoot">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Maven-常用依赖"><a href="#Maven-常用依赖" class="headerlink" title="Maven 常用依赖"></a>Maven 常用依赖</h2><h3 id="dependencies-vs-dependencyManagement"><a href="#dependencies-vs-dependencyManagement" class="headerlink" title="dependencies vs dependencyManagement"></a>dependencies vs dependencyManagement</h3><ul>
+<li><strong>dependencies</strong>：引入依赖。子项目会从父项目中继承该依赖项</li>
+<li><strong>dependencyManagement</strong>：声明依赖，并不实现引入。因此子项目需要显示的声明需要用的依赖。如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且 version，scope 都读取自父pom；另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本</li>
+</ul>
+<h3 id="spring-boot-starter-parent"><a href="#spring-boot-starter-parent" class="headerlink" title="spring-boot-starter-parent"></a>spring-boot-starter-parent</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.10.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>spring-boot-starter-parent 是一个特殊的 starter，它用来提供相关的Maven默认依赖，使用它之后，常用的包依赖可以省去version标签。可查看 <code>.m2\repository\org\springframework\boot\spring-boot-dependencies\1.5.10.RELEASE\spring-boot-dependencies-1.5.10.RELEASE.pom</code> </p>
+<h3 id="maven-surefire-plugin"><a href="#maven-surefire-plugin" class="headerlink" title="maven-surefire-plugin"></a><a href="https://maven.apache.org/surefire/maven-surefire-plugin/" target="_blank" rel="noopener">maven-surefire-plugin</a></h3><blockquote>
+<p>The Surefire Plugin is used during the test phase of the build lifecycle to execute the unit tests of an application. It generates reports in two different file formats Plain text files (.txt) XML files (.xml)</p>
+</blockquote>
+<h3 id="maven-resources-plugin"><a href="#maven-resources-plugin" class="headerlink" title="maven-resources-plugin"></a>maven-resources-plugin</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://tengj.top/2017/02/26/springboot1/" target="_blank" rel="noopener">Spring Boot干货系列：（一）优雅的入门篇</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/10/26/mobile-device-fingerprint/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -482,10 +841,10 @@
 <h3 id="MAC"><a href="#MAC" class="headerlink" title="MAC"></a>MAC</h3><ul>
 <li>iOS7 后禁止使用。返回同一值：<code>02:00:00:00:00:00</code></li>
 </ul>
-<h3 id="IMEI"><a href="#IMEI" class="headerlink" title="IMEI"></a>IMEI</h3><ul>
+<h3 id="IMEI-International-Mobile-Equipment-Identity"><a href="#IMEI-International-Mobile-Equipment-Identity" class="headerlink" title="IMEI - International Mobile Equipment Identity"></a>IMEI - International Mobile Equipment Identity</h3><ul>
 <li>苹果不允许获取 IMEI</li>
 </ul>
-<h2 id="Android-设备"><a href="#Android-设备" class="headerlink" title="Android 设备"></a>Android 设备</h2><h3 id="IMEI-International-Mobile-Equipment-Identity"><a href="#IMEI-International-Mobile-Equipment-Identity" class="headerlink" title="IMEI - International Mobile Equipment Identity"></a>IMEI - International Mobile Equipment Identity</h3><ul>
+<h2 id="Android-设备"><a href="#Android-设备" class="headerlink" title="Android 设备"></a>Android 设备</h2><h3 id="IMEI-International-Mobile-Equipment-Identity-1"><a href="#IMEI-International-Mobile-Equipment-Identity-1" class="headerlink" title="IMEI - International Mobile Equipment Identity"></a>IMEI - International Mobile Equipment Identity</h3><ul>
 <li>国际移动设备身份码的缩写，国际移动装备辨识码，是由15位数字组成的”电子串号”，它与每台手机一一对应，而且该码是全世界唯一的</li>
 <li>15位</li>
 <li>用户设置权限时禁止，将获取不到</li>
@@ -902,6 +1261,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/09/29/nvm-usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/29/nvm-usage/" itemprop="url">NVM 用法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T00:00:00+08:00">
+                2018-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/29/nvm-usage/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/29/nvm-usage/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/09/29/nvm-usage/" class="leancloud_visitors" data-flag-title="NVM 用法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/09/29/nvm-usage/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/09/29/brew-usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1070,7 +1597,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/09/29/nvm-usage/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/09/26/mysqldump/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -1089,7 +1616,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/29/nvm-usage/" itemprop="url">NVM 用法</a></h2>
+                <a class="post-title-link" href="/2018/09/26/mysqldump/" itemprop="url">mysqldump 用法</a></h2>
         
 
         <div class="post-meta">
@@ -1101,8 +1628,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-29T00:00:00+08:00">
-                2018-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T00:00:00+08:00">
+                2018-09-26
               </time>
             
 
@@ -1124,8 +1651,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index">
-                    <span itemprop="name">node</span>
+                  <a href="/categories/database/" itemprop="url" rel="index">
+                    <span itemprop="name">database</span>
                   </a>
                 </span>
 
@@ -1142,9 +1669,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/29/nvm-usage/#comments" itemprop="discussionUrl">
+                <a href="/2018/09/26/mysqldump/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/29/nvm-usage/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/09/26/mysqldump/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1152,7 +1679,7 @@
 
           
           
-             <span id="/2018/09/29/nvm-usage/" class="leancloud_visitors" data-flag-title="NVM 用法">
+             <span id="/2018/09/26/mysqldump/" class="leancloud_visitors" data-flag-title="mysqldump 用法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1184,10 +1711,11 @@
 
       
         
-          <h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
+          <h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
+<h3 id="只导出数据"><a href="#只导出数据" class="headerlink" title="只导出数据"></a>只导出数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/29/nvm-usage/#more" rel="contents">
+            <a class="btn" href="/2018/09/26/mysqldump/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1361,175 +1889,6 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/09/26/h2-database/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/09/26/mysqldump/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/26/mysqldump/" itemprop="url">mysqldump 用法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T00:00:00+08:00">
-                2018-09-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/database/" itemprop="url" rel="index">
-                    <span itemprop="name">database</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/09/26/mysqldump/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/26/mysqldump/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/09/26/mysqldump/" class="leancloud_visitors" data-flag-title="mysqldump 用法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="只导出表结构"><a href="#只导出表结构" class="headerlink" title="只导出表结构"></a>只导出表结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出表结构</span></span><br><span class="line">mysqldump --no-create-info -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_data.sql</span><br></pre></td></tr></table></figure>
-<h3 id="只导出数据"><a href="#只导出数据" class="headerlink" title="只导出数据"></a>只导出数据</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 只导出数据</span></span><br><span class="line">mysqldump -d -h localhost -u root -p jizhunmall_test &gt; ~/zhp_20180925_tables.sql</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/26/mysqldump/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1809,379 +2168,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/08/31/nginx-usage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/31/nginx-usage/" itemprop="url">Nginx 配置</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-31T00:00:00+08:00">
-                2018-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/server/" itemprop="url" rel="index">
-                    <span itemprop="name">server</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/31/nginx-usage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/31/nginx-usage/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/31/nginx-usage/" class="leancloud_visitors" data-flag-title="Nginx 配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>查看 <a href="http://nginx.org/en/docs/varindex.html" target="_blank" rel="noopener">官方文档-变量</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/31/nginx-usage/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/08/12/table-primary-field/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/12/table-primary-field/" itemprop="url">数据表的主键选择</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-12T00:00:00+08:00">
-                2018-08-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/12/table-primary-field/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/12/table-primary-field/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/12/table-primary-field/" class="leancloud_visitors" data-flag-title="数据表的主键选择">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>关于数据表主键的设计，团队内部产生过这样的争论：</p>
-<p><strong>举例</strong>：订单表业务相关的字段有</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">字段</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">amount</td>
-<td style="text-align:left">流水号</td>
-</tr>
-<tr>
-<td style="text-align:left">sn</td>
-<td style="text-align:left">流水号</td>
-</tr>
-<tr>
-<td style="text-align:left">pay_sn</td>
-<td style="text-align:left">支付流水号</td>
-</tr>
-<tr>
-<td style="text-align:left">buyer</td>
-<td style="text-align:left">购买人</td>
-</tr>
-<tr>
-<td style="text-align:left">ship</td>
-<td style="text-align:left">物流相关数据</td>
-</tr>
-<tr>
-<td style="text-align:left">create_at</td>
-<td style="text-align:left">订单生成时间</td>
-</tr>
-</tbody>
-</table>
-<p>可以确定的是，sn 是唯一的，所以 A 的观点是 <em>“用 sn 做为表的主键”</em>，与其不同的观点是 <em>“添加业务无关的 id 自增字段用作主键”</em>。这两种设计哪个更合理呢？</p>
-<p>简而言之，就是选择业务主键还是代理主键的问题。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/12/table-primary-field/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2236,7 +2222,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2258,7 +2244,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -338,6 +338,363 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/17/cef-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/17/cef-tutorial/" itemprop="url">CEF 的使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T00:00:00+08:00">
+                2017-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/17/cef-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/17/cef-tutorial/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/17/cef-tutorial/" class="leancloud_visitors" data-flag-title="CEF 的使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
+<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
+<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
+<li>创建新的项目</li>
+<li>设置 include 目录到 cef 头文件目录</li>
+<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
+<li>添加 resource.rc</li>
+<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
+<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
+</ol>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
+<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
+<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
+<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/17/duilib-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/17/duilib-tutorial/" itemprop="url">DuiLib 的使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T00:00:00+08:00">
+                2017-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/17/duilib-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/17/duilib-tutorial/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/17/duilib-tutorial/" class="leancloud_visitors" data-flag-title="DuiLib 的使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p>本文下载的是 <a href="https://github.com/redrains/DuiLib_Redrain" target="_blank" rel="noopener">Redrain 维护的版本</a>，原始的 DuiLib 版本从<a href="https://github.com/duilib/duilib" target="_blank" rel="noopener">这里</a>下载。</p>
+<h2 id="以库方式使用"><a href="#以库方式使用" class="headerlink" title="以库方式使用"></a>以库方式使用</h2><h3 id="打开并升级工程文件"><a href="#打开并升级工程文件" class="headerlink" title="打开并升级工程文件"></a>打开并升级工程文件</h3><p>打开 <code>DuiLib_vs2010.sln</code>，我安装的 IDE 是 <code>VS2015</code>，会提示升级，按提示完成。</p>
+<h3 id="编译全部动态库"><a href="#编译全部动态库" class="headerlink" title="编译全部动态库"></a>编译全部动态库</h3><p>打开菜单 Build &gt; Batch Build…</p>
+<p>选择编译所有配置：</p>
+<p><img src="/images/posts/duilib/build-batch.jpg" alt=""></p>
+<p>保存编译的结果：</p>
+<ul>
+<li>DuiLib.dll</li>
+<li>DuiLib.lib</li>
+<li>DuiLib_d.dll</li>
+<li>DuiLib_d.lib</li>
+</ul>
+<p>以及 DuiLib 库的定义目录： <code>DuiLib</code></p>
+<p>当创建新工程时，把 lib 文件添加到 link 依赖里，把 DuiLib 目录添加到 inluce 路径中，最后把 dll 库放到导出目录中，便配置好了一个 DuiLib 工程。</p>
+<h2 id="以源码方式使用"><a href="#以源码方式使用" class="headerlink" title="以源码方式使用"></a>以源码方式使用</h2><h3 id="1-创建一个空工程"><a href="#1-创建一个空工程" class="headerlink" title="1. 创建一个空工程"></a>1. 创建一个空工程</h3><h3 id="2-将源码中的-DuiLib-目录添加到工程根目录中"><a href="#2-将源码中的-DuiLib-目录添加到工程根目录中" class="headerlink" title="2. 将源码中的 DuiLib 目录添加到工程根目录中"></a>2. 将源码中的 DuiLib 目录添加到工程根目录中</h3><h3 id="3-导入-DuiLib-项目"><a href="#3-导入-DuiLib-项目" class="headerlink" title="3. 导入 DuiLib 项目"></a>3. 导入 DuiLib 项目</h3><p>在工程上右键，选择：Add &gt; Existing Project…，找到 DuiLib 项目文件导入</p>
+<h3 id="4-设置依赖-DuiLib"><a href="#4-设置依赖-DuiLib" class="headerlink" title="4. 设置依赖 DuiLib"></a>4. 设置依赖 DuiLib</h3><p>在主项目上右键，选择：Build Dependencies &gt; Project Dependencies…，设置依赖 DuiLib 项目。</p>
+<p>这样，在编译主项目时会先编译依赖的 DuiLib 项目。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/10/proxychains-problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1483,6 +1840,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SSLKEYLOGFILE  C:\Users\Jonathan\Documents\SSLKEYLOGFILE.txt</span><br></pre></td></tr></table></figure>
 <h4 id="可用的命令行参数"><a href="#可用的命令行参数" class="headerlink" title="可用的命令行参数"></a>可用的命令行参数</h4><p><a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">参考</a></p>
 <h4 id="Chrome-发布日历"><a href="#Chrome-发布日历" class="headerlink" title="Chrome 发布日历"></a>Chrome 发布日历</h4><p><a href="https://www.chromium.org/developers/calendar" target="_blank" rel="noopener">Chromium Development Calendar and Release Info</a></p>
+<h4 id="Chromium-分支和标签"><a href="#Chromium-分支和标签" class="headerlink" title="Chromium 分支和标签"></a>Chromium 分支和标签</h4><p><a href="https://chromium.googlesource.com/chromium/src.git/+refs" target="_blank" rel="noopener">src.git/+refs</a></p>
 <h4 id="Chrome-功能更新"><a href="#Chrome-功能更新" class="headerlink" title="Chrome 功能更新"></a>Chrome 功能更新</h4><p>查看 <a href="https://www.chromestatus.com/features#milestone%3D68" target="_blank" rel="noopener">这里</a></p>
 <h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
 <h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
@@ -1535,7 +1893,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/batch-usage/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/webbrowser-nxcompat-issue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -1554,7 +1912,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/17/batch-usage/" itemprop="url">Windows Batch 用法</a></h2>
+                <a class="post-title-link" href="/2017/01/17/webbrowser-nxcompat-issue/" itemprop="url">WebBrowser 运行 ActiveX 异常</a></h2>
         
 
         <div class="post-meta">
@@ -1589,8 +1947,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
+                  <a href="/categories/activex/" itemprop="url" rel="index">
+                    <span itemprop="name">activex</span>
                   </a>
                 </span>
 
@@ -1607,9 +1965,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/17/batch-usage/#comments" itemprop="discussionUrl">
+                <a href="/2017/01/17/webbrowser-nxcompat-issue/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/batch-usage/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/01/17/webbrowser-nxcompat-issue/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1617,7 +1975,7 @@
 
           
           
-             <span id="/2017/01/17/batch-usage/" class="leancloud_visitors" data-flag-title="Windows Batch 用法">
+             <span id="/2017/01/17/webbrowser-nxcompat-issue/" class="leancloud_visitors" data-flag-title="WebBrowser 运行 ActiveX 异常">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1650,366 +2008,11 @@
       
         
           
-            <h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
-<h4 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%* in (.) do set CurrentDirName=%%~nx*</span><br></pre></td></tr></table></figure>
-<h4 id="当前目录（不带斜线-）"><a href="#当前目录（不带斜线-）" class="headerlink" title="当前目录（不带斜线 ）"></a>当前目录（不带斜线 ）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET mypath=%~dp0</span><br><span class="line">echo %mypath:~0,-1%</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/source-tree-hungs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/17/source-tree-hungs/" itemprop="url">SourceTree 操作被挂起</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-17T00:00:00+08:00">
-                2017-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/17/source-tree-hungs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/source-tree-hungs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/17/source-tree-hungs/" class="leancloud_visitors" data-flag-title="SourceTree 操作被挂起">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/build-chromium-issues/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/17/build-chromium-issues/" itemprop="url">编译 Chromium 常见问题</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-17T00:00:00+08:00">
-                2017-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chromium/" itemprop="url" rel="index">
-                    <span itemprop="name">chromium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/17/build-chromium-issues/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/build-chromium-issues/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/17/build-chromium-issues/" class="leancloud_visitors" data-flag-title="编译 Chromium 常见问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="命令行翻墙设置"><a href="#命令行翻墙设置" class="headerlink" title="命令行翻墙设置"></a>命令行翻墙设置</h3><p><strong>Windows 命令行设置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=127.0.0.1:1080</span><br><span class="line">set https_proxy=127.0.0.1:1080</span><br><span class="line">set socks5_proxy=127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<p><strong>Git 设置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><h3 id="gclient-sync-参数"><a href="#gclient-sync-参数" class="headerlink" title="gclient sync 参数"></a>gclient sync 参数</h3><h4 id="–nohooks"><a href="#–nohooks" class="headerlink" title="–nohooks"></a>–nohooks</h4><h4 id="–no-history"><a href="#–no-history" class="headerlink" title="–no-history"></a>–no-history</h4><h4 id="–with-branch-heads"><a href="#–with-branch-heads" class="headerlink" title="–with_branch_heads"></a>–with_branch_heads</h4><h4 id="–with-tags"><a href="#–with-tags" class="headerlink" title="–with_tags"></a>–with_tags</h4><h4 id="–output-json"><a href="#–output-json" class="headerlink" title="–output-json"></a>–output-json</h4><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="DEPOT-TOOLS-WIN-TOOLCHAIN"><a href="#DEPOT-TOOLS-WIN-TOOLCHAIN" class="headerlink" title="DEPOT_TOOLS_WIN_TOOLCHAIN"></a>DEPOT_TOOLS_WIN_TOOLCHAIN</h3><h3 id="GYP-GENERATORS-msvs-ninja-ninja"><a href="#GYP-GENERATORS-msvs-ninja-ninja" class="headerlink" title="GYP_GENERATORS=msvs-ninja,ninja"></a>GYP_GENERATORS=msvs-ninja,ninja</h3><h3 id="GYP-DEFINES"><a href="#GYP-DEFINES" class="headerlink" title="GYP_DEFINES"></a>GYP_DEFINES</h3><h3 id="buildtype-Official"><a href="#buildtype-Official" class="headerlink" title="buildtype=Official"></a>buildtype=Official</h3><p>如果不添加 <code>buildtype=Official</code> 可能会遇到下面问题：</p>
-<ol>
-<li>XP 系统不能正常运行</li>
-</ol>
-<p>在添加了该编译参数情况下，也会遇到某些奇怪问题：</p>
-<ol>
-<li>在某些机器上，当打开某些页面，比如<a href="http://video.sina.com.cn/p/news/o/doc/2018-06-12/151568884855.html" target="_blank" rel="noopener">新浪视频</a>，退出浏览器后，会收到网络层不能析构的 bug</li>
-</ol>
-<h3 id="gclient-runhooks"><a href="#gclient-runhooks" class="headerlink" title="gclient runhooks"></a>gclient runhooks</h3><p>gclient runhooks 会做二件事：一是检查编译环境，二是生成编译脚本。我们也可以跳过检查编译环境，直接生成编译脚本：</p>
-<p><strong>生成全部脚本</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src\build\gyp_chromium</span><br></pre></td></tr></table></figure>
-<p><strong>生成某个工程</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome 工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\chrome.gyp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装包工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\installer\mini_installer.gyp</span><br></pre></td></tr></table></figure>
-<p>Goutput_dir</p>
-<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
-<h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
-<h3 id="gclient-sync-错误"><a href="#gclient-sync-错误" class="headerlink" title="gclient sync 错误"></a>gclient sync 错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
-<h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
-<p>点击 Change system locale…，切换为 English (United State)</p>
+            <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
+</blockquote>
 
           
         
@@ -2099,7 +2102,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2121,7 +2124,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

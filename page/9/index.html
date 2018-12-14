@@ -338,6 +338,445 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/12/01/zend-studio-xdebug-setting-up/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/12/01/zend-studio-xdebug-setting-up/" itemprop="url">配置 Zend Studio, Xdebug</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-01T00:00:00+08:00">
+                2014-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/12/01/zend-studio-xdebug-setting-up/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/12/01/zend-studio-xdebug-setting-up/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/12/01/zend-studio-xdebug-setting-up/" class="leancloud_visitors" data-flag-title="配置 Zend Studio, Xdebug">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>开发 PHP 过程中，经常不是一蹴而就的，某些疑难问题需要像本地程序一样调试。本文记录如何配置 Zend Studio 和 Xdebug，实现本地调试或远程（Remote）调试。</p>
+<p>说到本地或远程调试，就要涉及到 PHP 的2种运行方式：CLI 和 CGI。</p>
+<h3 id="TIPS：什么是-CLI-和-CGI？"><a href="#TIPS：什么是-CLI-和-CGI？" class="headerlink" title="TIPS：什么是 CLI 和 CGI？"></a>TIPS：什么是 CLI 和 CGI？</h3><ul>
+<li>CLI（Command Line Interface），即“命令行界面”，是指在命令行界面的运行方式。比如在本地执行一个 PHP 脚本。</li>
+<li>CGI（Common Gateway Interface），即“通用网关接口”，是 HTTP 服务器和脚本解释器之间的接口。通过这个通用接口，可以忽略 HTTP 服务器或脚本解释器的技术限制。HTTP 服务器常用的就是 Apache，Lighttpd，Nginx，Tomcat等，脚本解释器常用的有 PHP，ASP，JSP 等解释器。</li>
+</ul>
+<h2 id="安装-Xdebug"><a href="#安装-Xdebug" class="headerlink" title="安装 Xdebug"></a>安装 Xdebug</h2><h3 id="A-安装到远程服务器"><a href="#A-安装到远程服务器" class="headerlink" title="A. 安装到远程服务器"></a>A. 安装到远程服务器</h3><ol>
+<li><p>下载 Xdebug 到远程服务器</p>
+</li>
+<li><p>修改 php.ini<br> 打开 php.ini，添加 Xdebug 扩展（dll）的路径</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Linux and Mac OS: zend_extension=&quot;/usr/local/php/modules/xdebug.so&quot;</span><br><span class="line">Windows: zend_extension=&quot;&lt;path to .dll file&gt;&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 Xdebug<br> 在 php.ini 中，添加配置，其中关键的几个是：<code>remote_enable</code>，<code>remote_autostart</code>，<code>remote_port</code>，<code>remote_handler</code> </p>
+<pre><code class="ini">xdebug.auto_trace= "On"
+xdebug.collect_params= "On"
+xdebug.collect_return= "On"
+xdebug.trace_output_dir="/path/to/log/dir/xdebug/trace"
+xdebug.profiler_enable= "true"
+xdebug.profiler_output_dir="/path/to/log/dir/xdebug/profiler"
+xdebug.profiler_append = "On"
+xdebug.profiler_enable_trigger = "On"
+xdebug.profiler_output_name = "cachegrind.out.%t-%s"
+xdebug.remote_enable = "On" 
+xdebug.remote_autostart = 0  
+xdebug.remote_host = 127.0.0.1
+xdebug.remote_port = 9000 
+xdebug.remote_handler = "dbgp"
+xdebug.remote_log="/path/to/log/dir/remote.log"
+</code></pre>
+</li>
+<li><p>验证安装是否成功<br> 远程打印<code>&lt;?php phpinfo(); ?&gt;</code>，查看是否安装了 Xdebug 模块。</p>
+</li>
+</ol>
+<h3 id="B-安装到-Zend-Studio-运行环境（PHP-Executable）"><a href="#B-安装到-Zend-Studio-运行环境（PHP-Executable）" class="headerlink" title="B. 安装到 Zend Studio 运行环境（PHP Executable）"></a>B. 安装到 Zend Studio 运行环境（PHP Executable）</h3><p>Zend Studio 自带了 PHP 运行环境的插件，在 <code>&lt;Zend_Studio_install_dir&gt;\plugins\com.zend.php.debug.debugger.&lt;version_info&gt;\</code> 目录里。默认配置的是使用自家的 zend debug，切换成 xdebug，需要修改这里的 php 设置。</p>
+<ol>
+<li><p>下载 Xdebug 到 <code>&lt;Zend_Studio_install_dir&gt;\plugins\com.zend.php.debug.debugger.&lt;version_info&gt;\</code></p>
+</li>
+<li><p>修改 php.ini<br> 注释掉 zend debug，添加 Xdebug，写法和上节一样。</p>
+</li>
+<li><p>配置 Xdebug<br> 配置参数参见上节</p>
+</li>
+<li><p>验证安装是否成功<br> 打开命令行，执行<code>php --re xdebug</code>，如果输出不是<code>Exception: Extension xdebug does not exist</code>, 表示 Xdebug 扩展安装成功。</p>
+</li>
+</ol>
+<p>到这里，已经完成了配置 Xdebug 部分，其实现在已经可以使用多种工具来远程或本地调试了，包括设置断点、单步、查看运行参数等。反映较好的调式客户端有 PhpStorm，eclipse+PDT，netbeans，Notepad++等，Zend Studio 也算是 “eclipse+插件”性质的，下面将描述它的配置。顺道说一下，还有一个极好用的工具，是 Chrome 的插件 WebGDBp，可以直接在浏览器里远程调试，非常 Cool。</p>
+<h2 id="配置-Zend-Studio"><a href="#配置-Zend-Studio" class="headerlink" title="配置 Zend Studio"></a>配置 Zend Studio</h2><h3 id="A-配置-Xdebug-CLI-调试"><a href="#A-配置-Xdebug-CLI-调试" class="headerlink" title="A. 配置 Xdebug CLI 调试"></a>A. 配置 Xdebug CLI 调试</h3><ol>
+<li><p>打开 <code>Window | Preferences | PHP | PHP Executables</code><br> <img src="/images/posts/zend_xdebug/cli_1.jpg" alt=""></p>
+</li>
+<li><p>打开 <code>Add</code> ，添加 PHP 运行环境<br> <img src="/images/posts/zend_xdebug/cli_2.jpg" alt=""></p>
+<ul>
+<li>Name - PHP 运行环境名（比如 PHP 5.5.7 with Xdebug）</li>
+<li>Executable path - 运行环境路径.</li>
+<li>PHP ini file (Optional) - 运行环境对应的 php.ini 路径</li>
+<li>SAPI type - 设置为 CLI</li>
+<li>PHP debugger - 设置为 Xdebug.</li>
+</ul>
+</li>
+<li><p>设置 Xdebug 为默认运行环境<br> 上一步保存后的回到运行环境设置窗口，选择添加的运行环境，点击 <code>Set as Default</code></p>
+</li>
+<li><p>打开 <code>Window | Preferences | PHP | Debug</code><br> <img src="/images/posts/zend_xdebug/cli_3.jpg" alt=""><br> 在 CLI 设置区，选择 Xdebug</p>
+</li>
+</ol>
+<p>到此，CLI 使用 Xdebug 已经配置完成。</p>
+<h3 id="B-配置-Xdebug-远程调试"><a href="#B-配置-Xdebug-远程调试" class="headerlink" title="B. 配置 Xdebug 远程调试"></a>B. 配置 Xdebug 远程调试</h3><p>允许远程调试网站程序（Web Application Debugging）</p>
+<ol>
+<li><p>打开 <code>Window | Preferences | PHP | PHP Servers</code><br> <img src="/images/posts/zend_xdebug/remote_1.jpg" alt="">  </p>
+</li>
+<li><p>添加服务器（Server）<br> <img src="/images/posts/zend_xdebug/remote_2.jpg" alt="">  </p>
+</li>
+<li><p>配置路径映射（Path Mapping）<br> <img src="/images/posts/zend_xdebug/remote_3.jpg" alt="">  </p>
+</li>
+<li><p>配置 DBGp 协议<br> 由于是远程调试，使用了 DBGp 协议通信，需要配置通信参数。<br> 打开 <code>Window | Preferences | PHP | Debug | Installed Debuggers</code><br> <img src="/images/posts/zend_xdebug/remote_6.jpg" alt=""><br> 编辑 Xdebug<br> <img src="/images/posts/zend_xdebug/remote_7.jpg" alt=""><br> 这里非常关键的地方是 <code>Access reomte session (JIT)</code>，它能配置触发 Zend Studio 调试的条件。当我们从浏览器里访问要调试的网站时，可以选择：</p>
+<ul>
+<li><code>off</code>: 关闭远程调试功能</li>
+<li><code>localhost</code>: 通过 localhost 访问时触发调试</li>
+<li><code>any</code>: 任何访问都触发调试</li>
+<li><code>prompt</code>: 任何访问弹出提示，选择是否触发调试<br>由于我一般都是内网调试，这里选择 localhost，然后配合网站 Xdebug 的配置 <code>xdebug.remote_autostart = 0</code> 来使用，只有当访问 localhost 时才触发 Zend Studio 进入调试状态。</li>
+</ul>
+</li>
+<li><p>开始调试<br> （可选）为项目指定默认服务器<br> <img src="/images/posts/zend_xdebug/remote_8.jpg" alt=""><br> 现在 Xdebug 已经是这个项目的默认远程 PHP 调试器。你可以通过 <code>Debug as web application</code> 来调试某个文件。<br> <img src="/images/posts/zend_xdebug/remote_4.jpg" alt=""><br> 查看结果：<br> <img src="/images/posts/zend_xdebug/remote_5.jpg" alt="">  </p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/26/github-multi-account-configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/11/26/github-multi-account-configuration/" itemprop="url">GitHub，GitLab的多账户配置（Windows）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-26T00:00:00+08:00">
+                2014-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/26/github-multi-account-configuration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/11/26/github-multi-account-configuration/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/11/26/github-multi-account-configuration/" class="leancloud_visitors" data-flag-title="GitHub，GitLab的多账户配置（Windows）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Windows 系统通过 SSH 方式使用 Git 时，如果有多个账户，需要手工配置多个 rsa 密钥，这里记录一下过程。下面以 GitHub 为例。</p>
+<h2 id="单个账号"><a href="#单个账号" class="headerlink" title="单个账号"></a>单个账号</h2><h3 id="1-生成密钥"><a href="#1-生成密钥" class="headerlink" title="1.生成密钥"></a>1.生成密钥</h3><p>打开 Git Bash，运行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "your_email@example.com"</span><br><span class="line"><span class="meta">#</span><span class="bash"> Creates a new ssh key, using the provided email as a label</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Generating public/private rsa key pair.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/c/Users/you/.ssh/id_rsa): [Press enter]</span></span><br></pre></td></tr></table></figure>
+<p>下一步，输入密钥的口令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): [Type a passphrase]</span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter same passphrase again: [Type passphrase again]</span></span><br></pre></td></tr></table></figure>
+<p>执行后，将产生公钥、私钥对：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /c/Users/you/.ssh/id_rsa.</span><br><span class="line"><span class="meta">#</span><span class="bash"> Your public key has been saved <span class="keyword">in</span> /c/Users/you/.ssh/id_rsa.pub.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> The key fingerprint is:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-将公钥、私钥加入到-ssh-agent"><a href="#2-将公钥、私钥加入到-ssh-agent" class="headerlink" title="2.将公钥、私钥加入到 ssh-agent"></a>2.将公钥、私钥加入到 ssh-agent</h3><ul>
+<li>命令方式：  </li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> start the ssh-agent <span class="keyword">in</span> the background</span></span><br><span class="line">ssh-agent -s</span><br><span class="line"><span class="meta">#</span><span class="bash"> Agent pid 59566</span></span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<ul>
+<li>或者手工将2个文件复制到 user/.ssh/ 目录</li>
+</ul>
+<h3 id="3-将公钥文件的内容复制到-GitHub-账户中"><a href="#3-将公钥文件的内容复制到-GitHub-账户中" class="headerlink" title="3.将公钥文件的内容复制到 GitHub 账户中"></a>3.将公钥文件的内容复制到 GitHub 账户中</h3><p>密钥是自己保存的，公钥是需要公开给你使用的网站。登录 GitHub 账户，从账户管理里找到密钥（SSH keys）配置，新建一个key，将公钥（一串 Base64 格式）文本复制到其中，并给这个 key 标记个名字。 </p>
+<p>标记个名字，方便多个账号同时使用时，方便管理。</p>
+<h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p>在 Git Bash 中输入:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="meta">#</span><span class="bash"> Attempts to ssh to GitHub</span></span><br></pre></td></tr></table></figure>
+<p>会收到一个提示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host 'github.com (207.97.227.239)' can't be established.</span><br><span class="line"><span class="meta">#</span><span class="bash"> RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Are you sure you want to <span class="built_in">continue</span> connecting (yes/no)?</span></span><br></pre></td></tr></table></figure>
+<p>检查一下指纹（fingerprint）和你上面产生的密钥是否一致，然后输入<code>yes</code>.</p>
+<p>最后，你将收到配置成功的消息 :)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You've successfully authenticated, but GitHub does not</span><br><span class="line"><span class="meta">#</span><span class="bash"> provide shell access.</span></span><br></pre></td></tr></table></figure>
+<h2 id="添加多个账户"><a href="#添加多个账户" class="headerlink" title="添加多个账户"></a>添加多个账户</h2><p>上面操作时<strong>手工</strong>产生的<code>id_rsa</code>密钥文件放到<code>username\.ssh\</code>目录下，如果改成其它文件名，在连接时将出错，这就不能支持多个账号的ssh key。  </p>
+<p>（不过，我猜可能通过命令 <code>ssh-add ~/.ssh/id_rsa</code> 添加的 key 可能会自动产生多账号配置文件。有待验证！！！）</p>
+<p>那如果有多个同名的<code>id_rsa</code>密钥对文件如何处理呢？</p>
+<p>做法是添加一个配置文件，来管理（映射）密钥的关系，这只是 windows 的方案，Linux 自带 SSH agent 的。</p>
+<h3 id="1-创建管理文件"><a href="#1-创建管理文件" class="headerlink" title="1.创建管理文件"></a>1.创建管理文件</h3><p>在 <code>.ssh</code> 目录下创建 <code>config</code> 文件，同时将产生的 <code>id_rsa</code> 文件改成较好记的名字，比如 <code>username.github.com</code>。</p>
+<h3 id="2-添加映射"><a href="#2-添加映射" class="headerlink" title="2.添加映射"></a>2.添加映射</h3><p>打开 <code>config</code> 文件，添加：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">	User git</span><br><span class="line">	Hostname ssh.github.com</span><br><span class="line">	PreferredAuthentications publickey</span><br><span class="line">	IdentityFile ~/.ssh/username.github.com</span><br><span class="line">	Port 443</span><br><span class="line"></span><br><span class="line">Host anothersite.com</span><br><span class="line">	User git</span><br><span class="line">	Hostname ssh.anothersite.com</span><br><span class="line">	PreferredAuthentications publickey</span><br><span class="line">	IdentityFile ~/.ssh/username.anothersite.com</span><br><span class="line">	Port 443</span><br></pre></td></tr></table></figure>
+<p>上面是2个密钥映射的关系，<code>IdentityFile</code>是改名后的文件，其它参数根据网站需要来更改。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/12/content-hugging-vs-content compression-resistance-priority/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1939,7 +2378,7 @@ PluginObject.h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1961,7 +2400,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
