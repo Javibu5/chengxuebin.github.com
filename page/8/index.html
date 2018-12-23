@@ -338,6 +338,389 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/06/04/osx-config-xdebug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/06/04/osx-config-xdebug/" itemprop="url">osx配置xdebug</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-04T00:00:00+08:00">
+                2015-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/06/04/osx-config-xdebug/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/06/04/osx-config-xdebug/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/06/04/osx-config-xdebug/" class="leancloud_visitors" data-flag-title="osx配置xdebug">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、xdebug-工作原理"><a href="#一、xdebug-工作原理" class="headerlink" title="一、xdebug 工作原理"></a>一、xdebug 工作原理</h2><p>引用 xdebug 的文档：<a href="http://xdebug.org/docs/remote" target="_blank" rel="noopener">Communication Set-up</a> </p>
+<p>当远程调试时，xdebug 充当着客户端的角色，而 IDE 像是服务器，它会侦听调试端口，就是默认的9000，等待 xdebug 建立远程调试的连接。如下图所求：</p>
+<p><img src="/images/posts/xdebug/dbgp-setup.gif" alt=""></p>
+<ul>
+<li>The IP of the server is 10.0.1.2 with HTTP on port 80</li>
+<li>The IDE is on IP 10.0.1.42, so xdebug.remote_host is set to 10.0.1.42</li>
+<li>The IDE listens on port 9000, so xdebug.remote_port is set to 9000</li>
+<li>The HTTP request is started on the machine running the IDE</li>
+<li>Xdebug connects to 10.0.1.42:9000</li>
+<li>Debugging runs, HTTP Response provided</li>
+</ul>
+<p>当使用匿名IP时，是通过配置 xdebug.remote_connect_back，工作流程像下图所求：</p>
+<p><img src="/images/posts/xdebug/dbgp-setup2.gif" alt=""></p>
+<ul>
+<li>The IP of the server is 10.0.1.2 with HTTP on port 80</li>
+<li>The IDE is on an unknown IP, so xdebug.remote_connect_back is set to 1</li>
+<li>The IDE listens on port 9000, so xdebug.remote_port is set to 9000</li>
+<li>The HTTP request is made, Xdebug detects the IP addres from the HTTP headers</li>
+<li>Xdebug connects to the detected IP (10.0.1.42) on port 9000</li>
+<li>Debugging runs, HTTP Response provided</li>
+</ul>
+<p>当有了侦听端口的机制，那他们是如何配合起来工作的呢？</p>
+<p>HTTP Debug Sessions</p>
+<p>Xdebug 是依靠 cookies 来跟踪来自浏览器的请求. 工作流程是这样:</p>
+<ol>
+<li>使用GET或POST的请求参数：<code>XDEBUG_SESSION_START=name</code>， 当有请求参数时会忽略 <code>XDEBUG_SESSION</code> cookies 的值。</li>
+<li>设置请求的cookies值 <code>XDEBUG_SESSION</code></li>
+</ol>
+<p>当xdebug检测到 <code>XDEBUG_SESSION_START</code> 或 <code>XDEBUG_SESSION</code>时，会尝试连接调用的客户端</p>
+<p>当xdebug检测到 <code>XDEBUG_SESSION_STOP</code> 时，会终止调试。</p>
+<h2 id="二、配置-xdebug"><a href="#二、配置-xdebug" class="headerlink" title="二、配置 xdebug"></a>二、配置 xdebug</h2><p>首先安装 xdebug 模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pecl install xdebug</span><br></pre></td></tr></table></figure>
+<p>配置 <code>php.ini</code>:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[xdebug]</span></span><br><span class="line"><span class="attr">zend_extension</span>=/usr/local/Cellar/php56/<span class="number">5.6</span>.<span class="number">8</span>/lib/php/extensions/<span class="literal">no</span>-debug-non-zts-<span class="number">20131226</span>/xdebug.so</span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.remote_autostart=1 </span><br><span class="line">xdebug.remote_host=127.0.0.1</span><br><span class="line">xdebug.remote_port=9001</span><br><span class="line">xdebug.idekey = "PHPSTORM"</span><br></pre></td></tr></table></figure>
+<p><em>如何知道配置成功了？</em></p>
+<p>通过 <code>phpinfo()</code>，如何看到启动的模块中包含 xdebug 信息，且配置如上面所示，则表示成功了。</p>
+<h2 id="四、配置IDE"><a href="#四、配置IDE" class="headerlink" title="四、配置IDE"></a>四、配置IDE</h2><p>这里使用 phpstrom。</p>
+<ol>
+<li><p>配置 phpstorm 的侦听端口：</p>
+<p>  <img src="/images/posts/xdebug/phpstorm-debug-settings.png" alt=""></p>
+</li>
+<li><p>启动侦听端口</p>
+<p> <img src="/images/posts/xdebug/phpstorm-bug-phone.png" alt=""></p>
+</li>
+<li><p>（可选）安装浏览器插件，设置idekey<br>如果你使用不同的IDE调试，每个IDE的key是不一样的，你可以通过安装浏览器插件，让它配置key并插入cookies，比如chrome插件xdebug helper</p>
+<p> <img src="/images/posts/xdebug/xdebug-browser-extension.png" alt=""></p>
+</li>
+</ol>
+<p><em>如何知道IDE配置成功了？</em></p>
+<p>通过 terminal，执行 <code>sudo lsof -n -i4TCP:9001 | grep LISTEN</code>，如果看到IDE在侦听该端口，则表示成功了。</p>
+<h2 id="五、开始调试"><a href="#五、开始调试" class="headerlink" title="五、开始调试"></a>五、开始调试</h2><p>设置断点，然后浏览器打开要调试的url。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/06/03/osx-install-php-extension/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/06/03/osx-install-php-extension/" itemprop="url">osx安装php扩展</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-06-03T00:00:00+08:00">
+                2015-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/06/03/osx-install-php-extension/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/06/03/osx-install-php-extension/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/06/03/osx-install-php-extension/" class="leancloud_visitors" data-flag-title="osx安装php扩展">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、安装xcdoe命令行"><a href="#一、安装xcdoe命令行" class="headerlink" title="一、安装xcdoe命令行"></a>一、安装xcdoe命令行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+<h2 id="二、通过PECL来安装PHP扩展"><a href="#二、通过PECL来安装PHP扩展" class="headerlink" title="二、通过PECL来安装PHP扩展"></a>二、通过PECL来安装PHP扩展</h2><p>在 <code>/usr/lib/php</code> 目录下有个 <code>install-pear-nozlib.phar</code> 文件（怎么来的？），通过它首先安装 PECL 管理器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo php install-pear-nozlib.phar</span><br></pre></td></tr></table></figure>
+<h2 id="三、获取所需的扩展"><a href="#三、获取所需的扩展" class="headerlink" title="三、获取所需的扩展"></a>三、获取所需的扩展</h2><p>比如，我们安装 xdebug</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pecl install xdebug</span><br></pre></td></tr></table></figure>
+<h2 id="四、更新-php-配置文件"><a href="#四、更新-php-配置文件" class="headerlink" title="四、更新 php 配置文件"></a>四、更新 php 配置文件</h2><p>打开 <code>php.ini</code>，配置新获取的扩展（略）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/06/02/osx-commans/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1828,215 +2211,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/the-most-used-regular-expression/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/01/25/the-most-used-regular-expression/" itemprop="url">常用的正则表达式</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-25T00:00:00+08:00">
-                2015-01-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/program/" itemprop="url" rel="index">
-                    <span itemprop="name">program</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/01/25/the-most-used-regular-expression/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/01/25/the-most-used-regular-expression/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/01/25/the-most-used-regular-expression/" class="leancloud_visitors" data-flag-title="常用的正则表达式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
-<h3 id="2-邮箱"><a href="#2-邮箱" class="headerlink" title="2. 邮箱"></a>2. 邮箱</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^([a-z0<span class="number">-9</span>\+_\-]+)(\.[a-z0<span class="number">-9</span>\+_\-]+)*@([_a-z0<span class="number">-9</span>]+\.)+[a-z]&#123;<span class="number">2</span>,<span class="number">5</span>&#125;$/</span><br></pre></td></tr></table></figure>
-<h3 id="3-多个单词或"><a href="#3-多个单词或" class="headerlink" title="3. 多个单词或"></a>3. 多个单词或</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?:apple|banna)/</span><br></pre></td></tr></table></figure>
-<h3 id="4-不包含某个单词"><a href="#4-不包含某个单词" class="headerlink" title="4. 不包含某个单词"></a>4. 不包含某个单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^((?!hede).)*$/</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<ul>
-<li><a href="http://fineonly.com/solutions/regex-exclude-a-string" target="_blank" rel="noopener">Exclude a String</a></li>
-<li><a href="http://www.vaikan.com/regular-expression-to-match-string-not-containing-a-word/" target="_blank" rel="noopener">正则表达式里字符串”不包含”匹配技巧</a></li>
-<li><a href="http://stackoverflow.com/questions/2078915/a-regular-expression-to-exclude-a-word-string" target="_blank" rel="noopener">A regular expression to exclude a word/string</a></li>
-</ul>
-<h3 id="5-神奇的全部-ASCII-字符"><a href="#5-神奇的全部-ASCII-字符" class="headerlink" title="5. 神奇的全部 ASCII 字符"></a>5. 神奇的全部 ASCII 字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[ -~]/</span><br><span class="line">/[\x20-\x7E]/</span><br></pre></td></tr></table></figure>
-<p><strong>解释</strong>：<a href="http://www.asciitable.com/" target="_blank" rel="noopener">ASCII 表</a>中大于空格（0x20），小于~（0x7E）的字符为全部的<strong>打印</strong>字符。</p>
-<h3 id="6-处理-HTML-标签"><a href="#6-处理-HTML-标签" class="headerlink" title="6. 处理 HTML 标签"></a>6. 处理 HTML 标签</h3><p>参考：</p>
-<ul>
-<li><a href="http://haacked.com/archive/2004/10/25/usingregularexpressionstomatchhtml.aspx/" target="_blank" rel="noopener">Using a Regular Expression to Match HTML</a></li>
-<li><a href="http://www.pagecolumn.com/tool/all_about_html_tags.htm" target="_blank" rel="noopener">All about HTML tags</a></li>
-</ul>
-<h3 id="7-使用空格分隔中文和英文单词"><a href="#7-使用空格分隔中文和英文单词" class="headerlink" title="7. 使用空格分隔中文和英文单词"></a>7. 使用空格分隔中文和英文单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">([\x&#123;4E00&#125;-\x&#123;9FA5&#125;])([a-z0-9@#&amp;;=_\[\$\%\^\*\-\+\(\/]+)</span><br><span class="line"></span><br><span class="line">$<span class="number">1</span> $<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">Modifier</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">i</td>
-<td style="text-align:left">Perform case-insensitive matching</td>
-</tr>
-<tr>
-<td style="text-align:center">g</td>
-<td style="text-align:left">Perform a global match (find all matches rather than stopping after the first match)</td>
-</tr>
-<tr>
-<td style="text-align:center">m</td>
-<td style="text-align:left">Perform multiline matching</td>
-</tr>
-</tbody>
-</table>
-<p>收集了一些总结的很好的文章：</p>
-<ul>
-<li><a href="http://www.cnblogs.com/zxin/archive/2013/01/26/2877765.html" target="_blank" rel="noopener">最全的常用正则表达式大全</a></li>
-<li><a href="http://www.regular-expressions.info/lookaround.html" target="_blank" rel="noopener">regular-expressions.info</a></li>
-<li><a href="http://regexr.com/30npe" target="_blank" rel="noopener">RegExr</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/linux-commands/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2210,261 +2384,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/10/development-shortcuts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/01/10/development-shortcuts/" itemprop="url">我的快捷键</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-10T00:00:00+08:00">
-                2015-01-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/computer/" itemprop="url" rel="index">
-                    <span itemprop="name">computer</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/01/10/development-shortcuts/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/01/10/development-shortcuts/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/01/10/development-shortcuts/" class="leancloud_visitors" data-flag-title="我的快捷键">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h2><ul>
-<li><code>Ctrl</code> + <code>J</code> ： 智能提示</li>
-<li><code>Ctrl</code> + <code>,</code> ： Display Navigate-To dialog box，大爱</li>
-<li><code>Ctrl</code> + <code>]</code> ： Go to matching brace in source file</li>
-<li><code>Ctrl</code> + <code>Shift</code> + <code>]</code> : Extend selection to nexst brace</li>
-<li><code>Ctrl</code> + <code>Alt</code> + <code>F</code>： 搜索文件，尤其是整个项目</li>
-<li><code>F3</code> / <code>Shift</code> + <code>F3</code> : Find next / find previous</li>
-<li><code>Ctrl</code> + <code>W</code> ： Select current word</li>
-<li><code>Ctrl</code> + <code>l</code> ： Delete current line or selection of lines to and add to clipboard</li>
-<li><code>Ctrl</code> + <code>Shift</code> + <code>Enter</code> ：Enter blank line below cursor</li>
-<li><code>Ctrl</code> + <code>Shift</code> + <code>u</code> ： Make uppercase</li>
-<li><code>Ctrl</code> + <code>u</code> ： Make lowercase (reverse upercase)</li>
-<li><code>Ctrl</code> + <code>k</code> + <code>c</code> : Comment selected text</li>
-<li><code>Ctrl</code> + <code>k</code> + <code>u</code> : Uncomment selected text</li>
-<li><code>Ctrl</code> + <code>k</code> + <code>d</code> : Format document to code formatting settings</li>
-<li><code>Ctrl</code> + <code>k</code> + <code>f</code> : Format selection to code formatting settings</li>
-<li><code>F5</code> : Start debugging</li>
-<li><code>Ctrl</code> + <code>F5</code> : Bypass debugger</li>
-<li><code>F10</code> ： Debug / step over</li>
-<li><code>Shift</code> + <code>F11</code> ： Debug / step out</li>
-<li><code>Ctrl</code> + <code>F10</code> ： Debug / run to cursor</li>
-</ul>
-<h2 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h2><ul>
-<li><code>Ctrl</code> + <code>W</code> ： 关闭 Tab</li>
-<li><code>Ctrl</code> + <code>T</code> ： 新建 Tab</li>
-<li><code>Ctrl</code> + <code>Shift</code> + <code>T</code>： 恢复上一个关闭的 Tab</li>
-<li><code>Ctrl</code> + <code>L</code> ： 定位到 Location Bar</li>
-<li><code>Ctrl</code> + <code>F</code> ： 搜索页面</li>
-<li><code>F12</code> ： 开发者模式</li>
-<li><code>Ctrl</code> + <code>Shift</code> + <code>F</code> ： 搜索全部资源</li>
-<li><code>Ctrl</code> + <code>Shift</code> + <code>Del</code> ： 清除缓存</li>
-</ul>
-<h2 id="Eclipse"><a href="#Eclipse" class="headerlink" title="Eclipse"></a>Eclipse</h2><ul>
-<li><code>Ctrl</code> + <code>Space</code> ： 智能提示</li>
-<li><code>Ctrl</code> + <code>Shift</code> + <code>R</code> ： 搜索全部资源</li>
-</ul>
-<h2 id="UE"><a href="#UE" class="headerlink" title="UE"></a>UE</h2><ul>
-<li><code>Ctrl</code> + <code>R</code> ： 替换</li>
-</ul>
-<h2 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h2><h3 id="按键"><a href="#按键" class="headerlink" title="按键"></a>按键</h3><ul>
-<li><img src="/images/posts/shortcuts/menusym-command.gif" alt=""> : Command/Apple Key (like Control on a PC) Also written as Cmd</li>
-<li><img src="/images/posts/shortcuts/menusym-option.gif" alt=""> : Option (like Alt on a PC)</li>
-<li><img src="/images/posts/shortcuts/menusym-shift.gif" alt=""> : Shift</li>
-<li><img src="/images/posts/shortcuts/menusym-control.gif" alt=""> : Control (Control-click = Right-click)</li>
-<li><img src="/images/posts/shortcuts/menusym-tab.gif" alt=""> : Tab</li>
-<li><img src="/images/posts/shortcuts/menusym-return.gif" alt=""> : Return</li>
-<li><img src="/images/posts/shortcuts/menusym-enter.gif" alt=""> : Enter (on Number Pad)</li>
-<li><img src="/images/posts/shortcuts/menusym-eject.gif" alt=""> : Eject</li>
-<li><img src="/images/posts/shortcuts/menusym-escape.gif" alt=""> : Escape</li>
-<li><img src="/images/posts/shortcuts/menusym-pageup.gif" alt=""> : Page Up</li>
-<li><img src="/images/posts/shortcuts/menusym-pagedown.gif" alt=""> : Page Down</li>
-<li><img src="/images/posts/shortcuts/menusym-home.gif" alt=""> : Home</li>
-<li><img src="/images/posts/shortcuts/menusym-end.gif" alt=""> : End</li>
-<li><img src="/images/posts/shortcuts/menusym-arrowkeys.gif" alt=""> : Arrow Keys</li>
-<li><img src="/images/posts/shortcuts/menusym-delete.gif" alt=""> : Delete Left (like Backspace on a PC)</li>
-<li><img src="/images/posts/shortcuts/menusym-delete-forward.gif" alt=""> : Delete Right (also called Forward Delete)</li>
-</ul>
-<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul>
-<li><code>Cmd</code> + <code>Shift</code> + <code>3</code> ： Take picture of the entire screen</li>
-<li><code>Cmd</code> + <code>Shift</code> + <code>4</code> ： Take picture of a selected area</li>
-<li><code>Cmd</code> + <code>Shift</code> + <code>4</code> -&gt; <code>Space</code>： Cmd-Shift-4, then press Spacebar, then Click on the window/object</li>
-<li><code>Cmd</code> + <code>Opt</code> + <code>Esc</code> ： Force Quit (displayed list of apps)</li>
-</ul>
-<h2 id="XCode"><a href="#XCode" class="headerlink" title="XCode"></a>XCode</h2><ul>
-<li><code>Esc</code> ： 智能提示</li>
-</ul>
-<h2 id="PHPStorm"><a href="#PHPStorm" class="headerlink" title="PHPStorm"></a>PHPStorm</h2><ul>
-<li><code>SHIFT</code> + <code>SHIFT</code> ： 智能查找</li>
-<li><code>SHIFT</code> + <code>F6</code> ： 智能提示</li>
-<li><code>CTRL</code> + <code>D</code> ： 复制当前行或复制选中内容</li>
-<li><code>CTRL</code> + <code>Y</code> ： 删除当前行或选中内容所涉及的行</li>
-<li><code>CTRL</code> + <code>R</code> ： 查找替换</li>
-<li><code>ALT</code> + <code>W</code> ： 选中单词</li>
-<li><code>ALT</code> + <code>上下箭头</code> ： 向上向下函数间切换</li>
-<li><code>CTRL</code> + <code>SHIFT</code> + <code>V</code> ： 显示最近粘贴板中的内容，选择后内容插入到光标位置</li>
-<li><code>CTRL</code> + <code>Q</code> ： 显示说明文档</li>
-<li><code>CTRL</code> + <code>B</code> ： 跳转到声明处</li>
-<li><code>CTRL</code> + <code>N</code> ： 类名查找</li>
-<li><code>CTRL</code> + <code>SHIFT</code> + <code>N</code> ： 文件名查找</li>
-<li><code>CTRL</code> + <code>SHIFT</code> + <code>ALT</code> + <code>N</code> ： 函数名查找</li>
-<li><code>ALT</code> + <code>SHIFT</code> + <code>C</code> ： 快速回顾最近修改的项目</li>
-<li><code>CTRL</code> + <code>SHIFT</code> + <code>I</code> ： 查看变量初始化的值</li>
-<li><code>CTRL</code> + <code>ALT</code> + <code>T</code> ： 插入环绕代码</li>
-<li><code>CTRL</code> + <code>ALT</code> + <code>F12</code> ： 跳转至当前文件所在磁盘上的位置</li>
-<li><code>ALT</code> + <code>左右键</code> ： 标签切换</li>
-<li><code>CTRL</code> + <code>F12</code> ： 在当前类文件中快速查找方法</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2514,7 +2438,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2525,7 +2449,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2536,7 +2460,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
