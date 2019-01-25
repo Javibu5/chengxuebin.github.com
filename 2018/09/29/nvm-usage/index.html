@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="Ironbin">
 <meta property="og:description" content="通过 Homebrew 安装1% brew install nvm">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-12T07:37:18.000Z">
+<meta property="og:updated_time" content="2019-01-19T02:09:12.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NVM 用法">
 <meta name="twitter:description" content="通过 Homebrew 安装1% brew install nvm">
@@ -457,6 +457,8 @@
 <a id="more"></a>
 <h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
 <h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装-node"><a href="#安装-node" class="headerlink" title="安装 node"></a>安装 node</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> nvm install 6.14.4</span></span><br></pre></td></tr></table></figure>
+<h3 id="切换-node-版本"><a href="#切换-node-版本" class="headerlink" title="切换 node 版本"></a>切换 node 版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> nvm use 6.14.4</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -507,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/29/brew-usage/" rel="next" title="Homebrew 用法">
-                <i class="fa fa-chevron-left"></i> Homebrew 用法
+              <a href="/2018/09/26/mysqldump/" rel="next" title="mysqldump 用法">
+                <i class="fa fa-chevron-left"></i> mysqldump 用法
               </a>
             
           </div>
@@ -517,8 +519,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/09/payments/" rel="prev" title="集成微信和支付宝支付">
-                集成微信和支付宝支付 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/29/brew-usage/" rel="prev" title="Homebrew 用法">
+                Homebrew 用法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -607,7 +609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -618,7 +620,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -629,7 +631,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -716,7 +718,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Homebrew-安装"><span class="nav-number">1.</span> <span class="nav-text">通过 Homebrew 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看已安装软件信息"><span class="nav-number">2.</span> <span class="nav-text">查看已安装软件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装、卸载、升级"><span class="nav-number">3.</span> <span class="nav-text">安装、卸载、升级</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-Homebrew-安装"><span class="nav-number">1.</span> <span class="nav-text">通过 Homebrew 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看已安装软件信息"><span class="nav-number">2.</span> <span class="nav-text">查看已安装软件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装、卸载、升级"><span class="nav-number">3.</span> <span class="nav-text">安装、卸载、升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-node"><span class="nav-number">4.</span> <span class="nav-text">安装 node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换-node-版本"><span class="nav-number">5.</span> <span class="nav-text">切换 node 版本</span></a></li></ol></div>
             
 
           </div>
@@ -743,7 +745,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
   </span>

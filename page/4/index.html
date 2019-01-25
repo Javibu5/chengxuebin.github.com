@@ -338,6 +338,714 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/10/13/spring-mvc-static-resource/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/13/spring-mvc-static-resource/" itemprop="url">SpringMVC 静态资源缓存</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-13T00:00:00+08:00">
+                2017-10-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/13/spring-mvc-static-resource/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/13/spring-mvc-static-resource/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/10/13/spring-mvc-static-resource/" class="leancloud_visitors" data-flag-title="SpringMVC 静态资源缓存">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="ResourceHttpRequestHandler"><a href="#ResourceHttpRequestHandler" class="headerlink" title="ResourceHttpRequestHandler"></a>ResourceHttpRequestHandler</h2><p><code>ResourceHttpRequestHandler</code> 可以使用 <code>ResourceResolvers</code> 和 <code>ResourceTransformers</code> 来优化处理静态资源。处理过程如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Request for Resource</span><br><span class="line">     |</span><br><span class="line">     | HTTP request</span><br><span class="line">     v</span><br><span class="line"> Resolvers chain: FirstResolver, SecondResolver, ThirdResolver</span><br><span class="line"> (each resolver can return the resource or delegate to the next one)</span><br><span class="line">     |</span><br><span class="line">     | Resolved Resource</span><br><span class="line">     v</span><br><span class="line"> Transformers chain: FirstTransformer, SecondTransformer</span><br><span class="line"> (each transformer can transform the resource or just pass it along without modification)</span><br><span class="line">     |</span><br><span class="line">     | Transformed Resource</span><br><span class="line">     v</span><br><span class="line"> HTTP Response with Resource content</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/13/spring-mvc-static-resource/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/09/25/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/25/webpack/" itemprop="url">新接触 Webpack</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-25T00:00:00+08:00">
+                2017-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/25/webpack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/25/webpack/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/09/25/webpack/" class="leancloud_visitors" data-flag-title="新接触 Webpack">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Error-Couldn’t-find-preset-“es2015”-relative-to-directory-“-Users-username”"><a href="#Error-Couldn’t-find-preset-“es2015”-relative-to-directory-“-Users-username”" class="headerlink" title="Error: Couldn’t find preset “es2015” relative to directory “/Users/username”"></a>Error: Couldn’t find preset “es2015” relative to directory “/Users/username”</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-cli babel-preset-es2015</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/25/webpack/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/08/17/intellij-config-server-xml/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/17/intellij-config-server-xml/" itemprop="url">指定 IntelliJ 使用的 server.xml</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-17T00:00:00+08:00">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/17/intellij-config-server-xml/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/17/intellij-config-server-xml/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/08/17/intellij-config-server-xml/" class="leancloud_visitors" data-flag-title="指定 IntelliJ 使用的 server.xml">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="打开-IntelliJ-的配置"><a href="#打开-IntelliJ-的配置" class="headerlink" title="打开 IntelliJ 的配置"></a>打开 IntelliJ 的配置</h3><p>进入 <code>Startup/Connection</code> 标签页</p>
+<p><img src="/images/posts/intellij_config/config-1.png" alt=""></p>
+<h3 id="编辑-Startup-Script"><a href="#编辑-Startup-Script" class="headerlink" title="编辑 Startup Script"></a>编辑 <code>Startup Script</code></h3><p>取消选择 <code>Use Default</code>，点击编辑按钮，进入参数编辑窗口</p>
+<p><img src="/images/posts/intellij_config/config-2.png" alt=""></p>
+<h3 id="添加-Program-Arguments"><a href="#添加-Program-Arguments" class="headerlink" title="添加 Program Arguments"></a>添加 <code>Program Arguments</code></h3><p>在 <code>run</code> 后添加配置文件的地址：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">run -config /usr/local/apache-tomcat-8.0.26/conf/server.xml</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/17/intellij-config-server-xml/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/22/build-nwjs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/22/build-nwjs/" itemprop="url">编译 NW.js</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-22T00:00:00+08:00">
+                2017-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nwjs/" itemprop="url" rel="index">
+                    <span itemprop="name">nwjs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/22/build-nwjs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/22/build-nwjs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/06/22/build-nwjs/" class="leancloud_visitors" data-flag-title="编译 NW.js">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文讨论的是 NW.js 13.x 在 Windows 操作系统的编译过程。使用这一版，主要因为其支持 <code>xp</code> 和 <code>npapi</code>。</p>
+<p>NW.js 13.x 的文档在 <a href="http://docs.nwjs.io/en/v0.13.0-beta7/For%20Developers/Building%20NW.js/" target="_blank" rel="noopener">v0.13.0-beta7</a>，在<a href="https://github.com/nwjs/nw.js/tree/nw13/docs" target="_blank" rel="noopener">这里</a>下载</p>
+<p>NW.js 本身是一个浏览器的应用（Packaged App），它的实现思路是在每一个 <code>Chromium</code> 稳定发布版的基础上，打上补丁，以支持 <code>Node.js</code> 等功能。下面是 NW.js 打补丁的几个仓库：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">path</th>
+<th style="text-align:left">repo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">src/content/nw</td>
+<td style="text-align:left"><a href="https://github.com/nwjs/nw.js" target="_blank" rel="noopener">https://github.com/nwjs/nw.js</a></td>
+</tr>
+<tr>
+<td style="text-align:left">src/third_party/node-nw</td>
+<td style="text-align:left"><a href="https://github.com/nwjs/node" target="_blank" rel="noopener">https://github.com/nwjs/node</a></td>
+</tr>
+<tr>
+<td style="text-align:left">src/v8</td>
+<td style="text-align:left"><a href="https://github.com/nwjs/v8" target="_blank" rel="noopener">https://github.com/nwjs/v8</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>安装 <code>depot_tools</code></li>
+<li>安装 <code>DirectX SDK</code></li>
+</ul>
+<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><h4 id="1-创建配置文件"><a href="#1-创建配置文件" class="headerlink" title="1. 创建配置文件"></a>1. 创建配置文件</h4><p>创建一个目录，然后执行下面语句，生成配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient config --name=src https://github.com/nwjs/chromium.src.git@origin/nw13</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/22/build-nwjs/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/11/decrypt-https-tools/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1493,763 +2201,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/06/02/windows-commands/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/02/windows-commands/" itemprop="url">windows 常用命令</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-02T00:00:00+08:00">
-                2017-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/02/windows-commands/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/02/windows-commands/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/06/02/windows-commands/" class="leancloud_visitors" data-flag-title="windows 常用命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="一、网络"><a href="#一、网络" class="headerlink" title="一、网络"></a>一、网络</h2><h3 id="查看谁在侦听端口"><a href="#查看谁在侦听端口" class="headerlink" title="查看谁在侦听端口"></a>查看谁在侦听端口</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -np &lt;protocol&gt; | find "port #"</span><br><span class="line"></span><br><span class="line">netstat -np TCP | find "80"</span><br></pre></td></tr></table></figure>
-<h3 id="打开-Internet-网络设置"><a href="#打开-Internet-网络设置" class="headerlink" title="打开 Internet 网络设置"></a>打开 Internet 网络设置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inetcpl.cpl</span><br></pre></td></tr></table></figure>
-<p>其它的控制命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">appwiz.cpl</span><br><span class="line">bthprops.cpl</span><br><span class="line">desk.cpl</span><br><span class="line">Firewall.cpl</span><br><span class="line">hdwwiz.cpl</span><br><span class="line">igfxCPL.cpl</span><br><span class="line">inetcpl.cpl</span><br><span class="line">intl.cpl</span><br><span class="line">irprops.cpl</span><br><span class="line">joy.cpl</span><br><span class="line">main.cpl</span><br><span class="line">mmsys.cpl</span><br><span class="line">ncpa.cpl</span><br><span class="line">powercfg.cpl</span><br><span class="line">sysdm.cpl</span><br><span class="line">TabletPC.cpl</span><br><span class="line">telephon.cpl</span><br><span class="line">timedate.cpl</span><br><span class="line">wscui.cpl</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/02/windows-commands/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/05/25/visual-studio-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/25/visual-studio-tips/" itemprop="url">Visual Studio 提高效率方法和工具</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T00:00:00+08:00">
-                2017-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vs/" itemprop="url" rel="index">
-                    <span itemprop="name">vs</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/25/visual-studio-tips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/25/visual-studio-tips/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/05/25/visual-studio-tips/" class="leancloud_visitors" data-flag-title="Visual Studio 提高效率方法和工具">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="为多行注释开头添加空格"><a href="#为多行注释开头添加空格" class="headerlink" title="为多行注释开头添加空格"></a>为多行注释开头添加空格</h3><p>一般情况下可以通过快捷键 <code>CTRL+K+C</code> 来添加注释：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//A</span></span><br><span class="line"><span class="comment">//B</span></span><br><span class="line"><span class="comment">//C</span></span><br></pre></td></tr></table></figure>
-<p>但是，我更习惯在每行内容的开头添加一个空格：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// A</span></span><br><span class="line"><span class="comment">// B</span></span><br><span class="line"><span class="comment">// C</span></span><br></pre></td></tr></table></figure>
-<p>这是一个实现的方法：<a href="https://stackoverflow.com/questions/14027598/how-to-comment-multiple-lines-with-space-or-indent" target="_blank" rel="noopener">How to comment multiple lines with space or indent</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/04/26/cef-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/26/cef-tips/" itemprop="url">编译 CEF</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T00:00:00+08:00">
-                2017-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cef/" itemprop="url" rel="index">
-                    <span itemprop="name">cef</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/26/cef-tips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/26/cef-tips/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/26/cef-tips/" class="leancloud_visitors" data-flag-title="编译 CEF">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="项目与分支"><a href="#项目与分支" class="headerlink" title="项目与分支"></a>项目与分支</h2><p><strong>内容来自官方文档<a href="https://bitbucket.org/chromiumembedded/cef/wiki/BranchesAndBuilding.md" target="_blank" rel="noopener">BranchesAndBuilding</a></strong></p>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>CEF 是 Chromium 项目的一个扩展，跟踪其分支。可通过自动工具或手动编译。</p>
-<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><p>CEF 的 master 分支跟踪 Chromium 的 master 分支，不建议用其产品化。</p>
-<p>下载开发版 CEF</p>
-<p>CEF3 - <a href="https://bitbucket.org/chromiumembedded/cef/src?at=master" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src?at=master</a></p>
-<p>CEF1 已不再支持。</p>
-<h3 id="发布（Release）分支"><a href="#发布（Release）分支" class="headerlink" title="发布（Release）分支"></a>发布（Release）分支</h3><p>CEF 的发布分支跟踪 Chromium 的 release 里程碑（milesone）MXX 分支，推荐使用其产品化：</p>
-<ul>
-<li>基于 Chromium release </li>
-<li>更好的测试</li>
-<li>CEF API 维护不变，仅做 bug 和安全修复</li>
-<li>CEF 必要时可包含 Blink 补丁</li>
-<li>不受 CEF master 分支推进影响</li>
-</ul>
-<p>CEF 版本 <strong> X.YYYY.A.gHHHHHHH</strong>：</p>
-<ul>
-<li>X：主版本号（当前为 3）</li>
-<li>YYYY：Chromium 分支</li>
-<li>A：自增值，反映当前分支的版本值。可表示基于同一分支，各版本的顺序，用于修复 bug 等的版本提升</li>
-<li>gHHHHHHH：7位字符反映 git 提交哈希，便于定位 git 历史</li>
-</ul>
-<p>版本的详细信息保存在 <code>include/cef_version.h</code> 头文件中，也可以通过生成的应用访问 <code>about:version</code> 查看。</p>
-<p>CEF release 分支下载规则，YYYY 对应4位 Chromium release 分支号：</p>
-<ul>
-<li><a href="https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/YYYY?at=YYYY</a></li>
-</ul>
-<p>比如： <a href="https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623" target="_blank" rel="noopener">https://bitbucket.org/chromiumembedded/cef/src/2623?at=2623</a></p>
-<h2 id="编译-CEF"><a href="#编译-CEF" class="headerlink" title="编译 CEF"></a>编译 CEF</h2><h3 id="下载文档"><a href="#下载文档" class="headerlink" title="下载文档"></a>下载文档</h3><p>首先要下载文档仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://bitbucket.org/chromiumembedded/cef.git/wiki</span><br></pre></td></tr></table></figure>
-<p>然后将文档检出到需要编译的版本，比如 2623</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 0625af2618b7f15660146acd769142144e5a48c9</span><br></pre></td></tr></table></figure>
-<h3 id="生成项目文件"><a href="#生成项目文件" class="headerlink" title="生成项目文件"></a>生成项目文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src\cef </span><br><span class="line">create.bat</span><br></pre></td></tr></table></figure>
-<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src </span><br><span class="line">ninja -C out\Release</span><br></pre></td></tr></table></figure>
-<h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>编译成功之后，运行 <code>out\Release\cefclient.exe</code></p>
-<h3 id="打包导出"><a href="#打包导出" class="headerlink" title="打包导出"></a>打包导出</h3><p>执行打包脚本</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd src\cef\tools</span><br><span class="line">make_distrib.bat --ninja-build</span><br></pre></td></tr></table></figure>
-<p>打包成功后，在 <code>src/cef/binary_distrib</code> 目录会生成二进制的包</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="NPAPI-启用情况"><a href="#NPAPI-启用情况" class="headerlink" title="NPAPI 启用情况"></a>NPAPI 启用情况</h3><p>查看当前版本 NPAPI 是否已经启用，可以打开 <code>Dev Tools</code> -&gt; <code>Console</code> 执行：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">navigator.plugins</span><br></pre></td></tr></table></figure>
-<p>检查每个插件的情况，一般 NPAPI 插件会以 np 开头。</p>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
-<li><a href="https://bitbucket.org/chromiumembedded/cef/downloads/?tab=branches" target="_blank" rel="noopener">CEF branches</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/04/25/extension-content-script/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/25/extension-content-script/" itemprop="url">Chrome 扩展之： Content Script</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T00:00:00+08:00">
-                2017-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chrome/" itemprop="url" rel="index">
-                    <span itemprop="name">chrome</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/04/25/extension-content-script/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/25/extension-content-script/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/04/25/extension-content-script/" class="leancloud_visitors" data-flag-title="Chrome 扩展之： Content Script">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><h2 id="1-1-使用场景"><a href="#1-1-使用场景" class="headerlink" title="1.1 使用场景"></a>1.1 使用场景</h2><p><code>Content Script</code> 是一个很神奇的东西。它可以读取和修改页面内容。比如一些应用场景</p>
-<ul>
-<li>过滤广告：将页面中的广告区块过滤掉，只显示主要内容</li>
-<li>翻译页面中的外语</li>
-<li>分享页面内容到社交平台</li>
-</ul>
-<h3 id="1-2-限制"><a href="#1-2-限制" class="headerlink" title="1.2 限制"></a>1.2 限制</h3><ul>
-<li>Use chrome.* APIs, with the exception of:<ul>
-<li>extension ( getURL , inIncognitoContext , lastError , onRequest , sendRequest )</li>
-<li>i18n</li>
-<li>runtime ( connect , getManifest , getURL , id , onConnect , onMessage , sendMessage )</li>
-<li>storage</li>
-</ul>
-</li>
-<li>不能使用扩展页面中的变量和方法</li>
-<li>不能使用定义在其它扩展的 Content Script 中的变量和方法</li>
-</ul>
-<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2 使用"></a>2 使用</h2><h3 id="2-1-Manifest"><a href="#2-1-Manifest" class="headerlink" title="2.1 Manifest"></a>2.1 Manifest</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"My extension"</span>,</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">"content_scripts"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"matches"</span>: [<span class="string">"http://www.google.com/*"</span>],</span><br><span class="line">      <span class="string">"css"</span>: [<span class="string">"mystyles.css"</span>],</span><br><span class="line">      <span class="string">"js"</span>: [<span class="string">"jquery.js"</span>, <span class="string">"myscript.js"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">"permissions"</span>: [</span><br><span class="line">    <span class="string">"tabs"</span>, <span class="string">"http://www.google.com/*"</span></span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-2-注入"><a href="#2-2-注入" class="headerlink" title="2.2 注入"></a>2.2 注入</h3><h4 id="2-2-1-与-browserAction-配合"><a href="#2-2-1-与-browserAction-配合" class="headerlink" title="2.2.1 与 browserAction 配合"></a>2.2.1 与 <code>browserAction</code> 配合</h4><p>注入并执行一段代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chrome.browserAction.onClicked.addListener(<span class="function"><span class="keyword">function</span>(<span class="params">tab</span>) </span>&#123;</span><br><span class="line">  chrome.tabs.executeScript(&#123;</span><br><span class="line">    code: <span class="string">'document.body.style.backgroundColor="red"'</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>执行上面的代码先获取权限：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"permissions"</span>: [</span><br><span class="line">  <span class="string">"activeTab"</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-<p>或直接执行一个文件：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome.tabs.executeScript(<span class="literal">null</span>, &#123;<span class="attr">file</span>: <span class="string">"content_script.js"</span>&#125;);</span><br></pre></td></tr></table></figure>
-<p><code>blocking</code> 会将回调函数设置为同步处理，请求会等待回调完成。使用该参数需要在 <code>permission</code> 中添加 <code>webRequestBlocking</code> 权限。</p>
-<h3 id="2-2-2-获取资源文件-URL"><a href="#2-2-2-获取资源文件-URL" class="headerlink" title="2.2.2 获取资源文件 URL"></a>2.2.2 获取资源文件 URL</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/Code <span class="keyword">for</span> displaying &lt;extensionDir&gt;<span class="regexp">/images/myim</span>age.png:</span><br><span class="line"><span class="keyword">var</span> imgURL = chrome.extension.getURL(<span class="string">"images/myimage.png"</span>);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"someImage"</span>).src = imgURL;</span><br></pre></td></tr></table></figure>
-<h2 id="3-要点"><a href="#3-要点" class="headerlink" title="3 要点"></a>3 要点</h2><h3 id="3-1-ContentScript-在独立环境运行"><a href="#3-1-ContentScript-在独立环境运行" class="headerlink" title="3.1 ContentScript 在独立环境运行"></a>3.1 ContentScript 在独立环境运行</h3><h3 id="3-2-注入的方式"><a href="#3-2-注入的方式" class="headerlink" title="3.2 注入的方式"></a>3.2 注入的方式</h3><h4 id="3-2-1-整个文件"><a href="#3-2-1-整个文件" class="headerlink" title="3.2.1 整个文件"></a>3.2.1 整个文件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> add "script.js" to web_accessible_resources in manifest.json</span></span><br><span class="line">s.src = chrome.extension.getURL(<span class="string">'script.js'</span>);</span><br><span class="line">s.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.remove(); <span class="comment">// 执行完后清理注入标签</span></span><br><span class="line">&#125;;</span><br><span class="line">(<span class="built_in">document</span>.head || <span class="built_in">document</span>.documentElement).appendChild(s);</span><br></pre></td></tr></table></figure>
-<p><strong>注意：</strong> 将 <code>script.js</code> 加入到 <a href="https://developer.chrome.com/extensions/manifest/web_accessible_resources" target="_blank" rel="noopener">“web_accessible_resources”</a></p>
-<h4 id="3-2-2-代码片段"><a href="#3-2-2-代码片段" class="headerlink" title="3.2.2 代码片段"></a>3.2.2 代码片段</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> actualCode = <span class="string">`// Code here.</span></span><br><span class="line"><span class="string">// If you want to use a variable, use $ and curly braces.</span></span><br><span class="line"><span class="string">// For example, to use a fixed random number:</span></span><br><span class="line"><span class="string">var someFixedRandomValue = <span class="subst">$&#123; <span class="built_in">Math</span>.random() &#125;</span>;</span></span><br><span class="line"><span class="string">// NOTE: Do not insert unsafe variables in this way, see below</span></span><br><span class="line"><span class="string">// at "Dynamic values in the injected code"</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">script.textContent = actualCode;</span><br><span class="line">(<span class="built_in">document</span>.head||<span class="built_in">document</span>.documentElement).appendChild(script);</span><br><span class="line">script.remove();</span><br></pre></td></tr></table></figure>
-<h4 id="3-2-3-更多方式"><a href="#3-2-3-更多方式" class="headerlink" title="3.2.3 更多方式"></a>3.2.3 更多方式</h4><p>参见： <a href="http://stackoverflow.com/questions/9515704/insert-code-into-the-page-context-using-a-content-script/9517879#9517879" target="_blank" rel="noopener">Insert code into the page context using a content script</a></p>
-<h3 id="3-3-注入的时机"><a href="#3-3-注入的时机" class="headerlink" title="3.3 注入的时机"></a>3.3 注入的时机</h3><h4 id="3-3-1-document-start"><a href="#3-3-1-document-start" class="headerlink" title="3.3.1 document_start"></a>3.3.1 document_start</h4><ul>
-<li>在 <code>document.readyState</code> 事件前被触发。</li>
-<li><p>document.head 和 document.body 还不可用，只有 documentElement</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.createElement (<span class="string">"script"</span>);</span><br><span class="line">s.src = <span class="string">"http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"</span>;</span><br><span class="line">s.async = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">document</span>.documentElement.appendChild (s);</span><br></pre></td></tr></table></figure>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.createElement (<span class="string">"script"</span>);</span><br><span class="line">s.src = chrome.extension.getURL (<span class="string">"MyPwnCode.js"</span>);</span><br><span class="line">s.async = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">document</span>.documentElement.appendChild (s);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果需要操作其它 DOM，可以等待 <code>DOMContentLoaded</code> 事件</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, fireContentLoadedEvent, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fireContentLoadedEvent</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log (<span class="string">"DOMContentLoaded"</span>);</span><br><span class="line">    <span class="comment">// PUT YOUR CODE HERE.</span></span><br><span class="line">    <span class="comment">//document.body.textContent = "Changed this!";</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="3-3-2-document-end"><a href="#3-3-2-document-end" class="headerlink" title="3.3.2 document_end"></a>3.3.2 document_end</h4><ul>
-<li>DOM 已解析完成</li>
-<li>资源如 image 和 frame 还没有加载（onload）</li>
-</ul>
-<h4 id="3-3-3-document-idle"><a href="#3-3-3-document-idle" class="headerlink" title="3.3.3 document_idle"></a>3.3.3 document_idle</h4><ul>
-<li>晚于 document_end，</li>
-<li>也晚于 window.onload</li>
-<li>DOM 已解析完成</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2304,7 +2255,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2315,7 +2266,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2326,7 +2277,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2424,7 +2375,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
   </span>

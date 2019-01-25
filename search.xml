@@ -3,6 +3,174 @@
   
     
     <entry>
+      <title><![CDATA[Linux 浏览器如何配置 PKCS#11 设备]]></title>
+      <url>/2019/01/25/linux-browser-config-pkcs11/</url>
+      <content type="html"><![CDATA[<p>Linux 常用的浏览器包括 Firefox 和 Chrome，这里演示如何为他们添加 PKCS#11（<a href="https://en.wikipedia.org/wiki/PKCS_11" target="_blank" rel="noopener">什么是 PKCS#11？</a>） 设备。</p>
+<p>在 Linux 平台上，不管是 Firefox 还是 Chrome 都是使用的 NSS（<a href="https://en.wikipedia.org/wiki/Network_Security_Services" target="_blank" rel="noopener">什么是 NSS？</a>） 来管理证书和安全设备。所以我们只需要知道如何管理 NSS，就可以实现配置这两个浏览器的安全设备配置。</p>
+<a id="more"></a>
+<h3 id="NSS-工具"><a href="#NSS-工具" class="headerlink" title="NSS 工具"></a>NSS 工具</h3><ul>
+<li>certutil</li>
+</ul>
+<p>文档参考<a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/certutil" target="_blank" rel="noopener">这里</a></p>
+<ul>
+<li>modutil</li>
+</ul>
+<p>文档参考<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Reference/NSS_tools_:_modutil" target="_blank" rel="noopener">这里</a></p>
+<h3 id="Firefox"><a href="#Firefox" class="headerlink" title="Firefox"></a>Firefox</h3><p>Firefox 自带安全设备的配置界面，所以直接通过界面添加 PKCS#11 设备。</p>
+<p><strong>第一步：打开配置</strong></p>
+<p><img src="/images/posts/nss/ff1.png" alt=""></p>
+<p><strong>第二步：进入安全设备管理</strong></p>
+<p><img src="/images/posts/nss/ff2.jpg" alt=""></p>
+<p><strong>第三步：载入安全设备</strong></p>
+<p><img src="/images/posts/nss/ff3.jpg" alt=""></p>
+<p><strong>第四步：载入成功</strong></p>
+<p><img src="/images/posts/nss/ff4.jpg" alt=""></p>
+<p><strong>第五步：输入 PKCS#11 设备 PIN 码</strong></p>
+<p><img src="/images/posts/nss/ff5.png" alt=""></p>
+<h3 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h3><p><strong>添加 PKCS#11 设备</strong></p>
+<p>添加或修改 nss 数据库前，先关闭 chrome 浏览器，然后打开终端，运行下面命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> modutil -dbdir sql:/home/user-x/.pki/nssdb/ -add <span class="string">"opensc"</span> -libfile  /home/user-x/Desktop/P11/libTFTknP11.so</span></span><br></pre></td></tr></table></figure>
+<p>添加成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Performing this operation while the browser is running could cause</span><br><span class="line">corruption of your security databases. If the browser is currently running,</span><br><span class="line">you should exit browser before continuing this operation. Type </span><br><span class="line">'q &lt;enter&gt;' to abort, or &lt;enter&gt; to continue: </span><br><span class="line"></span><br><span class="line">DeviceInfo: �2</span><br><span class="line">DeviceInfo: �2</span><br><span class="line">Module "opensc" added to database.</span><br></pre></td></tr></table></figure>
+<p><strong>查看设备列表</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo modutil -dbdir sql:/home/user-x/.pki/nssdb/ -list</span></span><br></pre></td></tr></table></figure>
+<p>显示结果，<code>2. opensc</code> 是新添加的设备</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Listing of PKCS #11 Modules</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">  1. NSS Internal PKCS #11 Module</span><br><span class="line">   slots: 2 slots attached</span><br><span class="line">  status: loaded</span><br><span class="line"></span><br><span class="line">   slot: NSS Internal Cryptographic Services</span><br><span class="line">  token: NSS Generic Crypto Services</span><br><span class="line"></span><br><span class="line">   slot: NSS User Private Key and Certificate Services</span><br><span class="line">  token: NSS Certificate DB</span><br><span class="line"></span><br><span class="line">  2. opensc</span><br><span class="line">  library name: /home/user-x/Desktop/P11/libTFTknP11.so</span><br><span class="line">   slots: 1 slot attached</span><br><span class="line">  status: loaded</span><br><span class="line"></span><br><span class="line">   slot: SDKEY Slot 0201</span><br><span class="line">  token: MY_TOKEN</span><br><span class="line">-----------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<p><strong>打开 Chrome 查看</strong></p>
+<p>通过 Chrome 打开 <code>chrome://settings/certificates</code>，浏览器会读取配置的 PKCS#11 设备，提醒用户输入设备 PIN 码</p>
+<p><img src="/images/posts/nss/chrome1.jpg" alt=""></p>
+<p><strong>访问双向验证网站</strong></p>
+<p>访问需要验证客户端证书的网站时，浏览器也会读取配置的 PKCS#11 设备，提醒用户输入设备 PIN 码</p>
+<p><img src="/images/posts/nss/chrome2.jpg" alt=""></p>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="1-SEC-ERROR-BAD-DATABASE"><a href="#1-SEC-ERROR-BAD-DATABASE" class="headerlink" title="1 SEC_ERROR_BAD_DATABASE"></a>1 SEC_ERROR_BAD_DATABASE</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Description of problem:</span><br><span class="line">apps get "SEC_ERROR_BAD_DATABASE: security library: bad database." error when they set db type by "sql:$&#123;DIR&#125;" (but work fine when type is set by NSS_DEFAULT_DB_TYPE env var)</span><br></pre></td></tr></table></figure>
+<p><strong>解决办法</strong></p>
+<p>数据库的路径没有写正确，需要使用<em>绝对路径</em>。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> browser </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+            <tag> 修理 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[HTC ONE（M8）刷机]]></title>
+      <url>/2019/01/13/htc-one-flash-rom/</url>
+      <content type="html"><![CDATA[<p>手中的一部 Verison HTC ONE 测试机是 4.0 系统，有些软件已经不能安装，抱着“老树开新花”的态度尝试搜了一下，果然已经有比较新的 6.0 系统了。首先用系统内的更新，由于手机是国外运营商版本，再加上更新源也在国外，系统内直接更新一直提示不成功。通过谷歌上查询，发现了一个 HTC 手机资源很全的网站，包含了 ROM 和 Firmware，以及刷机用的工具，比如第三方 Recovery。这里是网址：</p>
+<p><a href="https://forum.xda-developers.com/verizon-htc-one-m8/general/index-download-list-verizon-htc-one-m8-t3338285" target="_blank" rel="noopener">HTC 资源下载列表</a></p>
+<a id="more"></a>
+<p>那就开始更新吧！</p>
+<h3 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h3><ul>
+<li><code>电源</code> + <code>音量减</code>：手机进入 Bootloader</li>
+<li><code>电源</code> + <code>音量加</code>：强制重启</li>
+</ul>
+<h3 id="1-刷-Firmware"><a href="#1-刷-Firmware" class="headerlink" title="1 刷 Firmware"></a>1 刷 Firmware</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1 下载"></a>1.1 下载</h4><p>下载 <a href="https://qc3.androidfilehost.com/dl/p4aUy2hL8wtK0mkaFUxC2g/1547492410/24499762636007684/m8vzw_AllInOne_Firmware_6.21.605.3.zip" target="_blank" rel="noopener">m8vzw_AllInOne_Firmware_6.21.605.3.zip</a></p>
+<h4 id="1-2-刷入手机"><a href="#1-2-刷入手机" class="headerlink" title="1.2 刷入手机"></a>1.2 刷入手机</h4><ol>
+<li>firmware 下载到 SD 卡</li>
+<li>将手机重启到 fastboot 模式。开机同时按下电源+音量减</li>
+<li>连接手机和 PC</li>
+<li>将手机进入 RUU 模式：<code>fastboot oem rebootRUU</code></li>
+<li>开始刷入 zip：<code>fastboot flash zip firmware.zip</code></li>
+<li>手机会显示更新未完成，需要再执行一次：<code>fastboot flash zip firmware.zip</code></li>
+<li>重启进入bootloader：<code>fastboot reboot-bootloader</code></li>
+</ol>
+<h3 id="2-刷第三方-Recovery"><a href="#2-刷第三方-Recovery" class="headerlink" title="2 刷第三方 Recovery"></a>2 刷第三方 Recovery</h3><h4 id="2-1-下载镜像-IMG"><a href="#2-1-下载镜像-IMG" class="headerlink" title="2.1 下载镜像 IMG"></a>2.1 下载镜像 IMG</h4><p>下载 <a href="https://dl.twrp.me/m8/twrp-3.2.3-1-m8.img.html" target="_blank" rel="noopener">twrp-3.2.3-1-m8.img</a></p>
+<h4 id="2-2-下载-twrp-apk"><a href="#2-2-下载-twrp-apk" class="headerlink" title="2.2 下载 twrp apk"></a>2.2 下载 twrp apk</h4><p>通过 twrpapp 可以非常便捷的实现 root 和刷入镜像：</p>
+<p><a href="https://dl.twrp.me/twrpapp/me.twrp.twrpapp-26.apk.html" target="_blank" rel="noopener">twrpapp-26.apk</a></p>
+<h3 id="3-刷-ROM"><a href="#3-刷-ROM" class="headerlink" title="3 刷 ROM"></a>3 刷 ROM</h3><h4 id="2-1-下载-6-0-ROM"><a href="#2-1-下载-6-0-ROM" class="headerlink" title="2.1 下载 6.0 ROM"></a>2.1 下载 6.0 ROM</h4><p>参考这个<a href="https://forum.xda-developers.com/verizon-htc-one-m8/development/wip-4-17-605-9-stock-resources-firmware-t3196906" target="_blank" rel="noopener">页面</a>，直接下载 <a href="https://qc3.androidfilehost.com/dl/KyPIX5OAK-OoodvZb1iSPQ/1547492497/673368273298951216/6.21.605.3_M8_WL_M60_SENSE70_VZW_MR_AROMA-FINAL.zip" target="_blank" rel="noopener">6.21.605.3_M8_WL_M60_SENSE70_VZW_MR_AROMA-FINAL.zip</a></p>
+<h4 id="2-2-刷入-ROM"><a href="#2-2-刷入-ROM" class="headerlink" title="2.2 刷入 ROM"></a>2.2 刷入 ROM</h4><ol>
+<li>将 rom 保存到 SD 卡</li>
+<li>将手机重启到 fastboot 模式。开机同时按下电源+音量减</li>
+<li>连接手机和 PC</li>
+<li>选择进入 Recovery 模式</li>
+<li>选择要刷入 zip</li>
+<li>根据自己的需求定制软件，完成 rom 安装</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> 修理 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+            <tag> 修理 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ADB 的简单用法]]></title>
+      <url>/2019/01/13/adb-usage/</url>
+      <content type="html"><![CDATA[<h3 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h3><p><a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip" target="_blank" rel="noopener">Download the ADB ZIP file for macOS</a></p>
+<h3 id="HTC-ONE-开启开发者模式"><a href="#HTC-ONE-开启开发者模式" class="headerlink" title="HTC ONE 开启开发者模式"></a>HTC ONE 开启开发者模式</h3><p>设置 -&gt; 关于 -&gt; 软件信息 -&gt; 软件版本（点击7次）</p>
+<h3 id="1-安装-apk"><a href="#1-安装-apk" class="headerlink" title="1 安装 apk"></a>1 安装 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install apk完整路径）</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="2-卸载-apk"><a href="#2-卸载-apk" class="headerlink" title="2 卸载 apk"></a>2 卸载 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell rm data/app/apk-name.apk</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[微服务：跨库联合查询]]></title>
+      <url>/2019/01/03/query-cross-databases/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/28137025" target="_blank" rel="noopener">微服务改造中解决跨库问题的思路</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/40852402" target="_blank" rel="noopener">关于【微服务】，你必须了解这些</a></li>
+<li><a href="https://juejin.im/entry/5905ac37a22b9d0065e1199c" target="_blank" rel="noopener">深度认识 Sharding-JDBC：做最轻量级的数据库中间层</a></li>
+<li><a href="http://mycat.io/" target="_blank" rel="noopener">Mycat数据库分库分表中间件</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 微服务 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 微服务 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[学习使用 kaitai 结构]]></title>
       <url>/2018/12/23/kaitai-struct/</url>
       <content type="html"><![CDATA[<p>kaitai 是一个开源的用于解析二进制文件的解析器，包含了编译器、IDE 和一系列常用的二进制格式描述脚本，你可以直接利用这些脚本去解析对应的二进制文件。</p>
@@ -30,9 +198,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> nodejs index.js</span></span><br></pre></td></tr></table></figure>
 <p>查看终端输出结果，已经从 gif 文件中获取图像的宽和高值。</p>
 <h3 id="更多“配方”"><a href="#更多“配方”" class="headerlink" title="更多“配方”"></a>更多“配方”</h3><p>官网提供了众多已经定义好的“配方”供大家参考，请看<a href="http://formats.kaitai.io/" target="_blank" rel="noopener">这里</a></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
-<li><a href="https://github.com/SeleniumHQ/selenium/blob/master/cpp/iedriver/ProxyManager.cpp" target="_blank" rel="noopener">selenium proxy manager</a></li>
-</ol>
 ]]></content>
       
         <categories>
@@ -304,32 +469,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[NVM 用法]]></title>
-      <url>/2018/09/29/nvm-usage/</url>
-      <content type="html"><![CDATA[<h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
-<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> node </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> mac </tag>
-            
-            <tag> node </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Homebrew 用法]]></title>
       <url>/2018/09/29/brew-usage/</url>
       <content type="html"><![CDATA[<h3 id="列出已安装软件"><a href="#列出已安装软件" class="headerlink" title="列出已安装软件"></a>列出已安装软件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew list </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果</span></span><br><span class="line">autoconf        flyway          libgpg-error    libyaml         mysql           php71           pkg-config      ruby-build</span><br><span class="line">automake        freetype        libksba         makedepend      nginx           php71-mcrypt    proxychains-ng  sphinx-doc</span><br><span class="line">boost           gettext         libmemcached    maven           node            php71-xdebug    putty           telnet</span><br><span class="line">cmake           icu4c           libpng          mcrypt          openssl         php@7.1         readline        unixodbc</span><br><span class="line">composer        jpeg            libtool         memcached       openssl@1.1     phpmyadmin      rename          xz</span><br><span class="line">coreutils       libevent        libxml2         mhash           pcre            phpunit         ruby            zlib</span><br></pre></td></tr></table></figure>
@@ -350,6 +489,34 @@
             <tag> mac </tag>
             
             <tag> homebrew </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[NVM 用法]]></title>
+      <url>/2018/09/29/nvm-usage/</url>
+      <content type="html"><![CDATA[<h3 id="通过-Homebrew-安装"><a href="#通过-Homebrew-安装" class="headerlink" title="通过 Homebrew 安装"></a>通过 Homebrew 安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install nvm</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="查看已安装软件信息"><a href="#查看已安装软件信息" class="headerlink" title="查看已安装软件信息"></a>查看已安装软件信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew info node                                                               </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出结果：</span></span><br><span class="line">node: stable 9.11.1 (bottled), HEAD</span><br><span class="line">Platform built on V8 to build network applications</span><br><span class="line">https://nodejs.org/</span><br><span class="line">/usr/local/Cellar/node/9.2.1 (5,125 files, 49.5MB)</span><br><span class="line">  Poured from bottle on 2017-12-12 at 16:54:22</span><br><span class="line">/usr/local/Cellar/node/9.4.0 (5,125 files, 49.7MB) *</span><br><span class="line">  Poured from bottle on 2018-01-29 at 17:08:45</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: python@2 ✘, pkg-config ✔</span><br><span class="line">Recommended: icu4c ✘</span><br><span class="line">Optional: openssl ✘</span><br><span class="line">==&gt; Options</span><br><span class="line">--with-debug</span><br><span class="line">        Build with debugger hooks</span><br><span class="line">--with-openssl</span><br><span class="line">        Build against Homebrews OpenSSL instead of the bundled OpenSSL</span><br><span class="line">--without-completion</span><br><span class="line">        npm bash completion will not be installed</span><br><span class="line">--without-icu4c</span><br><span class="line">        Build with small-icu (English only) instead of system-icu (all locales)</span><br><span class="line">--without-npm</span><br><span class="line">        npm will not be installed</span><br><span class="line">--HEAD</span><br><span class="line">        Install HEAD version</span><br><span class="line">==&gt; Caveats</span><br><span class="line">Bash completion has been installed to:</span><br><span class="line">  /usr/local/etc/bash_completion.d</span><br></pre></td></tr></table></figure>
+<h3 id="安装、卸载、升级"><a href="#安装、卸载、升级" class="headerlink" title="安装、卸载、升级"></a>安装、卸载、升级</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> brew install node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew uninstall node</span></span><br><span class="line"></span><br><span class="line"><span class="meta">%</span><span class="bash"> brew upgrade node</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装-node"><a href="#安装-node" class="headerlink" title="安装 node"></a>安装 node</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> nvm install 6.14.4</span></span><br></pre></td></tr></table></figure>
+<h3 id="切换-node-版本"><a href="#切换-node-版本" class="headerlink" title="切换 node 版本"></a>切换 node 版本</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash"> nvm use 6.14.4</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> node </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+            <tag> node </tag>
             
         </tags>
         
@@ -1042,31 +1209,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Java 编程规范]]></title>
-      <url>/2018/03/26/java-code-style/</url>
-      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
-<ul>
-<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
-<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> java </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Hibernate 用法]]></title>
       <url>/2018/03/26/hibernate-usage/</url>
       <content type="html"><![CDATA[<h3 id="操作-m-n-关联表"><a href="#操作-m-n-关联表" class="headerlink" title="操作 m-n 关联表"></a>操作 m-n 关联表</h3><ul>
@@ -1087,6 +1229,31 @@
             <tag> java </tag>
             
             <tag> hibernate </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Java 编程规范]]></title>
+      <url>/2018/03/26/java-code-style/</url>
+      <content type="html"><![CDATA[<p><strong>最常用的两套 java 编程规范</strong></p>
+<ul>
+<li><a href="https://github.com/alibaba/p3c" target="_blank" rel="noopener">Alibaba Java Coding Guidelines</a></li>
+<li><a href="https://github.com/google/google-java-format" target="_blank" rel="noopener">google-java-format</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
             
         </tags>
         
@@ -1837,6 +2004,9 @@
 <h3 id="将公私钥写入同一文件"><a href="#将公私钥写入同一文件" class="headerlink" title="将公私钥写入同一文件"></a>将公私钥写入同一文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat cert.key cert.crt &gt; cert.pem</span><br></pre></td></tr></table></figure>
 <h3 id="转换成-PKCS8-格式"><a href="#转换成-PKCS8-格式" class="headerlink" title="转换成 PKCS8 格式"></a>转换成 PKCS8 格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">OpenSSL&gt;</span><span class="bash"> pkcs8 -topk8 -inform PEM -<span class="keyword">in</span> rsa_private_key.pem -outform PEM -nocrypt -out rsa_private_key_pkcs8.pem</span></span><br></pre></td></tr></table></figure>
 <p>其它一些格式转换，参考<a href="http://onthink.com/post/about-cert-type.html">这里</a></p>
+<h3 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h3><ol>
+<li><a href="https://www.cnblogs.com/yelao/p/9486882.html" target="_blank" rel="noopener">Nginx https 双向认证</a></li>
+</ol>
 ]]></content>
       
         <categories>
@@ -2477,6 +2647,7 @@
 <h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
 <h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
 <p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
+<h4 id="Chrome-历史离线包"><a href="#Chrome-历史离线包" class="headerlink" title="Chrome 历史离线包"></a>Chrome 历史离线包</h4><p><a href="https://www.slimjet.com/chrome/google-chrome-old-version.php" target="_blank" rel="noopener">Google Chrome Older Versions Download</a></p>
 ]]></content>
       
         <categories>
@@ -2495,25 +2666,27 @@
     </entry>
     
     <entry>
-      <title><![CDATA[SourceTree 操作被挂起]]></title>
-      <url>/2017/01/17/source-tree-hungs/</url>
-      <content type="html"><![CDATA[<h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
+      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
+      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
+      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
+</blockquote>
 ]]></content>
       
         <categories>
             
-            <category> git </category>
+            <category> activex </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> git </tag>
+            <tag> activex </tag>
             
-            <tag> SourceTree </tag>
+            <tag> webbrowser </tag>
             
         </tags>
         
@@ -2572,27 +2745,25 @@
     </entry>
     
     <entry>
-      <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
-      <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
-      <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
-</blockquote>
+      <title><![CDATA[SourceTree 操作被挂起]]></title>
+      <url>/2017/01/17/source-tree-hungs/</url>
+      <content type="html"><![CDATA[<h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
             
-            <category> activex </category>
+            <category> git </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> activex </tag>
+            <tag> git </tag>
             
-            <tag> webbrowser </tag>
+            <tag> SourceTree </tag>
             
         </tags>
         
@@ -2720,31 +2891,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
-      <url>/2016/08/28/install-nmp-on-centos6/</url>
-      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> cenos </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[MySQL升级到5.7]]></title>
       <url>/2016/08/28/upgrade-mysql/</url>
       <content type="html"><![CDATA[<p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
@@ -2763,6 +2909,31 @@
         <categories>
             
             <category> mysql </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> cenos </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
+      <url>/2016/08/28/install-nmp-on-centos6/</url>
+      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
             
         </categories>
         
@@ -3072,37 +3243,6 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[url 编码常规]]></title>
-      <url>/2015/07/03/url-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
-<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
-<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
-<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
-</ul>
-<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
-<li><code>SEO</code> 模式</li>
-<li>使用连字符规则，不使用大写</li>
-<li>命名首选 <code>RESTful</code> 方式</li>
-<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> url </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[javascript 编码常规]]></title>
       <url>/2015/07/03/javascript-code-conventions/</url>
       <content type="html"><![CDATA[<p>标题写成常规，非规范，是由于只要没有语法错误，如何写代码本身就是编码者的一个喜好而已，但是好的习惯有助于提高可读性，减少错误，尤其提高团队合作的效率。</p>
@@ -3169,6 +3309,37 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[url 编码常规]]></title>
+      <url>/2015/07/03/url-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+</ul>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> url </tag>
             
         </tags>
         

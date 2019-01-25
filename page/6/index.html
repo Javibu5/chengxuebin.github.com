@@ -338,6 +338,699 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/02/16/socket-data-struct/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/16/socket-data-struct/" itemprop="url">socket 常用数据结构</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-16T00:00:00+08:00">
+                2017-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/16/socket-data-struct/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/16/socket-data-struct/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/16/socket-data-struct/" class="leancloud_visitors" data-flag-title="socket 常用数据结构">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="编译步骤"><a href="#编译步骤" class="headerlink" title="编译步骤"></a>编译步骤</h3><h4 id="1-sockaddr"><a href="#1-sockaddr" class="headerlink" title="1. sockaddr"></a>1. sockaddr</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct sockaddr &#123;</span><br><span class="line">    unsigned short    sa_family;    // address family, AF_xxx</span><br><span class="line">    char              sa_data[14];  // 14 bytes of protocol address</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="2-inet-相关"><a href="#2-inet-相关" class="headerlink" title="2. inet 相关"></a>2. inet 相关</h4><p>sockaddr_in 继承 sockaddr 并添加了一些 INET 的数据属性。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// IPv4 AF_INET sockets:</span><br><span class="line">struct in_addr &#123;</span><br><span class="line">    unsigned long s_addr;          // load with inet_pton()</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct sockaddr_in &#123;</span><br><span class="line">    short            sin_family;   // e.g. AF_INET, AF_INET6</span><br><span class="line">    unsigned short   sin_port;     // e.g. htons(3490)</span><br><span class="line">    struct in_addr   sin_addr;     // see struct in_addr, below</span><br><span class="line">    char             sin_zero[8];  // zero this if you want to</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// IPv6 AF_INET6 sockets:</span><br><span class="line">struct in6_addr &#123;</span><br><span class="line">    unsigned char   s6_addr[16];   // load with inet_pton()</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct sockaddr_in6 &#123;</span><br><span class="line">    u_int16_t       sin6_family;   // address family, AF_INET6</span><br><span class="line">    u_int16_t       sin6_port;     // port number, Network Byte Order</span><br><span class="line">    u_int32_t       sin6_flowinfo; // IPv6 flow information</span><br><span class="line">    struct in6_addr sin6_addr;     // IPv6 address</span><br><span class="line">    u_int32_t       sin6_scope_id; // Scope ID</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>sockaddr 转换为 sockaddr_in：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sockaddr from;</span><br><span class="line">sockaddr_in to = (sockaddr_in)from;</span><br></pre></td></tr></table></figure>
+<h4 id="3-sockaddr-storage"><a href="#3-sockaddr-storage" class="headerlink" title="3. sockaddr_storage"></a>3. sockaddr_storage</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// General socket address holding structure, big enough to hold either</span><br><span class="line">// struct sockaddr_in or struct sockaddr_in6 data:</span><br><span class="line"></span><br><span class="line">struct sockaddr_storage &#123;</span><br><span class="line">    sa_family_t  ss_family;     // address family</span><br><span class="line"></span><br><span class="line">    // all this is padding, implementation specific, ignore it:</span><br><span class="line">    char      __ss_pad1[_SS_PAD1SIZE];</span><br><span class="line">    int64_t   __ss_align;</span><br><span class="line">    char      __ss_pad2[_SS_PAD2SIZE];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="4-addrinfo"><a href="#4-addrinfo" class="headerlink" title="4. addrinfo"></a>4. addrinfo</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">struct addrinfo &#123;</span><br><span class="line">  int     ai_flags;          // AI_PASSIVE, AI_CANONNAME, ...</span><br><span class="line">  int     ai_family;         // AF_xxx</span><br><span class="line">  int     ai_socktype;       // SOCK_xxx</span><br><span class="line">  int     ai_protocol;       // 0 (auto) or IPPROTO_TCP, IPPROTO_UDP </span><br><span class="line"></span><br><span class="line">  socklen_t  ai_addrlen;     // length of ai_addr</span><br><span class="line">  char   *ai_canonname;      // canonical name for nodename</span><br><span class="line">  struct sockaddr  *ai_addr; // binary address</span><br><span class="line">  struct addrinfo  *ai_next; // next structure in linked list</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><a href="http://beej.us/guide/bgnet/output/html/multipage/sockaddr_inman.html" target="_blank" rel="noopener">struct sockaddr and pals</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/02/15/build-cpp-netlib-with-vs2015/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/15/build-cpp-netlib-with-vs2015/" itemprop="url">使用 VS2015 编译 cpp-netlib</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T00:00:00+08:00">
+                2017-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/15/build-cpp-netlib-with-vs2015/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/15/build-cpp-netlib-with-vs2015/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/15/build-cpp-netlib-with-vs2015/" class="leancloud_visitors" data-flag-title="使用 VS2015 编译 cpp-netlib">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://cpp-netlib.org/0.11.0/getting_started.html#building-on-windows" target="_blank" rel="noopener">cpp-netlib 官方文档</a></p>
+<p>cpp-netlib 旨在用最新的 C++ 标准，提供易用的网络接口库。</p>
+<ul>
+<li><a href="http://cpp-netlib.org/" target="_blank" rel="noopener">官方网站</a>：官网提供最新的代码和库下载</li>
+<li><a href="https://github.com/cpp-netlib/cpp-netlib" target="_blank" rel="noopener">GitHub</a>：提供较早版本的下载</li>
+</ul>
+<h2 id="编译步骤"><a href="#编译步骤" class="headerlink" title="编译步骤"></a>编译步骤</h2><h4 id="1-编译-boost"><a href="#1-编译-boost" class="headerlink" title="1. 编译 boost"></a>1. 编译 boost</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bootstrap.bat</span><br><span class="line">.\b2 install --prefix=C:\Users\jon\Desktop\builds\boost --toolset=msvc --without-python link=static runtime-link=shared debug release</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>runtime-link=shared</code> 是使用动态库方式编译，对应 VS 设置值 <code>runtime = MD</code></li>
+<li><code>runtime-link=static</code> 是使用静态库方式编译，对应 VS 设置值 <code>runtime = MT</code></li>
+</ul>
+<h4 id="2-生成-cpp-netlib-配置文件"><a href="#2-生成-cpp-netlib-配置文件" class="headerlink" title="2. 生成 cpp-netlib 配置文件"></a>2. 生成 cpp-netlib 配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir cpp-netlib-build</span><br><span class="line"></span><br><span class="line">cd cpp-netlib-build</span><br><span class="line"></span><br><span class="line">cmake -G "Visual Studio 14" -DCMAKE_BUILD_TYPE=Debug -DBOOST_ROOT=C:/Users/jon/Desktop/builds/boost ..\cpp-netlib-0.12.0-final</span><br></pre></td></tr></table></figure>
+<p>其它的设置选项还有：</p>
+<ul>
+<li>-DCMAKE_BUILD_TYPE=Debug </li>
+<li>-DCMAKE_C_COMPILER=clang</li>
+<li>-DCMAKE_CXX_COMPILER=clang++ </li>
+</ul>
+<h4 id="3-打开-cpp-netlib-build-CPP-NETLIB-sln-编译"><a href="#3-打开-cpp-netlib-build-CPP-NETLIB-sln-编译" class="headerlink" title="3. 打开 cpp-netlib-build/CPP-NETLIB.sln 编译"></a>3. 打开 <code>cpp-netlib-build/CPP-NETLIB.sln</code> 编译</h4><p>可以全部编译，也可以根据需要单独编译某个模块。比如，单独编译 <code>cppnetlib-uri</code> 项目。编译好的文件输出在 <code>cpp-netlib-build/libs/network/src/Release</code></p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="1-Invalid-escape-sequence-U"><a href="#1-Invalid-escape-sequence-U" class="headerlink" title="1. Invalid escape sequence \U"></a>1. Invalid escape sequence \U</h3><p>检查 <code>-DBOOST_ROOT=</code> 后面的路径分隔符是不是反斜扛。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/02/14/build-boost-with-vs2015/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/14/build-boost-with-vs2015/" itemprop="url">使用 VS2015 编译 boost</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-14T00:00:00+08:00">
+                2017-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/14/build-boost-with-vs2015/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/14/build-boost-with-vs2015/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/14/build-boost-with-vs2015/" class="leancloud_visitors" data-flag-title="使用 VS2015 编译 boost">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.boost.org/doc/libs/1_63_0/more/getting_started/windows.html" target="_blank" rel="noopener">boost 官方文档</a></p>
+<h3 id="最简单的编译方法"><a href="#最简单的编译方法" class="headerlink" title="最简单的编译方法"></a>最简单的编译方法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bootstrap.bat</span><br><span class="line">.\b2.exe</span><br></pre></td></tr></table></figure>
+<p>当编译成功，会得到提示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">The Boost C++ Libraries were successfully built!</span><br><span class="line"></span><br><span class="line">The following directory should be added to compiler include paths:</span><br><span class="line"></span><br><span class="line">    C:\Users\jon\Desktop\boost_1_63_0</span><br><span class="line"></span><br><span class="line">The following directory should be added to linker library paths:</span><br><span class="line"></span><br><span class="line">    C:\Users\jon\Desktop\boost_1_63_0\stage\lib</span><br></pre></td></tr></table></figure>
+<h3 id="编译并指定目录"><a href="#编译并指定目录" class="headerlink" title="编译并指定目录"></a>编译并指定目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./b2 install --prefix=PREFIX</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.boost.org/doc/libs/1_55_0/doc/html/bbv2/installation.html" target="_blank" rel="noopener">参考</a></p>
+<h3 id="编译参数示例"><a href="#编译参数示例" class="headerlink" title="编译参数示例"></a>编译参数示例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\b2 install --prefix=C:\Users\jon\Desktop\builds\boost --toolset=msvc --without-python link=static runtime-link=shared debug release</span><br></pre></td></tr></table></figure>
+<h3 id="使用-boost-头文件库（Header-Only）"><a href="#使用-boost-头文件库（Header-Only）" class="headerlink" title="使用 boost 头文件库（Header Only）"></a>使用 boost 头文件库（Header Only）</h3><p>将下载的 boost 目录添加到项目的 include 路径即可</p>
+<h3 id="使用-boost-编译库（Header-CPP）"><a href="#使用-boost-编译库（Header-CPP）" class="headerlink" title="使用 boost 编译库（Header+CPP）"></a>使用 boost 编译库（Header+CPP）</h3><p>除了将 boost 目录添加到 include，还要将上面编译出来的 <code>stage/lib</code> 目录添加到 library 路径</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/19/phpstorm-file-watcher/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/01/19/phpstorm-file-watcher/" itemprop="url">PHPStorm 设置 watcher</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-19T00:00:00+08:00">
+                2017-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/19/phpstorm-file-watcher/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/01/19/phpstorm-file-watcher/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/01/19/phpstorm-file-watcher/" class="leancloud_visitors" data-flag-title="PHPStorm 设置 watcher">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p><img src="/images/posts/phpstorm_watch/pic-1.png" alt=""></p>
+<p><img src="/images/posts/phpstorm_watch/pic-2.png" alt=""></p>
+<h4 id="Arguments"><a href="#Arguments" class="headerlink" title="Arguments:"></a>Arguments:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-cache --update $FileName$:$ProjectFileDir$/dist/css/$FileNameWithoutExtension$.css</span><br></pre></td></tr></table></figure>
+<h4 id="Outputs-path-to-refresh"><a href="#Outputs-path-to-refresh" class="headerlink" title="Outputs path to refresh:"></a>Outputs path to refresh:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">ProjectFileDir$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css:<span class="variable">$ProjectFileDir</span>$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css.map</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/19/chrome-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -462,6 +1155,7 @@
 <h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
 <h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
 <p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
+<h4 id="Chrome-历史离线包"><a href="#Chrome-历史离线包" class="headerlink" title="Chrome 历史离线包"></a>Chrome 历史离线包</h4><p><a href="https://www.slimjet.com/chrome/google-chrome-old-version.php" target="_blank" rel="noopener">Google Chrome Older Versions Download</a></p>
 
           
         
@@ -510,7 +1204,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/source-tree-hungs/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/webbrowser-nxcompat-issue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -529,7 +1223,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/17/source-tree-hungs/" itemprop="url">SourceTree 操作被挂起</a></h2>
+                <a class="post-title-link" href="/2017/01/17/webbrowser-nxcompat-issue/" itemprop="url">WebBrowser 运行 ActiveX 异常</a></h2>
         
 
         <div class="post-meta">
@@ -564,8 +1258,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/activex/" itemprop="url" rel="index">
+                    <span itemprop="name">activex</span>
                   </a>
                 </span>
 
@@ -582,9 +1276,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/17/source-tree-hungs/#comments" itemprop="discussionUrl">
+                <a href="/2017/01/17/webbrowser-nxcompat-issue/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/source-tree-hungs/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/01/17/webbrowser-nxcompat-issue/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -592,7 +1286,7 @@
 
           
           
-             <span id="/2017/01/17/source-tree-hungs/" class="leancloud_visitors" data-flag-title="SourceTree 操作被挂起">
+             <span id="/2017/01/17/webbrowser-nxcompat-issue/" class="leancloud_visitors" data-flag-title="WebBrowser 运行 ActiveX 异常">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -625,9 +1319,11 @@
       
         
           
-            <h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
+            <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
+</blockquote>
 
           
         
@@ -871,7 +1567,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/webbrowser-nxcompat-issue/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/source-tree-hungs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -890,7 +1586,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/17/webbrowser-nxcompat-issue/" itemprop="url">WebBrowser 运行 ActiveX 异常</a></h2>
+                <a class="post-title-link" href="/2017/01/17/source-tree-hungs/" itemprop="url">SourceTree 操作被挂起</a></h2>
         
 
         <div class="post-meta">
@@ -925,8 +1621,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/activex/" itemprop="url" rel="index">
-                    <span itemprop="name">activex</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -943,9 +1639,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/17/webbrowser-nxcompat-issue/#comments" itemprop="discussionUrl">
+                <a href="/2017/01/17/source-tree-hungs/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/webbrowser-nxcompat-issue/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/01/17/source-tree-hungs/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -953,7 +1649,7 @@
 
           
           
-             <span id="/2017/01/17/webbrowser-nxcompat-issue/" class="leancloud_visitors" data-flag-title="WebBrowser 运行 ActiveX 异常">
+             <span id="/2017/01/17/source-tree-hungs/" class="leancloud_visitors" data-flag-title="SourceTree 操作被挂起">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -986,11 +1682,9 @@
       
         
           
-            <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
-</blockquote>
+            <h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1374,708 +2068,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/12/20/about-cert-type/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/20/about-cert-type/" itemprop="url">关于证书类型</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-20T00:00:00+08:00">
-                2016-12-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/crypto/" itemprop="url" rel="index">
-                    <span itemprop="name">crypto</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/20/about-cert-type/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/20/about-cert-type/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/12/20/about-cert-type/" class="leancloud_visitors" data-flag-title="关于证书类型">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="证书的编码（encoding）分类"><a href="#证书的编码（encoding）分类" class="headerlink" title="证书的编码（encoding）分类"></a>证书的编码（encoding）分类</h3><p>首先，ASN.1 定义了几个编码格式，成为了 <a href="https://en.wikipedia.org/wiki/X.690#DER_encoding" target="_blank" rel="noopener">X.690</a> 标准，它们是：</p>
-<ul>
-<li>Basic Encoding Rules (BER)</li>
-<li>Canonical Encoding Rules (CER)</li>
-<li>Distinguished Encoding Rules (DER)</li>
-</ul>
-<p>然后证书采用了 DER 作为 <strong>二进制</strong> 编码格式；但是为了便于阅读和传送，也可以将二进制转换为 base64 形式，又引入了 PEM 格式，如下所示：</p>
-<ul>
-<li>Privacy-enhanced Electronic Mail (PEM) ：将 DER 的做 base64 编码，并在开头和结尾加入标识：<code>&quot;-----BEGIN CERTIFICATE-----&quot;</code> 和 <code>&quot;-----END CERTIFICATE-----&quot;</code></li>
-</ul>
-<h3 id="证书的存储格式"><a href="#证书的存储格式" class="headerlink" title="证书的存储格式"></a>证书的存储格式</h3><ul>
-<li>.pem</li>
-<li>.cer, .crt, .der</li>
-<li>.p7b, .p7c</li>
-<li>.p12</li>
-<li>.pfx</li>
-<li>.key</li>
-</ul>
-<h4 id="pem"><a href="#pem" class="headerlink" title=".pem"></a>.pem</h4><p>存储的是 base64 格式，也就是 PEM 格式</p>
-<h4 id="cer-crt-der"><a href="#cer-crt-der" class="headerlink" title=".cer, .crt, .der"></a>.cer, .crt, .der</h4><p>通常存储的是 DER 编码的二进制格式</p>
-<h4 id="p7b-p7c"><a href="#p7b-p7c" class="headerlink" title=".p7b, .p7c"></a>.p7b, .p7c</h4><p>不包含数据的 PKCS#7 签名格式, 只包含证书或CRL<br>开头和结尾是：<code>&quot;-----BEGIN PKCS7-----&quot;</code> 和 <code>&quot;-----END PKCS7-----&quot;</code></p>
-<h4 id="pfx"><a href="#pfx" class="headerlink" title=".pfx"></a>.pfx</h4><p>personal information exchange (PFX) 也是 PKCS#12 格式，这是微软提出的格式</p>
-<h4 id="p12"><a href="#p12" class="headerlink" title=".p12"></a>.p12</h4><p>PKCS#12 格式，包含了证书和私钥，私钥有密码保护，Netscape 提出的格式</p>
-<h4 id="key"><a href="#key" class="headerlink" title=".key"></a>.key</h4><p>用于 PKCS#8 的公钥或私钥，编码支持 DER 或 PEM 2种格式</p>
-<h3 id="查看证书"><a href="#查看证书" class="headerlink" title="查看证书"></a>查看证书</h3><h4 id="查看-DER-证书"><a href="#查看-DER-证书" class="headerlink" title="查看 DER 证书"></a>查看 DER 证书</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in certificate.der -inform der -text -noout</span><br></pre></td></tr></table></figure>
-<h4 id="查看-PEM-证书"><a href="#查看-PEM-证书" class="headerlink" title="查看 PEM 证书"></a>查看 PEM 证书</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in cert.pem -text -noout</span><br><span class="line">openssl x509 -in cert.cer -text -noout</span><br><span class="line">openssl x509 -in cert.crt -text -noout</span><br></pre></td></tr></table></figure>
-<h3 id="编码转换"><a href="#编码转换" class="headerlink" title="编码转换"></a>编码转换</h3><h4 id="DER-gt-PEM"><a href="#DER-gt-PEM" class="headerlink" title="DER -&gt; PEM"></a>DER -&gt; PEM</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in cert.crt -inform der -outform pem -out cert.pem</span><br></pre></td></tr></table></figure>
-<h4 id="PEM-gt-DER"><a href="#PEM-gt-DER" class="headerlink" title="PEM -&gt; DER"></a>PEM -&gt; DER</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -in cert.crt -outform der -out cert.der</span><br></pre></td></tr></table></figure>
-<h4 id="PEM-gt-P7B"><a href="#PEM-gt-P7B" class="headerlink" title="PEM -&gt; P7B"></a>PEM -&gt; P7B</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl crl2pkcs7 -nocrl -certfile certificate.cer -out certificate.p7b -certfile CACert.cer</span><br></pre></td></tr></table></figure>
-<h4 id="PEM-gt-PFX"><a href="#PEM-gt-PFX" class="headerlink" title="PEM -&gt; PFX"></a>PEM -&gt; PFX</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt</span><br></pre></td></tr></table></figure>
-<h4 id="PFX-gt-PEM"><a href="#PFX-gt-PEM" class="headerlink" title="PFX -&gt; PEM"></a>PFX -&gt; PEM</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -in certificate.pfx -out certificate.cer -nodes</span><br></pre></td></tr></table></figure>
-<h4 id="P7B-gt-PEM"><a href="#P7B-gt-PEM" class="headerlink" title="P7B -&gt; PEM"></a>P7B -&gt; PEM</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer</span><br></pre></td></tr></table></figure>
-<h4 id="P7B-gt-PFX"><a href="#P7B-gt-PFX" class="headerlink" title="P7B -&gt; PFX"></a>P7B -&gt; PFX</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer</span><br><span class="line"></span><br><span class="line">openssl pkcs12 -export -in certificate.cer -inkey privateKey.key -out certificate.pfx -certfile CACert.cer</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/install-nmp-on-centos6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/28/install-nmp-on-centos6/" itemprop="url">CentOS6 安装 nginx, MySQL, PHP</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
-                2016-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/28/install-nmp-on-centos6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/28/install-nmp-on-centos6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/28/install-nmp-on-centos6/" class="leancloud_visitors" data-flag-title="CentOS6 安装 nginx, MySQL, PHP">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/upgrade-mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/28/upgrade-mysql/" itemprop="url">MySQL升级到5.7</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
-                2016-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/28/upgrade-mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/28/upgrade-mysql/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/28/upgrade-mysql/" class="leancloud_visitors" data-flag-title="MySQL升级到5.7">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql mysql-server</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum list installed | grep mysql</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql-client mysql-server mysql-common mysql-devel</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /var/lib/mysql/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
-<p>Step 2: Romove MySQL Directory<br>Now we need to remove MySQL data directory from system which by default exists at /var/lib/mysql. If you didn’t find this, It may be changed to some other place, which you can find in my.cnf file with variable datadir. Delete the /var/lib/mysql directory from system but we prefer to rename it to keep a backup of existing files.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mv /var/lib/mysql /var/lib/mysql_old_backup</span></span><br></pre></td></tr></table></figure>
-<p>Step 3: Install MySQL Packages Again<br>After removing MySQL completely, install it again using yum package manager, It will re create mysql directory under /var/lib/.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> yum install mysql mysql-server</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_upgrade -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_secure_installation</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> we can <span class="built_in">set</span> it <span class="keyword">in</span> my.cnf file</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> [mysqld]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> validate_password_policy=LOW</span></span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="http://www.tecmint.com/install-latest-mysql-on-rhel-centos-and-fedora/" target="_blank" rel="noopener">How to Install Latest MySQL 5.7.9 on RHEL/CentOS 7/6/5 and Fedora</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/18/view-disk-usage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/18/view-disk-usage/" itemprop="url">Linux 查看磁盘空间使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-18T00:00:00+08:00">
-                2016-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/18/view-disk-usage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/18/view-disk-usage/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/18/view-disk-usage/" class="leancloud_visitors" data-flag-title="Linux 查看磁盘空间使用">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="df"><a href="#df" class="headerlink" title="df"></a>df</h3><h3 id="du"><a href="#du" class="headerlink" title="du"></a>du</h3><h3 id="fdisk"><a href="#fdisk" class="headerlink" title="fdisk"></a>fdisk</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="http://os.51cto.com/art/201012/240726_all.htm" target="_blank" rel="noopener">df、du、fdisk：Linux磁盘管理三板斧的使用心得</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2130,7 +2122,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2141,7 +2133,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2152,7 +2144,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2250,7 +2242,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2014 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-paw"></i>
   </span>
