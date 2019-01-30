@@ -338,6 +338,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/08/09/android-nine-patch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/08/09/android-nine-patch/" itemprop="url">Android 9-Patch</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-08-09T00:00:00+08:00">
+                2014-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/08/09/android-nine-patch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/08/09/android-nine-patch/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/08/09/android-nine-patch/" class="leancloud_visitors" data-flag-title="Android 9-Patch">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>9-Patch是Android设备上处理可扩展图片的方式。众所周知，Android设备的屏幕尺寸和分辨率众多，为了图片能完美的适配各种屏幕，Android采用了支持可扩展的图片的方案。</p>
+<p>9-Patch的使用非常简便。围绕在图片周围的黑线便是定义之处。关于此格式需要注意的地方：</p>
+<ul>
+<li>png图片的一周有 <strong>1px的边框</strong>，用于定义可扩展区域和静态区域（黑线）</li>
+<li>图片一周，黑线标识可扩展区域，黑线必须是 <strong>纯黑</strong> (#000)，不透明的，添加深灰色的线都不能起作用，其它区域必须是完全透明或者纯白色。</li>
+<li>可以使用任意图片处理工具处理，比如Windows的画板（MS Paint）也没有问题</li>
+<li>保存时使用扩展名 <strong>.9.png</strong></li>
+</ul>
+<p>下面说明黑线的作用。</p>
+<p><img src="/images/posts/ninepatch_raw.png" alt=""></p>
+<h3 id="Top和Left"><a href="#Top和Left" class="headerlink" title="Top和Left"></a>Top和Left</h3><p>Top和Left定义了将要被拉伸的部分。要注意的点：</p>
+<ul>
+<li><p>9-Patch图 <strong>只能拉伸</strong>，不是整块复制，不能收缩<br>  <img src="/images/posts/greater-than-1px.jpg" alt=""></p>
+</li>
+<li><p>同一边可以定义多个区域，使用时将按照区域的宽度等比例拉伸<br>  <img src="/images/posts/multi-scretch-lines.jpg" alt=""></p>
+</li>
+</ul>
+<h3 id="Right和Bottom"><a href="#Right和Bottom" class="headerlink" title="Right和Bottom"></a>Right和Bottom</h3><p>Right和Bottom定义了内容的区域。</p>
+<p><img src="/images/posts/9-patch-content-area.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/07/26/chinese-charsets/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1572,7 +1754,7 @@ PluginObject.h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1594,7 +1776,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1711,7 +1893,7 @@ PluginObject.h
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
     <span class="site-uv">

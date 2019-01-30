@@ -3,6 +3,61 @@
   
     
     <entry>
+      <title><![CDATA[使用 Laradock 创建 Laravel 开发环境]]></title>
+      <url>/2019/01/26/laradock-laravel-development/</url>
+      <content type="html"><![CDATA[<h2 id="Docker-Desktop"><a href="#Docker-Desktop" class="headerlink" title="Docker Desktop"></a>Docker Desktop</h2><p>从官网下载用于 Mac 机器的 Docker Desktop，如果测试从官方源下载镜像非常慢的话，可以添加国内的阿里加速镜像：</p>
+<p><img src="/images/posts/laradock/docker-desktop-1.jpg" alt=""></p>
+<h2 id="配置-Laradock"><a href="#配置-Laradock" class="headerlink" title="配置 Laradock"></a>配置 Laradock</h2><h3 id="1-下载-Laradock"><a href="#1-下载-Laradock" class="headerlink" title="1 下载 Laradock"></a>1 下载 Laradock</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/laradock/laradock.git</span></span><br></pre></td></tr></table></figure>
+<p>目录结构如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">+ laradock</span><br><span class="line">+ project-1</span><br><span class="line">+ project-2</span><br></pre></td></tr></table></figure>
+<h3 id="2-配置虚拟主机"><a href="#2-配置虚拟主机" class="headerlink" title="2 配置虚拟主机"></a>2 配置虚拟主机</h3><p>前往 <code>nginx/sites</code>，复制 <code>laravel.conf.example</code> 为 <code>project-1.test.conf</code></p>
+<p><strong>注意：</strong>只有 <code>.conf</code> 结尾的才会被 nginx 读取。</p>
+<a id="more"></a>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line"></span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line"></span><br><span class="line">    # 域名</span><br><span class="line">    server_name project-1.test;</span><br><span class="line">    # 项目目录，均以 /var/www/ 开头</span><br><span class="line">    root /var/www/project-1;</span><br><span class="line">    index index.php index.html index.htm;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">         try_files $uri $uri/ /index.php$is_args$args;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        try_files $uri /index.php =404;</span><br><span class="line">        fastcgi_pass php-upstream;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        fastcgi_buffers 16 16k;</span><br><span class="line">        fastcgi_buffer_size 32k;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ /\.ht &#123;</span><br><span class="line">        deny all;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /.well-known/acme-challenge/ &#123;</span><br><span class="line">        root /var/www/letsencrypt/;</span><br><span class="line">        log_not_found off;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_log /var/log/nginx/laravel_error.log;</span><br><span class="line">    access_log /var/log/nginx/laravel_access.log;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-修改本机-hosts"><a href="#3-修改本机-hosts" class="headerlink" title="3 修改本机 hosts"></a>3 修改本机 hosts</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1  project-1.test</span><br><span class="line">127.0.0.1  project-2.test</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="4-配置-laradock-的-env"><a href="#4-配置-laradock-的-env" class="headerlink" title="4 配置 laradock 的 .env"></a>4 配置 laradock 的 <code>.env</code></h3><p>前往 laradock 目录，执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cp env-example .env</span></span><br></pre></td></tr></table></figure>
+<p>打开 <code>.env</code> 文件，根据个人需要定制 PHP、Nginx、MySQL 版本及参数。</p>
+<h3 id="5-启动"><a href="#5-启动" class="headerlink" title="5 启动"></a>5 启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d nginx mysql</span></span><br></pre></td></tr></table></figure>
+<h3 id="6-测试"><a href="#6-测试" class="headerlink" title="6 测试"></a>6 测试</h3><p>浏览器打开 <code>http://project-1.test</code>，显示出你的 PHP 网站</p>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>开发 laravel 通常我们需要一些工具，比如 composer，PHPUnit，nodejs 等，Laradock 环境已经为我们安装好了这些工具，但这些环境是在 docker 内部，我们需要通过命令将工作目录映射到 docker 环境，这是要执行的命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose <span class="built_in">exec</span> workspace bash</span></span><br></pre></td></tr></table></figure>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="1-停止-docker-compose"><a href="#1-停止-docker-compose" class="headerlink" title="1 停止 docker-compose"></a>1 停止 docker-compose</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose stop</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-切换组件版本"><a href="#2-切换组件版本" class="headerlink" title="2 切换组件版本"></a>2 切换组件版本</h3><p>比如将 MySQL 版本从 latest 切换成 5.7，然后执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose build --no-cache php-fpm</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-重启组件"><a href="#3-重启组件" class="headerlink" title="3 重启组件"></a>3 重启组件</h3><p>重启 Nginx：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose restart nginx</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-添加组件"><a href="#4-添加组件" class="headerlink" title="4 添加组件"></a>4 添加组件</h3><p>比如，添加 phpmyadmin：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d nginx mysql phpmyadmin</span></span><br></pre></td></tr></table></figure>
+<h3 id="5-MySQL-服务器的-Host"><a href="#5-MySQL-服务器的-Host" class="headerlink" title="5 MySQL 服务器的 Host"></a>5 MySQL 服务器的 Host</h3><p>MySQL 服务器绑定的 Host 可以不填写具体 ip 地址，而是简单地用 mysql 表示.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> php </tag>
+            
+            <tag> nginx </tag>
+            
+            <tag> mysql </tag>
+            
+            <tag> laravel </tag>
+            
+            <tag> docker </tag>
+            
+            <tag> laradock </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Linux 浏览器如何配置 PKCS#11 设备]]></title>
       <url>/2019/01/25/linux-browser-config-pkcs11/</url>
       <content type="html"><![CDATA[<p>Linux 常用的浏览器包括 Firefox 和 Chrome，这里演示如何为他们添加 PKCS#11（<a href="https://en.wikipedia.org/wiki/PKCS_11" target="_blank" rel="noopener">什么是 PKCS#11？</a>） 设备。</p>
@@ -65,31 +120,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[ADB 的简单用法]]></title>
-      <url>/2019/01/13/adb-usage/</url>
-      <content type="html"><![CDATA[<h3 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h3><p><a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip" target="_blank" rel="noopener">Download the ADB ZIP file for macOS</a></p>
-<h3 id="HTC-ONE-开启开发者模式"><a href="#HTC-ONE-开启开发者模式" class="headerlink" title="HTC ONE 开启开发者模式"></a>HTC ONE 开启开发者模式</h3><p>设置 -&gt; 关于 -&gt; 软件信息 -&gt; 软件版本（点击7次）</p>
-<h3 id="1-安装-apk"><a href="#1-安装-apk" class="headerlink" title="1 安装 apk"></a>1 安装 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install apk完整路径）</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="2-卸载-apk"><a href="#2-卸载-apk" class="headerlink" title="2 卸载 apk"></a>2 卸载 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell rm data/app/apk-name.apk</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> android </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> android </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[HTC ONE（M8）刷机]]></title>
       <url>/2019/01/13/htc-one-flash-rom/</url>
       <content type="html"><![CDATA[<p>手中的一部 Verison HTC ONE 测试机是 4.0 系统，有些软件已经不能安装，抱着“老树开新花”的态度尝试搜了一下，果然已经有比较新的 6.0 系统了。首先用系统内的更新，由于手机是国外运营商版本，再加上更新源也在国外，系统内直接更新一直提示不成功。通过谷歌上查询，发现了一个 HTC 手机资源很全的网站，包含了 ROM 和 Firmware，以及刷机用的工具，比如第三方 Recovery。这里是网址：</p>
@@ -136,6 +166,31 @@
             <tag> android </tag>
             
             <tag> 修理 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[ADB 的简单用法]]></title>
+      <url>/2019/01/13/adb-usage/</url>
+      <content type="html"><![CDATA[<h3 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h3><p><a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip" target="_blank" rel="noopener">Download the ADB ZIP file for macOS</a></p>
+<h3 id="HTC-ONE-开启开发者模式"><a href="#HTC-ONE-开启开发者模式" class="headerlink" title="HTC ONE 开启开发者模式"></a>HTC ONE 开启开发者模式</h3><p>设置 -&gt; 关于 -&gt; 软件信息 -&gt; 软件版本（点击7次）</p>
+<h3 id="1-安装-apk"><a href="#1-安装-apk" class="headerlink" title="1 安装 apk"></a>1 安装 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install apk完整路径）</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="2-卸载-apk"><a href="#2-卸载-apk" class="headerlink" title="2 卸载 apk"></a>2 卸载 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell rm data/app/apk-name.apk</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> android </tag>
             
         </tags>
         
@@ -629,9 +684,9 @@
         
         <tags>
             
-            <tag> MySQL </tag>
-            
             <tag> database </tag>
+            
+            <tag> MySQL </tag>
             
         </tags>
         
@@ -2263,9 +2318,9 @@
         
         <tags>
             
-            <tag> chrome </tag>
-            
             <tag> extension </tag>
+            
+            <tag> chrome </tag>
             
         </tags>
         
@@ -2304,9 +2359,9 @@
         
         <tags>
             
-            <tag> chrome </tag>
-            
             <tag> extension </tag>
+            
+            <tag> chrome </tag>
             
         </tags>
         
@@ -2377,6 +2432,44 @@
     </entry>
     
     <entry>
+      <title><![CDATA[CEF 的使用]]></title>
+      <url>/2017/03/17/cef-tutorial/</url>
+      <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
+<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
+<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
+<li>创建新的项目</li>
+<li>设置 include 目录到 cef 头文件目录</li>
+<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
+<li>添加 resource.rc</li>
+<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
+<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
+</ol>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
+<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
+<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
+<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
+]]></content>
+      
+        <categories>
+            
+            <category> c++ </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> c++ </tag>
+            
+            <tag> cef </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[DuiLib 的使用]]></title>
       <url>/2017/03/17/duilib-tutorial/</url>
       <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p>本文下载的是 <a href="https://github.com/redrains/DuiLib_Redrain" target="_blank" rel="noopener">Redrain 维护的版本</a>，原始的 DuiLib 版本从<a href="https://github.com/duilib/duilib" target="_blank" rel="noopener">这里</a>下载。</p>
@@ -2412,44 +2505,6 @@
             <tag> c++ </tag>
             
             <tag> duilib </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[CEF 的使用]]></title>
-      <url>/2017/03/17/cef-tutorial/</url>
-      <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
-<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
-<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
-<li>创建新的项目</li>
-<li>设置 include 目录到 cef 头文件目录</li>
-<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
-<li>添加 resource.rc</li>
-<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
-<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
-</ol>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
-<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
-<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
-<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
-]]></content>
-      
-        <categories>
-            
-            <category> c++ </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> windows </tag>
-            
-            <tag> c++ </tag>
-            
-            <tag> cef </tag>
             
         </tags>
         
@@ -2666,6 +2721,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[Windows Batch 用法]]></title>
+      <url>/2017/01/17/batch-usage/</url>
+      <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
+<h4 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%* in (.) do set CurrentDirName=%%~nx*</span><br></pre></td></tr></table></figure>
+<h4 id="当前目录（不带斜线-）"><a href="#当前目录（不带斜线-）" class="headerlink" title="当前目录（不带斜线 ）"></a>当前目录（不带斜线 ）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET mypath=%~dp0</span><br><span class="line">echo %mypath:~0,-1%</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> windows </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> bat </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[WebBrowser 运行 ActiveX 异常]]></title>
       <url>/2017/01/17/webbrowser-nxcompat-issue/</url>
       <content type="html"><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
@@ -2770,31 +2850,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Windows Batch 用法]]></title>
-      <url>/2017/01/17/batch-usage/</url>
-      <content type="html"><![CDATA[<h4 id="当前脚本目录"><a href="#当前脚本目录" class="headerlink" title="当前脚本目录"></a>当前脚本目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">%</span><span class="bash">~dp0</span></span><br></pre></td></tr></table></figure>
-<h4 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for %%* in (.) do set CurrentDirName=%%~nx*</span><br></pre></td></tr></table></figure>
-<h4 id="当前目录（不带斜线-）"><a href="#当前目录（不带斜线-）" class="headerlink" title="当前目录（不带斜线 ）"></a>当前目录（不带斜线 ）</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SET mypath=%~dp0</span><br><span class="line">echo %mypath:~0,-1%</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> windows </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> windows </tag>
-            
-            <tag> bat </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[使用 vs2015 编译 OpenSSL]]></title>
       <url>/2017/01/16/build-openssl-with-vs2015/</url>
       <content type="html"><![CDATA[<h3 id="OpenSSL-版本"><a href="#OpenSSL-版本" class="headerlink" title="OpenSSL 版本"></a>OpenSSL 版本</h3><p>openssl-1.0.2j</p>
@@ -2891,31 +2946,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
-      <url>/2016/08/28/install-nmp-on-centos6/</url>
-      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> cenos </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[MySQL升级到5.7]]></title>
       <url>/2016/08/28/upgrade-mysql/</url>
       <content type="html"><![CDATA[<p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
@@ -2934,6 +2964,31 @@
         <categories>
             
             <category> mysql </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> cenos </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[CentOS6 安装 nginx, MySQL, PHP]]></title>
+      <url>/2016/08/28/install-nmp-on-centos6/</url>
+      <content type="html"><![CDATA[<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
             
         </categories>
         
@@ -3072,9 +3127,9 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
-            <tag> server </tag>
-            
             <tag> php </tag>
+            
+            <tag> server </tag>
             
         </tags>
         
@@ -3195,85 +3250,6 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
-      <title><![CDATA[url 编码常规]]></title>
-      <url>/2015/07/03/url-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
-<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
-<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
-<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
-</ul>
-<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
-<li><code>SEO</code> 模式</li>
-<li>使用连字符规则，不使用大写</li>
-<li>命名首选 <code>RESTful</code> 方式</li>
-<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> url </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[php 编码常规]]></title>
-      <url>/2015/07/03/php-code-conventions/</url>
-      <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action名、变量名、方法名采用小写camelCase： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Action 名与 url 的映射关系： </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
-<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
-<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>类方法和变量遵守小写camelCase</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
-<li>视图模板（tpl）文件路径</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
-<ul>
-<li>目录名对应 <code>Controller</code>，首字母大写</li>
-<li>文件名对应 <code>action</code>，首字母小写</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> php </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[javascript 编码常规]]></title>
       <url>/2015/07/03/javascript-code-conventions/</url>
       <content type="html"><![CDATA[<p>标题写成常规，非规范，是由于只要没有语法错误，如何写代码本身就是编码者的一个喜好而已，但是好的习惯有助于提高可读性，减少错误，尤其提高团队合作的效率。</p>
@@ -3340,6 +3316,85 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> javascript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[php 编码常规]]></title>
+      <url>/2015/07/03/php-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架命名规范"><a href="#MVC-框架命名规范" class="headerlink" title="MVC 框架命名规范"></a>MVC 框架命名规范</h2><h3 id="控制器（controller）"><a href="#控制器（controller）" class="headerlink" title="控制器（controller）"></a>控制器（controller）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootController</code></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">RootController</span>   // 类后缀为 <span class="title">Controller</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action名、变量名、方法名采用小写camelCase： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">loginAction</span> <span class="params">()</span> </span>&#123;...&#125;    <span class="comment">// Action 后缀为 Action</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Action 名与 url 的映射关系： </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">high-school -&gt; highSchoolAction</span><br></pre></td></tr></table></figure>
+<h3 id="模型（model）"><a href="#模型（model）" class="headerlink" title="模型（model）"></a>模型（model）</h3><ul>
+<li>类名遵守大写CamelCase，继承<code>RootModel</code></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserModel</span> <span class="title">entends</span> <span class="title">RootModel</span>    //类后缀为 <span class="title">Model</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>类方法和变量遵守小写camelCase</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">calculateScore</span> <span class="params">()</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="视图（view）"><a href="#视图（view）" class="headerlink" title="视图（view）"></a>视图（view）</h3><ul>
+<li>视图模板（tpl）文件路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">views/&lt;Controller&gt;/&lt;action&gt;.tpl.php</span><br></pre></td></tr></table></figure>
+<ul>
+<li>目录名对应 <code>Controller</code>，首字母大写</li>
+<li>文件名对应 <code>action</code>，首字母小写</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> php </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[url 编码常规]]></title>
+      <url>/2015/07/03/url-code-conventions/</url>
+      <content type="html"><![CDATA[<h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+</ul>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> url </tag>
             
         </tags>
         
@@ -4055,7 +4110,7 @@ For help, use /usr/bin/supervisord -h
     <entry>
       <title><![CDATA[Linux 常用命令]]></title>
       <url>/2015/01/25/linux-commands/</url>
-      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1 打开服务器的被禁用（blocked）端口（port）"></a>1 打开服务器的被禁用（blocked）端口（port）</h2><ul>
 <li>启用被 iptables 禁用的 80 端口</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
@@ -4063,7 +4118,7 @@ For help, use /usr/bin/supervisord -h
 <li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2 通过 systemctl 启动服务"></a>2 通过 systemctl 启动服务</h2><ul>
 <li>启动、停止、重启</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
@@ -4072,12 +4127,13 @@ For help, use /usr/bin/supervisord -h
 <li>设置开机自启</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3 查看进程信息"></a>3 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4 查看进程的安装位置"></a>4 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5 sudo 保留系统环境"></a>5 sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6 查找最大目录或文件"></a>6 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
 <h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+<h2 id="7-挂载"><a href="#7-挂载" class="headerlink" title="7 挂载"></a>7 挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mount -t vboxsf 源媒体 目标路径</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -4198,11 +4254,11 @@ For help, use /usr/bin/supervisord -h
         
         <tags>
             
+            <tag> mac </tag>
+            
             <tag> shortcut </tag>
             
             <tag> chrome </tag>
-            
-            <tag> mac </tag>
             
             <tag> windows </tag>
             
@@ -4361,9 +4417,9 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
         
         <tags>
             
-            <tag> git </tag>
-            
             <tag> autolayout </tag>
+            
+            <tag> git </tag>
             
         </tags>
         
@@ -4684,9 +4740,9 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
         
         <tags>
             
-            <tag> chrome </tag>
-            
             <tag> chromium </tag>
+            
+            <tag> chrome </tag>
             
             <tag> c/c++ </tag>
             

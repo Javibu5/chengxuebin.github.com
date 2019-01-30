@@ -338,6 +338,188 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/16/build-openssl-with-vs2015/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/01/16/build-openssl-with-vs2015/" itemprop="url">使用 vs2015 编译 OpenSSL</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-16T00:00:00+08:00">
+                2017-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/openssl/" itemprop="url" rel="index">
+                    <span itemprop="name">openssl</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/16/build-openssl-with-vs2015/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/01/16/build-openssl-with-vs2015/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/01/16/build-openssl-with-vs2015/" class="leancloud_visitors" data-flag-title="使用 vs2015 编译 OpenSSL">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="OpenSSL-版本"><a href="#OpenSSL-版本" class="headerlink" title="OpenSSL 版本"></a>OpenSSL 版本</h3><p>openssl-1.0.2j</p>
+<h3 id="必需的工具"><a href="#必需的工具" class="headerlink" title="必需的工具"></a>必需的工具</h3><ul>
+<li>Visual Studio 2015</li>
+<li>ActivePerl</li>
+<li>Nasm (The Netwide Assembler)</li>
+</ul>
+<p>nasm 需要根据需要下载32位或64位版本：</p>
+<ul>
+<li><a href="http://www.nasm.us/pub/nasm/releasebuilds/2.12.02/win32/" target="_blank" rel="noopener">32位</a></li>
+<li><a href="http://www.nasm.us/pub/nasm/releasebuilds/2.12.02/win64/" target="_blank" rel="noopener">64位</a></li>
+</ul>
+<h3 id="编译32位版本"><a href="#编译32位版本" class="headerlink" title="编译32位版本"></a>编译32位版本</h3><h4 id="1-初始化命令行环境"><a href="#1-初始化命令行环境" class="headerlink" title="1. 初始化命令行环境"></a>1. 初始化命令行环境</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cd C:\build\src\openssl-1.0.2j</span><br><span class="line"></span><br><span class="line">set PATH=%PATH%;C:\nasm</span><br><span class="line"></span><br><span class="line">"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"</span><br></pre></td></tr></table></figure>
+<h4 id="2-初始化编译配置"><a href="#2-初始化编译配置" class="headerlink" title="2. 初始化编译配置"></a>2. 初始化编译配置</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">perl Configure VC-WIN32 no-asm</span><br><span class="line"></span><br><span class="line">ms\do_nasm</span><br></pre></td></tr></table></figure>
+<h4 id="3-编译"><a href="#3-编译" class="headerlink" title="3. 编译"></a>3. 编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 静态库</span><br><span class="line">nmake /f ms\nt.mak</span><br><span class="line">nmake /f ms\nt.mak test</span><br><span class="line">nmake /f ms\nt.mak install</span><br><span class="line"></span><br><span class="line">// 动态库</span><br><span class="line">nmake -f ms\ntdll.mak</span><br><span class="line">nmake -f ms\ntdll.mak install</span><br></pre></td></tr></table></figure>
+<h3 id="编译64位版本"><a href="#编译64位版本" class="headerlink" title="编译64位版本"></a>编译64位版本</h3><h4 id="1-初始化命令行环境-1"><a href="#1-初始化命令行环境-1" class="headerlink" title="1. 初始化命令行环境"></a>1. 初始化命令行环境</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cd C:\build\src\openssl-1.0.2j</span><br><span class="line"></span><br><span class="line">set PATH=%PATH%;C:\nasm</span><br><span class="line"></span><br><span class="line">"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64</span><br></pre></td></tr></table></figure>
+<h4 id="2-初始化编译配置-1"><a href="#2-初始化编译配置-1" class="headerlink" title="2. 初始化编译配置"></a>2. 初始化编译配置</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">perl Configure VC-WIN64A no-asm</span><br><span class="line"></span><br><span class="line">ms\do_win64a</span><br></pre></td></tr></table></figure>
+<h4 id="3-编译-1"><a href="#3-编译-1" class="headerlink" title="3. 编译"></a>3. 编译</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 静态库</span><br><span class="line">nmake /f ms\nt.mak</span><br><span class="line">nmake /f ms\nt.mak test</span><br><span class="line">nmake /f ms\nt.mak install</span><br><span class="line"></span><br><span class="line">// 动态库</span><br><span class="line">nmake -f ms\ntdll.mak</span><br><span class="line">nmake -f ms\ntdll.mak install</span><br></pre></td></tr></table></figure>
+<h3 id="遇到的错误"><a href="#遇到的错误" class="headerlink" title="遇到的错误"></a>遇到的错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Assembling: tmp32\sha1-586.asm</span><br><span class="line">tmp32\sha1-586.asm(1427) : error A2070: invalid instruction operands</span><br><span class="line">tmp32\sha1-586.asm(1571) : error A2070: invalid instruction operands</span><br><span class="line">NMAKE : fatal error U1077: 'ml' : return code '0x1'</span><br><span class="line">Stop.</span><br></pre></td></tr></table></figure>
+<p>解决： <code>perl Configure VC-WIN32 no-asm</code> 加上 no-asm</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/12/20/about-cert-type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -534,172 +716,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/install-nmp-on-centos6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/28/install-nmp-on-centos6/" itemprop="url">CentOS6 安装 nginx, MySQL, PHP</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
-                2016-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/28/install-nmp-on-centos6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/28/install-nmp-on-centos6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/28/install-nmp-on-centos6/" class="leancloud_visitors" data-flag-title="CentOS6 安装 nginx, MySQL, PHP">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/upgrade-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -825,6 +841,172 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_upgrade -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_secure_installation</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> we can <span class="built_in">set</span> it <span class="keyword">in</span> my.cnf file</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> [mysqld]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> validate_password_policy=LOW</span></span><br></pre></td></tr></table></figure>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
 <p><a href="http://www.tecmint.com/install-latest-mysql-on-rhel-centos-and-fedora/" target="_blank" rel="noopener">How to Install Latest MySQL 5.7.9 on RHEL/CentOS 7/6/5 and Fedora</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/install-nmp-on-centos6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/28/install-nmp-on-centos6/" itemprop="url">CentOS6 安装 nginx, MySQL, PHP</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
+                2016-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/28/install-nmp-on-centos6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/28/install-nmp-on-centos6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/08/28/install-nmp-on-centos6/" class="leancloud_visitors" data-flag-title="CentOS6 安装 nginx, MySQL, PHP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
 </blockquote>
 
           
@@ -1917,179 +2099,6 @@ For help, use /usr/bin/supervisord -h
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/03/05/install-composer-linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/03/05/install-composer-linux/" itemprop="url">安装 Composer</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-05T00:00:00+08:00">
-                2016-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/03/05/install-composer-linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/03/05/install-composer-linux/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/03/05/install-composer-linux/" class="leancloud_visitors" data-flag-title="安装 Composer">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Composer 是一个 PHP 依赖管理程序。可以按照下面的步骤以全局方式安装到 Linux 系统。</p>
-<ul>
-<li>第一步：下载 composer.phar</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp  </span><br><span class="line"></span><br><span class="line">curl -sS https://getcomposer.org/installer | php</span><br></pre></td></tr></table></figure>
-<ul>
-<li>第二步：移动到全局目录</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv composer.phar /usr/local/bin/composer</span><br></pre></td></tr></table></figure>
-<p>现在能够以全局方式在命令行中执行 <code>composer</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2144,7 +2153,7 @@ For help, use /usr/bin/supervisord -h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2166,7 +2175,7 @@ For help, use /usr/bin/supervisord -h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2283,7 +2292,7 @@ For help, use /usr/bin/supervisord -h
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
     <span class="site-uv">

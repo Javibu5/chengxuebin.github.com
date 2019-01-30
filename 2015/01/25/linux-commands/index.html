@@ -115,18 +115,18 @@
 
 
 
-<meta name="description" content="1. 打开服务器的被禁用（blocked）端口（port） 启用被 iptables 禁用的 80 端口  1sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT  将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效  1">
+<meta name="description" content="1 打开服务器的被禁用（blocked）端口（port） 启用被 iptables 禁用的 80 端口  1sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT  将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效  1s">
 <meta name="keywords" content="linux,server">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 常用命令">
 <meta property="og:url" content="http://onthink.com/2015/01/25/linux-commands/index.html">
 <meta property="og:site_name" content="Ironbin">
-<meta property="og:description" content="1. 打开服务器的被禁用（blocked）端口（port） 启用被 iptables 禁用的 80 端口  1sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT  将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效  1sudo /sbin/service iptables save 2. 通过 s">
+<meta property="og:description" content="1 打开服务器的被禁用（blocked）端口（port） 启用被 iptables 禁用的 80 端口  1sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT  将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效  1sudo /sbin/service iptables save 2 通过 sys">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-18T03:00:23.000Z">
+<meta property="og:updated_time" content="2019-01-25T03:12:03.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 常用命令">
-<meta name="twitter:description" content="1. 打开服务器的被禁用（blocked）端口（port） 启用被 iptables 禁用的 80 端口  1sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT  将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效  1sudo /sbin/service iptables save 2. 通过 s">
+<meta name="twitter:description" content="1 打开服务器的被禁用（blocked）端口（port） 启用被 iptables 禁用的 80 端口  1sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT  将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效  1sudo /sbin/service iptables save 2 通过 sys">
 
 
 
@@ -453,7 +453,7 @@
       
 
       
-        <h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1. 打开服务器的被禁用（blocked）端口（port）"></a>1. 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+        <h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1 打开服务器的被禁用（blocked）端口（port）"></a>1 打开服务器的被禁用（blocked）端口（port）</h2><ul>
 <li>启用被 iptables 禁用的 80 端口</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
@@ -461,7 +461,7 @@
 <li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2. 通过 systemctl 启动服务"></a>2. 通过 systemctl 启动服务</h2><ul>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2 通过 systemctl 启动服务"></a>2 通过 systemctl 启动服务</h2><ul>
 <li>启动、停止、重启</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
@@ -470,12 +470,13 @@
 <li>设置开机自启</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3. 查看进程信息"></a>3. 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4. 查看进程的安装位置"></a>4. 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5. sudo 保留系统环境"></a>5. sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6. 查找最大目录或文件"></a>6. 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3 查看进程信息"></a>3 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4 查看进程的安装位置"></a>4 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5 sudo 保留系统环境"></a>5 sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6 查找最大目录或文件"></a>6 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
 <h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+<h2 id="7-挂载"><a href="#7-挂载" class="headerlink" title="7 挂载"></a>7 挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mount -t vboxsf 源媒体 目标路径</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -626,7 +627,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -648,7 +649,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -735,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-打开服务器的被禁用（blocked）端口（port）"><span class="nav-number">1.</span> <span class="nav-text">1. 打开服务器的被禁用（blocked）端口（port）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-通过-systemctl-启动服务"><span class="nav-number">2.</span> <span class="nav-text">2. 通过 systemctl 启动服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-查看进程信息"><span class="nav-number">3.</span> <span class="nav-text">3. 查看进程信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-查看进程的安装位置"><span class="nav-number">4.</span> <span class="nav-text">4. 查看进程的安装位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-sudo-保留系统环境"><span class="nav-number">5.</span> <span class="nav-text">5. sudo 保留系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-查找最大目录或文件"><span class="nav-number">6.</span> <span class="nav-text">6. 查找最大目录或文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）查找最大目录"><span class="nav-number">6.1.</span> <span class="nav-text">1）查找最大目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）查找最大文件"><span class="nav-number">6.2.</span> <span class="nav-text">2）查找最大文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-打开服务器的被禁用（blocked）端口（port）"><span class="nav-number">1.</span> <span class="nav-text">1 打开服务器的被禁用（blocked）端口（port）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-通过-systemctl-启动服务"><span class="nav-number">2.</span> <span class="nav-text">2 通过 systemctl 启动服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-查看进程信息"><span class="nav-number">3.</span> <span class="nav-text">3 查看进程信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-查看进程的安装位置"><span class="nav-number">4.</span> <span class="nav-text">4 查看进程的安装位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-sudo-保留系统环境"><span class="nav-number">5.</span> <span class="nav-text">5 sudo 保留系统环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-查找最大目录或文件"><span class="nav-number">6.</span> <span class="nav-text">6 查找最大目录或文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）查找最大目录"><span class="nav-number">6.1.</span> <span class="nav-text">1）查找最大目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）查找最大文件"><span class="nav-number">6.2.</span> <span class="nav-text">2）查找最大文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-挂载"><span class="nav-number">7.</span> <span class="nav-text">7 挂载</span></a></li></ol></div>
             
 
           </div>
@@ -781,7 +782,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
     <span class="site-uv">
