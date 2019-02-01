@@ -338,6 +338,385 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/26/github-multi-account-configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/11/26/github-multi-account-configuration/" itemprop="url">GitHub，GitLab的多账户配置（Windows）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-26T00:00:00+08:00">
+                2014-11-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/26/github-multi-account-configuration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/11/26/github-multi-account-configuration/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/11/26/github-multi-account-configuration/" class="leancloud_visitors" data-flag-title="GitHub，GitLab的多账户配置（Windows）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Windows 系统通过 SSH 方式使用 Git 时，如果有多个账户，需要手工配置多个 rsa 密钥，这里记录一下过程。下面以 GitHub 为例。</p>
+<h2 id="单个账号"><a href="#单个账号" class="headerlink" title="单个账号"></a>单个账号</h2><h3 id="1-生成密钥"><a href="#1-生成密钥" class="headerlink" title="1.生成密钥"></a>1.生成密钥</h3><p>打开 Git Bash，运行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "your_email@example.com"</span><br><span class="line"><span class="meta">#</span><span class="bash"> Creates a new ssh key, using the provided email as a label</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Generating public/private rsa key pair.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/c/Users/you/.ssh/id_rsa): [Press enter]</span></span><br></pre></td></tr></table></figure>
+<p>下一步，输入密钥的口令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): [Type a passphrase]</span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter same passphrase again: [Type passphrase again]</span></span><br></pre></td></tr></table></figure>
+<p>执行后，将产生公钥、私钥对：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /c/Users/you/.ssh/id_rsa.</span><br><span class="line"><span class="meta">#</span><span class="bash"> Your public key has been saved <span class="keyword">in</span> /c/Users/you/.ssh/id_rsa.pub.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> The key fingerprint is:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-将公钥、私钥加入到-ssh-agent"><a href="#2-将公钥、私钥加入到-ssh-agent" class="headerlink" title="2.将公钥、私钥加入到 ssh-agent"></a>2.将公钥、私钥加入到 ssh-agent</h3><ul>
+<li>命令方式：  </li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> start the ssh-agent <span class="keyword">in</span> the background</span></span><br><span class="line">ssh-agent -s</span><br><span class="line"><span class="meta">#</span><span class="bash"> Agent pid 59566</span></span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<ul>
+<li>或者手工将2个文件复制到 user/.ssh/ 目录</li>
+</ul>
+<h3 id="3-将公钥文件的内容复制到-GitHub-账户中"><a href="#3-将公钥文件的内容复制到-GitHub-账户中" class="headerlink" title="3.将公钥文件的内容复制到 GitHub 账户中"></a>3.将公钥文件的内容复制到 GitHub 账户中</h3><p>密钥是自己保存的，公钥是需要公开给你使用的网站。登录 GitHub 账户，从账户管理里找到密钥（SSH keys）配置，新建一个key，将公钥（一串 Base64 格式）文本复制到其中，并给这个 key 标记个名字。 </p>
+<p>标记个名字，方便多个账号同时使用时，方便管理。</p>
+<h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p>在 Git Bash 中输入:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="meta">#</span><span class="bash"> Attempts to ssh to GitHub</span></span><br></pre></td></tr></table></figure>
+<p>会收到一个提示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host 'github.com (207.97.227.239)' can't be established.</span><br><span class="line"><span class="meta">#</span><span class="bash"> RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Are you sure you want to <span class="built_in">continue</span> connecting (yes/no)?</span></span><br></pre></td></tr></table></figure>
+<p>检查一下指纹（fingerprint）和你上面产生的密钥是否一致，然后输入<code>yes</code>.</p>
+<p>最后，你将收到配置成功的消息 :)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You've successfully authenticated, but GitHub does not</span><br><span class="line"><span class="meta">#</span><span class="bash"> provide shell access.</span></span><br></pre></td></tr></table></figure>
+<h2 id="添加多个账户"><a href="#添加多个账户" class="headerlink" title="添加多个账户"></a>添加多个账户</h2><p>上面操作时<strong>手工</strong>产生的<code>id_rsa</code>密钥文件放到<code>username\.ssh\</code>目录下，如果改成其它文件名，在连接时将出错，这就不能支持多个账号的ssh key。  </p>
+<p>（不过，我猜可能通过命令 <code>ssh-add ~/.ssh/id_rsa</code> 添加的 key 可能会自动产生多账号配置文件。有待验证！！！）</p>
+<p>那如果有多个同名的<code>id_rsa</code>密钥对文件如何处理呢？</p>
+<p>做法是添加一个配置文件，来管理（映射）密钥的关系，这只是 windows 的方案，Linux 自带 SSH agent 的。</p>
+<h3 id="1-创建管理文件"><a href="#1-创建管理文件" class="headerlink" title="1.创建管理文件"></a>1.创建管理文件</h3><p>在 <code>.ssh</code> 目录下创建 <code>config</code> 文件，同时将产生的 <code>id_rsa</code> 文件改成较好记的名字，比如 <code>username.github.com</code>。</p>
+<h3 id="2-添加映射"><a href="#2-添加映射" class="headerlink" title="2.添加映射"></a>2.添加映射</h3><p>打开 <code>config</code> 文件，添加：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">	User git</span><br><span class="line">	Hostname ssh.github.com</span><br><span class="line">	PreferredAuthentications publickey</span><br><span class="line">	IdentityFile ~/.ssh/username.github.com</span><br><span class="line">	Port 443</span><br><span class="line"></span><br><span class="line">Host anothersite.com</span><br><span class="line">	User git</span><br><span class="line">	Hostname ssh.anothersite.com</span><br><span class="line">	PreferredAuthentications publickey</span><br><span class="line">	IdentityFile ~/.ssh/username.anothersite.com</span><br><span class="line">	Port 443</span><br></pre></td></tr></table></figure>
+<p>上面是2个密钥映射的关系，<code>IdentityFile</code>是改名后的文件，其它参数根据网站需要来更改。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/12/content-hugging-vs-content compression-resistance-priority/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="url">优先级：hugging vs compression resistance</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-12T00:00:00+08:00">
+                2014-11-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ios/" itemprop="url" rel="index">
+                    <span itemprop="name">ios</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" class="leancloud_visitors" data-flag-title="优先级：hugging vs compression resistance">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>开发IOS应用最快速的手段就是自动布局（auto layout）以及它的约束（constraint）机制，下面说几个属性。</p>
+<h3 id="1-内嵌内容大小（Intrinsic-Content-Size）"><a href="#1-内嵌内容大小（Intrinsic-Content-Size）" class="headerlink" title="1.内嵌内容大小（Intrinsic Content Size）"></a>1.内嵌内容大小（Intrinsic Content Size）</h3><p>IOS本身依靠一套布局系统（layout system）完成计算各组件大小，最大限度满足尽可能多的约束，说尽可能多的原因是可能存在有冲突的约束，造成没法全部满足。回过头来说，设置了Intrinsic Content Size属性，一是就是通知布局系统本组件包含不容易知道大小的内容，二是会提示布局系统自身的大小，也就是组件本身可以知道自身内容大小。  </p>
+<p>常见的组件有UILabel, UIButton, 它们都设置了Intrinsic Content Size这个属性，也就是运行时会根据内容的大小来缩小或扩大。</p>
+<p>参见<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutoLayoutConcepts/AutoLayoutConcepts.html" target="_blank" rel="noopener">苹果开发文档</a></p>
+<h3 id="2-内容保持紧固的优先级（Content-hugging-priority）"><a href="#2-内容保持紧固的优先级（Content-hugging-priority）" class="headerlink" title="2.内容保持紧固的优先级（Content hugging priority）"></a>2.内容保持紧固的优先级（Content hugging priority）</h3><p>上面说组件会适应其内容大小。那会出现一个问题，例如，当组件还设置了其它约束条件，将左（leading）和右（trailing）边界固定（pinned）到了父视图（superview）上，假如内容宽度是200，父视图宽度是500，那么组件要应用哪个呢？</p>
+<p>这时就很有必要为每个条件设置一个优先级，ios默认有高（1000）、中（750）和低（250）3个级别，当然如果需要比较的情况复杂，也可以为优先级设置任意0至1000的数值。</p>
+<p>内容保持紧固的优先级指的是组件保持内容大小，<strong>不被拉伸</strong>的优先级别。</p>
+<p>回到刚才的例子，将组件的Content hugging priority设置为251，而左右约束设置为250，这时组件会维持自身大小，不会随着父视图拉伸。</p>
+<h3 id="3-内容抵抗压缩的优先级（content-compression-resistance-priority）"><a href="#3-内容抵抗压缩的优先级（content-compression-resistance-priority）" class="headerlink" title="3.内容抵抗压缩的优先级（content compression resistance priority）"></a>3.内容抵抗压缩的优先级（content compression resistance priority）</h3><p>思路与上边相似，本属性指的是组件保持内容大小，<strong>不被压缩</strong>的优先级别。</p>
+<p>试想上例中，如果父视图只有宽度只有100，组件内容是200，将组件的content compression resistance priority设置为751，而左右约束设置为750，这时组件会维持自身大小，不会随着父视图被压缩。</p>
+<h3 id="4-附上一个讲的很清楚的例子"><a href="#4-附上一个讲的很清楚的例子" class="headerlink" title="4. 附上一个讲的很清楚的例子"></a>4. 附上一个讲的很清楚的例子</h3><p>Say you’ve got button like this:</p>
+<p><strong>[       Click Me      ]</strong></p>
+<p>and you’ve pinned the edges to a larger superview with priority 500.</p>
+<p>Then, if Hugging priority &gt; 500 it’ll look like this:</p>
+<p><strong>[Click Me]</strong></p>
+<p>If Hugging priority &lt; 500 it’ll look like this:</p>
+<p><strong>[       Click Me      ]</strong></p>
+<p>If superview now shrinks then, if the Compression Resistance priority &gt; 500, it’ll look like this</p>
+<p><strong>[Click Me]</strong></p>
+<p>Else if Compression Resistance priority &lt; 500, it could look like this:</p>
+<p><strong>[Cli..]</strong></p>
+<p>from <a href="http://stackoverflow.com/questions/15850417/cocoa-autolayout-content-hugging-vs-content-compression-resistance-priority" target="_blank" rel="noopener">stackoverflow</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/08/09/android-nine-patch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1754,7 +2133,7 @@ PluginObject.h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1776,7 +2155,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

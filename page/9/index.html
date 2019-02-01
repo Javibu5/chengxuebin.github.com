@@ -338,6 +338,438 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/05/23/chromium-create-extension-event/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/05/23/chromium-create-extension-event/" itemprop="url">创建 Chromium Extension Event</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-23T00:00:00+08:00">
+                2015-05-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/23/chromium-create-extension-event/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/05/23/chromium-create-extension-event/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/05/23/chromium-create-extension-event/" class="leancloud_visitors" data-flag-title="创建 Chromium Extension Event">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、创建事件名"><a href="#一、创建事件名" class="headerlink" title="一、创建事件名"></a>一、创建事件名</h2><ul>
+<li>打开 <code>chrome/browser/extensions/event_names.h</code></li>
+</ul>
+<p>添加</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> event_names &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">+ <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">char</span> kOnLoginByCertComplete[];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>打开 <code>chrome/browser/extensions/event_names.cc</code></li>
+</ul>
+<p>添加</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> event_names &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">+ <span class="keyword">const</span> <span class="keyword">char</span> kOnLoginByCertComplete[] = <span class="string">"wintrust.onLoginByCertComplete"</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二、添加事件的描述"><a href="#二、添加事件的描述" class="headerlink" title="二、添加事件的描述"></a>二、添加事件的描述</h2><ul>
+<li>打开 <code>chrome\common\extensions\api\wintrust.json</code></li>
+</ul>
+<p>添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">    <span class="string">"namespace"</span>: <span class="string">"wintrust"</span>,</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">+    <span class="string">"events"</span>: [&#123;</span><br><span class="line">+      <span class="string">"name"</span>: <span class="string">"onLoginByCertComplete"</span>,</span><br><span class="line">+      <span class="string">"description"</span>: <span class="string">"Fired when login vpn by cert."</span>,</span><br><span class="line">+      <span class="string">"type"</span>: <span class="string">"function"</span>,</span><br><span class="line">+      <span class="string">"parameters"</span>: [&#123;<span class="string">"name"</span>: <span class="string">"success"</span>, <span class="string">"type"</span>:<span class="string">"boolean"</span>&#125;]</span><br><span class="line">+    &#125;]</span><br><span class="line"></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<h2 id="三、添加触发扩展事件的事件"><a href="#三、添加触发扩展事件的事件" class="headerlink" title="三、添加触发扩展事件的事件"></a>三、添加触发扩展事件的事件</h2><ul>
+<li>打开 <code>content\public\browser\notification_types.h</code></li>
+</ul>
+<p>添加</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> NotificationType &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">+<span class="comment">// 证书登录的结果</span></span><br><span class="line">+NOTIFICATION_LOGIN_BY_CERT_COMPLETE,</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="四、绑定第三步事件的回调"><a href="#四、绑定第三步事件的回调" class="headerlink" title="四、绑定第三步事件的回调"></a>四、绑定<strong>第三步</strong>事件的回调</h2><ul>
+<li>打开 <code>chrome/browser/extensions/browser_event_router.cc</code></li>
+</ul>
+<p>添加绑定</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">BrowserEventRouter::BrowserEventRouter(Profile* profile)</span><br><span class="line">    : profile_(profile) &#123;</span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  registrar_.Add(<span class="keyword">this</span>,</span><br><span class="line">                 content::NOTIFICATION_LOGIN_BY_CERT_COMPLETE,</span><br><span class="line">                 content::Source&lt;Profile&gt;(profile_));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现回调</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> BrowserEventRouter::Observe(<span class="keyword">int</span> type,</span><br><span class="line">                                 <span class="keyword">const</span> content::NotificationSource&amp; source,</span><br><span class="line">                                 <span class="keyword">const</span> content::NotificationDetails&amp; details) &#123;</span><br><span class="line">  ...</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type == content::NOTIFICATION_LOGIN_BY_CERT_COMPLETE) &#123;</span><br><span class="line">    scoped_ptr&lt;ListValue&gt; args(<span class="keyword">new</span> ListValue());</span><br><span class="line">    <span class="keyword">bool</span> value = *(content::Details&lt;<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&gt;(details).ptr()) == <span class="string">"true"</span>;</span><br><span class="line">    args-&gt;Append(Value::CreateBooleanValue(value));</span><br><span class="line">    DispatchEvent(profile_, events::kOnLoginByCertComplete, args.Pass(), EventRouter::USER_GESTURE_UNKNOWN);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    NOTREACHED();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="五、实现触发消息"><a href="#五、实现触发消息" class="headerlink" title="五、实现触发消息"></a>五、实现触发消息</h2><p>在某个合适和需要的位置以下列的代码触发 <code>NOTIFICATION_LOGIN_BY_CERT_COMPLETE</code> 事件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+  <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">detail</span><span class="params">(<span class="string">"false"</span>)</span></span>;</span><br><span class="line">+  content::NotificationService::current()-&gt;Notify(</span><br><span class="line">+      content::NOTIFICATION_LOGIN_BY_CERT_COMPLETE,</span><br><span class="line">+      content::Source&lt;Profile&gt;(browser_-&gt;profile()),</span><br><span class="line">+      content::Details&lt;<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&gt;(&amp;detail));</span><br></pre></td></tr></table></figure>
+<h2 id="六、测试新事件"><a href="#六、测试新事件" class="headerlink" title="六、测试新事件"></a>六、测试新事件</h2><ol>
+<li><p>在扩展的 <code>manifest</code> 里首先声明对 <code>wintrust</code> 命名空间的权限</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">   <span class="string">"permissions"</span>: [</span><br><span class="line">    <span class="string">"*://*/*"</span>,</span><br><span class="line">    <span class="string">"wintrust"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>绑定事件回调函数</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrome.wintrust.onLoginByCertComplete.addListener(<span class="function"><span class="keyword">function</span>(<span class="params">success</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Login result is: '</span>, success);  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>触发<strong>第五步</strong>定义的条件，使事件发生。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/05/22/chromium-create-extension-api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/05/22/chromium-create-extension-api/" itemprop="url">创建 Chromium Extension API</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-22T00:00:00+08:00">
+                2015-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/22/chromium-create-extension-api/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/05/22/chromium-create-extension-api/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/05/22/chromium-create-extension-api/" class="leancloud_visitors" data-flag-title="创建 Chromium Extension API">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、添加新接口描述文件"><a href="#一、添加新接口描述文件" class="headerlink" title="一、添加新接口描述文件"></a>一、添加新接口描述文件</h2><ol>
+<li><p>新建描述文件</p>
+<p> 创建 <code>chrome\common\extensions\api\wintrust.json</code></p>
+<p> 添加接口描述代码：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="comment">// 获取浏览器模块目录</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"versionDirectory"</span>,</span><br><span class="line">        <span class="string">"type"</span>: <span class="string">"function"</span>,</span><br><span class="line">        <span class="string">"parameters"</span>: [&#123;</span><br><span class="line">            <span class="string">"type"</span>: <span class="string">"function"</span>,</span><br><span class="line">            <span class="string">"name"</span>: <span class="string">"callback"</span>,</span><br><span class="line">            <span class="string">"parameters"</span>: [&#123;</span><br><span class="line">              <span class="string">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">              <span class="string">"name"</span>: <span class="string">"path"</span></span><br><span class="line">            &#125;]</span><br><span class="line">         &#125;]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加新文件到 <code>GYP</code></p>
+<p> 打开 <code>src\chrome\common\extensions\api\api.gyp</code>, 添加：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="string">'schema_files'</span>: [</span><br><span class="line">  ...</span><br><span class="line">+  # 新接口	  </span><br><span class="line">+  <span class="string">'wintrust.json'</span>,</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加新文件到 <code>grd</code> </p>
+<p> 打开 <code>src\chrome\common\extensions_api_resources.grd</code>，添加</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">grit</span> <span class="attr">latest_public_release</span>=<span class="string">"0"</span> <span class="attr">current_release</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">outputs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"grit/extensions_api_resources.h"</span> <span class="attr">type</span>=<span class="string">"rc_header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">emit</span> <span class="attr">emit_type</span>=<span class="string">'prepend'</span>&gt;</span><span class="tag">&lt;/<span class="name">emit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.pak"</span> <span class="attr">type</span>=<span class="string">"data_package"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.rc"</span> <span class="attr">type</span>=<span class="string">"rc_all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">outputs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">release</span> <span class="attr">seq</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">	  ...</span><br><span class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"IDR_EXTENSION_API_JSON_WINTRUST"</span> <span class="attr">file</span>=<span class="string">"extensions\api\wintrust.json"</span> <span class="attr">type</span>=<span class="string">"BINDATA"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">grit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="二、添加新接口头文件和实现"><a href="#二、添加新接口头文件和实现" class="headerlink" title="二、添加新接口头文件和实现"></a>二、添加新接口头文件和实现</h2><ol>
+<li><p>新建头文件和实现文件</p>
+<p> 创建 <code>src\chrome\browser\extensions\api\wintrust\wintrust_api.h</code> 和 <code>src\chrome\browser\extensions\api\wintrust\wintrust_api.cc</code></p>
+</li>
+<li><p>添加新文件到 <code>GYP</code></p>
+<p> 打开 <code>src\chrome\chrome_browser_extensions.gypi</code>, 添加：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'sources'</span>: [</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">   +   # win-trust 添加的插件接口</span><br><span class="line">   +    <span class="string">'browser/extensions/api/wintrust/wintrust_api.h'</span>,</span><br><span class="line">   +    <span class="string">'browser/extensions/api/wintrust/wintrust_api.cc'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现 <code>wintrust_api.h</code></p>
+</li>
+</ol>
+<pre><code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"chrome/browser/extensions/extension_function.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> extensions &#123;</span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">WintrustVersionDirectoryFunction</span> :</span> <span class="keyword">public</span> SyncExtensionFunction &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    WintrustVersionDirectoryFunction();</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">RunImpl</span><span class="params">()</span> OVERRIDE</span>;</span><br><span class="line">  <span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~WintrustVersionDirectoryFunction()&#123;&#125;;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    DECLARE_EXTENSION_FUNCTION(<span class="string">"wintrust.versionDirectory"</span>, WINTRUST_VERSIONDIRECTORY);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li>实现 <code>wintrust_api.cc</code></li>
+</ol>
+<pre><code><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"chrome/browser/extensions/api/wintrust/wintrust_api.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"base/file_util.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"base/path_service.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"chrome/browser/profiles/profile.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> extensions&#123;</span><br><span class="line">  </span><br><span class="line">  WintrustVersionDirectoryFunction::WintrustVersionDirectoryFunction()&#123;&#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">bool</span> WintrustVersionDirectoryFunction::RunImpl() &#123;</span><br><span class="line">    base::FilePath path;</span><br><span class="line">    PathService::Get(base::DIR_MODULE, &amp;path);</span><br><span class="line"></span><br><span class="line">    scoped_ptr&lt;base::StringValue&gt; value (base::Value::CreateStringValue(path.value().c_str()));</span><br><span class="line">    </span><br><span class="line">    SetResult(value.release());</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="三、重新生成项目（sln）"><a href="#三、重新生成项目（sln）" class="headerlink" title="三、重新生成项目（sln）"></a>三、重新生成项目（sln）</h2><p>执行 <code>python build\gyp_chromium</code></p>
+<h2 id="四、为新接口定义C-常量"><a href="#四、为新接口定义C-常量" class="headerlink" title="四、为新接口定义C++常量"></a>四、为新接口定义C++常量</h2><ul>
+<li>打开 <code>src\chrome\browser\extensions\extension_function_histogram_value.h</code></li>
+</ul>
+<p>添加下面代码, 转换示例： <code>Example: &quot;tabs.create&quot; -&gt; TABS_CREATE</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> HistogramValue &#123;</span><br><span class="line">  UNKNOWN = <span class="number">0</span>,</span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">+  <span class="comment">// 赢达信客户端添加的接口</span></span><br><span class="line">+  WINTRUST_VERSIONDIRECTORY,</span><br><span class="line"></span><br><span class="line">  ENUM_BOUNDARY <span class="comment">// Last entry: Add new entries above.</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="五、注册新接口类（class）"><a href="#五、注册新接口类（class）" class="headerlink" title="五、注册新接口类（class）"></a>五、注册新接口类（class）</h2><ul>
+<li>打开 <code>src\chrome\browser\extensions\extension_function_registry.cc</code></li>
+</ul>
+<p>添加下面代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 赢达信客户端接口</span><br><span class="line">#include &quot;chrome/browser/extensions/api/wintrust/wintrust_api.h&quot;</span><br><span class="line"></span><br><span class="line">void ExtensionFunctionRegistry::ResetFunctions() &#123;</span><br><span class="line">#if defined(ENABLE_EXTENSIONS)</span><br><span class="line"></span><br><span class="line">  // Register all functions here.</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  // 赢达信客户端定义的接口</span><br><span class="line">  RegisterFunction&lt;extensions::WintrustVersionDirectoryFunction&gt;();</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">  // Generated APIs</span><br><span class="line">  extensions::api::GeneratedFunctionRegistry::RegisterAll(this);</span><br><span class="line">  </span><br><span class="line">#endif  // defined(ENABLE_EXTENSIONS)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="六、定义新接口的访问权限"><a href="#六、定义新接口的访问权限" class="headerlink" title="六、定义新接口的访问权限"></a>六、定义新接口的访问权限</h2><ol>
+<li><p>定义该接口可用于的扩展程序类型：</p>
+<p> 打开 <code>src\chrome\common\extensions\api\_permission_features.json</code></p>
+<p> 添加下面代码， <code>extension_types</code> 定义了哪些类型的扩展可以使用新接口。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Copyright (c) 2012 The Chromium Authors. All rights reserved.</span></span><br><span class="line"><span class="comment">// Use of this source code is governed by a BSD-style license that can be</span></span><br><span class="line"><span class="comment">// found in the LICENSE file.</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">+  <span class="comment">// 赢达信的接口</span></span><br><span class="line">+   <span class="string">"wintrust"</span>: &#123;</span><br><span class="line">+    <span class="string">"channel"</span>: <span class="string">"stable"</span>,</span><br><span class="line">+    <span class="string">"extension_types"</span>: [<span class="string">"extension"</span>, <span class="string">"packaged_app"</span>,<span class="string">"platform_app"</span>,<span class="string">"hosted_app"</span>]</span><br><span class="line">+  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义权限的键名，该常量也显示到 <code>manifest permission</code> 中</p>
+<p> 打开 <code>src\chrome\common\extensions\permissions\api_permission.h</code>，添加</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> ID &#123;</span><br><span class="line">	<span class="comment">// Error codes.</span></span><br><span class="line">	kInvalid = <span class="number">-2</span>,</span><br><span class="line">	kUnknown = <span class="number">-1</span>,</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Real permissions.</span></span><br><span class="line">	...</span><br><span class="line">+	kWintrust,</span><br><span class="line">	kEnumBoundary</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现该键名</p>
+<p> 打开 <code>src\chrome\common\extensions\permissions\chrome_api_permissions.cc</code>，添加</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;APIPermissionInfo*&gt; ChromeAPIPermissions::GetAllPermissions()</span><br><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">PermissionRegistration</span> &#123;</span></span><br><span class="line">	APIPermission::ID id;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span>* name;</span><br><span class="line">	<span class="keyword">int</span> flags;</span><br><span class="line">	<span class="keyword">int</span> l10n_message_id;</span><br><span class="line">	PermissionMessage::ID message_id;</span><br><span class="line">	APIPermissionInfo::APIPermissionConstructor constructor;</span><br><span class="line">	&#125; PermissionsToRegister[] = &#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Register extension permissions.</span></span><br><span class="line">	...</span><br><span class="line">	&#123; APIPermission::kWintrust, <span class="string">"wintrust"</span> &#125;,</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="七、测试新接口"><a href="#七、测试新接口" class="headerlink" title="七、测试新接口"></a>七、测试新接口</h2><ol>
+<li><p>创建扩展  <code>manifest</code> 文件</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"WinTrust API"</span>,</span><br><span class="line">  <span class="string">"manifest_version"</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"1.1"</span>,</span><br><span class="line">  <span class="string">"description"</span>: <span class="string">"Test new extenslion api"</span>,</span><br><span class="line">  </span><br><span class="line">  <span class="string">"browser_action"</span>: &#123;</span><br><span class="line">    <span class="string">"default_icon"</span>: &#123;                    </span><br><span class="line">      <span class="string">"19"</span>: <span class="string">"img/icon19.png"</span>,           </span><br><span class="line">      <span class="string">"38"</span>: <span class="string">"img/icon38.png"</span>            </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"default_title"</span>: <span class="string">"VPN"</span>, </span><br><span class="line">    <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>        </span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  <span class="string">"background"</span>: &#123;</span><br><span class="line">    <span class="string">"page"</span>: <span class="string">"background.html"</span></span><br><span class="line">  &#125;,  </span><br><span class="line">  </span><br><span class="line">  <span class="string">"permissions"</span>: [</span><br><span class="line">    <span class="string">"*://*/*"</span>,</span><br><span class="line">    <span class="string">"wintrust"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建扩展  <code>manifest</code> 文件</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrome.wintrust.versionDirectory(<span class="function"><span class="keyword">function</span>(<span class="params">path</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'Test reust:'</span>, path);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/05/07/mac-install-nginx-php-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1548,7 +1980,7 @@
 <h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
 <h2 id="7-挂载"><a href="#7-挂载" class="headerlink" title="7 挂载"></a>7 挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mount -t vboxsf 源媒体 目标路径</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="8-查找文件包含字符"><a href="#8-查找文件包含字符" class="headerlink" title="8 查找文件包含字符"></a>8 查找文件包含字符</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> This will only search through those files <span class="built_in">which</span> have .c or .h extensions:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --include=\*.&#123;c,h&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> This will exclude searching all the files ending with .o extension:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude=*.o -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">For directories it<span class="string">'s possible to exclude a particular directory(ies) through --exclude-dir parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude-dir=&#123;dir1,dir2,*.dst&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br></pre></td></tr></table></figure>
           
         
       
@@ -2078,385 +2510,6 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/26/github-multi-account-configuration/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/11/26/github-multi-account-configuration/" itemprop="url">GitHub，GitLab的多账户配置（Windows）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-26T00:00:00+08:00">
-                2014-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/11/26/github-multi-account-configuration/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/11/26/github-multi-account-configuration/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/11/26/github-multi-account-configuration/" class="leancloud_visitors" data-flag-title="GitHub，GitLab的多账户配置（Windows）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Windows 系统通过 SSH 方式使用 Git 时，如果有多个账户，需要手工配置多个 rsa 密钥，这里记录一下过程。下面以 GitHub 为例。</p>
-<h2 id="单个账号"><a href="#单个账号" class="headerlink" title="单个账号"></a>单个账号</h2><h3 id="1-生成密钥"><a href="#1-生成密钥" class="headerlink" title="1.生成密钥"></a>1.生成密钥</h3><p>打开 Git Bash，运行命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C "your_email@example.com"</span><br><span class="line"><span class="meta">#</span><span class="bash"> Creates a new ssh key, using the provided email as a label</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Generating public/private rsa key pair.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/c/Users/you/.ssh/id_rsa): [Press enter]</span></span><br></pre></td></tr></table></figure>
-<p>下一步，输入密钥的口令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase): [Type a passphrase]</span><br><span class="line"><span class="meta">#</span><span class="bash"> Enter same passphrase again: [Type passphrase again]</span></span><br></pre></td></tr></table></figure>
-<p>执行后，将产生公钥、私钥对：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in /c/Users/you/.ssh/id_rsa.</span><br><span class="line"><span class="meta">#</span><span class="bash"> Your public key has been saved <span class="keyword">in</span> /c/Users/you/.ssh/id_rsa.pub.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> The key fingerprint is:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-将公钥、私钥加入到-ssh-agent"><a href="#2-将公钥、私钥加入到-ssh-agent" class="headerlink" title="2.将公钥、私钥加入到 ssh-agent"></a>2.将公钥、私钥加入到 ssh-agent</h3><ul>
-<li>命令方式：  </li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> start the ssh-agent <span class="keyword">in</span> the background</span></span><br><span class="line">ssh-agent -s</span><br><span class="line"><span class="meta">#</span><span class="bash"> Agent pid 59566</span></span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
-<ul>
-<li>或者手工将2个文件复制到 user/.ssh/ 目录</li>
-</ul>
-<h3 id="3-将公钥文件的内容复制到-GitHub-账户中"><a href="#3-将公钥文件的内容复制到-GitHub-账户中" class="headerlink" title="3.将公钥文件的内容复制到 GitHub 账户中"></a>3.将公钥文件的内容复制到 GitHub 账户中</h3><p>密钥是自己保存的，公钥是需要公开给你使用的网站。登录 GitHub 账户，从账户管理里找到密钥（SSH keys）配置，新建一个key，将公钥（一串 Base64 格式）文本复制到其中，并给这个 key 标记个名字。 </p>
-<p>标记个名字，方便多个账号同时使用时，方便管理。</p>
-<h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p>在 Git Bash 中输入:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line"><span class="meta">#</span><span class="bash"> Attempts to ssh to GitHub</span></span><br></pre></td></tr></table></figure>
-<p>会收到一个提示：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host 'github.com (207.97.227.239)' can't be established.</span><br><span class="line"><span class="meta">#</span><span class="bash"> RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Are you sure you want to <span class="built_in">continue</span> connecting (yes/no)?</span></span><br></pre></td></tr></table></figure>
-<p>检查一下指纹（fingerprint）和你上面产生的密钥是否一致，然后输入<code>yes</code>.</p>
-<p>最后，你将收到配置成功的消息 :)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You've successfully authenticated, but GitHub does not</span><br><span class="line"><span class="meta">#</span><span class="bash"> provide shell access.</span></span><br></pre></td></tr></table></figure>
-<h2 id="添加多个账户"><a href="#添加多个账户" class="headerlink" title="添加多个账户"></a>添加多个账户</h2><p>上面操作时<strong>手工</strong>产生的<code>id_rsa</code>密钥文件放到<code>username\.ssh\</code>目录下，如果改成其它文件名，在连接时将出错，这就不能支持多个账号的ssh key。  </p>
-<p>（不过，我猜可能通过命令 <code>ssh-add ~/.ssh/id_rsa</code> 添加的 key 可能会自动产生多账号配置文件。有待验证！！！）</p>
-<p>那如果有多个同名的<code>id_rsa</code>密钥对文件如何处理呢？</p>
-<p>做法是添加一个配置文件，来管理（映射）密钥的关系，这只是 windows 的方案，Linux 自带 SSH agent 的。</p>
-<h3 id="1-创建管理文件"><a href="#1-创建管理文件" class="headerlink" title="1.创建管理文件"></a>1.创建管理文件</h3><p>在 <code>.ssh</code> 目录下创建 <code>config</code> 文件，同时将产生的 <code>id_rsa</code> 文件改成较好记的名字，比如 <code>username.github.com</code>。</p>
-<h3 id="2-添加映射"><a href="#2-添加映射" class="headerlink" title="2.添加映射"></a>2.添加映射</h3><p>打开 <code>config</code> 文件，添加：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">	User git</span><br><span class="line">	Hostname ssh.github.com</span><br><span class="line">	PreferredAuthentications publickey</span><br><span class="line">	IdentityFile ~/.ssh/username.github.com</span><br><span class="line">	Port 443</span><br><span class="line"></span><br><span class="line">Host anothersite.com</span><br><span class="line">	User git</span><br><span class="line">	Hostname ssh.anothersite.com</span><br><span class="line">	PreferredAuthentications publickey</span><br><span class="line">	IdentityFile ~/.ssh/username.anothersite.com</span><br><span class="line">	Port 443</span><br></pre></td></tr></table></figure>
-<p>上面是2个密钥映射的关系，<code>IdentityFile</code>是改名后的文件，其它参数根据网站需要来更改。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/12/content-hugging-vs-content compression-resistance-priority/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="url">优先级：hugging vs compression resistance</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-11-12T00:00:00+08:00">
-                2014-11-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/11/12/content-hugging-vs-content compression-resistance-priority/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/11/12/content-hugging-vs-content compression-resistance-priority/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/11/12/content-hugging-vs-content compression-resistance-priority/" class="leancloud_visitors" data-flag-title="优先级：hugging vs compression resistance">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>开发IOS应用最快速的手段就是自动布局（auto layout）以及它的约束（constraint）机制，下面说几个属性。</p>
-<h3 id="1-内嵌内容大小（Intrinsic-Content-Size）"><a href="#1-内嵌内容大小（Intrinsic-Content-Size）" class="headerlink" title="1.内嵌内容大小（Intrinsic Content Size）"></a>1.内嵌内容大小（Intrinsic Content Size）</h3><p>IOS本身依靠一套布局系统（layout system）完成计算各组件大小，最大限度满足尽可能多的约束，说尽可能多的原因是可能存在有冲突的约束，造成没法全部满足。回过头来说，设置了Intrinsic Content Size属性，一是就是通知布局系统本组件包含不容易知道大小的内容，二是会提示布局系统自身的大小，也就是组件本身可以知道自身内容大小。  </p>
-<p>常见的组件有UILabel, UIButton, 它们都设置了Intrinsic Content Size这个属性，也就是运行时会根据内容的大小来缩小或扩大。</p>
-<p>参见<a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/AutolayoutPG/AutoLayoutConcepts/AutoLayoutConcepts.html" target="_blank" rel="noopener">苹果开发文档</a></p>
-<h3 id="2-内容保持紧固的优先级（Content-hugging-priority）"><a href="#2-内容保持紧固的优先级（Content-hugging-priority）" class="headerlink" title="2.内容保持紧固的优先级（Content hugging priority）"></a>2.内容保持紧固的优先级（Content hugging priority）</h3><p>上面说组件会适应其内容大小。那会出现一个问题，例如，当组件还设置了其它约束条件，将左（leading）和右（trailing）边界固定（pinned）到了父视图（superview）上，假如内容宽度是200，父视图宽度是500，那么组件要应用哪个呢？</p>
-<p>这时就很有必要为每个条件设置一个优先级，ios默认有高（1000）、中（750）和低（250）3个级别，当然如果需要比较的情况复杂，也可以为优先级设置任意0至1000的数值。</p>
-<p>内容保持紧固的优先级指的是组件保持内容大小，<strong>不被拉伸</strong>的优先级别。</p>
-<p>回到刚才的例子，将组件的Content hugging priority设置为251，而左右约束设置为250，这时组件会维持自身大小，不会随着父视图拉伸。</p>
-<h3 id="3-内容抵抗压缩的优先级（content-compression-resistance-priority）"><a href="#3-内容抵抗压缩的优先级（content-compression-resistance-priority）" class="headerlink" title="3.内容抵抗压缩的优先级（content compression resistance priority）"></a>3.内容抵抗压缩的优先级（content compression resistance priority）</h3><p>思路与上边相似，本属性指的是组件保持内容大小，<strong>不被压缩</strong>的优先级别。</p>
-<p>试想上例中，如果父视图只有宽度只有100，组件内容是200，将组件的content compression resistance priority设置为751，而左右约束设置为750，这时组件会维持自身大小，不会随着父视图被压缩。</p>
-<h3 id="4-附上一个讲的很清楚的例子"><a href="#4-附上一个讲的很清楚的例子" class="headerlink" title="4. 附上一个讲的很清楚的例子"></a>4. 附上一个讲的很清楚的例子</h3><p>Say you’ve got button like this:</p>
-<p><strong>[       Click Me      ]</strong></p>
-<p>and you’ve pinned the edges to a larger superview with priority 500.</p>
-<p>Then, if Hugging priority &gt; 500 it’ll look like this:</p>
-<p><strong>[Click Me]</strong></p>
-<p>If Hugging priority &lt; 500 it’ll look like this:</p>
-<p><strong>[       Click Me      ]</strong></p>
-<p>If superview now shrinks then, if the Compression Resistance priority &gt; 500, it’ll look like this</p>
-<p><strong>[Click Me]</strong></p>
-<p>Else if Compression Resistance priority &lt; 500, it could look like this:</p>
-<p><strong>[Cli..]</strong></p>
-<p>from <a href="http://stackoverflow.com/questions/15850417/cocoa-autolayout-content-hugging-vs-content-compression-resistance-priority" target="_blank" rel="noopener">stackoverflow</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2511,7 +2564,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2533,7 +2586,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
