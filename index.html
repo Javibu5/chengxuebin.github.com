@@ -338,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/01/31/chromium-crash-report/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/02/20/mac-laradock-xdebug-phpstorm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -357,7 +357,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/31/chromium-crash-report/" itemprop="url">Chomium 崩溃日志</a></h2>
+                <a class="post-title-link" href="/2019/02/20/mac-laradock-xdebug-phpstorm/" itemprop="url">Laradock 配置 xdebug 与 phpstorm</a></h2>
         
 
         <div class="post-meta">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-31T00:00:00+08:00">
-                2019-01-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T00:00:00+08:00">
+                2019-02-20
               </time>
             
 
@@ -392,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chromium/" itemprop="url" rel="index">
-                    <span itemprop="name">chromium</span>
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
                   </a>
                 </span>
 
@@ -410,9 +410,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/31/chromium-crash-report/#comments" itemprop="discussionUrl">
+                <a href="/2019/02/20/mac-laradock-xdebug-phpstorm/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/01/31/chromium-crash-report/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/02/20/mac-laradock-xdebug-phpstorm/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -420,7 +420,7 @@
 
           
           
-             <span id="/2019/01/31/chromium-crash-report/" class="leancloud_visitors" data-flag-title="Chomium 崩溃日志">
+             <span id="/2019/02/20/mac-laradock-xdebug-phpstorm/" class="leancloud_visitors" data-flag-title="Laradock 配置 xdebug 与 phpstorm">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -452,23 +452,536 @@
 
       
         
-          
-            <h3 id="生成-Crash-报告"><a href="#生成-Crash-报告" class="headerlink" title="生成 Crash 报告"></a>生成 Crash 报告</h3><p>打开 Chromium，通过访问 <code>http://crash/</code> 来触发生成崩溃报告，保存在：</p>
-<ul>
-<li>Linux：<code>~/.config/google-chrome/Crash Reports/</code></li>
-<li>Windows/Mac：<code>/path/to/profile/Crash Reports</code></li>
-</ul>
-<p>在 Linux 平台，通过设置环境变量，可以阻止报告发送给服务器：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> env CHROME_HEADLESS=1 ./out/Debug/chrome-wrapper</span></span><br></pre></td></tr></table></figure>
-<h3 id="解析-Crash-报告"><a href="#解析-Crash-报告" class="headerlink" title="解析 Crash 报告"></a>解析 Crash 报告</h3><p>可以通过 <code>minidump_stackwalk</code> 工具来解析崩溃报告：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> minidump_stackwalk 报告名.dmp</span></span><br></pre></td></tr></table></figure>
-<p>能过 Linux 平台生成的报告，在执行上面命令解析前，需要先把文件的头（header）去掉，使用文本编辑器打开 dmp 文件，搜索 <code>MDMP</code> 字符，然后将此字符前的头删除后再解析。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
-<li><a href="https://www.chromium.org/developers/decoding-crash-dumps" target="_blank" rel="noopener">Decoding Crash Dumps</a></li>
-<li><a href="https://chromium.googlesource.com/chromium/src/+/HEAD/docs/linux_crash_dumping.md" target="_blank" rel="noopener">Linux Crash Dumping</a></li>
-</ol>
+          <h2 id="1-配置-Laradock"><a href="#1-配置-Laradock" class="headerlink" title="1 配置 Laradock"></a>1 配置 Laradock</h2><h3 id="1-1-修改-laradock-env"><a href="#1-1-修改-laradock-env" class="headerlink" title="1.1 修改 laradock/.env"></a>1.1 修改 laradock/.env</h3><p>打开 <code>.env</code> 文件，修改下列配置项：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">WORKSPACE_INSTALL_XDEBUG</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">PHP_FPM_INSTALL_XDEBUG</span>=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-2-配置-laradock-php-fpm-xdebug-ini"><a href="#1-2-配置-laradock-php-fpm-xdebug-ini" class="headerlink" title="1.2 配置 laradock/php-fpm/xdebug.ini"></a>1.2 配置 laradock/php-fpm/xdebug.ini</h3><p>php-fpm 用于调试 php 的服务器模式，基于浏览器请求。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; <span class="doctag">NOTE:</span> The actual debug.so extention is NOT SET HERE but rather (/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; xdebug.remote_host=docker.for.mac.host.internal</span></span><br><span class="line"><span class="comment">; 这里要注意，很多文章说无须修改此项，但我的环境不行，必须配置</span></span><br><span class="line"><span class="comment">; 关于 host.docker.internal，请参考：https://docs.docker.com/docker-for-mac/networking/#there-is-no-docker0-bridge-on-macos</span></span><br><span class="line">xdebug.remote_host=host.docker.internal</span><br><span class="line">xdebug.remote_connect_back=0</span><br><span class="line"><span class="comment">; 配置端口号</span></span><br><span class="line">xdebug.remote_port=9001</span><br><span class="line"><span class="comment">; 配置 key</span></span><br><span class="line">xdebug.idekey=PHPSTORM</span><br><span class="line"></span><br><span class="line"><span class="comment">; 开启</span></span><br><span class="line">xdebug.remote_autostart=1</span><br><span class="line"><span class="comment">; 开启</span></span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.cli_color=0</span><br><span class="line">xdebug.profiler_enable=0</span><br><span class="line">xdebug.profiler_output_dir="~/xdebug/phpstorm/tmp/profiling"</span><br><span class="line"></span><br><span class="line">xdebug.remote_handler=dbgp</span><br><span class="line">xdebug.remote_mode=req</span><br><span class="line"></span><br><span class="line">xdebug.var_display_max_children=-1</span><br><span class="line">xdebug.var_display_max_data=-1</span><br><span class="line">xdebug.var_display_max_depth=-1</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/20/mac-laradock-xdebug-phpstorm/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/02/16/webrtc-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/16/webrtc-server/" itemprop="url">聊聊 WebRTC</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T00:00:00+08:00">
+                2019-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webrtc/" itemprop="url" rel="index">
+                    <span itemprop="name">webrtc</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/16/webrtc-server/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/16/webrtc-server/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/16/webrtc-server/" class="leancloud_visitors" data-flag-title="聊聊 WebRTC">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Web Real-Time Communication（Web实时通信，WebRTC）由一组标准、协议和JavaScript API组成，用于实现浏览器之间（端到端）的音频、视频及数据共享。WebRTC使得实时通信变成一种标准功能，任何Web应用都无需借助第三方插件和专有软件，而是通过简单地JavaScript API即可完成。</p>
+<h2 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h2><h3 id="1-STUN"><a href="#1-STUN" class="headerlink" title="1 STUN"></a>1 STUN</h3><p>Session Traversal Utilities for NAT (STUN) – RFC 5389</p>
+<h3 id="2-TURN"><a href="#2-TURN" class="headerlink" title="2 TURN"></a>2 TURN</h3><p><strong>中继方式 NAT 穿透</strong>（Traversal Using Relay NAT (TURN) – RFC 5766）</p>
+<h3 id="3-ICE"><a href="#3-ICE" class="headerlink" title="3 ICE"></a>3 ICE</h3><p><strong>交互式连接建立</strong>（Interactive Connectivity Establishment (ICE) – RFC 5245）</p>
+<p>一种综合性的NAT穿越技术，它是一种框架，可以整合各种NAT穿越技术如STUN、TURN（Traversal Using Relay NAT 中继NAT实现的穿透）。ICE会先使用STUN，尝试建立一个基于UDP的连接，如果失败了，就会去TCP（先尝试HTTP，然后尝试HTTPS），如果依旧失败ICE就会使用一个中继的TURN服务器。</p>
+<p>通信的两侧可能会处于不同的网络环境中，有时会存在好几层的访问控制、防火墙、路由跳转，所以我们需要一种方法在复杂的网络环境中找到对方，并且连接到相应的目标。WebRTC 使用集成了 STUN、TURN 的 ICE 来进行双方的数据通信。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/16/webrtc-server/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/02/01/network-arp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/01/network-arp/" itemprop="url">网络工具：ARP</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T00:00:00+08:00">
+                2019-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/network/" itemprop="url" rel="index">
+                    <span itemprop="name">network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/01/network-arp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/01/network-arp/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/01/network-arp/" class="leancloud_visitors" data-flag-title="网络工具：ARP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-查看-arp-映射列表"><a href="#1-查看-arp-映射列表" class="headerlink" title="1 查看 arp 映射列表"></a>1 查看 arp 映射列表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> arp -a</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-清除-arp-映射"><a href="#2-清除-arp-映射" class="headerlink" title="2 清除 arp 映射"></a>2 清除 arp 映射</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清除一个映射</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> arp -d 192.168.199.1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 清除全部映射</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> arp -ad</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/01/network-arp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/02/01/windows-remote-desktop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/01/windows-remote-desktop/" itemprop="url">解决 Windows 远程桌面连接失败</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-01T00:00:00+08:00">
+                2019-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/修理/" itemprop="url" rel="index">
+                    <span itemprop="name">修理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/01/windows-remote-desktop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/01/windows-remote-desktop/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/01/windows-remote-desktop/" class="leancloud_visitors" data-flag-title="解决 Windows 远程桌面连接失败">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-修改防火墙"><a href="#1-修改防火墙" class="headerlink" title="1 修改防火墙"></a>1 修改防火墙</h3><ol>
+<li>打开 <code>控制面板</code> &gt; <code>安全</code> &gt; <code>防火墙</code></li>
+<li>打开 <code>Allow an app or feature through Windows Firewall</code></li>
+<li>找到 <code>Remote Desktop</code>，选中 <code>Private</code></li>
+</ol>
+<h3 id="2-检查远程访问是否被允许"><a href="#2-检查远程访问是否被允许" class="headerlink" title="2 检查远程访问是否被允许"></a>2 检查远程访问是否被允许</h3><ol>
+<li>通过搜索，打开 <code>Allow Remote connections to your computer</code></li>
+<li>选中 <code>Allow remote connections to this computer</code></li>
+<li>选中 <code>Allow remote connections to this computer</code></li>
+</ol>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/01/windows-remote-desktop/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -636,6 +1149,180 @@
 </ol>
 
           
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/01/31/chromium-crash-report/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/31/chromium-crash-report/" itemprop="url">Chomium 崩溃日志</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-31T00:00:00+08:00">
+                2019-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/31/chromium-crash-report/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/31/chromium-crash-report/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/01/31/chromium-crash-report/" class="leancloud_visitors" data-flag-title="Chomium 崩溃日志">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="生成-Crash-报告"><a href="#生成-Crash-报告" class="headerlink" title="生成 Crash 报告"></a>生成 Crash 报告</h3><p>打开 Chromium，通过访问 <code>http://crash/</code> 来触发生成崩溃报告，保存在：</p>
+<ul>
+<li>Linux：<code>~/.config/google-chrome/Crash Reports/</code></li>
+<li>Windows/Mac：<code>/path/to/profile/Crash Reports</code></li>
+</ul>
+<p>在 Linux 平台，通过设置环境变量，可以阻止报告发送给服务器：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> env CHROME_HEADLESS=1 ./out/Debug/chrome-wrapper</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/31/chromium-crash-report/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1351,714 +2038,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/01/03/query-cross-databases/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/03/query-cross-databases/" itemprop="url">微服务：跨库联合查询</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-03T00:00:00+08:00">
-                2019-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/微服务/" itemprop="url" rel="index">
-                    <span itemprop="name">微服务</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/01/03/query-cross-databases/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/01/03/query-cross-databases/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/01/03/query-cross-databases/" class="leancloud_visitors" data-flag-title="微服务：跨库联合查询">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://zhuanlan.zhihu.com/p/28137025" target="_blank" rel="noopener">微服务改造中解决跨库问题的思路</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/40852402" target="_blank" rel="noopener">关于【微服务】，你必须了解这些</a></li>
-<li><a href="https://juejin.im/entry/5905ac37a22b9d0065e1199c" target="_blank" rel="noopener">深度认识 Sharding-JDBC：做最轻量级的数据库中间层</a></li>
-<li><a href="http://mycat.io/" target="_blank" rel="noopener">Mycat数据库分库分表中间件</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/12/23/kaitai-struct/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/23/kaitai-struct/" itemprop="url">学习使用 kaitai 结构</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T00:00:00+08:00">
-                2018-12-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index">
-                    <span itemprop="name">tools</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/23/kaitai-struct/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/12/23/kaitai-struct/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/23/kaitai-struct/" class="leancloud_visitors" data-flag-title="学习使用 kaitai 结构">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>kaitai 是一个开源的用于解析二进制文件的解析器，包含了编译器、IDE 和一系列常用的二进制格式描述脚本，你可以直接利用这些脚本去解析对应的二进制文件。</p>
-<h3 id="它支持的语言："><a href="#它支持的语言：" class="headerlink" title="它支持的语言："></a>它支持的语言：</h3><ul>
-<li>C++/STL</li>
-<li>C#</li>
-<li>Go (*)</li>
-<li>Java</li>
-<li>JavaScript</li>
-<li>Lua</li>
-<li>Perl</li>
-<li>PHP</li>
-<li>Python</li>
-<li>Ruby</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/23/kaitai-struct/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/12/18/webbrowser-set-proxy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/18/webbrowser-set-proxy/" itemprop="url">WebBrowser 设置代理</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T00:00:00+08:00">
-                2018-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/browser/" itemprop="url" rel="index">
-                    <span itemprop="name">browser</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/18/webbrowser-set-proxy/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/12/18/webbrowser-set-proxy/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/18/webbrowser-set-proxy/" class="leancloud_visitors" data-flag-title="WebBrowser 设置代理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="设置方式一：UrlMkSetSessionOption"><a href="#设置方式一：UrlMkSetSessionOption" class="headerlink" title="设置方式一：UrlMkSetSessionOption"></a>设置方式一：<code>UrlMkSetSessionOption</code></h2><p>该方式只作用于本程序的 WebBrowser 组件，不修改系统代理设置，所以对其它应用程序没有影响。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">ws2s</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::wstring&amp; wstr)</span></span>&#123;</span><br><span class="line">  <span class="keyword">using</span> convert_typeX = <span class="built_in">std</span>::codecvt_utf8&lt;<span class="keyword">wchar_t</span>&gt;;</span><br><span class="line">  <span class="built_in">std</span>::wstring_convert&lt;convert_typeX, <span class="keyword">wchar_t</span>&gt; converterX;</span><br><span class="line">  <span class="keyword">return</span> converterX.to_bytes(wstr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">INTERNET_PROXY_INFO proxyInfo;</span><br><span class="line">proxyInfo.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line">proxyInfo.lpszProxyBypass = <span class="literal">NULL</span>;</span><br><span class="line"><span class="comment">// UrlMkSetSessionOption only appears to work on either ASCII or</span></span><br><span class="line"><span class="comment">// multi-byte strings, not Unicode strings. Since the INTERNET_PROXY_INFO</span></span><br><span class="line"><span class="comment">// struct hard-codes to LPCTSTR, and that translates into LPCWSTR for the</span></span><br><span class="line"><span class="comment">// compiler settings we use, we must use the multi-byte version here.</span></span><br><span class="line"><span class="comment">// Note that for the count of input characters, we can use -1, since</span></span><br><span class="line"><span class="comment">// we've forced the string to be null-terminated.</span></span><br><span class="line">proxyInfo.lpszProxy = <span class="keyword">reinterpret_cast</span>&lt;LPCTSTR&gt;(ws2s(<span class="string">L"127.0.0.1:808"</span>).c_str());</span><br><span class="line"></span><br><span class="line">UrlMkSetSessionOption(INTERNET_OPTION_PROXY, &amp;proxyInfo, <span class="keyword">sizeof</span>(INTERNET_PROXY_INFO), <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/18/webbrowser-set-proxy/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2018/12/14/mac-launchagents/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/14/mac-launchagents/" itemprop="url">Mac 系统 LaunchAgents</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-14T00:00:00+08:00">
-                2018-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mac/" itemprop="url" rel="index">
-                    <span itemprop="name">mac</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/14/mac-launchagents/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/12/14/mac-launchagents/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/12/14/mac-launchagents/" class="leancloud_visitors" data-flag-title="Mac 系统 LaunchAgents">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>launchctl是一个统一的服务管理框架，可以启动、停止和管理守护进程、应用程序、进程和脚本等。</p>
-<h2 id="LaunchDaemons-启动时执行"><a href="#LaunchDaemons-启动时执行" class="headerlink" title="LaunchDaemons - 启动时执行"></a>LaunchDaemons - 启动时执行</h2><p>添加本类脚本，需要注意以下几点：</p>
-<ul>
-<li>放置到目录 /Library/LaunchDaemons/</li>
-<li>确保文件的用户为 root 并且组为 wheel </li>
-<li>拥有权限（permissions） “644”: Owner – read/write, group – read, everyone – read</li>
-</ul>
-<h2 id="LaunchAgents-登录时执行"><a href="#LaunchAgents-登录时执行" class="headerlink" title="LaunchAgents - 登录时执行"></a>LaunchAgents - 登录时执行</h2><ul>
-<li>该类脚本可以放置在以下位置:<ul>
-<li>/Library/LaunchAgents/  – (For all users)</li>
-<li>~/Library/LaunchAgents/  – (For a specific user)</li>
-<li>/System/Library/LaunchAgents/ – (For OS X use only)</li>
-</ul>
-</li>
-<li>文件的用户为 root 并且组为 wheel<br>  注意: 当放置在 ~/Library/LaunchAgents/ 时， 用户应该为当前拥有 home 目录的用户</li>
-<li>拥有权限（permissions） “644”: Owner – read/write, group – read, everyone – read</li>
-</ul>
-<h2 id="操作命令"><a href="#操作命令" class="headerlink" title="操作命令"></a>操作命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 加载任务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl load -w /Library/LaunchAgents/com.onthink.plist </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除任务</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl unload -w /Library/LaunchAgents/com.onthink.plist </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看任务列表</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> launchctl list | grep <span class="string">'com.onthink'</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="http://www.grivet-tools.com/blog/2014/launchdaemons-vs-launchagents/" target="_blank" rel="noopener">LaunchDaemons vs LaunchAgents</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2108,7 +2092,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2119,7 +2103,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2130,7 +2114,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

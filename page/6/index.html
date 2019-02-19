@@ -338,6 +338,783 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/04/25/extension-content-script/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/25/extension-content-script/" itemprop="url">Chrome 扩展之： Content Script</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T00:00:00+08:00">
+                2017-04-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chrome/" itemprop="url" rel="index">
+                    <span itemprop="name">chrome</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/25/extension-content-script/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/25/extension-content-script/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/25/extension-content-script/" class="leancloud_visitors" data-flag-title="Chrome 扩展之： Content Script">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h2><h2 id="1-1-使用场景"><a href="#1-1-使用场景" class="headerlink" title="1.1 使用场景"></a>1.1 使用场景</h2><p><code>Content Script</code> 是一个很神奇的东西。它可以读取和修改页面内容。比如一些应用场景</p>
+<ul>
+<li>过滤广告：将页面中的广告区块过滤掉，只显示主要内容</li>
+<li>翻译页面中的外语</li>
+<li>分享页面内容到社交平台</li>
+</ul>
+<h3 id="1-2-限制"><a href="#1-2-限制" class="headerlink" title="1.2 限制"></a>1.2 限制</h3><ul>
+<li>Use chrome.* APIs, with the exception of:<ul>
+<li>extension ( getURL , inIncognitoContext , lastError , onRequest , sendRequest )</li>
+<li>i18n</li>
+<li>runtime ( connect , getManifest , getURL , id , onConnect , onMessage , sendMessage )</li>
+<li>storage</li>
+</ul>
+</li>
+<li>不能使用扩展页面中的变量和方法</li>
+<li>不能使用定义在其它扩展的 Content Script 中的变量和方法</li>
+</ul>
+<h2 id="2-使用"><a href="#2-使用" class="headerlink" title="2 使用"></a>2 使用</h2><h3 id="2-1-Manifest"><a href="#2-1-Manifest" class="headerlink" title="2.1 Manifest"></a>2.1 Manifest</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"My extension"</span>,</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">"content_scripts"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"matches"</span>: [<span class="string">"http://www.google.com/*"</span>],</span><br><span class="line">      <span class="string">"css"</span>: [<span class="string">"mystyles.css"</span>],</span><br><span class="line">      <span class="string">"js"</span>: [<span class="string">"jquery.js"</span>, <span class="string">"myscript.js"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">"permissions"</span>: [</span><br><span class="line">    <span class="string">"tabs"</span>, <span class="string">"http://www.google.com/*"</span></span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-注入"><a href="#2-2-注入" class="headerlink" title="2.2 注入"></a>2.2 注入</h3><h4 id="2-2-1-与-browserAction-配合"><a href="#2-2-1-与-browserAction-配合" class="headerlink" title="2.2.1 与 browserAction 配合"></a>2.2.1 与 <code>browserAction</code> 配合</h4><p>注入并执行一段代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chrome.browserAction.onClicked.addListener(<span class="function"><span class="keyword">function</span>(<span class="params">tab</span>) </span>&#123;</span><br><span class="line">  chrome.tabs.executeScript(&#123;</span><br><span class="line">    code: <span class="string">'document.body.style.backgroundColor="red"'</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>执行上面的代码先获取权限：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"permissions"</span>: [</span><br><span class="line">  <span class="string">"activeTab"</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>或直接执行一个文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome.tabs.executeScript(<span class="literal">null</span>, &#123;<span class="attr">file</span>: <span class="string">"content_script.js"</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>blocking</code> 会将回调函数设置为同步处理，请求会等待回调完成。使用该参数需要在 <code>permission</code> 中添加 <code>webRequestBlocking</code> 权限。</p>
+<h3 id="2-2-2-获取资源文件-URL"><a href="#2-2-2-获取资源文件-URL" class="headerlink" title="2.2.2 获取资源文件 URL"></a>2.2.2 获取资源文件 URL</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/Code <span class="keyword">for</span> displaying &lt;extensionDir&gt;<span class="regexp">/images/myim</span>age.png:</span><br><span class="line"><span class="keyword">var</span> imgURL = chrome.extension.getURL(<span class="string">"images/myimage.png"</span>);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"someImage"</span>).src = imgURL;</span><br></pre></td></tr></table></figure>
+<h2 id="3-要点"><a href="#3-要点" class="headerlink" title="3 要点"></a>3 要点</h2><h3 id="3-1-ContentScript-在独立环境运行"><a href="#3-1-ContentScript-在独立环境运行" class="headerlink" title="3.1 ContentScript 在独立环境运行"></a>3.1 ContentScript 在独立环境运行</h3><h3 id="3-2-注入的方式"><a href="#3-2-注入的方式" class="headerlink" title="3.2 注入的方式"></a>3.2 注入的方式</h3><h4 id="3-2-1-整个文件"><a href="#3-2-1-整个文件" class="headerlink" title="3.2.1 整个文件"></a>3.2.1 整个文件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> add "script.js" to web_accessible_resources in manifest.json</span></span><br><span class="line">s.src = chrome.extension.getURL(<span class="string">'script.js'</span>);</span><br><span class="line">s.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.remove(); <span class="comment">// 执行完后清理注入标签</span></span><br><span class="line">&#125;;</span><br><span class="line">(<span class="built_in">document</span>.head || <span class="built_in">document</span>.documentElement).appendChild(s);</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 将 <code>script.js</code> 加入到 <a href="https://developer.chrome.com/extensions/manifest/web_accessible_resources" target="_blank" rel="noopener">“web_accessible_resources”</a></p>
+<h4 id="3-2-2-代码片段"><a href="#3-2-2-代码片段" class="headerlink" title="3.2.2 代码片段"></a>3.2.2 代码片段</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> actualCode = <span class="string">`// Code here.</span></span><br><span class="line"><span class="string">// If you want to use a variable, use $ and curly braces.</span></span><br><span class="line"><span class="string">// For example, to use a fixed random number:</span></span><br><span class="line"><span class="string">var someFixedRandomValue = <span class="subst">$&#123; <span class="built_in">Math</span>.random() &#125;</span>;</span></span><br><span class="line"><span class="string">// NOTE: Do not insert unsafe variables in this way, see below</span></span><br><span class="line"><span class="string">// at "Dynamic values in the injected code"</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">script.textContent = actualCode;</span><br><span class="line">(<span class="built_in">document</span>.head||<span class="built_in">document</span>.documentElement).appendChild(script);</span><br><span class="line">script.remove();</span><br></pre></td></tr></table></figure>
+<h4 id="3-2-3-更多方式"><a href="#3-2-3-更多方式" class="headerlink" title="3.2.3 更多方式"></a>3.2.3 更多方式</h4><p>参见： <a href="http://stackoverflow.com/questions/9515704/insert-code-into-the-page-context-using-a-content-script/9517879#9517879" target="_blank" rel="noopener">Insert code into the page context using a content script</a></p>
+<h3 id="3-3-注入的时机"><a href="#3-3-注入的时机" class="headerlink" title="3.3 注入的时机"></a>3.3 注入的时机</h3><h4 id="3-3-1-document-start"><a href="#3-3-1-document-start" class="headerlink" title="3.3.1 document_start"></a>3.3.1 document_start</h4><ul>
+<li>在 <code>document.readyState</code> 事件前被触发。</li>
+<li><p>document.head 和 document.body 还不可用，只有 documentElement</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.createElement (<span class="string">"script"</span>);</span><br><span class="line">s.src = <span class="string">"http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"</span>;</span><br><span class="line">s.async = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">document</span>.documentElement.appendChild (s);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.createElement (<span class="string">"script"</span>);</span><br><span class="line">s.src = chrome.extension.getURL (<span class="string">"MyPwnCode.js"</span>);</span><br><span class="line">s.async = <span class="literal">false</span>;</span><br><span class="line"><span class="built_in">document</span>.documentElement.appendChild (s);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果需要操作其它 DOM，可以等待 <code>DOMContentLoaded</code> 事件</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, fireContentLoadedEvent, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fireContentLoadedEvent</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log (<span class="string">"DOMContentLoaded"</span>);</span><br><span class="line">    <span class="comment">// PUT YOUR CODE HERE.</span></span><br><span class="line">    <span class="comment">//document.body.textContent = "Changed this!";</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3-3-2-document-end"><a href="#3-3-2-document-end" class="headerlink" title="3.3.2 document_end"></a>3.3.2 document_end</h4><ul>
+<li>DOM 已解析完成</li>
+<li>资源如 image 和 frame 还没有加载（onload）</li>
+</ul>
+<h4 id="3-3-3-document-idle"><a href="#3-3-3-document-idle" class="headerlink" title="3.3.3 document_idle"></a>3.3.3 document_idle</h4><ul>
+<li>晚于 document_end，</li>
+<li>也晚于 window.onload</li>
+<li>DOM 已解析完成</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/04/19/extension-replace-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/19/extension-replace-js/" itemprop="url">Chrome 扩展之： 使用 webRequest 替换页面资源</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T00:00:00+08:00">
+                2017-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chrome/" itemprop="url" rel="index">
+                    <span itemprop="name">chrome</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/19/extension-replace-js/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/19/extension-replace-js/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/04/19/extension-replace-js/" class="leancloud_visitors" data-flag-title="Chrome 扩展之： 使用 webRequest 替换页面资源">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="请求事件"><a href="#请求事件" class="headerlink" title="请求事件"></a>请求事件</h2><p>首先，一个请求的生命周期是这样的：</p>
+<p><img src="/images/posts/chrome_extension/webrequestapi.png" alt=""></p>
+<p>利用 <a href="https://developer.chrome.com/extensions/webRequest" target="_blank" rel="noopener">webRequest</a> 接口，可以监听图中的事件，插入自己的处理。</p>
+<h2 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h2><h3 id="1-webRequest-需要在-background-中使用"><a href="#1-webRequest-需要在-background-中使用" class="headerlink" title="1. webRequest 需要在 background 中使用"></a>1. webRequest 需要在 background 中使用</h3><h3 id="2-调用方式"><a href="#2-调用方式" class="headerlink" title="2. 调用方式"></a>2. 调用方式</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> callback = <span class="function"><span class="keyword">function</span>(<span class="params">details</span>) </span>&#123;...&#125;;</span><br><span class="line"><span class="keyword">var</span> filter = &#123;...&#125;;</span><br><span class="line"><span class="keyword">var</span> opt_extraInfoSpec = [...];</span><br><span class="line"></span><br><span class="line">chrome.webRequest.onBeforeRequest.addListener(</span><br><span class="line">    callback, filter, opt_extraInfoSpec);</span><br></pre></td></tr></table></figure>
+<h3 id="3-blocking-参数"><a href="#3-blocking-参数" class="headerlink" title="3. blocking 参数"></a>3. <code>blocking</code> 参数</h3><p><code>blocking</code> 会将回调函数设置为同步处理，请求会等待回调完成。使用该参数需要在 <code>permission</code> 中添加 <code>webRequestBlocking</code> 权限。</p>
+<h2 id="举例：-替换网站的-JS-文件"><a href="#举例：-替换网站的-JS-文件" class="headerlink" title="举例： 替换网站的 JS 文件"></a>举例： 替换网站的 JS 文件</h2><h3 id="1-声明权限"><a href="#1-声明权限" class="headerlink" title="1. 声明权限"></a>1. 声明权限</h3><p>编辑 <code>manifest.json</code>，添加 <code>permission</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">"permissions": [</span><br><span class="line">  "webRequest",</span><br><span class="line">  "webRequestBlocking",</span><br><span class="line">  "http://*/*",</span><br><span class="line">  <span class="string">"https://*/*"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="2-添加后端-文件"><a href="#2-添加后端-文件" class="headerlink" title="2. 添加后端 文件"></a>2. 添加后端 文件</h3><p>首先在 <code>manifest.json</code> 中添加 background 文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">"background": &#123;</span><br><span class="line">  "scripts": ["dist/js/background.js"],</span><br><span class="line">  "persistent": true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-webRequest-脚本"><a href="#3-webRequest-脚本" class="headerlink" title="3. webRequest 脚本"></a>3. webRequest 脚本</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">chrome.webRequest.onBeforeRequest.addListener(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">details</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>( details.url.endsWith(<span class="string">'origin.js'</span>) )&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;<span class="attr">redirectUrl</span>: chrome.extension.getURL (<span class="string">"dist/bake/fake.js"</span>)&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;<span class="attr">urls</span>: [<span class="string">"*://*/*.js"</span>]&#125;,</span><br><span class="line">  [<span class="string">"blocking"</span>]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>解释一下上面的后端代码：</p>
+<ul>
+<li>监听 <strong>符合规定请求</strong> 的 <code>onBeforeRequest</code> 事件</li>
+<li>这2个参数是回调函数，通过参数 <code>details</code> 来判断每一个请求 <code>url</code>，如果以 <code>origin.js</code> 结尾，将用扩展中准备好的 <code>fake.js</code> 替换。换句话说，将原始网站的 JS 替换为假的 JS</li>
+<li>对于用户来讲，通过查看源码，看到的仍然是 <code>&lt;script src=&quot;origin.js&quot;&gt;&lt;/script&gt;</code></li>
+<li>通过 DevTools 的 network 查看，会发现 <code>url</code> 已经变为 <code>fake.js</code></li>
+<li>第3个参数过滤被监听的请求，支持通配符 <code>*</code></li>
+<li>第4个参数为扩展参数，<code>blocking</code> 说明这是 <strong>同步</strong> 处理，请求会等待回调函数完成</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/27/webbrowser-document-mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/27/webbrowser-document-mode/" itemprop="url">设置 WebBrowser Document Mode</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T00:00:00+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ie/" itemprop="url" rel="index">
+                    <span itemprop="name">ie</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/27/webbrowser-document-mode/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/27/webbrowser-document-mode/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/27/webbrowser-document-mode/" class="leancloud_visitors" data-flag-title="设置 WebBrowser Document Mode">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="编辑注册表"><a href="#编辑注册表" class="headerlink" title="编辑注册表"></a>编辑注册表</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION</span><br></pre></td></tr></table></figure>
+<h3 id="设置值"><a href="#设置值" class="headerlink" title="设置值"></a>设置值</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">值</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10001 (0x2711)</td>
+<td style="text-align:left">Internet Explorer 10。网页以IE 10的标准模式展现，页面!DOCTYPE无效</td>
+</tr>
+<tr>
+<td style="text-align:left">10000 (0x02710)</td>
+<td style="text-align:left">Internet Explorer 10。在IE 10标准模式中按照网页上!DOCTYPE指令来显示网页。Internet Explorer 10 默认值。</td>
+</tr>
+<tr>
+<td style="text-align:left">9999 (0x270F)</td>
+<td style="text-align:left">Windows Internet Explorer 9. 强制IE9显示，忽略!DOCTYPE指令</td>
+</tr>
+<tr>
+<td style="text-align:left">9000 (0x2328)</td>
+<td style="text-align:left">Internet Explorer 9. Internet Explorer 9默认值，在IE9标准模式中按照网页上!DOCTYPE指令来显示网页。</td>
+</tr>
+<tr>
+<td style="text-align:left">8888 (0x22B8)</td>
+<td style="text-align:left">Internet Explorer 8，强制IE8标准模式显示，忽略!DOCTYPE指令</td>
+</tr>
+<tr>
+<td style="text-align:left">8000 (0x1F40)</td>
+<td style="text-align:left">Internet Explorer 8默认设置，在IE8标准模式中按照网页上!DOCTYPE指令展示网页</td>
+</tr>
+<tr>
+<td style="text-align:left">7000 (0x1B58)</td>
+<td style="text-align:left">使用WebBrowser Control控件的应用程序所使用的默认值，在IE7标准模式中按照网页上!DOCTYPE指令来展示网页。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><p><img src="/images/posts/ie/set-reg.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/17/duilib-tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/17/duilib-tutorial/" itemprop="url">DuiLib 的使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-17T00:00:00+08:00">
+                2017-03-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/17/duilib-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/03/17/duilib-tutorial/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/03/17/duilib-tutorial/" class="leancloud_visitors" data-flag-title="DuiLib 的使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p>本文下载的是 <a href="https://github.com/redrains/DuiLib_Redrain" target="_blank" rel="noopener">Redrain 维护的版本</a>，原始的 DuiLib 版本从<a href="https://github.com/duilib/duilib" target="_blank" rel="noopener">这里</a>下载。</p>
+<h2 id="以库方式使用"><a href="#以库方式使用" class="headerlink" title="以库方式使用"></a>以库方式使用</h2><h3 id="打开并升级工程文件"><a href="#打开并升级工程文件" class="headerlink" title="打开并升级工程文件"></a>打开并升级工程文件</h3><p>打开 <code>DuiLib_vs2010.sln</code>，我安装的 IDE 是 <code>VS2015</code>，会提示升级，按提示完成。</p>
+<h3 id="编译全部动态库"><a href="#编译全部动态库" class="headerlink" title="编译全部动态库"></a>编译全部动态库</h3><p>打开菜单 Build &gt; Batch Build…</p>
+<p>选择编译所有配置：</p>
+<p><img src="/images/posts/duilib/build-batch.jpg" alt=""></p>
+<p>保存编译的结果：</p>
+<ul>
+<li>DuiLib.dll</li>
+<li>DuiLib.lib</li>
+<li>DuiLib_d.dll</li>
+<li>DuiLib_d.lib</li>
+</ul>
+<p>以及 DuiLib 库的定义目录： <code>DuiLib</code></p>
+<p>当创建新工程时，把 lib 文件添加到 link 依赖里，把 DuiLib 目录添加到 inluce 路径中，最后把 dll 库放到导出目录中，便配置好了一个 DuiLib 工程。</p>
+<h2 id="以源码方式使用"><a href="#以源码方式使用" class="headerlink" title="以源码方式使用"></a>以源码方式使用</h2><h3 id="1-创建一个空工程"><a href="#1-创建一个空工程" class="headerlink" title="1. 创建一个空工程"></a>1. 创建一个空工程</h3><h3 id="2-将源码中的-DuiLib-目录添加到工程根目录中"><a href="#2-将源码中的-DuiLib-目录添加到工程根目录中" class="headerlink" title="2. 将源码中的 DuiLib 目录添加到工程根目录中"></a>2. 将源码中的 DuiLib 目录添加到工程根目录中</h3><h3 id="3-导入-DuiLib-项目"><a href="#3-导入-DuiLib-项目" class="headerlink" title="3. 导入 DuiLib 项目"></a>3. 导入 DuiLib 项目</h3><p>在工程上右键，选择：Add &gt; Existing Project…，找到 DuiLib 项目文件导入</p>
+<h3 id="4-设置依赖-DuiLib"><a href="#4-设置依赖-DuiLib" class="headerlink" title="4. 设置依赖 DuiLib"></a>4. 设置依赖 DuiLib</h3><p>在主项目上右键，选择：Build Dependencies &gt; Project Dependencies…，设置依赖 DuiLib 项目。</p>
+<p>这样，在编译主项目时会先编译依赖的 DuiLib 项目。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/03/17/cef-tutorial/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1361,685 +2138,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/19/phpstorm-file-watcher/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/19/phpstorm-file-watcher/" itemprop="url">PHPStorm 设置 watcher</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-19T00:00:00+08:00">
-                2017-01-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/19/phpstorm-file-watcher/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/19/phpstorm-file-watcher/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/19/phpstorm-file-watcher/" class="leancloud_visitors" data-flag-title="PHPStorm 设置 watcher">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p><img src="/images/posts/phpstorm_watch/pic-1.png" alt=""></p>
-<p><img src="/images/posts/phpstorm_watch/pic-2.png" alt=""></p>
-<h4 id="Arguments"><a href="#Arguments" class="headerlink" title="Arguments:"></a>Arguments:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--no-cache --update $FileName$:$ProjectFileDir$/dist/css/$FileNameWithoutExtension$.css</span><br></pre></td></tr></table></figure>
-<h4 id="Outputs-path-to-refresh"><a href="#Outputs-path-to-refresh" class="headerlink" title="Outputs path to refresh:"></a>Outputs path to refresh:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">ProjectFileDir$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css:<span class="variable">$ProjectFileDir</span>$/dist/css/<span class="variable">$FileNameWithoutExtension</span>$.css.map</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/19/chrome-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/19/chrome-tips/" itemprop="url">Chromium 拾遗</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-19T00:00:00+08:00">
-                2017-01-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chromium/" itemprop="url" rel="index">
-                    <span itemprop="name">chromium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/19/chrome-tips/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/19/chrome-tips/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/19/chrome-tips/" class="leancloud_visitors" data-flag-title="Chromium 拾遗">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="记录-SSL-的-Session-Key"><a href="#记录-SSL-的-Session-Key" class="headerlink" title="记录 SSL 的 Session Key"></a>记录 SSL 的 Session Key</h4><p>在环境变量中添加一个变量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SSLKEYLOGFILE  C:\Users\Jonathan\Documents\SSLKEYLOGFILE.txt</span><br></pre></td></tr></table></figure>
-<h4 id="可用的命令行参数"><a href="#可用的命令行参数" class="headerlink" title="可用的命令行参数"></a>可用的命令行参数</h4><p><a href="http://peter.sh/experiments/chromium-command-line-switches/" target="_blank" rel="noopener">参考</a></p>
-<h4 id="Chrome-发布日历"><a href="#Chrome-发布日历" class="headerlink" title="Chrome 发布日历"></a>Chrome 发布日历</h4><p><a href="https://www.chromium.org/developers/calendar" target="_blank" rel="noopener">Chromium Development Calendar and Release Info</a></p>
-<h4 id="Chromium-分支和标签"><a href="#Chromium-分支和标签" class="headerlink" title="Chromium 分支和标签"></a>Chromium 分支和标签</h4><p><a href="https://chromium.googlesource.com/chromium/src.git/+refs" target="_blank" rel="noopener">src.git/+refs</a></p>
-<h4 id="Chrome-功能更新"><a href="#Chrome-功能更新" class="headerlink" title="Chrome 功能更新"></a>Chrome 功能更新</h4><p>查看 <a href="https://www.chromestatus.com/features#milestone%3D68" target="_blank" rel="noopener">这里</a></p>
-<h4 id="Chrome-CI-持续集成"><a href="#Chrome-CI-持续集成" class="headerlink" title="Chrome CI 持续集成"></a>Chrome CI 持续集成</h4><p>查看 <a href="https://ci.chromium.org/p/chromium/g/main/console" target="_blank" rel="noopener">这里</a></p>
-<h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
-<p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
-<h4 id="Chrome-历史离线包"><a href="#Chrome-历史离线包" class="headerlink" title="Chrome 历史离线包"></a>Chrome 历史离线包</h4><p><a href="https://www.slimjet.com/chrome/google-chrome-old-version.php" target="_blank" rel="noopener">Google Chrome Older Versions Download</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/webbrowser-nxcompat-issue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/17/webbrowser-nxcompat-issue/" itemprop="url">WebBrowser 运行 ActiveX 异常</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-17T00:00:00+08:00">
-                2017-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/activex/" itemprop="url" rel="index">
-                    <span itemprop="name">activex</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/17/webbrowser-nxcompat-issue/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/webbrowser-nxcompat-issue/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/17/webbrowser-nxcompat-issue/" class="leancloud_visitors" data-flag-title="WebBrowser 运行 ActiveX 异常">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>前段时间使用 VS2015 编译 WebBrowser 的程序，然后运行包含 ActiveX 的页面时，出现了一些奇怪的问题（呃…问题记不清了）。但是，换成 VS2008 或其它低版本编译器时，又不会出现该问题了。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>经过一翻查找，发现是编译参数 <code>/NXCOMPAT</code> 引起的，早期的 VS，该参数默认为 <code>NO</code>，新版本默认为 <code>YES</code>。可修改默认值为 <code>NO</code> 解决此问题。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p><a href="http://blog.csdn.net/charlessimonyi/article/details/30479131" target="_blank" rel="noopener">WebBrowser无法显示招商银行密码输入控件的问题</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/source-tree-hungs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/01/17/source-tree-hungs/" itemprop="url">SourceTree 操作被挂起</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-17T00:00:00+08:00">
-                2017-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/01/17/source-tree-hungs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/source-tree-hungs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2017/01/17/source-tree-hungs/" class="leancloud_visitors" data-flag-title="SourceTree 操作被挂起">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2089,7 +2192,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2100,7 +2203,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2111,7 +2214,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

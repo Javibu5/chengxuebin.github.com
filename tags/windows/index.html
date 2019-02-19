@@ -446,7 +446,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -457,7 +457,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -468,7 +468,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1187,7 +1187,29 @@
 
 </body>
 </html>
-i < results.length; i++) {
+</script>
+  <script>AV.initialize("XELLyxa3COH5av8BnNVb2t4W-gzGzoHsz", "Tfo5EBvqCKUtAFWPBCKXkx3n");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
             var item = results[i];
             var url = item.get('url');
             var time = item.get('time');

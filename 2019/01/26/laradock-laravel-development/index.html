@@ -124,7 +124,7 @@
 <meta property="og:description" content="Docker Desktop从官网下载用于 Mac 机器的 Docker Desktop，如果测试从官方源下载镜像非常慢的话，可以添加国内的阿里加速镜像：  配置 Laradock1 下载 Laradock1$ git clone https://github.com/laradock/laradock.git 目录结构如下 123+ laradock+ project-1+ project-2">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://onthink.com/images/posts/laradock/docker-desktop-1.jpg">
-<meta property="og:updated_time" content="2019-01-29T01:00:38.251Z">
+<meta property="og:updated_time" content="2019-02-19T09:04:21.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Laradock 创建 Laravel 开发环境">
 <meta name="twitter:description" content="Docker Desktop从官网下载用于 Mac 机器的 Docker Desktop，如果测试从官方源下载镜像非常慢的话，可以添加国内的阿里加速镜像：  配置 Laradock1 下载 Laradock1$ git clone https://github.com/laradock/laradock.git 目录结构如下 123+ laradock+ project-1+ project-2">
@@ -480,6 +480,9 @@
 <h3 id="4-添加组件"><a href="#4-添加组件" class="headerlink" title="4 添加组件"></a>4 添加组件</h3><p>比如，添加 phpmyadmin：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d nginx mysql phpmyadmin</span></span><br></pre></td></tr></table></figure>
 <h3 id="5-MySQL-服务器的-Host"><a href="#5-MySQL-服务器的-Host" class="headerlink" title="5 MySQL 服务器的 Host"></a>5 MySQL 服务器的 Host</h3><p>MySQL 服务器绑定的 Host 可以不填写具体 ip 地址，而是简单地用 mysql 表示.</p>
+<h3 id="6-workspace-和-php-fpm-的区别"><a href="#6-workspace-和-php-fpm-的区别" class="headerlink" title="6 workspace 和 php-fpm 的区别"></a>6 workspace 和 php-fpm 的区别</h3><p>环境配置文件 <code>.env</code> 里包含相似的两块配置：workspace 和 php-fpm，它们对应两个不同的容器，一个是 FPM，一个是 CLI。不管是安装插件还是修改配置，都要分开修改。</p>
+<h3 id="7-删除-lt-none-gt-镜像"><a href="#7-删除-lt-none-gt-镜像" class="headerlink" title="7 删除 &lt;none&gt; 镜像"></a>7 删除 <code>&lt;none&gt;</code> 镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker rmi $(docker images --filter <span class="string">"dangling=true"</span> -q --no-trunc)</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-清除-Container，Image"><a href="#8-清除-Container，Image" class="headerlink" title="8 清除 Container，Image"></a>8 清除 Container，Image</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker system prune</span><br><span class="line"></span><br><span class="line">WARNING! This will remove:</span><br><span class="line">        - all stopped containers</span><br><span class="line">        - all networks not used by at least one container</span><br><span class="line">        - all dangling images</span><br><span class="line">        - all build cache</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -548,8 +551,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/31/chromium-debug/" rel="prev" title="Chomium 调试方法">
-                Chomium 调试方法 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/31/chromium-crash-report/" rel="prev" title="Chomium 崩溃日志">
+                Chomium 崩溃日志 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -638,7 +641,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -649,7 +652,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -660,7 +663,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -747,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Desktop"><span class="nav-number">1.</span> <span class="nav-text">Docker Desktop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Laradock"><span class="nav-number">2.</span> <span class="nav-text">配置 Laradock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-下载-Laradock"><span class="nav-number">2.1.</span> <span class="nav-text">1 下载 Laradock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置虚拟主机"><span class="nav-number">2.2.</span> <span class="nav-text">2 配置虚拟主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-修改本机-hosts"><span class="nav-number">2.3.</span> <span class="nav-text">3 修改本机 hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置-laradock-的-env"><span class="nav-number">2.4.</span> <span class="nav-text">4 配置 laradock 的 .env</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-启动"><span class="nav-number">2.5.</span> <span class="nav-text">5 启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-测试"><span class="nav-number">2.6.</span> <span class="nav-text">6 测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发"><span class="nav-number">3.</span> <span class="nav-text">开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">4.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-停止-docker-compose"><span class="nav-number">4.1.</span> <span class="nav-text">1 停止 docker-compose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-切换组件版本"><span class="nav-number">4.2.</span> <span class="nav-text">2 切换组件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-重启组件"><span class="nav-number">4.3.</span> <span class="nav-text">3 重启组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-添加组件"><span class="nav-number">4.4.</span> <span class="nav-text">4 添加组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-MySQL-服务器的-Host"><span class="nav-number">4.5.</span> <span class="nav-text">5 MySQL 服务器的 Host</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-Desktop"><span class="nav-number">1.</span> <span class="nav-text">Docker Desktop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Laradock"><span class="nav-number">2.</span> <span class="nav-text">配置 Laradock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-下载-Laradock"><span class="nav-number">2.1.</span> <span class="nav-text">1 下载 Laradock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置虚拟主机"><span class="nav-number">2.2.</span> <span class="nav-text">2 配置虚拟主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-修改本机-hosts"><span class="nav-number">2.3.</span> <span class="nav-text">3 修改本机 hosts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置-laradock-的-env"><span class="nav-number">2.4.</span> <span class="nav-text">4 配置 laradock 的 .env</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-启动"><span class="nav-number">2.5.</span> <span class="nav-text">5 启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-测试"><span class="nav-number">2.6.</span> <span class="nav-text">6 测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发"><span class="nav-number">3.</span> <span class="nav-text">开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">4.</span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-停止-docker-compose"><span class="nav-number">4.1.</span> <span class="nav-text">1 停止 docker-compose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-切换组件版本"><span class="nav-number">4.2.</span> <span class="nav-text">2 切换组件版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-重启组件"><span class="nav-number">4.3.</span> <span class="nav-text">3 重启组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-添加组件"><span class="nav-number">4.4.</span> <span class="nav-text">4 添加组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-MySQL-服务器的-Host"><span class="nav-number">4.5.</span> <span class="nav-text">5 MySQL 服务器的 Host</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-workspace-和-php-fpm-的区别"><span class="nav-number">4.6.</span> <span class="nav-text">6 workspace 和 php-fpm 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-删除-lt-none-gt-镜像"><span class="nav-number">4.7.</span> <span class="nav-text">7 删除 <none> 镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-清除-Container，Image"><span class="nav-number">4.8.</span> <span class="nav-text">8 清除 Container，Image</span></a></li></ol></li></ol></div>
             
 
           </div>

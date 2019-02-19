@@ -338,6 +338,897 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/the-most-used-regular-expression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/25/the-most-used-regular-expression/" itemprop="url">常用的正则表达式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-25T00:00:00+08:00">
+                2015-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/" itemprop="url" rel="index">
+                    <span itemprop="name">program</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/25/the-most-used-regular-expression/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/25/the-most-used-regular-expression/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/01/25/the-most-used-regular-expression/" class="leancloud_visitors" data-flag-title="常用的正则表达式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
+<h3 id="2-邮箱"><a href="#2-邮箱" class="headerlink" title="2. 邮箱"></a>2. 邮箱</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^([a-z0<span class="number">-9</span>\+_\-]+)(\.[a-z0<span class="number">-9</span>\+_\-]+)*@([_a-z0<span class="number">-9</span>]+\.)+[a-z]&#123;<span class="number">2</span>,<span class="number">5</span>&#125;$/</span><br></pre></td></tr></table></figure>
+<h3 id="3-多个单词或"><a href="#3-多个单词或" class="headerlink" title="3. 多个单词或"></a>3. 多个单词或</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?:apple|banna)/</span><br></pre></td></tr></table></figure>
+<h3 id="4-不包含某个单词"><a href="#4-不包含某个单词" class="headerlink" title="4. 不包含某个单词"></a>4. 不包含某个单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^((?!hede).)*$/</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<ul>
+<li><a href="http://fineonly.com/solutions/regex-exclude-a-string" target="_blank" rel="noopener">Exclude a String</a></li>
+<li><a href="http://www.vaikan.com/regular-expression-to-match-string-not-containing-a-word/" target="_blank" rel="noopener">正则表达式里字符串”不包含”匹配技巧</a></li>
+<li><a href="http://stackoverflow.com/questions/2078915/a-regular-expression-to-exclude-a-word-string" target="_blank" rel="noopener">A regular expression to exclude a word/string</a></li>
+</ul>
+<h3 id="5-神奇的全部-ASCII-字符"><a href="#5-神奇的全部-ASCII-字符" class="headerlink" title="5. 神奇的全部 ASCII 字符"></a>5. 神奇的全部 ASCII 字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[ -~]/</span><br><span class="line">/[\x20-\x7E]/</span><br></pre></td></tr></table></figure>
+<p><strong>解释</strong>：<a href="http://www.asciitable.com/" target="_blank" rel="noopener">ASCII 表</a>中大于空格（0x20），小于~（0x7E）的字符为全部的<strong>打印</strong>字符。</p>
+<h3 id="6-处理-HTML-标签"><a href="#6-处理-HTML-标签" class="headerlink" title="6. 处理 HTML 标签"></a>6. 处理 HTML 标签</h3><p>参考：</p>
+<ul>
+<li><a href="http://haacked.com/archive/2004/10/25/usingregularexpressionstomatchhtml.aspx/" target="_blank" rel="noopener">Using a Regular Expression to Match HTML</a></li>
+<li><a href="http://www.pagecolumn.com/tool/all_about_html_tags.htm" target="_blank" rel="noopener">All about HTML tags</a></li>
+</ul>
+<h3 id="7-使用空格分隔中文和英文单词"><a href="#7-使用空格分隔中文和英文单词" class="headerlink" title="7. 使用空格分隔中文和英文单词"></a>7. 使用空格分隔中文和英文单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">([\x&#123;4E00&#125;-\x&#123;9FA5&#125;])([a-z0-9@#&amp;;=_\[\$\%\^\*\-\+\(\/]+)</span><br><span class="line"></span><br><span class="line">$<span class="number">1</span> $<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Modifier</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:left">Perform case-insensitive matching</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:left">Perform a global match (find all matches rather than stopping after the first match)</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:left">Perform multiline matching</td>
+</tr>
+</tbody>
+</table>
+<p>收集了一些总结的很好的文章：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/zxin/archive/2013/01/26/2877765.html" target="_blank" rel="noopener">最全的常用正则表达式大全</a></li>
+<li><a href="http://www.regular-expressions.info/lookaround.html" target="_blank" rel="noopener">regular-expressions.info</a></li>
+<li><a href="http://regexr.com/30npe" target="_blank" rel="noopener">RegExr</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/linux-commands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/25/linux-commands/" itemprop="url">Linux 常用命令</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-25T00:00:00+08:00">
+                2015-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/25/linux-commands/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/25/linux-commands/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/01/25/linux-commands/" class="leancloud_visitors" data-flag-title="Linux 常用命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1 打开服务器的被禁用（blocked）端口（port）"></a>1 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+<li>启用被 iptables 禁用的 80 端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2 通过 systemctl 启动服务"></a>2 通过 systemctl 启动服务</h2><ul>
+<li>启动、停止、重启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
+<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<ul>
+<li>设置开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3 查看进程信息"></a>3 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4 查看进程的安装位置"></a>4 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5 sudo 保留系统环境"></a>5 sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6 查找最大目录或文件"></a>6 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+<h2 id="7-挂载"><a href="#7-挂载" class="headerlink" title="7 挂载"></a>7 挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mount -t vboxsf 源媒体 目标路径</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-查找文件包含字符"><a href="#8-查找文件包含字符" class="headerlink" title="8 查找文件包含字符"></a>8 查找文件包含字符</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> This will only search through those files <span class="built_in">which</span> have .c or .h extensions:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --include=\*.&#123;c,h&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> This will exclude searching all the files ending with .o extension:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude=*.o -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">For directories it<span class="string">'s possible to exclude a particular directory(ies) through --exclude-dir parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude-dir=&#123;dir1,dir2,*.dst&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/10/development-shortcuts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/10/development-shortcuts/" itemprop="url">我的快捷键</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-10T00:00:00+08:00">
+                2015-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/computer/" itemprop="url" rel="index">
+                    <span itemprop="name">computer</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/10/development-shortcuts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/10/development-shortcuts/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/01/10/development-shortcuts/" class="leancloud_visitors" data-flag-title="我的快捷键">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Visual-Studio"><a href="#Visual-Studio" class="headerlink" title="Visual Studio"></a>Visual Studio</h2><ul>
+<li><code>Ctrl</code> + <code>J</code> ： 智能提示</li>
+<li><code>Ctrl</code> + <code>,</code> ： Display Navigate-To dialog box，大爱</li>
+<li><code>Ctrl</code> + <code>]</code> ： Go to matching brace in source file</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>]</code> : Extend selection to nexst brace</li>
+<li><code>Ctrl</code> + <code>Alt</code> + <code>F</code>： 搜索文件，尤其是整个项目</li>
+<li><code>F3</code> / <code>Shift</code> + <code>F3</code> : Find next / find previous</li>
+<li><code>Ctrl</code> + <code>W</code> ： Select current word</li>
+<li><code>Ctrl</code> + <code>l</code> ： Delete current line or selection of lines to and add to clipboard</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>Enter</code> ：Enter blank line below cursor</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>u</code> ： Make uppercase</li>
+<li><code>Ctrl</code> + <code>u</code> ： Make lowercase (reverse upercase)</li>
+<li><code>Ctrl</code> + <code>k</code> + <code>c</code> : Comment selected text</li>
+<li><code>Ctrl</code> + <code>k</code> + <code>u</code> : Uncomment selected text</li>
+<li><code>Ctrl</code> + <code>k</code> + <code>d</code> : Format document to code formatting settings</li>
+<li><code>Ctrl</code> + <code>k</code> + <code>f</code> : Format selection to code formatting settings</li>
+<li><code>F5</code> : Start debugging</li>
+<li><code>Ctrl</code> + <code>F5</code> : Bypass debugger</li>
+<li><code>F10</code> ： Debug / step over</li>
+<li><code>Shift</code> + <code>F11</code> ： Debug / step out</li>
+<li><code>Ctrl</code> + <code>F10</code> ： Debug / run to cursor</li>
+</ul>
+<h2 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h2><ul>
+<li><code>Ctrl</code> + <code>W</code> ： 关闭 Tab</li>
+<li><code>Ctrl</code> + <code>T</code> ： 新建 Tab</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>T</code>： 恢复上一个关闭的 Tab</li>
+<li><code>Ctrl</code> + <code>L</code> ： 定位到 Location Bar</li>
+<li><code>Ctrl</code> + <code>F</code> ： 搜索页面</li>
+<li><code>F12</code> ： 开发者模式</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>F</code> ： 搜索全部资源</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>Del</code> ： 清除缓存</li>
+</ul>
+<h2 id="Eclipse"><a href="#Eclipse" class="headerlink" title="Eclipse"></a>Eclipse</h2><ul>
+<li><code>Ctrl</code> + <code>Space</code> ： 智能提示</li>
+<li><code>Ctrl</code> + <code>Shift</code> + <code>R</code> ： 搜索全部资源</li>
+</ul>
+<h2 id="UE"><a href="#UE" class="headerlink" title="UE"></a>UE</h2><ul>
+<li><code>Ctrl</code> + <code>R</code> ： 替换</li>
+</ul>
+<h2 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h2><h3 id="按键"><a href="#按键" class="headerlink" title="按键"></a>按键</h3><ul>
+<li><img src="/images/posts/shortcuts/menusym-command.gif" alt=""> : Command/Apple Key (like Control on a PC) Also written as Cmd</li>
+<li><img src="/images/posts/shortcuts/menusym-option.gif" alt=""> : Option (like Alt on a PC)</li>
+<li><img src="/images/posts/shortcuts/menusym-shift.gif" alt=""> : Shift</li>
+<li><img src="/images/posts/shortcuts/menusym-control.gif" alt=""> : Control (Control-click = Right-click)</li>
+<li><img src="/images/posts/shortcuts/menusym-tab.gif" alt=""> : Tab</li>
+<li><img src="/images/posts/shortcuts/menusym-return.gif" alt=""> : Return</li>
+<li><img src="/images/posts/shortcuts/menusym-enter.gif" alt=""> : Enter (on Number Pad)</li>
+<li><img src="/images/posts/shortcuts/menusym-eject.gif" alt=""> : Eject</li>
+<li><img src="/images/posts/shortcuts/menusym-escape.gif" alt=""> : Escape</li>
+<li><img src="/images/posts/shortcuts/menusym-pageup.gif" alt=""> : Page Up</li>
+<li><img src="/images/posts/shortcuts/menusym-pagedown.gif" alt=""> : Page Down</li>
+<li><img src="/images/posts/shortcuts/menusym-home.gif" alt=""> : Home</li>
+<li><img src="/images/posts/shortcuts/menusym-end.gif" alt=""> : End</li>
+<li><img src="/images/posts/shortcuts/menusym-arrowkeys.gif" alt=""> : Arrow Keys</li>
+<li><img src="/images/posts/shortcuts/menusym-delete.gif" alt=""> : Delete Left (like Backspace on a PC)</li>
+<li><img src="/images/posts/shortcuts/menusym-delete-forward.gif" alt=""> : Delete Right (also called Forward Delete)</li>
+</ul>
+<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><ul>
+<li><code>Cmd</code> + <code>Shift</code> + <code>3</code> ： Take picture of the entire screen</li>
+<li><code>Cmd</code> + <code>Shift</code> + <code>4</code> ： Take picture of a selected area</li>
+<li><code>Cmd</code> + <code>Shift</code> + <code>4</code> -&gt; <code>Space</code>： Cmd-Shift-4, then press Spacebar, then Click on the window/object</li>
+<li><code>Cmd</code> + <code>Opt</code> + <code>Esc</code> ： Force Quit (displayed list of apps)</li>
+</ul>
+<h2 id="XCode"><a href="#XCode" class="headerlink" title="XCode"></a>XCode</h2><ul>
+<li><code>Esc</code> ： 智能提示</li>
+</ul>
+<h2 id="PHPStorm"><a href="#PHPStorm" class="headerlink" title="PHPStorm"></a>PHPStorm</h2><ul>
+<li><code>SHIFT</code> + <code>SHIFT</code> ： 智能查找</li>
+<li><code>SHIFT</code> + <code>F6</code> ： 智能提示</li>
+<li><code>CTRL</code> + <code>D</code> ： 复制当前行或复制选中内容</li>
+<li><code>CTRL</code> + <code>Y</code> ： 删除当前行或选中内容所涉及的行</li>
+<li><code>CTRL</code> + <code>R</code> ： 查找替换</li>
+<li><code>ALT</code> + <code>W</code> ： 选中单词</li>
+<li><code>ALT</code> + <code>上下箭头</code> ： 向上向下函数间切换</li>
+<li><code>CTRL</code> + <code>SHIFT</code> + <code>V</code> ： 显示最近粘贴板中的内容，选择后内容插入到光标位置</li>
+<li><code>CTRL</code> + <code>Q</code> ： 显示说明文档</li>
+<li><code>CTRL</code> + <code>B</code> ： 跳转到声明处</li>
+<li><code>CTRL</code> + <code>N</code> ： 类名查找</li>
+<li><code>CTRL</code> + <code>SHIFT</code> + <code>N</code> ： 文件名查找</li>
+<li><code>CTRL</code> + <code>SHIFT</code> + <code>ALT</code> + <code>N</code> ： 函数名查找</li>
+<li><code>ALT</code> + <code>SHIFT</code> + <code>C</code> ： 快速回顾最近修改的项目</li>
+<li><code>CTRL</code> + <code>SHIFT</code> + <code>I</code> ： 查看变量初始化的值</li>
+<li><code>CTRL</code> + <code>ALT</code> + <code>T</code> ： 插入环绕代码</li>
+<li><code>CTRL</code> + <code>ALT</code> + <code>F12</code> ： 跳转至当前文件所在磁盘上的位置</li>
+<li><code>ALT</code> + <code>左右键</code> ： 标签切换</li>
+<li><code>CTRL</code> + <code>F12</code> ： 在当前类文件中快速查找方法</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/12/01/zend-studio-xdebug-setting-up/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/12/01/zend-studio-xdebug-setting-up/" itemprop="url">配置 Zend Studio, Xdebug</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-12-01T00:00:00+08:00">
+                2014-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2014/12/01/zend-studio-xdebug-setting-up/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2014/12/01/zend-studio-xdebug-setting-up/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2014/12/01/zend-studio-xdebug-setting-up/" class="leancloud_visitors" data-flag-title="配置 Zend Studio, Xdebug">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>开发 PHP 过程中，经常不是一蹴而就的，某些疑难问题需要像本地程序一样调试。本文记录如何配置 Zend Studio 和 Xdebug，实现本地调试或远程（Remote）调试。</p>
+<p>说到本地或远程调试，就要涉及到 PHP 的2种运行方式：CLI 和 CGI。</p>
+<h3 id="TIPS：什么是-CLI-和-CGI？"><a href="#TIPS：什么是-CLI-和-CGI？" class="headerlink" title="TIPS：什么是 CLI 和 CGI？"></a>TIPS：什么是 CLI 和 CGI？</h3><ul>
+<li>CLI（Command Line Interface），即“命令行界面”，是指在命令行界面的运行方式。比如在本地执行一个 PHP 脚本。</li>
+<li>CGI（Common Gateway Interface），即“通用网关接口”，是 HTTP 服务器和脚本解释器之间的接口。通过这个通用接口，可以忽略 HTTP 服务器或脚本解释器的技术限制。HTTP 服务器常用的就是 Apache，Lighttpd，Nginx，Tomcat等，脚本解释器常用的有 PHP，ASP，JSP 等解释器。</li>
+</ul>
+<h2 id="安装-Xdebug"><a href="#安装-Xdebug" class="headerlink" title="安装 Xdebug"></a>安装 Xdebug</h2><h3 id="A-安装到远程服务器"><a href="#A-安装到远程服务器" class="headerlink" title="A. 安装到远程服务器"></a>A. 安装到远程服务器</h3><ol>
+<li><p>下载 Xdebug 到远程服务器</p>
+</li>
+<li><p>修改 php.ini<br> 打开 php.ini，添加 Xdebug 扩展（dll）的路径</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Linux and Mac OS: zend_extension=&quot;/usr/local/php/modules/xdebug.so&quot;</span><br><span class="line">Windows: zend_extension=&quot;&lt;path to .dll file&gt;&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 Xdebug<br> 在 php.ini 中，添加配置，其中关键的几个是：<code>remote_enable</code>，<code>remote_autostart</code>，<code>remote_port</code>，<code>remote_handler</code> </p>
+<pre><code class="ini">xdebug.auto_trace= "On"
+xdebug.collect_params= "On"
+xdebug.collect_return= "On"
+xdebug.trace_output_dir="/path/to/log/dir/xdebug/trace"
+xdebug.profiler_enable= "true"
+xdebug.profiler_output_dir="/path/to/log/dir/xdebug/profiler"
+xdebug.profiler_append = "On"
+xdebug.profiler_enable_trigger = "On"
+xdebug.profiler_output_name = "cachegrind.out.%t-%s"
+xdebug.remote_enable = "On" 
+xdebug.remote_autostart = 0  
+xdebug.remote_host = 127.0.0.1
+xdebug.remote_port = 9000 
+xdebug.remote_handler = "dbgp"
+xdebug.remote_log="/path/to/log/dir/remote.log"
+</code></pre>
+</li>
+<li><p>验证安装是否成功<br> 远程打印<code>&lt;?php phpinfo(); ?&gt;</code>，查看是否安装了 Xdebug 模块。</p>
+</li>
+</ol>
+<h3 id="B-安装到-Zend-Studio-运行环境（PHP-Executable）"><a href="#B-安装到-Zend-Studio-运行环境（PHP-Executable）" class="headerlink" title="B. 安装到 Zend Studio 运行环境（PHP Executable）"></a>B. 安装到 Zend Studio 运行环境（PHP Executable）</h3><p>Zend Studio 自带了 PHP 运行环境的插件，在 <code>&lt;Zend_Studio_install_dir&gt;\plugins\com.zend.php.debug.debugger.&lt;version_info&gt;\</code> 目录里。默认配置的是使用自家的 zend debug，切换成 xdebug，需要修改这里的 php 设置。</p>
+<ol>
+<li><p>下载 Xdebug 到 <code>&lt;Zend_Studio_install_dir&gt;\plugins\com.zend.php.debug.debugger.&lt;version_info&gt;\</code></p>
+</li>
+<li><p>修改 php.ini<br> 注释掉 zend debug，添加 Xdebug，写法和上节一样。</p>
+</li>
+<li><p>配置 Xdebug<br> 配置参数参见上节</p>
+</li>
+<li><p>验证安装是否成功<br> 打开命令行，执行<code>php --re xdebug</code>，如果输出不是<code>Exception: Extension xdebug does not exist</code>, 表示 Xdebug 扩展安装成功。</p>
+</li>
+</ol>
+<p>到这里，已经完成了配置 Xdebug 部分，其实现在已经可以使用多种工具来远程或本地调试了，包括设置断点、单步、查看运行参数等。反映较好的调式客户端有 PhpStorm，eclipse+PDT，netbeans，Notepad++等，Zend Studio 也算是 “eclipse+插件”性质的，下面将描述它的配置。顺道说一下，还有一个极好用的工具，是 Chrome 的插件 WebGDBp，可以直接在浏览器里远程调试，非常 Cool。</p>
+<h2 id="配置-Zend-Studio"><a href="#配置-Zend-Studio" class="headerlink" title="配置 Zend Studio"></a>配置 Zend Studio</h2><h3 id="A-配置-Xdebug-CLI-调试"><a href="#A-配置-Xdebug-CLI-调试" class="headerlink" title="A. 配置 Xdebug CLI 调试"></a>A. 配置 Xdebug CLI 调试</h3><ol>
+<li><p>打开 <code>Window | Preferences | PHP | PHP Executables</code><br> <img src="/images/posts/zend_xdebug/cli_1.jpg" alt=""></p>
+</li>
+<li><p>打开 <code>Add</code> ，添加 PHP 运行环境<br> <img src="/images/posts/zend_xdebug/cli_2.jpg" alt=""></p>
+<ul>
+<li>Name - PHP 运行环境名（比如 PHP 5.5.7 with Xdebug）</li>
+<li>Executable path - 运行环境路径.</li>
+<li>PHP ini file (Optional) - 运行环境对应的 php.ini 路径</li>
+<li>SAPI type - 设置为 CLI</li>
+<li>PHP debugger - 设置为 Xdebug.</li>
+</ul>
+</li>
+<li><p>设置 Xdebug 为默认运行环境<br> 上一步保存后的回到运行环境设置窗口，选择添加的运行环境，点击 <code>Set as Default</code></p>
+</li>
+<li><p>打开 <code>Window | Preferences | PHP | Debug</code><br> <img src="/images/posts/zend_xdebug/cli_3.jpg" alt=""><br> 在 CLI 设置区，选择 Xdebug</p>
+</li>
+</ol>
+<p>到此，CLI 使用 Xdebug 已经配置完成。</p>
+<h3 id="B-配置-Xdebug-远程调试"><a href="#B-配置-Xdebug-远程调试" class="headerlink" title="B. 配置 Xdebug 远程调试"></a>B. 配置 Xdebug 远程调试</h3><p>允许远程调试网站程序（Web Application Debugging）</p>
+<ol>
+<li><p>打开 <code>Window | Preferences | PHP | PHP Servers</code><br> <img src="/images/posts/zend_xdebug/remote_1.jpg" alt="">  </p>
+</li>
+<li><p>添加服务器（Server）<br> <img src="/images/posts/zend_xdebug/remote_2.jpg" alt="">  </p>
+</li>
+<li><p>配置路径映射（Path Mapping）<br> <img src="/images/posts/zend_xdebug/remote_3.jpg" alt="">  </p>
+</li>
+<li><p>配置 DBGp 协议<br> 由于是远程调试，使用了 DBGp 协议通信，需要配置通信参数。<br> 打开 <code>Window | Preferences | PHP | Debug | Installed Debuggers</code><br> <img src="/images/posts/zend_xdebug/remote_6.jpg" alt=""><br> 编辑 Xdebug<br> <img src="/images/posts/zend_xdebug/remote_7.jpg" alt=""><br> 这里非常关键的地方是 <code>Access reomte session (JIT)</code>，它能配置触发 Zend Studio 调试的条件。当我们从浏览器里访问要调试的网站时，可以选择：</p>
+<ul>
+<li><code>off</code>: 关闭远程调试功能</li>
+<li><code>localhost</code>: 通过 localhost 访问时触发调试</li>
+<li><code>any</code>: 任何访问都触发调试</li>
+<li><code>prompt</code>: 任何访问弹出提示，选择是否触发调试<br>由于我一般都是内网调试，这里选择 localhost，然后配合网站 Xdebug 的配置 <code>xdebug.remote_autostart = 0</code> 来使用，只有当访问 localhost 时才触发 Zend Studio 进入调试状态。</li>
+</ul>
+</li>
+<li><p>开始调试<br> （可选）为项目指定默认服务器<br> <img src="/images/posts/zend_xdebug/remote_8.jpg" alt=""><br> 现在 Xdebug 已经是这个项目的默认远程 PHP 调试器。你可以通过 <code>Debug as web application</code> 来调试某个文件。<br> <img src="/images/posts/zend_xdebug/remote_4.jpg" alt=""><br> 查看结果：<br> <img src="/images/posts/zend_xdebug/remote_5.jpg" alt="">  </p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/11/26/github-multi-account-configuration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1447,643 +2338,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/05/16/xcode5-delete-duplicate-line/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/05/16/xcode5-delete-duplicate-line/" itemprop="url">XCode 5 添加复制/删除行快捷键</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-16T00:00:00+08:00">
-                2014-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/05/16/xcode5-delete-duplicate-line/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/05/16/xcode5-delete-duplicate-line/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/05/16/xcode5-delete-duplicate-line/" class="leancloud_visitors" data-flag-title="XCode 5 添加复制/删除行快捷键">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>习惯了某些编辑器的复制一行和删除一行快捷方式后，使用xcode时没有相应快捷键有些不适应，下面是一种为其添加快捷键的方式。</p>
-<h3 id="修改快捷键配置文件的权限"><a href="#修改快捷键配置文件的权限" class="headerlink" title="修改快捷键配置文件的权限"></a>修改快捷键配置文件的权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 666 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist</span><br><span class="line"></span><br><span class="line">sudo chmod 777 /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/</span><br></pre></td></tr></table></figure>
-<p><img src="/images/posts/duplicate_delete_line_2.png" alt=""></p>
-<h3 id="修改快捷键配置文件"><a href="#修改快捷键配置文件" class="headerlink" title="修改快捷键配置文件"></a>修改快捷键配置文件</h3><ol>
-<li>添加Customized类别</li>
-<li><p>添加Delete Current Line宏（macro）  </p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectLine:, cut:</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>添加Duplicate Current Line宏  </p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">selectLine:, copy:, moveToEndOfLine:, insertNewline:, paste:, deleteBackward:</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>&nbsp;<br><img src="/images/posts/duplicate_delete_line_1.png" alt=""></p>
-<h3 id="绑定快捷键"><a href="#绑定快捷键" class="headerlink" title="绑定快捷键"></a>绑定快捷键</h3><p>重启 Xcode，打开菜单 <code>Xcode &gt; Preferences &gt; KeyBindings</code>。 找到上面定义的宏，为其定义快捷键。</p>
-<p><img src="/images/posts/duplicate_delete_line_3.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/05/05/chromium-ui-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/05/05/chromium-ui-1/" itemprop="url">Chromium 用户界面分析（1）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-05-05T00:00:00+08:00">
-                2014-05-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chromium/" itemprop="url" rel="index">
-                    <span itemprop="name">chromium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/05/05/chromium-ui-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/05/05/chromium-ui-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/05/05/chromium-ui-1/" class="leancloud_visitors" data-flag-title="Chromium 用户界面分析（1）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="基础界面库的类结构"><a href="#基础界面库的类结构" class="headerlink" title="基础界面库的类结构"></a>基础界面库的类结构</h2><p>基础界面库位于src\ui\views目录下，定义了 <strong>跨平台</strong> 的组件，是Chromium界面的基础，顶层chrome/browser/ui/下的类都继承或使用这些基础类。</p>
-<h3 id="关于Widget静态图"><a href="#关于Widget静态图" class="headerlink" title="关于Widget静态图"></a>关于Widget静态图</h3><p>下面是Widget及内部结构的类图，类关系做了简化，只显示较关键的联系。<br><img src="/images/posts/chromium_ui_hierarchy.jpg" alt="chromium ui hierarchy"></p>
-<h3 id="Widget内组件布局"><a href="#Widget内组件布局" class="headerlink" title="Widget内组件布局"></a>Widget内组件布局</h3><ul>
-<li>总体来说，Widget是最底层的UI组件（此处不区分Widget和NativeWidget，后面讨论其关系），与本地（Native）平台交互，处理平台相关的消息、事件等，转换到Chromium UI体系内。  </li>
-<li>为了统一处理视图组件的消息事件，Widget内定义了一个根视图RootView    </li>
-<li>NonClientView是RootView的唯一孩子，也是其它所有视图的逻辑根  （<strong>为什么RootView和NonClientView不合并为一个视图？</strong>） </li>
-<li>NonClientFrameView 是NonClientView孩子之一，负责非客户区的绘制和消息处理，根据不同的系统会有不同的实现，比如Windows下有OpaqueFrameView和GlassFrameView，非客户区一般包括窗口控制按钮（最大化，最小化，关闭）和标题栏（Title bar） </li>
-<li>ClientView 是另一个孩子，负责客户区的绘制和消息处理，客户区包括工具栏、标签栏、地址栏、页面等。  </li>
-</ul>
-<p>&nbsp;</p>
-<pre><code>//  The NonClientView is the logical root of all Views contained within a
-//  Window, except for the RootView which is its parent and of which it is the
-//  sole child. The NonClientView has two children, the NonClientFrameView which
-//  is responsible for painting and responding to events from the non-client
-//  portions of the window, and the ClientView, which is responsible for the
-//  same for the client area of the window:
-//
-//  +- views::Widget ------------------------------------+
-//  | +- views::RootView ------------------------------+ |
-//  | | +- views::NonClientView ---------------------+ | |
-//  | | | +- views::NonClientFrameView subclas  ---+ | | |
-//  | | | |                                        | | | |
-//  | | | | &lt;&lt; all painting and event receiving &gt;&gt; | | | |
-//  | | | | &lt;&lt; of the non-client areas of a     &gt;&gt; | | | |
-//  | | | | &lt;&lt; views::Widget.                   &gt;&gt; | | | |
-//  | | | |                                        | | | |
-//  | | | +----------------------------------------+ | | |
-//  | | | +- views::ClientView or subclass --------+ | | |
-//  | | | |                                        | | | |
-//  | | | | &lt;&lt; all painting and event receiving &gt;&gt; | | | |
-//  | | | | &lt;&lt; of the client areas of a         &gt;&gt; | | | |
-//  | | | | &lt;&lt; views::Widget.                   &gt;&gt; | | | |
-//  | | | |                                        | | | |
-//  | | | +----------------------------------------+ | | |
-//  | | +--------------------------------------------+ | |
-//  | +------------------------------------------------+ |
-//  +----------------------------------------------------+
-//
-// The NonClientFrameView and ClientView are siblings because due to theme
-// changes the NonClientFrameView may be replaced with different
-// implementations (e.g. during the switch from DWM/Aero-Glass to Vista Basic/
-// Classic rendering).
-</code></pre><h3 id="类关系（Class-Relationship）的建立"><a href="#类关系（Class-Relationship）的建立" class="headerlink" title="类关系（Class Relationship）的建立"></a>类关系（Class Relationship）的建立</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Widget::Init(<span class="keyword">const</span> InitParams&amp; params) &#123;</span><br><span class="line">  ...</span><br><span class="line">  root_view_.reset(CreateRootView());                                               --&gt;<span class="number">1</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">if</span> (RequiresNonClientView(params.type)) &#123;</span><br><span class="line">    non_client_view_ = <span class="keyword">new</span> NonClientView;                                           --&gt;<span class="number">2</span></span><br><span class="line">    non_client_view_-&gt;SetFrameView(CreateNonClientFrameView());                     --&gt;<span class="number">3</span></span><br><span class="line">    <span class="comment">// Create the ClientView, add it to the NonClientView and add the          </span></span><br><span class="line">    <span class="comment">// NonClientView to the RootView. This will cause everything to be parented.</span></span><br><span class="line">    non_client_view_-&gt;set_client_view(widget_delegate_-&gt;CreateClientView(<span class="keyword">this</span>));    --&gt;<span class="number">4</span></span><br><span class="line">    SetContentsView(non_client_view_);                                              --&gt;<span class="number">5</span></span><br><span class="line">    ...	</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (params.delegate) &#123;</span><br><span class="line">    SetContentsView(params.delegate-&gt;GetContentsView());</span><br><span class="line">    ...</span><br><span class="line">  &#125;	</span><br><span class="line">  ...  </span><br><span class="line">&#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line"><span class="number">1.</span> Create root view</span><br><span class="line"><span class="number">1.</span> Create NonClientView <span class="keyword">and</span> make Widget::non_client_view_ point to it</span><br><span class="line"><span class="number">1.</span> Create NonClientFrameView <span class="keyword">and</span> add it to NonClientView</span><br><span class="line"><span class="number">1.</span> Create ClientFrameView <span class="keyword">and</span> add it to NonClientView</span><br><span class="line"><span class="number">1.</span> Add NonClientView to RootView  </span><br><span class="line"></span><br><span class="line">### RootView类</span><br><span class="line">要注意的几点：  </span><br><span class="line">- 从名字便可知，RootView是View体系（hierarchy）的根  </span><br><span class="line">- RootView起到中转的作用，把本地Widget相关的事件等转换到Chromium View体系中  </span><br><span class="line">- RootView只有一个孩子ContentView，大小正好布满整个区域  </span><br><span class="line"></span><br><span class="line">原文：</span><br><span class="line"></span><br><span class="line">	<span class="comment">// RootView class</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  The RootView is the root of a View hierarchy. A RootView is attached to a</span></span><br><span class="line">	<span class="comment">//  Widget. The Widget is responsible for receiving events from the host</span></span><br><span class="line">	<span class="comment">//  environment, converting them to views-compatible events and then forwarding</span></span><br><span class="line">	<span class="comment">//  them to the RootView for propagation into the View hierarchy.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  A RootView can have only one child, called its "Contents View" which is</span></span><br><span class="line">	<span class="comment">//  sized to fill the bounds of the RootView (and hence the client area of the</span></span><br><span class="line">	<span class="comment">//  Widget). Call SetContentsView() after the associated Widget has been</span></span><br><span class="line">	<span class="comment">//  initialized to attach the contents view to the RootView.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">### Widget和NativeWidget的关系</span><br><span class="line"></span><br><span class="line">Chromium UI的一个目标是实现 **跨平台** ，这样就抽象出一个与平台无关的Widget，而与平台相关特性则由NativeWidget处理。它们两个一一对应，可以设置为Widget拥有（owns）NativeWidget或NativeWidget拥有Widget。</span><br><span class="line"></span><br><span class="line">	<span class="comment">////////////////////////////////////////////////////////////////////////////////</span></span><br><span class="line">	<span class="comment">// Widget class</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  Encapsulates the platform-specific rendering, event receiving and widget</span></span><br><span class="line">	<span class="comment">//  management aspects of the UI framework.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  Owns a RootView and thus a View hierarchy. Can contain child Widgets.</span></span><br><span class="line">	<span class="comment">//  Widget is a platform-independent type that communicates with a platform or</span></span><br><span class="line">	<span class="comment">//  context specific NativeWidget implementation.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//  A special note on ownership:</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//    Depending on the value of the InitParams' ownership field, the Widget</span></span><br><span class="line">	<span class="comment">//    either owns or is owned by its NativeWidget:</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//    ownership = NATIVE_WIDGET_OWNS_WIDGET (default)</span></span><br><span class="line">	<span class="comment">//      The Widget instance is owned by its NativeWidget. When the NativeWidget</span></span><br><span class="line">	<span class="comment">//      is destroyed (in response to a native destruction message), it deletes</span></span><br><span class="line">	<span class="comment">//      the Widget from its destructor.</span></span><br><span class="line">	<span class="comment">//    ownership = WIDGET_OWNS_NATIVE_WIDGET (non-default)</span></span><br><span class="line">	<span class="comment">//      The Widget instance owns its NativeWidget. This state implies someone</span></span><br><span class="line">	<span class="comment">//      else wants to control the lifetime of this object. When they destroy</span></span><br><span class="line">	<span class="comment">//      the Widget it is responsible for destroying the NativeWidget (from its</span></span><br><span class="line">	<span class="comment">//      destructor).</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">&amp;nbsp;</span><br><span class="line">&amp;nbsp;</span><br><span class="line">&amp;nbsp;</span><br><span class="line"></span><br><span class="line">## Chromium界面的类结构</span><br><span class="line"></span><br><span class="line">### 静态图</span><br><span class="line">![chromium browser hierarchy](/images/posts/chromium_browser_hierarchy.jpg)</span><br><span class="line"></span><br><span class="line">### 类关系（Class Relationship）的建立</span><br><span class="line"><span class="number">1.</span> Enter <span class="string">"Browser::Create"</span> method</span><br><span class="line"><span class="number">1.</span> Call <span class="string">"InitBrowserWindow"</span> </span><br><span class="line"><span class="number">1.</span> Call <span class="string">"CreateBrowserWindow"</span> with the parameter <span class="string">"browser"</span>(<span class="keyword">this</span>)</span><br><span class="line"><span class="number">1.</span> Create <span class="string">"BrowserView"</span> which is the subclass of <span class="string">"BrowserWindow"</span></span><br><span class="line"><span class="number">1.</span> Set up the relation of <span class="string">"BrowserView"</span> <span class="keyword">and</span> <span class="string">"BrowserFrame"</span></span><br><span class="line"><span class="number">1.</span> Return back the <span class="string">"Browser::window_"</span> to <span class="string">"BrowserView"</span> instance</span><br><span class="line"></span><br><span class="line">Pseudo code:</span><br><span class="line"></span><br><span class="line">```cpp</span><br><span class="line">Browser::Create()&#123;                                                         --&gt;<span class="number">1</span></span><br><span class="line">    ...</span><br><span class="line">    browser-&gt;InitBrowserWindow()&#123;                                          --&gt;<span class="number">2</span></span><br><span class="line">        ...</span><br><span class="line">        browser.window_ = BrowserWindow::CreateBrowserWindow(browser)&#123;     --&gt;<span class="number">3</span>,<span class="number">6</span></span><br><span class="line">            BrowserView* view = <span class="keyword">new</span> BrowserView(browser);                  --&gt;<span class="number">4</span></span><br><span class="line">            (<span class="keyword">new</span> BrowserFrame(view))-&gt;InitBrowserFrame();                  --&gt;<span class="number">5</span></span><br><span class="line">            ...</span><br><span class="line">            <span class="keyword">return</span> view;                                                   --&gt;<span class="number">6</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Chromium UI的目标是一套跨平台的方案，其中NativeWidget实现了平台相关的细节，Widget才是跨平台的组件，与NativeWidget做了映射。Widget是Windows组件，而Chromium UI的其它组件都是基于View建立的，所以需要一个RootView做中转，将窗口事件转换到View体系中，又作为其它View的根。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/04/24/chrome-extension-plugin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/04/24/chrome-extension-plugin/" itemprop="url">Chrome扩展+NPPlugin</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-04-24T00:00:00+08:00">
-                2014-04-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c-c/" itemprop="url" rel="index">
-                    <span itemprop="name">c/c++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/04/24/chrome-extension-plugin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/04/24/chrome-extension-plugin/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/04/24/chrome-extension-plugin/" class="leancloud_visitors" data-flag-title="Chrome扩展+NPPlugin">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="扩展“Chrome扩展”"><a href="#扩展“Chrome扩展”" class="headerlink" title="扩展“Chrome扩展”"></a>扩展“Chrome扩展”</h2><p>虽然基于强大的Javascript和Chrome扩展接口 （Extension API）所实现的扩展简单且强大，但是，如果你已经有一些实现的很不错的本地程序（Native Program）要通过浏览器复用怎么办？或者，浏览器的API不满足需求，你需要使用某些更强大的本地接口（Native API）时呢？</p>
-<p>你可以配合Chrome扩展，实现NPAPI插件，通过Javascript与本地的二进制程序交互。</p>
-<p>其实Chrome本身已经集成了一些NPAPI插件，比如PDF viewer，Flash player。</p>
-<p>先简单区分一下扩展（Extension）和插件（Plguin），它们的共同点是都用于扩充增强浏览器的功能，</p>
-<ul>
-<li><p>扩展是基于 <strong>浏览器提供的接口</strong> ，运行在浏览器的沙箱（Sandbox）中，不与本地代码交互，安全性可控，也意味着可扩展的功能有限。</p>
-</li>
-<li><p>插件是基于与浏览器交互的框架（chrome用的是Mozilla的NPAPI框架），实现方式为本地二进制代码，插件其实就是能通过框架与浏览器通信的 <strong>本地程序</strong> 。它可以不运行在沙箱中，所以权限很大，实现不好很容易造成浏览器的漏洞。</p>
-</li>
-</ul>
-<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
-<h2 id="实现NPAPI插件"><a href="#实现NPAPI插件" class="headerlink" title="实现NPAPI插件"></a>实现NPAPI插件</h2><h3 id="创建动态库（DLL）项目"><a href="#创建动态库（DLL）项目" class="headerlink" title="创建动态库（DLL）项目"></a>创建动态库（DLL）项目</h3><ol>
-<li><p>创建空项目<br>本文通过VS2010创建，首选新建Win32|Win32 Project, 然后在创建向导中选择DLL, empty project。</p>
-</li>
-<li><p>复制示例代码<br>将示例包（文章附件）以下文件复制到项目中：</p>
-<pre><code>common/*
-include/*
-lib/*
-Plugin.cpp
-Plugin.h
-PluginObject.cpp
-PluginObject.h
-</code></pre></li>
-</ol>
-<h3 id="配置项目（Project）属性"><a href="#配置项目（Project）属性" class="headerlink" title="配置项目（Project）属性"></a>配置项目（Project）属性</h3><ol>
-<li><p>修改输出的动态库名<br>修改Configuration Properties | General | Target Name，注意Mozilla规范要求，插件 <strong>必须以“np”开头</strong> 。</p>
-</li>
-<li><p>添加Include目录<br>在Configuration Properties | C/C++ | General | Additional Include Directories添加自定义目录include。</p>
-</li>
-<li><p>添加第三方库<br>这里要和前端JS交互，所以添加C++的第三方<a href="http://jsoncpp.sourceforge.net/" target="_blank" rel="noopener">JSON库</a>，<br>在Configuration Properties | Linker | General | Additional Library Directories添加链接库目录lib。<br>然后在Configuration Properties | Linker | Input | Additional Dependencies里添加库文件lib_json.lib。</p>
-</li>
-<li><p>添加宏定义（Preprocessor）<br>在Configuration Properties | C/C++ | Preprocessor Definitions添加宏 <strong>WIN32;_WINDOWS;XP_WIN32;XP_WIN;<em>X86</em>;</strong>。</p>
-</li>
-<li><p>禁止预编译头（Precompiled header)<br>Configuration Properties | C/C++ | Precompiled Header为“Not Using Precompiled Headers”。</p>
-</li>
-<li><p>添加.def文件<br>在Configuration Properties | Linker | Input | Module Definition File中添加NPHello.def。</p>
-</li>
-<li><p>修改Runtime Library<br>这一步比较关键,在发布插件时去除debug符号，以“ <strong>/MT</strong> ”方式编译，不然在某些系统会遇到缺少运行时库的问题。<br>Configuration Properties | C/C++ | Code Generation | Runtime Library设置为/MT。</p>
-</li>
-</ol>
-<h3 id="实现插件"><a href="#实现插件" class="headerlink" title="实现插件"></a>实现插件</h3><ol>
-<li><p>新建.def文件<br>在项目中新建NPHello.def：  </p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LIBRARY	<span class="string">"nphello"</span>		</span><br><span class="line">EXPORTS</span><br><span class="line">	NP_GetEntryPoints     @<span class="number">1</span></span><br><span class="line">	NP_Initialize         @<span class="number">2</span></span><br><span class="line">	NP_Shutdown           @<span class="number">3</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改mimetype<br>npp_gate.cpp：</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">NPP_GetMIMEDescription</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"application/x-hello"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> NPHello.rc：</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">       VALUE <span class="string">"CompanyName"</span>, <span class="string">"XB"</span></span><br><span class="line">       VALUE <span class="string">"FileDescription"</span>, <span class="string">"XB Hello Module"</span></span><br><span class="line">       VALUE <span class="string">"FileVersion"</span>, <span class="string">"1, 0, 0, 1"</span></span><br><span class="line">       VALUE <span class="string">"InternalName"</span>, <span class="string">"nphello.dll"</span></span><br><span class="line">       VALUE <span class="string">"LegalCopyright"</span>, <span class="string">"Copyright (C) 2013"</span></span><br><span class="line">       VALUE <span class="string">"MIMEType"</span>, <span class="string">"application/x-hello"</span></span><br><span class="line">       VALUE <span class="string">"OriginalFilename"</span>, <span class="string">"nphello.dll"</span></span><br><span class="line">       VALUE <span class="string">"ProductName"</span>, <span class="string">"NPHello"</span></span><br><span class="line">       VALUE <span class="string">"ProductVersion"</span>, <span class="string">"1, 0, 0, 1"</span></span><br><span class="line">   END</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除NPP_GetJavaClass<br>np_entry.cpp</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NPNFuncs.getJavaEnv              = <span class="literal">NULL</span>;</span><br><span class="line">NPNFuncs.getJavaPeer             = <span class="literal">NULL</span>;</span><br><span class="line">...</span><br><span class="line">pluginFuncs-&gt;javaClass  = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>定义与Javascript交互的接口<br>PluginObject.cpp</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define function name called by JS</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* kPluginFunction = <span class="string">"function"</span>;</span><br><span class="line"><span class="comment">// define property name set by JS</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span>* kPluginCallback = <span class="string">"callback"</span>;</span><br></pre></td></tr></table></figure>
-<p> 接口1：用于JS查询Plugin对象是否有该方法：</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> PluginObject::hasMethod(NPIdentifier methodName)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">bool</span> bRev = <span class="literal">false</span>;</span><br><span class="line">	NPUTF8 *pName = NPNFuncs.utf8fromidentifier(methodName);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">strcmp</span>(pName, kPluginFunction) ==<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<pre><code>接口2：用于JS查询Plguin对象是否有该属性：
-
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> PluginObject::hasProperty(NPIdentifier propertyName)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">bool</span> bRev = <span class="literal">false</span>;</span><br><span class="line">	NPUTF8 *pName = NPNFuncs.utf8fromidentifier(propertyName);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (pName!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(pName, kPluginCallback) == <span class="number">0</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> bRev;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><ol>
-<li><p>Javascript调用Plugin的入口   </p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> PluginObject::invoke(NPIdentifier methodName,</span><br><span class="line">    <span class="keyword">const</span> NPVariant* args, <span class="keyword">uint32_t</span> argCount, NPVariant* result) &#123; </span><br><span class="line"></span><br><span class="line">  <span class="keyword">char</span>* name = NPNFuncs.utf8fromidentifier(methodName);</span><br><span class="line">  <span class="keyword">bool</span> ret_val = <span class="literal">false</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> outString;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!name) &#123;</span><br><span class="line">    <span class="keyword">return</span> ret_val;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">strcmp</span>(name, kPluginFunction)==<span class="number">0</span>)&#123;</span><br><span class="line">    ret_val = <span class="literal">true</span>;</span><br><span class="line">    hThread = CreateThread(<span class="literal">NULL</span>, <span class="number">0</span>, FunctionThread, <span class="keyword">this</span>, <span class="number">0</span>, <span class="literal">NULL</span>);</span><br><span class="line">    outString = <span class="string">"Called plugin method from external."</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Exception handling. </span></span><br><span class="line">    outString = <span class="string">"Called an invalid method."</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">char</span>* npOutString = (<span class="keyword">char</span> *)NPNFuncs.memalloc(outString.length() + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">if</span> (!npOutString)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  strcpy_s(npOutString, outString.length()+<span class="number">1</span>, outString.c_str());</span><br><span class="line">  STRINGZ_TO_NPVARIANT(npOutString, *result);</span><br><span class="line"></span><br><span class="line">  NPNFuncs.memfree(name);</span><br><span class="line">  <span class="keyword">return</span> ret_val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在新的线程中执行插件的逻辑</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create a threed</span></span><br><span class="line"><span class="function">DWORD WINAPI <span class="title">FunctionThread</span><span class="params">(LPVOID lparam)</span></span>&#123; </span><br><span class="line">	PluginObject* pluginObj = (PluginObject*)lparam;</span><br><span class="line">  <span class="keyword">if</span> (pluginObj==<span class="literal">NULL</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  pluginObj-&gt;PluginFunction();</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> PluginObject::PluginFunction()&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    Sleep(<span class="number">3000</span>);</span><br><span class="line">    Json::Value root;</span><br><span class="line">    root[<span class="string">"msg"</span>] = <span class="string">"Plugin process complete with three minutes!"</span>;</span><br><span class="line">    CallJSFunction(root.toStyledString());</span><br><span class="line">  &#125; <span class="keyword">catch</span>(HRESULT hr)&#123;</span><br><span class="line">    _<span class="function">com_error <span class="title">error</span><span class="params">(hr)</span></span>;</span><br><span class="line">    std::wstring msg(error.ErrorMessage());</span><br><span class="line">    Json::Value root;</span><br><span class="line">    root[<span class="string">"msg"</span>] = utf8_encode(msg);</span><br><span class="line">    CallJSFunction(root.toStyledString());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当插件执行完毕，回调Javascript的方法</p>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> PluginObject::CallJSFunction(<span class="built_in">std</span>::<span class="built_in">string</span> result)&#123;</span><br><span class="line">	<span class="keyword">int</span> iRev = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (mJSFunction != <span class="literal">NULL</span>)&#123;</span><br><span class="line">		<span class="comment">// 转换参数列表</span></span><br><span class="line">		NPVariant relements[<span class="number">1</span>];</span><br><span class="line">    	STRINGZ_TO_NPVARIANT(result.c_str(), relements[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 调用JS函数</span></span><br><span class="line">	    NPVariant jsResult; </span><br><span class="line">		NPN_InvokeDefault(npp, mJSFunction, relements, <span class="number">1</span>, &amp;jsResult);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (NPVARIANT_IS_STRING(jsResult))&#123;</span><br><span class="line">			NPString rString = NPVARIANT_TO_STRING(jsResult);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">char</span> revBuf[<span class="number">255</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">			<span class="built_in">memcpy</span>(revBuf, rString.UTF8Characters, rString.UTF8Length);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 释放从浏览器那获取的结果</span></span><br><span class="line">		NPN_ReleaseVariantValue(&amp;jsResult);</span><br><span class="line">	&#125;</span><br><span class="line">  	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="编译项目"><a href="#编译项目" class="headerlink" title="编译项目"></a>编译项目</h3><p>以Release方式编译</p>
-<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
-<h2 id="实现一个简单的扩展"><a href="#实现一个简单的扩展" class="headerlink" title="实现一个简单的扩展"></a>实现一个简单的扩展</h2><h3 id="Manifest"><a href="#Manifest" class="headerlink" title="Manifest"></a>Manifest</h3><p>注意plugins属性，如果插件只希望被本扩展调用，那将public设置成false。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  <span class="string">"browser_action"</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,     </span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  <span class="string">"plugins"</span>: [</span><br><span class="line">    &#123; <span class="string">"path"</span>: <span class="string">"plugins/nphello.dll"</span>, <span class="string">"public"</span>:<span class="literal">false</span> &#125;</span><br><span class="line">  ],</span><br><span class="line">  </span><br><span class="line">  <span class="string">"permissions"</span>: [</span><br><span class="line">    <span class="string">"*://*/*"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="popup-html"><a href="#popup-html" class="headerlink" title="popup.html"></a>popup.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">id</span>=<span class="string">"pluginObj"</span> <span class="attr">type</span>=<span class="string">"application/x-hello"</span> <span class="attr">style</span>=<span class="string">"width:0;height:0;"</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/popup.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="popup-js"><a href="#popup-js" class="headerlink" title="popup.js"></a>popup.js</h3><p>先设置回调函数，再去调用插件的方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  result = <span class="built_in">JSON</span>.parse(result);</span><br><span class="line">  print(<span class="string">'&lt;p class="npp"&gt; [ NPP ]: '</span>+ result[<span class="string">'msg'</span>]+<span class="string">'&lt;/p&gt;'</span>) </span><br><span class="line">  clearInterval(timer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  pluginObj = <span class="built_in">document</span>.getElementById(<span class="string">"pluginObj"</span>);</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> pluginObj == <span class="string">"object"</span>) &#123;</span><br><span class="line">    pluginObj.callback = callback;</span><br><span class="line">    print(<span class="string">'&lt;p class="js"&gt; [ JS ]: I\'m calling Plugin function!&lt;/p&gt;'</span>) </span><br><span class="line">    <span class="keyword">var</span> msg = pluginObj.function();</span><br><span class="line">    print(<span class="string">'&lt;p class="npp"&gt; [ NPP ]: '</span>+ msg+<span class="string">'&lt;/p&gt;'</span>) </span><br><span class="line">  &#125; </span><br><span class="line">  timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;count++; print(<span class="string">'&lt;p class="js"&gt; [ JS ]: Hey, I\'ve been waiting '</span>+<span class="number">500</span>*count+<span class="string">' ms...'</span>)&#125;, <span class="number">500</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><img src="/images/posts/extension_npp_result.jpg" alt=""></p>
-<p>&nbsp;<br>&nbsp;<br>&nbsp;</p>
-<p>附：<a href="https://github.com/chengxuebin/chrome_extension_npplugin" target="_blank" rel="noopener">chrome extension+npplugin</a></p>
-<p>扩展阅读：<a href="https://developer.mozilla.org/en/docs/Compiling_The_npruntime_Sample_Plugin_in_Visual_Studio" target="_blank" rel="noopener">使用 VS 编译 NPAPI 插件</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2133,7 +2392,7 @@ PluginObject.h
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2144,7 +2403,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2155,7 +2414,7 @@ PluginObject.h
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -128,7 +128,7 @@
 <meta property="og:image" content="http://onthink.com/images/posts/xdebug/phpstorm-debug-settings.png">
 <meta property="og:image" content="http://onthink.com/images/posts/xdebug/phpstorm-bug-phone.png">
 <meta property="og:image" content="http://onthink.com/images/posts/xdebug/xdebug-browser-extension.png">
-<meta property="og:updated_time" content="2017-11-18T03:01:48.000Z">
+<meta property="og:updated_time" content="2019-02-19T08:03:38.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="osx配置xdebug">
 <meta name="twitter:description" content="一、xdebug 工作原理引用 xdebug 的文档：Communication Set-up  当远程调试时，xdebug 充当着客户端的角色，而 IDE 像是服务器，它会侦听调试端口，就是默认的9000，等待 xdebug 建立远程调试的连接。如下图所求：   The IP of the server is 10.0.1.2 with HTTP on port 80 The IDE is on">
@@ -493,6 +493,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pecl install xdebug</span><br></pre></td></tr></table></figure>
 <p>配置 <code>php.ini</code>:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[xdebug]</span></span><br><span class="line"><span class="attr">zend_extension</span>=/usr/local/Cellar/php56/<span class="number">5.6</span>.<span class="number">8</span>/lib/php/extensions/<span class="literal">no</span>-debug-non-zts-<span class="number">20131226</span>/xdebug.so</span><br><span class="line">xdebug.remote_enable=1</span><br><span class="line">xdebug.remote_autostart=1 </span><br><span class="line">xdebug.remote_host=127.0.0.1</span><br><span class="line">xdebug.remote_port=9001</span><br><span class="line">xdebug.idekey = "PHPSTORM"</span><br></pre></td></tr></table></figure>
+<p>更多配置参数请查看：<strong><a href="https://xdebug.org/docs/all_settings" target="_blank" rel="noopener">XDebug 参数列表</a></strong></p>
 <p><em>如何知道配置成功了？</em></p>
 <p>通过 <code>phpinfo()</code>，如何看到启动的模块中包含 xdebug 信息，且配置如上面所示，则表示成功了。</p>
 <h2 id="四、配置IDE"><a href="#四、配置IDE" class="headerlink" title="四、配置IDE"></a>四、配置IDE</h2><p>这里使用 phpstrom。</p>
@@ -660,7 +661,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -671,7 +672,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -682,7 +683,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

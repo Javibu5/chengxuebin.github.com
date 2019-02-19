@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="Ironbin">
 <meta property="og:description" content="生成 Crash 报告打开 Chromium，通过访问 http://crash/ 来触发生成崩溃报告，保存在：  Linux：~/.config/google-chrome/Crash Reports/ Windows/Mac：/path/to/profile/Crash Reports  在 Linux 平台，通过设置环境变量，可以阻止报告发送给服务器： 1$ env CHROME_HEADL">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-01T02:54:26.866Z">
+<meta property="og:updated_time" content="2019-02-01T03:11:26.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chomium 崩溃日志">
 <meta name="twitter:description" content="生成 Crash 报告打开 Chromium，通过访问 http://crash/ 来触发生成崩溃报告，保存在：  Linux：~/.config/google-chrome/Crash Reports/ Windows/Mac：/path/to/profile/Crash Reports  在 Linux 平台，通过设置环境变量，可以阻止报告发送给服务器： 1$ env CHROME_HEADL">
@@ -460,6 +460,7 @@
 </ul>
 <p>在 Linux 平台，通过设置环境变量，可以阻止报告发送给服务器：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> env CHROME_HEADLESS=1 ./out/Debug/chrome-wrapper</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="解析-Crash-报告"><a href="#解析-Crash-报告" class="headerlink" title="解析 Crash 报告"></a>解析 Crash 报告</h3><p>可以通过 <code>minidump_stackwalk</code> 工具来解析崩溃报告：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> minidump_stackwalk 报告名.dmp</span></span><br></pre></td></tr></table></figure>
 <p>能过 Linux 平台生成的报告，在执行上面命令解析前，需要先把文件的头（header）去掉，使用文本编辑器打开 dmp 文件，搜索 <code>MDMP</code> 字符，然后将此字符前的头删除后再解析。</p>
@@ -517,8 +518,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/31/chromium-debug/" rel="next" title="Chomium 调试方法">
-                <i class="fa fa-chevron-left"></i> Chomium 调试方法
+              <a href="/2019/01/26/laradock-laravel-development/" rel="next" title="使用 Laradock 创建 Laravel 开发环境">
+                <i class="fa fa-chevron-left"></i> 使用 Laradock 创建 Laravel 开发环境
               </a>
             
           </div>
@@ -526,6 +527,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/31/chromium-debug/" rel="prev" title="Chomium 调试方法">
+                Chomium 调试方法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -613,7 +618,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">103</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +629,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -635,7 +640,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
