@@ -338,6 +338,395 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/07/03/javascript-code-conventions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/03/javascript-code-conventions/" itemprop="url">javascript 编码常规</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-03T00:00:00+08:00">
+                2015-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/07/03/javascript-code-conventions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/07/03/javascript-code-conventions/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/07/03/javascript-code-conventions/" class="leancloud_visitors" data-flag-title="javascript 编码常规">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>标题写成常规，非规范，是由于只要没有语法错误，如何写代码本身就是编码者的一个喜好而已，但是好的习惯有助于提高可读性，减少错误，尤其提高团队合作的效率。</p>
+<p>下面内容搜集了业内顶级开发者的习惯，来源见底部附录。</p>
+<h2 id="JavaScript-文件"><a href="#JavaScript-文件" class="headerlink" title="JavaScript 文件"></a>JavaScript 文件</h2><p>所有 javascript 文件根据依赖关系，按序放置在 <code>&lt;body&gt;</code> 结束标签前。<br>原因：  </p>
+<ul>
+<li>不会因为 javascript 文件的加载和解析延缓页面显示</li>
+<li>防止标签在加载完成前被 js 代码调用。</li>
+</ul>
+<h2 id="缩进-Indentation"><a href="#缩进-Indentation" class="headerlink" title="缩进 Indentation"></a>缩进 Indentation</h2><ul>
+<li>使用空格代替 <code>tab</code></li>
+<li>缩进单位是2个空格</li>
+</ul>
+<h2 id="代码行"><a href="#代码行" class="headerlink" title="代码行"></a>代码行</h2><ul>
+<li>每行不超过80字符</li>
+<li>换行缩进8个空格</li>
+</ul>
+<h2 id="注释-Comment"><a href="#注释-Comment" class="headerlink" title="注释 Comment"></a>注释 Comment</h2><ul>
+<li>尽量多地注释代码的思路、注意点等</li>
+<li>修改代码时同步更新注释</li>
+</ul>
+<h2 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h2><ul>
+<li>使用26大写和小写字母<code>(A .. Z, a .. z)</code>，10个数字<code>(0 .. 9)</code>，下划线<code>(_)</code>。不要使用 <code>$ (dollar sign)</code> 或 <code>\ (backslash)</code></li>
+<li>首尾不使用下划线</li>
+<li>变量或方法遵守驼峰（camelCase）规则</li>
+<li>构造函数遵守大写驼峰规则</li>
+<li>全局变量遵守全大写规则</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> MESSAGE_TYPE_BROADCAST = <span class="number">0</span>,    <span class="comment">// 全局变量</span></span><br><span class="line">    MESSAGE_TYPE_PERSON = <span class="number">1</span>,</span><br><span class="line">    MESSAGE_TYPE_GROUP = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span>(<span class="params">messageType, message</span>)</span>&#123;    <span class="comment">// 方法名</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">var</span> httpStatus,</span><br><span class="line">        sendResult;     <span class="comment">// 变量</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// detect message target by message type</span></span><br><span class="line">    ... </span><br><span class="line">    </span><br><span class="line">    httpStatus = httpRequest(message);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// handle result</span></span><br><span class="line">    ...</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> sendResult;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="变量-Variable"><a href="#变量-Variable" class="headerlink" title="变量 Variable"></a>变量 Variable</h2><ul>
+<li>所有变量在使用前声明，<code>var</code> 应该是 <code>Function</code> 第一行语句</li>
+<li>变量及其注释单独一行</li>
+<li><p>变量名遵守驼峰（camelCase）规则</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> currentEntry, <span class="comment">// currently selected table entry</span></span><br><span class="line">level,        <span class="comment">// indentation level</span></span><br><span class="line">size;         <span class="comment">// size of table</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="方法-Function"><a href="#方法-Function" class="headerlink" title="方法 Function"></a>方法 Function</h2><ul>
+<li>方法名遵守驼峰（camelCase）规则</li>
+<li><p>立即执行的方法使用小括号封装</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> collection = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> keys = [], values = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        get: <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> at = keys.indexOf(key);</span><br><span class="line">            <span class="keyword">if</span> (at &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> values[at];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        set: <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> at = keys.indexOf(key);</span><br><span class="line">            <span class="keyword">if</span> (at &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                at = keys.length;</span><br><span class="line">            &#125;</span><br><span class="line">            keys[at] = key;</span><br><span class="line">            values[at] = value;</span><br><span class="line">        &#125;,</span><br><span class="line">        remove: <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> at = keys.indexOf(key);</span><br><span class="line">            <span class="keyword">if</span> (at &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                keys.splice(at, <span class="number">1</span>);</span><br><span class="line">                values.splice(at, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="格式示例"><a href="#格式示例" class="headerlink" title="格式示例"></a>格式示例</h2><h3 id="if-语句（Statement）"><a href="#if-语句（Statement）" class="headerlink" title="if 语句（Statement）"></a>if 语句（Statement）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (condition) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="for-语句"><a href="#for-语句" class="headerlink" title="for 语句"></a>for 语句</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (initialization; condition; update) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (variable <span class="keyword">in</span> object) &#123;</span><br><span class="line">    <span class="keyword">if</span> (filter) &#123;</span><br><span class="line">        statements</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="while-语句"><a href="#while-语句" class="headerlink" title="while 语句"></a>while 语句</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (condition) &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="do-语句"><a href="#do-语句" class="headerlink" title="do 语句"></a>do 语句</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    statements</span><br><span class="line">&#125; <span class="keyword">while</span> (condition);</span><br></pre></td></tr></table></figure>
+<p>Unlike the other compound statements, the do statement always ends with a ; (semicolon).</p>
+<h3 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">switch</span> (expression) &#123;</span><br><span class="line"><span class="keyword">case</span> expression:</span><br><span class="line">    statements</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每一组必须有结束代码：<code>break, return, or throw</code></p>
+<h3 id="try-语句"><a href="#try-语句" class="headerlink" title="try 语句"></a>try 语句</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">     statements</span><br><span class="line"> &#125; <span class="keyword">catch</span> (variable) &#123;</span><br><span class="line">     statements</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">try</span> &#123;</span><br><span class="line">     statements</span><br><span class="line"> &#125; <span class="keyword">catch</span> (variable) &#123;</span><br><span class="line">     statements</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">     statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="continue-语句"><a href="#continue-语句" class="headerlink" title="continue 语句"></a>continue 语句</h3><p><strong>不要使用</strong></p>
+<h3 id="with-语句"><a href="#with-语句" class="headerlink" title="with 语句"></a>with 语句</h3><p><strong>不要使用</strong></p>
+<h3 id="eval-语句"><a href="#eval-语句" class="headerlink" title="eval 语句"></a>eval 语句</h3><p><strong>不要使用</strong></p>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><em><a href="http://www.ruanyifeng.com/blog/2012/04/javascript_programming_style.html" target="_blank" rel="noopener">Javascript编程风格</a></em><br><em><a href="http://javascript.crockford.com/code.html" target="_blank" rel="noopener">Code Conventions for the JavaScript Programming Language</a></em><br><em><a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml" target="_blank" rel="noopener">Google JavaScript Style Guide</a></em></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/07/03/url-code-conventions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/03/url-code-conventions/" itemprop="url">url 编码常规</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-07-03T00:00:00+08:00">
+                2015-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/07/03/url-code-conventions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/07/03/url-code-conventions/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/07/03/url-code-conventions/" class="leancloud_visitors" data-flag-title="url 编码常规">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MVC-框架支持的模式（Pattern）："><a href="#MVC-框架支持的模式（Pattern）：" class="headerlink" title="MVC 框架支持的模式（Pattern）："></a>MVC 框架支持的模式（Pattern）：</h2><ul>
+<li>GET 模式： <code>fumujidi.com/index.php?controller=life&amp;action=books</code></li>
+<li>Path Info 模式： <code>fumujidi.com/index.php/life/books.html</code></li>
+<li>SEO 模式： <code>fumujidi.com/life/books.html</code><br>NODIR 模式： <code>fumujidi.com/life-books.html</code></li>
+</ul>
+<h2 id="我们使用："><a href="#我们使用：" class="headerlink" title="我们使用："></a>我们使用：</h2><ul>
+<li><code>SEO</code> 模式</li>
+<li>使用连字符规则，不使用大写</li>
+<li>命名首选 <code>RESTful</code> 方式</li>
+<li>每个尽量不要超过2个单词，多个单词使用 <code>hyphens（dash）</code> 格式 </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/06/11/bower-usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1418,7 +1807,7 @@
 </li>
 <li><p>添加新文件到 <code>grd</code> </p>
 <p> 打开 <code>src\chrome\common\extensions_api_resources.grd</code>，添加</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">grit</span> <span class="attr">latest_public_release</span>=<span class="string">"0"</span> <span class="attr">current_release</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">outputs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"grit/extensions_api_resources.h"</span> <span class="attr">type</span>=<span class="string">"rc_header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">emit</span> <span class="attr">emit_type</span>=<span class="string">'prepend'</span>&gt;</span><span class="tag">&lt;/<span class="name">emit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.pak"</span> <span class="attr">type</span>=<span class="string">"data_package"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.rc"</span> <span class="attr">type</span>=<span class="string">"rc_all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">outputs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">release</span> <span class="attr">seq</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">	  ...</span><br><span class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"IDR_EXTENSION_API_JSON_WINTRUST"</span> <span class="attr">file</span>=<span class="string">"extensions\api\wintrust.json"</span> <span class="attr">type</span>=<span class="string">"BINDATA"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">grit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">grit</span> <span class="attr">latest_public_release</span>=<span class="string">"0"</span> <span class="attr">current_release</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">outputs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"grit/extensions_api_resources.h"</span> <span class="attr">type</span>=<span class="string">"rc_header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">emit</span> <span class="attr">emit_type</span>=<span class="string">'prepend'</span>&gt;</span><span class="tag">&lt;/<span class="name">emit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.pak"</span> <span class="attr">type</span>=<span class="string">"data_package"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.rc"</span> <span class="attr">type</span>=<span class="string">"rc_all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">outputs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">release</span> <span class="attr">seq</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">	  ...</span><br><span class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"IDR_EXTENSION_API_JSON_WINTRUST"</span> <span class="attr">file</span>=<span class="string">"extensions\api\wintrust.json"</span> <span class="attr">type</span>=<span class="string">"BINDATA"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">grit</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="二、添加新接口头文件和实现"><a href="#二、添加新接口头文件和实现" class="headerlink" title="二、添加新接口头文件和实现"></a>二、添加新接口头文件和实现</h2><ol>
@@ -1972,401 +2361,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/31/chromium-grit-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/01/31/chromium-grit-2/" itemprop="url">Grit - Chromium 国际化（2）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-31T00:00:00+08:00">
-                2015-01-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chromium/" itemprop="url" rel="index">
-                    <span itemprop="name">chromium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/01/31/chromium-grit-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/01/31/chromium-grit-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/01/31/chromium-grit-2/" class="leancloud_visitors" data-flag-title="Grit - Chromium 国际化（2）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>经过上一篇的分析，虽然对工作原理有了简单认识，但实际修改或添加支持多语言的文本还是蛮麻烦。所以这里提供一个小工具，简化这个流程。</p>
-<p>下面说一下工具的使用：</p>
-<h3 id="1-准备修改前的文件"><a href="#1-准备修改前的文件" class="headerlink" title="1. 准备修改前的文件"></a>1. 准备修改前的文件</h3><ul>
-<li><p>修改前的默认语言文件（grd）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings.grd</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改前的翻译文件（xtb）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings_zh-CN.xtb</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>将2个文件放到工具的 <code>old</code> 目录中。 </p>
-<blockquote>
-<p>注意如果有的 grd 文件中引用了其它资源，需要将这些资源一并放到 <code>old</code> 目录中</p>
-</blockquote>
-<h3 id="2-准备新的默认语言文件（grd）"><a href="#2-准备新的默认语言文件（grd）" class="headerlink" title="2. 准备新的默认语言文件（grd）"></a>2. 准备新的默认语言文件（grd）</h3><p>根据需要，修改旧的默认语言文件，最好将新加的文本放到文档的最后，以便和 chromium 原有的文本作区分。修改完成后的将文件放到 <code>new</code> 目录中。 这里，我将修改好的 <code>chromium_strings.grd</code> 放置到 <code>new</code> 目录。</p>
-<blockquote>
-<p>注意如果有的 grd 文件中引用了其它资源，需要将这些资源一并放到 <code>old</code> 目录中</p>
-</blockquote>
-<h3 id="3-执行"><a href="#3-执行" class="headerlink" title="3. 执行"></a>3. 执行</h3><p>准备好的目录结构：</p>
-<p><img src="/images/posts/grit/grit-tool-structure.jpg" alt=""></p>
-<p>运行根目录的 <code>run.bat</code>，它会根据上面的三个文件生成新的翻译文件 <code>xtb</code>。</p>
-<p><em>run.bat</em></p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> handling chromium_strings.grd...</span><br><span class="line">python3 "generate_translation_bundle.py" "--old_grd" "old/chromium_strings.grd" "--old_xtb" "old/chromium_strings_zh-CN.xtb" "--new_grd" "new/chromium_strings.grd" "-o" "new/chromium_strings_zh-CN.xtb"</span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">ERRORLEVEL</span> <span class="number">0</span> <span class="built_in">ECHO</span> Success!</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> handling generated_resources.grd...</span><br><span class="line">python3 "generate_translation_bundle.py" "--old_grd" "old/generated_resources.grd" "--old_xtb" "old/generated_resources_zh-CN.xtb" "--new_grd" "new/generated_resources.grd" "-o" "new/generated_resources_zh-CN.xtb"</span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">ERRORLEVEL</span> <span class="number">0</span> <span class="built_in">ECHO</span> Success!</span><br><span class="line"></span><br><span class="line"><span class="built_in">cmd</span> /k</span><br></pre></td></tr></table></figure>
-<p>新生成的 xtb 实际是 xml 格式，将包含三种类型的结点（node）：</p>
-<ul>
-<li>未修改：该类结点和原结点格式一样</li>
-<li>修改：该类结点是修改了原文档内容，为了方便，生成文件会包含原翻译，用作参考。此类结点包含属性 <code>TODO=&quot;NEED_UPDATE&quot;</code></li>
-<li>新添加：该类结点是新添加的文本，为了方便，生成文件会包含默认语言（grd）的文本。此类结点包含属性 <code>TODO=&quot;NEED_TRANSLATE&quot;</code></li>
-</ul>
-<p>如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE translationbundle&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">translationbundle</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">id</span>=<span class="string">"6970811910055250180"</span>&gt;</span>正在更新设备...<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-UPDATE"</span> <span class="attr">id</span>=<span class="string">"4109624392265076313"</span>&gt;</span>Chromium<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-TRANSLATE"</span> <span class="attr">desc</span>=<span class="string">"Select the theme."</span> <span class="attr">id</span>=<span class="string">"233572109030077464"</span>&gt;</span></span><br><span class="line">    Select Theme</span><br><span class="line">  <span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">translationbundle</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>附： <a href="https://github.com/chengxuebin/chromium-grit" target="_blank" rel="noopener">Chromium-grit 工具</a></p>
-<h3 id="提醒："><a href="#提醒：" class="headerlink" title="提醒："></a><span class="text-danger">提醒：</span></h3><ul>
-<li>保证 <code>old</code> 和 <code>new</code> 中的 grd 文件行数对应，因为是按照行号对应查找旧翻译文的，否则编译时出现错误</li>
-<li>如果修改 zh-CN 以外的语言，需要手动修改生成的 xtb 文件中 <code>lang=&quot;zh-CN&quot;</code> 属性</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/29/chromium-grit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/01/29/chromium-grit/" itemprop="url">Grit - Chromium 国际化（1）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-29T00:00:00+08:00">
-                2015-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chromium/" itemprop="url" rel="index">
-                    <span itemprop="name">chromium</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/01/29/chromium-grit/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/01/29/chromium-grit/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2015/01/29/chromium-grit/" class="leancloud_visitors" data-flag-title="Grit - Chromium 国际化（1）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>chrome_string 是关于国际化的项目（Project）， 这是一个只包含 <code>build step</code> 定义的空项目， <code>build step</code> 中定义了该项目编译时执行的程序或命令。在VS2010下编辑build step 可以用文本编辑软件直接打开 <code>chrome_strings.vcxproj</code>。</p>
-<p>chrome_string 会在 chrome 编译之前编译，它将国际化定义的文件转换成资源文件（.pak）和 C++ 头文件，C++ 头文件将作为源代码在编译 chrome 时一起被编译。</p>
-<p>语言包编译过程</p>
-<p><img src="/images/posts/grit/grit.jpg" alt=""></p>
-<h2 id="Grit-工具"><a href="#Grit-工具" class="headerlink" title="Grit 工具"></a>Grit 工具</h2><p>grit（Google Resource and Internationalization Tool）是一个python开源工具，用于支持多国际化，位于 <code>src/tools/grit</code> 目录下。<code>chrome_string</code> 编译时会执行 <code>grit.py</code> 可以，然后由grit工具将grd和xtb文件编译成pak资源文件。</p>
-<h2 id="国际化文件分类"><a href="#国际化文件分类" class="headerlink" title="国际化文件分类"></a>国际化文件分类</h2><ul>
-<li><code>generated_resources.grd</code>：该文件定义了大部分国际化字符串定义，包括按钮的文字，窗口的标题等。</li>
-<li><code>chromium_string.grd</code>：文件包括 generated_resources.grd 之外的国际化字符串定义，其中包含“安装、卸载”、“关于”等内容，把它独立出来主要是因为要和谷歌chrome 区别开来。</li>
-<li><code>google_chrome_strings.grd</code>：用于编译 chrome 时使用，是和 chromium_string.grd 相对应的一个文件。</li>
-<li><code>locale_settings.grd</code>：该文件定义了多语言的样式配置，例如窗口的大小，某些控件的尺寸，样式可以根据语言的不同而变化。</li>
-</ul>
-<h2 id="国际化文件的格式"><a href="#国际化文件的格式" class="headerlink" title="国际化文件的格式"></a>国际化文件的格式</h2><h3 id="grd-文件格式"><a href="#grd-文件格式" class="headerlink" title="grd 文件格式"></a>grd 文件格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;grit base_dir=&quot;.&quot; latest_public_release=&quot;0&quot; current_release=&quot;1&quot;</span><br><span class="line">      source_lang_id=&quot;en&quot; enc_check=&quot;m?l&quot;&gt;</span><br><span class="line">  &lt;outputs&gt;</span><br><span class="line">    &lt;output filename=&quot;grit/google_chrome_strings.h&quot; type=&quot;rc_header&quot;&gt;</span><br><span class="line">      &lt;emit emit_type=&apos;prepend&apos;&gt;&lt;/emit&gt;</span><br><span class="line">    &lt;/output&gt;</span><br><span class="line">    &lt;output filename=&quot;google_chrome_strings_zh-CN.pak&quot; type=&quot;data_package&quot; lang=&quot;zh-CN&quot; /&gt;</span><br><span class="line">    …</span><br><span class="line">  &lt;/outputs&gt;</span><br><span class="line">  &lt;translations&gt;</span><br><span class="line">    &lt;file path=&quot;resources/google_chrome_strings_zh-CN.xtb&quot; lang=&quot;zh-CN&quot; /&gt;</span><br><span class="line">    …</span><br><span class="line">  &lt;/translations&gt;</span><br><span class="line">  &lt;release seq=&quot;1&quot; allow_pseudo=&quot;false&quot;&gt;</span><br><span class="line">    &lt;messages fallback_to_english=&quot;true&quot;&gt;</span><br><span class="line">      &lt;message name=&quot;IDS_PRODUCT_NAME&quot; desc=&quot;The Chrome application name&quot;&gt;</span><br><span class="line">        Google Chrome</span><br><span class="line">      &lt;/message&gt;</span><br><span class="line">      …</span><br><span class="line">    &lt;/messages&gt;</span><br><span class="line">  &lt;/release&gt;</span><br><span class="line">&lt;/grit&gt;</span><br></pre></td></tr></table></figure>
-<p>grd 是xml的格式，它有三个部分： <code>outputs</code>、<code>translations</code>、<code>release</code>。</p>
-<ul>
-<li><code>outputs</code> 中定义编译出的C++头文件的位置和语言资源文件的位置，默认是在 <code>src/build/Debug</code> 或 <code>Release/obj/global_intermediate/chrome/</code></li>
-<li><code>translates</code> 中定义了多语言的定义文件的位置，每一种支持的语言都应该有一个翻译文件，这些文件将作为输入。</li>
-<li><code>release</code> 中的 messages 定义的是默认语言的定义，当程序 找不到合适的语言显示时，将使用默认语言中的定义。<br>  message 的属性如下：<ul>
-<li><code>name</code>：标识一个字符串的变量名</li>
-<li><code>desc</code>：该变量的介绍</li>
-<li><code>translateable</code>：是否使用翻译，默认true</li>
-<li><code>use_name_for_id</code>：是否使用name作为翻译的id标识。默认是false，翻译文件（xtb）中的id使用转换后的数字做映射；如果true，则使用 name 的值来和 grd 文件中的记录来映射。</li>
-</ul>
-</li>
-</ul>
-<h3 id="xtb-文件格式"><a href="#xtb-文件格式" class="headerlink" title="xtb 文件格式"></a>xtb 文件格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE translationbundle&gt;</span><br><span class="line">&lt;translationbundle lang=&quot;zh-CN&quot;&gt;</span><br><span class="line">&lt;translation id=&quot;6676384891291319759&quot;&gt;访问互联网&lt;/translation&gt;</span><br><span class="line">…</span><br><span class="line">&lt;/translationbundle&gt;</span><br></pre></td></tr></table></figure>
-<p>xtb 是多语言的翻译文件，也是xml格式，每种语言对应一个xtb文件。<code>&lt;translateion/&gt;</code> 结点中的 id 的数字对应于 grd 文件中 <code>&lt;message/&gt;</code> 中的 <code>name</code> 或 <code>content</code> 值，注意默认不是根据 <code>name</code>，而是根据内容来生成 <code>id</code>值，这样的好处是可以去除冗余的文字。 转换的过程定义在 <code>/src/tools/grit/external/FP.py</code> 中。</p>
-<h2 id="国际化自定义步骤"><a href="#国际化自定义步骤" class="headerlink" title="国际化自定义步骤"></a>国际化自定义步骤</h2><ol>
-<li>打开 grd 文件，添加 message 结点，或找到要修改的 message 结点；</li>
-<li>根据 message 的内容运行grit 工具，得到翻译文件 xtb 的id值；</li>
-<li>打开要修改的 xtb 文件，每种语言对应一个xtb 文件， 新建 translation 结点，id为第2步中计算得到的 id 值，结点内容为对应语言的翻译， 如果不知道如何计算 id，也可以 将 message 结点的属性use_name_for_id 设置成true，则 translate 的id 对应为 message 的name值；</li>
-<li>重新编译 chrome_string 项目，生成新的头文件和资源包。</li>
-</ol>
-<p>改动文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings.grd</span><br><span class="line">generated_resource.grd </span><br><span class="line">chromium_strings_zh-CN.xtb </span><br><span class="line">generated_resources_zh-CN.xtb</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2421,7 +2415,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

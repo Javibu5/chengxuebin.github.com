@@ -338,6 +338,523 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/03/03/chromium-modules/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/03/chromium-modules/" itemprop="url">Chromium 模块</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T00:00:00+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/03/chromium-modules/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/03/chromium-modules/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/03/chromium-modules/" class="leancloud_visitors" data-flag-title="Chromium 模块">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <table>
+<thead>
+<tr>
+<th style="text-align:left">模块</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:center">必要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">default_apps</td>
+<td style="text-align:left">默认安装应用的目录</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">default_apps/external_extensions.json</td>
+<td style="text-align:left">默认安装的配置文件</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Extensions</td>
+<td style="text-align:left">默认安装扩展的目录</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Extensions/external_extensions.json</td>
+<td style="text-align:left">默认安装的扩展的配置文件</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Installer/chrmstp.exe</td>
+<td style="text-align:left">chrome setup，和 setup.exe 完全一样 <sup>[1]</sup></td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Installer/setup.exe</td>
+<td style="text-align:left">安装文件，用于升级或卸载</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Locales</td>
+<td style="text-align:left">多语言文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">VisualElements</td>
+<td style="text-align:left">?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">WidevineCdm</td>
+<td style="text-align:left">自带组件（component），Widevine Content Decryption Module，用于在HTML5视频网站播放DRM加密的视频，如netflix</td>
+<td style="text-align:center">×?</td>
+</tr>
+<tr>
+<td style="text-align:left">64.0.3282.186.manifest</td>
+<td style="text-align:left">chrome 主清单文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome.dll</td>
+<td style="text-align:left">chrome 主模块</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome.dll.sig</td>
+<td style="text-align:left">签名文件?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome.exe.sig</td>
+<td style="text-align:left">签名文件?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_100_percent.pak</td>
+<td style="text-align:left">1x 资源包</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_200_percent.pak</td>
+<td style="text-align:left">2x 资源包</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_child.dll</td>
+<td style="text-align:left">chrome 子进程模块？</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_child.dll.sig</td>
+<td style="text-align:left">签名文件?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_elf.dll</td>
+<td style="text-align:left">Chrome Early Loading Framework <sup>[2]</sup></td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_watcher.dll</td>
+<td style="text-align:left">Watcher进程加载 chrome_watcher.dll</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">d3dcompiler_43.dll</td>
+<td style="text-align:left">required for Windows XP。 Direct3D HLSL Compiler for Redistribution</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">d3dcompiler_47.dll</td>
+<td style="text-align:left">required for Windows Vista and newer。 Direct3D HLSL Compiler for Redistribution</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">eventlog_provider.dll</td>
+<td style="text-align:left">windows 的事件日志</td>
+<td style="text-align:center">√?</td>
+</tr>
+<tr>
+<td style="text-align:left">ffmpeg.dll</td>
+<td style="text-align:left">多媒体支持。如果不需要播放视频等</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">icudtl.dat</td>
+<td style="text-align:left">International Components for Unicode Data File Little Endian，ICU库是一个支持国际化，本地化的软件库<sup>[3]</sup></td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">libegl.dll</td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/EGL_(API" target="_blank" rel="noopener">Embedded-System Graphics Library</a>) <sup>[4]</sup></td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">libglesv2.dll</td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/OpenGL_ES" target="_blank" rel="noopener">OpenGL for Embedded Systems (OpenGL ES or GLES)</a></td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">nacl_irt_x86_64.nexe</td>
+<td style="text-align:left">Native Client integrated-runtime</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">natives_blob.bin</td>
+<td style="text-align:left">binary large object，V8 引擎需要的数据文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">resources.pak</td>
+<td style="text-align:left">资源文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">snapshot_blob.bin</td>
+<td style="text-align:left">binary large object，V8 引擎需要的数据文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">v8_context_snapshot.bin</td>
+<td style="text-align:left">Create V8 contexts from a snapshot file. It will make the initializations of V8 contexts for 1.6-3 times faster.</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">wow_helper.exe</td>
+<td style="text-align:left">win32与win64兼容工具</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/03/chromium-modules/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/02/21/git-usages/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/21/git-usages/" itemprop="url">Git 常用用法</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-21T00:00:00+08:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/21/git-usages/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/02/21/git-usages/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/02/21/git-usages/" class="leancloud_visitors" data-flag-title="Git 常用用法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-导出-commit-修改的文件"><a href="#1-导出-commit-修改的文件" class="headerlink" title="1 导出 commit 修改的文件"></a>1 导出 commit 修改的文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRT $commit_id | xargs tar -rf export.tar</span><br></pre></td></tr></table></figure>
+<p><strong>git diff：</strong></p>
+<ul>
+<li>-r $commit_id：Take a diff of the given commit to its parent(s) (including all subdirectories, not just the top directory)</li>
+<li>–no-commit-id –name-only：只输出文件名，不输出 SHA1</li>
+<li>–diff-filter=ACMRT：Only show files added, copied, modified, renamed or that had their type changed (eg. file → symlink) in this commit. This leaves out deleted files.</li>
+</ul>
+<p><strong>tar：</strong></p>
+<ul>
+<li>-r：添加文件到已经压缩的文件</li>
+<li>-f：指定压缩文件</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/21/git-usages/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/02/20/mac-laradock-xdebug-phpstorm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -972,7 +1489,7 @@
 </ol>
 <h3 id="2-检查远程访问是否被允许"><a href="#2-检查远程访问是否被允许" class="headerlink" title="2 检查远程访问是否被允许"></a>2 检查远程访问是否被允许</h3><ol>
 <li>通过搜索，打开 <code>Allow Remote connections to your computer</code></li>
-<li>选中 <code>Allow remote connections to this computer</code></li>
+<li>选中 <code>Allow Remote Assistance connections to this computer</code></li>
 <li>选中 <code>Allow remote connections to this computer</code></li>
 </ol>
           <!--noindex-->
@@ -1699,345 +2216,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/01/13/htc-one-flash-rom/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/13/htc-one-flash-rom/" itemprop="url">HTC ONE（M8）刷机</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T00:00:00+08:00">
-                2019-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/修理/" itemprop="url" rel="index">
-                    <span itemprop="name">修理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/01/13/htc-one-flash-rom/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/01/13/htc-one-flash-rom/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/01/13/htc-one-flash-rom/" class="leancloud_visitors" data-flag-title="HTC ONE（M8）刷机">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>手中的一部 Verison HTC ONE 测试机是 4.0 系统，有些软件已经不能安装，抱着“老树开新花”的态度尝试搜了一下，果然已经有比较新的 6.0 系统了。首先用系统内的更新，由于手机是国外运营商版本，再加上更新源也在国外，系统内直接更新一直提示不成功。通过谷歌上查询，发现了一个 HTC 手机资源很全的网站，包含了 ROM 和 Firmware，以及刷机用的工具，比如第三方 Recovery。这里是网址：</p>
-<p><a href="https://forum.xda-developers.com/verizon-htc-one-m8/general/index-download-list-verizon-htc-one-m8-t3338285" target="_blank" rel="noopener">HTC 资源下载列表</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/13/htc-one-flash-rom/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2019/01/13/adb-usage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/13/adb-usage/" itemprop="url">ADB 的简单用法</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T00:00:00+08:00">
-                2019-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/01/13/adb-usage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/01/13/adb-usage/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2019/01/13/adb-usage/" class="leancloud_visitors" data-flag-title="ADB 的简单用法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h3><p><a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip" target="_blank" rel="noopener">Download the ADB ZIP file for macOS</a></p>
-<h3 id="HTC-ONE-开启开发者模式"><a href="#HTC-ONE-开启开发者模式" class="headerlink" title="HTC ONE 开启开发者模式"></a>HTC ONE 开启开发者模式</h3><p>设置 -&gt; 关于 -&gt; 软件信息 -&gt; 软件版本（点击7次）</p>
-<h3 id="1-安装-apk"><a href="#1-安装-apk" class="headerlink" title="1 安装 apk"></a>1 安装 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install apk完整路径）</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/13/adb-usage/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2092,7 +2270,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

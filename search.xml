@@ -3,6 +3,247 @@
   
     
     <entry>
+      <title><![CDATA[Chromium 模块]]></title>
+      <url>/2019/03/03/chromium-modules/</url>
+      <content type="html"><![CDATA[<table>
+<thead>
+<tr>
+<th style="text-align:left">模块</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:center">必要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">default_apps</td>
+<td style="text-align:left">默认安装应用的目录</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">default_apps/external_extensions.json</td>
+<td style="text-align:left">默认安装的配置文件</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Extensions</td>
+<td style="text-align:left">默认安装扩展的目录</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Extensions/external_extensions.json</td>
+<td style="text-align:left">默认安装的扩展的配置文件</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Installer/chrmstp.exe</td>
+<td style="text-align:left">chrome setup，和 setup.exe 完全一样 <sup>[1]</sup></td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Installer/setup.exe</td>
+<td style="text-align:left">安装文件，用于升级或卸载</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">Locales</td>
+<td style="text-align:left">多语言文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">VisualElements</td>
+<td style="text-align:left">?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">WidevineCdm</td>
+<td style="text-align:left">自带组件（component），Widevine Content Decryption Module，用于在HTML5视频网站播放DRM加密的视频，如netflix</td>
+<td style="text-align:center">×?</td>
+</tr>
+<tr>
+<td style="text-align:left">64.0.3282.186.manifest</td>
+<td style="text-align:left">chrome 主清单文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome.dll</td>
+<td style="text-align:left">chrome 主模块</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome.dll.sig</td>
+<td style="text-align:left">签名文件?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome.exe.sig</td>
+<td style="text-align:left">签名文件?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_100_percent.pak</td>
+<td style="text-align:left">1x 资源包</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_200_percent.pak</td>
+<td style="text-align:left">2x 资源包</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_child.dll</td>
+<td style="text-align:left">chrome 子进程模块？</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_child.dll.sig</td>
+<td style="text-align:left">签名文件?</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_elf.dll</td>
+<td style="text-align:left">Chrome Early Loading Framework <sup>[2]</sup></td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">chrome_watcher.dll</td>
+<td style="text-align:left">Watcher进程加载 chrome_watcher.dll</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">d3dcompiler_43.dll</td>
+<td style="text-align:left">required for Windows XP。 Direct3D HLSL Compiler for Redistribution</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">d3dcompiler_47.dll</td>
+<td style="text-align:left">required for Windows Vista and newer。 Direct3D HLSL Compiler for Redistribution</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">eventlog_provider.dll</td>
+<td style="text-align:left">windows 的事件日志</td>
+<td style="text-align:center">√?</td>
+</tr>
+<tr>
+<td style="text-align:left">ffmpeg.dll</td>
+<td style="text-align:left">多媒体支持。如果不需要播放视频等</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">icudtl.dat</td>
+<td style="text-align:left">International Components for Unicode Data File Little Endian，ICU库是一个支持国际化，本地化的软件库<sup>[3]</sup></td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">libegl.dll</td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/EGL_(API" target="_blank" rel="noopener">Embedded-System Graphics Library</a>) <sup>[4]</sup></td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">libglesv2.dll</td>
+<td style="text-align:left"><a href="https://en.wikipedia.org/wiki/OpenGL_ES" target="_blank" rel="noopener">OpenGL for Embedded Systems (OpenGL ES or GLES)</a></td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:left">nacl_irt_x86_64.nexe</td>
+<td style="text-align:left">Native Client integrated-runtime</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">natives_blob.bin</td>
+<td style="text-align:left">binary large object，V8 引擎需要的数据文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">resources.pak</td>
+<td style="text-align:left">资源文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">snapshot_blob.bin</td>
+<td style="text-align:left">binary large object，V8 引擎需要的数据文件</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">v8_context_snapshot.bin</td>
+<td style="text-align:left">Create V8 contexts from a snapshot file. It will make the initializations of V8 contexts for 1.6-3 times faster.</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td style="text-align:left">wow_helper.exe</td>
+<td style="text-align:left">win32与win64兼容工具</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="浏览器支持"><a href="#浏览器支持" class="headerlink" title="浏览器支持"></a>浏览器支持</h3><p>Support for WebGL is present in： </p>
+<ul>
+<li>Firefox 4+</li>
+<li>Google Chrome 9+</li>
+<li>Opera 12+, Safari 5.1+</li>
+<li>Internet Explorer 11+</li>
+<li>Microsoft Edge build 10240+</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ol>
+<li>The Active Setup executable will be an identical copy of setup.exe; this is necessary because Windows’ installer detection heuristics (which include things like process name being “setup.exe”) will otherwise force elevation for non-admin users when setup.exe is launched. This is mitigated by adding requestedExecutionLevel=”asInvoker” to setup.exe’s manifest on Vista+, but there is no such manifest entry on Windows XP (which results in crbug.com/166473). TODO(gab): Rename setup.exe itself altogether and use the same binary for Active Setup.</li>
+<li><a href="http://gclxry.com/chrome-early-loading-framework/" target="_blank" rel="noopener">Chrome Early Loading Framework</a></li>
+<li><a href="http://apps.icu-project.org/datacustom/" target="_blank" rel="noopener">International Components for Unicode</a></li>
+<li><a href="https://en.wikipedia.org/wiki/ANGLE_(software" target="_blank" rel="noopener">ANGLE(Almost Native Graphics Layer Engine)</a>)<br>/en.wikipedia.org/wiki/ANGLE_(software))</li>
+<li><a href="https://bitbucket.org/chromiumembedded/cef/src/816f700d3ea42bedc5ca5a2314c27b761b69abc5/tools/distrib/win/README.redistrib.txt?at=master&amp;fileviewer=file-view-default" target="_blank" rel="noopener">CEF redistrib</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API" target="_blank" rel="noopener">The WebGL API</a></li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> chromium </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> chromium </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Git 常用用法]]></title>
+      <url>/2019/02/21/git-usages/</url>
+      <content type="html"><![CDATA[<h3 id="1-导出-commit-修改的文件"><a href="#1-导出-commit-修改的文件" class="headerlink" title="1 导出 commit 修改的文件"></a>1 导出 commit 修改的文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRT $commit_id | xargs tar -rf export.tar</span><br></pre></td></tr></table></figure>
+<p><strong>git diff：</strong></p>
+<ul>
+<li>-r $commit_id：Take a diff of the given commit to its parent(s) (including all subdirectories, not just the top directory)</li>
+<li>–no-commit-id –name-only：只输出文件名，不输出 SHA1</li>
+<li>–diff-filter=ACMRT：Only show files added, copied, modified, renamed or that had their type changed (eg. file → symlink) in this commit. This leaves out deleted files.</li>
+</ul>
+<p><strong>tar：</strong></p>
+<ul>
+<li>-r：添加文件到已经压缩的文件</li>
+<li>-f：指定压缩文件</li>
+</ul>
+<a id="more"></a>
+]]></content>
+      
+        <categories>
+            
+            <category> git </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Laradock 配置 xdebug 与 phpstorm]]></title>
       <url>/2019/02/20/mac-laradock-xdebug-phpstorm/</url>
       <content type="html"><![CDATA[<h2 id="1-配置-Laradock"><a href="#1-配置-Laradock" class="headerlink" title="1 配置 Laradock"></a>1 配置 Laradock</h2><h3 id="1-1-修改-laradock-env"><a href="#1-1-修改-laradock-env" class="headerlink" title="1.1 修改 laradock/.env"></a>1.1 修改 laradock/.env</h3><p>打开 <code>.env</code> 文件，修改下列配置项：</p>
@@ -15,9 +256,12 @@
 <h3 id="1-4-重新编译-php-fpm-和-workspace-容器"><a href="#1-4-重新编译-php-fpm-和-workspace-容器" class="headerlink" title="1.4 重新编译 php-fpm 和 workspace 容器"></a>1.4 重新编译 php-fpm 和 workspace 容器</h3><p><em>这里要注意，修改了 xdebug.ini 一定要重新编译容器</em></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose build --no-cache php-fpm workspace</span></span><br></pre></td></tr></table></figure>
 <h3 id="1-5-重新启动容器"><a href="#1-5-重新启动容器" class="headerlink" title="1.5 重新启动容器"></a>1.5 重新启动容器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose up -d nginx</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-配置-PhpStorm"><a href="#2-配置-PhpStorm" class="headerlink" title="2 配置 PhpStorm"></a>2 配置 PhpStorm</h2><h3 id="2-1-配置-Preferences-gt-Languages-amp-Frameworks-gt-PHP"><a href="#2-1-配置-Preferences-gt-Languages-amp-Frameworks-gt-PHP" class="headerlink" title="2.1 配置 Preferences &gt; Languages &amp; Frameworks &gt; PHP"></a>2.1 配置 <code>Preferences &gt; Languages &amp; Frameworks &gt; PHP</code></h3><p><img src="/images/posts/xdebug/phpstorm1.png" alt=""></p>
-<h3 id="2-2-配置-Preferences-gt-Languages-amp-Frameworks-gt-PHP-gt-DBGp-Proxy"><a href="#2-2-配置-Preferences-gt-Languages-amp-Frameworks-gt-PHP-gt-DBGp-Proxy" class="headerlink" title="2.2 配置 Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; DBGp Proxy"></a>2.2 配置 <code>Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; DBGp Proxy</code></h3><p><img src="/images/posts/xdebug/phpstorm2.png" alt=""></p>
-<h3 id="2-3-添加服务器-Preferences-gt-Languages-amp-Frameworks-gt-PHP-gt-Server"><a href="#2-3-添加服务器-Preferences-gt-Languages-amp-Frameworks-gt-PHP-gt-Server" class="headerlink" title="2.3 添加服务器 Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; Server"></a>2.3 添加服务器 <code>Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; Server</code></h3><p><img src="/images/posts/xdebug/phpstorm3.png" alt=""></p>
+<h2 id="2-配置-PhpStorm"><a href="#2-配置-PhpStorm" class="headerlink" title="2 配置 PhpStorm"></a>2 配置 PhpStorm</h2><h3 id="2-1-配置-PHP"><a href="#2-1-配置-PHP" class="headerlink" title="2.1 配置 PHP"></a>2.1 配置 PHP</h3><p>打开 <code>Preferences &gt; Languages &amp; Frameworks &gt; PHP</code></p>
+<p><img src="/images/posts/xdebug/phpstorm1.png" alt=""></p>
+<h3 id="2-2-配置-DBGp-Proxy"><a href="#2-2-配置-DBGp-Proxy" class="headerlink" title="2.2 配置 DBGp Proxy"></a>2.2 配置 DBGp Proxy</h3><p>打开 <code>Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; DBGp Proxy</code></p>
+<p><img src="/images/posts/xdebug/phpstorm2.png" alt=""></p>
+<h3 id="2-3-添加服务器"><a href="#2-3-添加服务器" class="headerlink" title="2.3 添加服务器"></a>2.3 添加服务器</h3><p>打开 <code>Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; Server</code></p>
+<p><img src="/images/posts/xdebug/phpstorm3.png" alt=""></p>
 ]]></content>
       
         <categories>
@@ -62,8 +306,8 @@
 <p><img src="https://pic4.zhimg.com/80/v2-f46394c68633a826431d4424c27e9c5f_hd.jpg" alt=""></p>
 <p>一个会议室 n 人，SFU 服务器的宽带是：</p>
 <ul>
-<li>incoming = bitrate * n </li>
-<li>outgoing = bitrate <em> n + hangouts </em> n * (n-2)</li>
+<li>incoming = bitrate x n </li>
+<li>outgoing = bitrate x n + hangouts x n x (n-2)</li>
 </ul>
 <p>说明：bitrate：主画面码率，hangouts：小窗口码率</p>
 <table>
@@ -134,6 +378,8 @@
 <li><a href="https://bloggeek.me/how-many-users-webrtc-call/" target="_blank" rel="noopener">How Many Users Can Fit in a WebRTC Call?</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/33616446" target="_blank" rel="noopener">WebRTC媒体服务器</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/56428846" target="_blank" rel="noopener">WebRTC 开发实践：为什么你需要 SFU 服务器</a></li>
+<li><a href="https://www.jiangyu.org/video-recorder-calculation-tool/" target="_blank" rel="noopener">视频监控录像计算工具</a></li>
+<li><a href="https://www.jiangyu.org/fps-data-rate-bit-byte-mb-kbps/" target="_blank" rel="noopener">帧率,分辨率,码流的关系以及硬盘容量计算方法</a></li>
 </ol>
 ]]></content>
       
@@ -187,7 +433,7 @@
 </ol>
 <h3 id="2-检查远程访问是否被允许"><a href="#2-检查远程访问是否被允许" class="headerlink" title="2 检查远程访问是否被允许"></a>2 检查远程访问是否被允许</h3><ol>
 <li>通过搜索，打开 <code>Allow Remote connections to your computer</code></li>
-<li>选中 <code>Allow remote connections to this computer</code></li>
+<li>选中 <code>Allow Remote Assistance connections to this computer</code></li>
 <li>选中 <code>Allow remote connections to this computer</code></li>
 </ol>
 <a id="more"></a>
@@ -326,9 +572,9 @@
             
             <tag> laravel </tag>
             
-            <tag> docker </tag>
-            
             <tag> laradock </tag>
+            
+            <tag> docker </tag>
             
         </tags>
         
@@ -397,6 +643,31 @@
     </entry>
     
     <entry>
+      <title><![CDATA[ADB 的简单用法]]></title>
+      <url>/2019/01/13/adb-usage/</url>
+      <content type="html"><![CDATA[<h3 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h3><p><a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip" target="_blank" rel="noopener">Download the ADB ZIP file for macOS</a></p>
+<h3 id="HTC-ONE-开启开发者模式"><a href="#HTC-ONE-开启开发者模式" class="headerlink" title="HTC ONE 开启开发者模式"></a>HTC ONE 开启开发者模式</h3><p>设置 -&gt; 关于 -&gt; 软件信息 -&gt; 软件版本（点击7次）</p>
+<h3 id="1-安装-apk"><a href="#1-安装-apk" class="headerlink" title="1 安装 apk"></a>1 安装 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install apk完整路径）</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="2-卸载-apk"><a href="#2-卸载-apk" class="headerlink" title="2 卸载 apk"></a>2 卸载 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell rm data/app/apk-name.apk</span><br></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> android </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> android </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[HTC ONE（M8）刷机]]></title>
       <url>/2019/01/13/htc-one-flash-rom/</url>
       <content type="html"><![CDATA[<p>手中的一部 Verison HTC ONE 测试机是 4.0 系统，有些软件已经不能安装，抱着“老树开新花”的态度尝试搜了一下，果然已经有比较新的 6.0 系统了。首先用系统内的更新，由于手机是国外运营商版本，再加上更新源也在国外，系统内直接更新一直提示不成功。通过谷歌上查询，发现了一个 HTC 手机资源很全的网站，包含了 ROM 和 Firmware，以及刷机用的工具，比如第三方 Recovery。这里是网址：</p>
@@ -443,31 +714,6 @@
             <tag> android </tag>
             
             <tag> 修理 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[ADB 的简单用法]]></title>
-      <url>/2019/01/13/adb-usage/</url>
-      <content type="html"><![CDATA[<h3 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h3><p><a href="https://dl.google.com/android/repository/platform-tools-latest-darwin.zip" target="_blank" rel="noopener">Download the ADB ZIP file for macOS</a></p>
-<h3 id="HTC-ONE-开启开发者模式"><a href="#HTC-ONE-开启开发者模式" class="headerlink" title="HTC ONE 开启开发者模式"></a>HTC ONE 开启开发者模式</h3><p>设置 -&gt; 关于 -&gt; 软件信息 -&gt; 软件版本（点击7次）</p>
-<h3 id="1-安装-apk"><a href="#1-安装-apk" class="headerlink" title="1 安装 apk"></a>1 安装 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install apk完整路径）</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="2-卸载-apk"><a href="#2-卸载-apk" class="headerlink" title="2 卸载 apk"></a>2 卸载 apk</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell rm data/app/apk-name.apk</span><br></pre></td></tr></table></figure>
-]]></content>
-      
-        <categories>
-            
-            <category> android </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> android </tag>
             
         </tags>
         
@@ -2098,6 +2344,76 @@
     </entry>
     
     <entry>
+      <title><![CDATA[中间人劫持代理]]></title>
+      <url>/2017/06/10/mitm-proxy/</url>
+      <content type="html"><![CDATA[<h2 id="中间人劫持代理"><a href="#中间人劫持代理" class="headerlink" title="中间人劫持代理"></a>中间人劫持代理</h2><p><img src="/images/posts/mitm_proxy/how-mitmproxy-works-explicit-https.png" alt=""></p>
+<p>注：图片来源于 mitmproxy</p>
+<h4 id="本代理基于-TCP，是一个不关心协议的代理？"><a href="#本代理基于-TCP，是一个不关心协议的代理？" class="headerlink" title="本代理基于 TCP，是一个不关心协议的代理？"></a>本代理基于 TCP，是一个不关心协议的代理？</h4><p>是的</p>
+<h4 id="HTTP-代理-VS-Socks-代理"><a href="#HTTP-代理-VS-Socks-代理" class="headerlink" title="HTTP 代理 VS Socks 代理"></a>HTTP 代理 VS Socks 代理</h4><h2 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h2><h3 id="获取远端主机名（Host）"><a href="#获取远端主机名（Host）" class="headerlink" title="获取远端主机名（Host）"></a>获取远端主机名（Host）</h3><p>当应用设置了代理后，在 TLS 协商前，应用首先会发一条 CONNECT 请求，期待通过代理和远端服务器建立 TLS 隧道（tunnel）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT 10.1.1.1:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
+<p>作为中间人代理，并不帮助建立隧道，而是需要解析 CONNECT 请求，并从中获得远端服务器主机名。同时返回给被代理程序隧道建立成功的回复：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 根据请求指定版本号</span><br><span class="line">HTTP/1.0 200 Connection established\r\n\r\n</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Subject-Alternative-Name"><a href="#Subject-Alternative-Name" class="headerlink" title="Subject Alternative Name"></a>Subject Alternative Name</h3><p>这是服务器证书包含的一个字段，用于标识证书签发的域名。</p>
+<p>通常服务器的域名保存在 <code>Common name</code> 字段，只保存一个域名，而 <code>Subject Alternative Name</code> 可保存多个域名，并支持通配符。也就是，有的时候访问的服务器主机并不和 <code>Common name</code> 匹配，但匹配 <code>SAN</code>，这样的证书也是合法的。</p>
+<h3 id="服务器名称指示（SNI）"><a href="#服务器名称指示（SNI）" class="headerlink" title="服务器名称指示（SNI）"></a>服务器名称指示（SNI）</h3><p>这是识别同一 IP 部署的多个带证书虚拟主机（Virtual Host）的技术。</p>
+<p>基于名称的虚拟主机允许多个域名由同一IP地址上的单个服务器（通常为Web服务器）托管。使用 HTTP 时，其必须包含的协议头 <a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="noopener"><code>Host</code></a> 字段标识了欲访问的域名，据此分辨出虚拟主机。但是，由于 HTTPS 握手发生在服务器看到任何 HTTP 头之前，这时并不知道要访问哪个虚拟主机，也就不能把对应的服务器证书发给客户端，以完成 TLS 协商。</p>
+<p>SNI 通过让客户端发送虚拟域名的名称作为TLS协商的一部分来解决此问题。</p>
+<p>OpenSSL 客户端实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set host name before initiating the SSL connection</span></span><br><span class="line">SSL_set_tlsext_host_name(ssl, hostName)</span><br></pre></td></tr></table></figure>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA" target="_blank" rel="noopener">扩展阅读</a></p>
+<h3 id="Certificate-Pinning"><a href="#Certificate-Pinning" class="headerlink" title="Certificate Pinning"></a>Certificate Pinning</h3><p>简单地说，就是某些程序（比如浏览器）只相信某些根证书签发的服务器证书。</p>
+<p>通常证书通过证书链验证合法性，<code>MyCert</code> 由 <code>IntermediateCert</code> 签发，它又由 <code>RootCert</code> 签发，<code>RootCert</code> 已经内置在操作系统的可信任根证书中。 这样，<code>MyCert</code> 是合法的。常见内置的根证书有：Verisign, Digicert, Thawte等。</p>
+<p>但是，Certificate pinning 的作用是，即使通过了上面的验证，如果不是某个指定 RootCert 签发的证书，也认为其不合法。这在一定程序上避免中间人攻击，但没有真的解决。</p>
+<p>下面是一些使用 Certificate pinning 的应用：</p>
+<ul>
+<li>微软的自动更新</li>
+<li>苹果 App Store</li>
+<li>Twitter app</li>
+</ul>
+<p><a href="https://security.stackexchange.com/questions/29988/what-is-certificate-pinning/" target="_blank" rel="noopener">扩展阅读</a></p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10).aspx#BKMK_5" target="_blank" rel="noopener">文档</a></p>
+<p>设置代理：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set proxy 127.0.0.1:8080 "&lt;local&gt;"</span><br></pre></td></tr></table></figure>
+<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
+<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
+<p>选择 WinINet 的原因：</p>
+<ul>
+<li>支持 cookies</li>
+<li>Credential Cache (和SSL证书相关？)</li>
+<li>Credential Prompting (和SSL证书相关？)</li>
+</ul>
+<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85).aspx" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a></p>
+<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line"><span class="comment">// 根据协议来设置代理，比如 FTP, HTTPS 等，使用下面的字符串</span></span><br><span class="line"><span class="comment">// ftp=http://&lt;ProxyServerName&gt;:80; https=https://&lt;ProxyServerName&gt;:80)</span></span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="设置自动代理"><a href="#设置自动代理" class="headerlink" title="设置自动代理"></a>设置自动代理</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> wzsPath[MAX_PATH];</span><br><span class="line"><span class="keyword">wchar_t</span> wszProxyUrl[INTERNET_MAX_URL_LENGTH];</span><br><span class="line">SHGetFolderPath ( <span class="literal">NULL</span>, CSIDL_APPDATA | CSIDL_FLAG_CREATE, <span class="literal">NULL</span>, <span class="number">0</span>, wszPath );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Construct Pac file path. – %appdata%\MyAppFolder\redirect.pac</span></span><br><span class="line">StringCbPrintf (wszProxyUrl, <span class="keyword">sizeof</span>(wszProxyUrl), </span><br><span class="line">        <span class="string">L"file://%s\\MyAppFolder\\redirect.pac"</span>, wszPath );</span><br><span class="line"></span><br><span class="line">INTERNET_PER_CONN_OPTION_LIST *optionList = <span class="number">0</span>;</span><br><span class="line">optionList-&gt;pOptions[INDEX].Value.pszValue = wszPath;</span><br><span class="line"></span><br><span class="line">InternetSetOption ( <span class="literal">NULL</span>, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">        optionList, <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST) );</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PER_CONN_OPTION_LIST    List;</span><br><span class="line">INTERNET_PER_CONN_OPTION         Option[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span>                    nSize =</span><br><span class="line"><span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line"></span><br><span class="line">Option[<span class="number">0</span>].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;</span><br><span class="line">Option[<span class="number">0</span>].Value.pszValue = <span class="string">"http://myserver/proxy.pacl"</span>;</span><br><span class="line">Option[<span class="number">1</span>].dwOption = INTERNET_PER_CONN_FLAGS;</span><br><span class="line">Option[<span class="number">1</span>].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL;</span><br><span class="line"></span><br><span class="line">List.dwSize = <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line">List.pszConnection = <span class="literal">NULL</span>;</span><br><span class="line">List.dwOptionCount = <span class="number">2</span>;</span><br><span class="line">List.dwOptionError = <span class="number">0</span>;</span><br><span class="line">List.pOptions = Option;</span><br><span class="line"></span><br><span class="line">hMyHandle =  InternetOpen(<span class="string">""</span>, INTERNET_OPEN_TYPE_DIRECT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!InternetSetOption(hMyHandle, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">&amp;List, nSize))</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"InternetQueryOption failed! (%d)\n"</span>, GetLastError());</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://docs.mitmproxy.org/en/stable/howmitmproxy.html" target="_blank" rel="noopener">mitmproxy</a></li>
+<li><a href="http://www.5icpp.com/?p=139" target="_blank" rel="noopener">如何给CHtmlView添加代理——MFC</a></li>
+<li><a href="http://www.lai18.com/content/2206252.html" target="_blank" rel="noopener">为网络程序添加代理设置</a>：带 VC6 示例程序</li>
+<li><a href="http://www.cnblogs.com/duanshuiliu/archive/2013/03/18/2965405.html" target="_blank" rel="noopener">查询代理和设置代理</a></li>
+<li><a href="http://blog.csdn.net/ba_jie/article/details/43564385" target="_blank" rel="noopener">写C++程序绕过IE的限制：“某些设置由系统管理员进行管理”</a></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> OpenSSL </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> openssl </tag>
+            
+            <tag> proxy </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[TLS 协议]]></title>
       <url>/2017/06/10/tls-1.2/</url>
       <content type="html"><![CDATA[<p>首先，这是 IETF 协会文档 <a href="https://tools.ietf.org/html/rfc5246" target="_blank" rel="noopener">Request for Comments (RFC) 5246</a></p>
@@ -2245,76 +2561,6 @@
         <tags>
             
             <tag> openssl </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[中间人劫持代理]]></title>
-      <url>/2017/06/10/mitm-proxy/</url>
-      <content type="html"><![CDATA[<h2 id="中间人劫持代理"><a href="#中间人劫持代理" class="headerlink" title="中间人劫持代理"></a>中间人劫持代理</h2><p><img src="/images/posts/mitm_proxy/how-mitmproxy-works-explicit-https.png" alt=""></p>
-<p>注：图片来源于 mitmproxy</p>
-<h4 id="本代理基于-TCP，是一个不关心协议的代理？"><a href="#本代理基于-TCP，是一个不关心协议的代理？" class="headerlink" title="本代理基于 TCP，是一个不关心协议的代理？"></a>本代理基于 TCP，是一个不关心协议的代理？</h4><p>是的</p>
-<h4 id="HTTP-代理-VS-Socks-代理"><a href="#HTTP-代理-VS-Socks-代理" class="headerlink" title="HTTP 代理 VS Socks 代理"></a>HTTP 代理 VS Socks 代理</h4><h2 id="问题与挑战"><a href="#问题与挑战" class="headerlink" title="问题与挑战"></a>问题与挑战</h2><h3 id="获取远端主机名（Host）"><a href="#获取远端主机名（Host）" class="headerlink" title="获取远端主机名（Host）"></a>获取远端主机名（Host）</h3><p>当应用设置了代理后，在 TLS 协商前，应用首先会发一条 CONNECT 请求，期待通过代理和远端服务器建立 TLS 隧道（tunnel）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONNECT 10.1.1.1:443 HTTP/1.1</span><br></pre></td></tr></table></figure>
-<p>作为中间人代理，并不帮助建立隧道，而是需要解析 CONNECT 请求，并从中获得远端服务器主机名。同时返回给被代理程序隧道建立成功的回复：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 根据请求指定版本号</span><br><span class="line">HTTP/1.0 200 Connection established\r\n\r\n</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h3 id="Subject-Alternative-Name"><a href="#Subject-Alternative-Name" class="headerlink" title="Subject Alternative Name"></a>Subject Alternative Name</h3><p>这是服务器证书包含的一个字段，用于标识证书签发的域名。</p>
-<p>通常服务器的域名保存在 <code>Common name</code> 字段，只保存一个域名，而 <code>Subject Alternative Name</code> 可保存多个域名，并支持通配符。也就是，有的时候访问的服务器主机并不和 <code>Common name</code> 匹配，但匹配 <code>SAN</code>，这样的证书也是合法的。</p>
-<h3 id="服务器名称指示（SNI）"><a href="#服务器名称指示（SNI）" class="headerlink" title="服务器名称指示（SNI）"></a>服务器名称指示（SNI）</h3><p>这是识别同一 IP 部署的多个带证书虚拟主机（Virtual Host）的技术。</p>
-<p>基于名称的虚拟主机允许多个域名由同一IP地址上的单个服务器（通常为Web服务器）托管。使用 HTTP 时，其必须包含的协议头 <a href="https://zh.wikipedia.org/wiki/HTTP%E5%A4%B4%E5%AD%97%E6%AE%B5%E5%88%97%E8%A1%A8" target="_blank" rel="noopener"><code>Host</code></a> 字段标识了欲访问的域名，据此分辨出虚拟主机。但是，由于 HTTPS 握手发生在服务器看到任何 HTTP 头之前，这时并不知道要访问哪个虚拟主机，也就不能把对应的服务器证书发给客户端，以完成 TLS 协商。</p>
-<p>SNI 通过让客户端发送虚拟域名的名称作为TLS协商的一部分来解决此问题。</p>
-<p>OpenSSL 客户端实现：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set host name before initiating the SSL connection</span></span><br><span class="line">SSL_set_tlsext_host_name(ssl, hostName)</span><br></pre></td></tr></table></figure>
-<p><a href="https://zh.wikipedia.org/wiki/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8D%E7%A7%B0%E6%8C%87%E7%A4%BA" target="_blank" rel="noopener">扩展阅读</a></p>
-<h3 id="Certificate-Pinning"><a href="#Certificate-Pinning" class="headerlink" title="Certificate Pinning"></a>Certificate Pinning</h3><p>简单地说，就是某些程序（比如浏览器）只相信某些根证书签发的服务器证书。</p>
-<p>通常证书通过证书链验证合法性，<code>MyCert</code> 由 <code>IntermediateCert</code> 签发，它又由 <code>RootCert</code> 签发，<code>RootCert</code> 已经内置在操作系统的可信任根证书中。 这样，<code>MyCert</code> 是合法的。常见内置的根证书有：Verisign, Digicert, Thawte等。</p>
-<p>但是，Certificate pinning 的作用是，即使通过了上面的验证，如果不是某个指定 RootCert 签发的证书，也认为其不合法。这在一定程序上避免中间人攻击，但没有真的解决。</p>
-<p>下面是一些使用 Certificate pinning 的应用：</p>
-<ul>
-<li>微软的自动更新</li>
-<li>苹果 App Store</li>
-<li>Twitter app</li>
-</ul>
-<p><a href="https://security.stackexchange.com/questions/29988/what-is-certificate-pinning/" target="_blank" rel="noopener">扩展阅读</a></p>
-<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><h3 id="通过-netsh-winhttp-命令"><a href="#通过-netsh-winhttp-命令" class="headerlink" title="通过 netsh winhttp 命令"></a>通过 <code>netsh winhttp</code> 命令</h3><p><a href="https://technet.microsoft.com/pt-br/library/cc731131(v=ws.10).aspx#BKMK_5" target="_blank" rel="noopener">文档</a></p>
-<p>设置代理：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set proxy 127.0.0.1:8080 "&lt;local&gt;"</span><br></pre></td></tr></table></figure>
-<h3 id="通过-WinHTTP-接口设置"><a href="#通过-WinHTTP-接口设置" class="headerlink" title="通过 WinHTTP 接口设置"></a>通过 <code>WinHTTP</code> 接口设置</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa384069(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
-<h3 id="WinHTTP-vs-WinINet"><a href="#WinHTTP-vs-WinINet" class="headerlink" title="WinHTTP vs. WinINet"></a>WinHTTP vs. WinINet</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/hh227297(v=vs.85).aspx" target="_blank" rel="noopener">文档</a></p>
-<p>选择 WinINet 的原因：</p>
-<ul>
-<li>支持 cookies</li>
-<li>Credential Cache (和SSL证书相关？)</li>
-<li>Credential Prompting (和SSL证书相关？)</li>
-</ul>
-<h3 id="INTERNET-PER-CONN-OPTION"><a href="#INTERNET-PER-CONN-OPTION" class="headerlink" title="INTERNET_PER_CONN_OPTION"></a>INTERNET_PER_CONN_OPTION</h3><p><a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa385145(v=vs.85).aspx" target="_blank" rel="noopener">INTERNET_PER_CONN_OPTION</a></p>
-<h3 id="INTERNET-PROXY-INFO"><a href="#INTERNET-PROXY-INFO" class="headerlink" title="INTERNET_PROXY_INFO"></a>INTERNET_PROXY_INFO</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PROXY_INFO proxy;</span><br><span class="line">proxy.dwAccessType = INTERNET_OPEN_TYPE_PROXY;</span><br><span class="line"><span class="comment">// 根据协议来设置代理，比如 FTP, HTTPS 等，使用下面的字符串</span></span><br><span class="line"><span class="comment">// ftp=http://&lt;ProxyServerName&gt;:80; https=https://&lt;ProxyServerName&gt;:80)</span></span><br><span class="line">proxy.lpszProxy = (LPCTSTR)<span class="string">"127.0.0.1:8080"</span>;  <span class="comment">// unicode building, must cast to LPCTSTR</span></span><br><span class="line">proxy.lpszProxyBypass = <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="设置自动代理"><a href="#设置自动代理" class="headerlink" title="设置自动代理"></a>设置自动代理</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wchar_t</span> wzsPath[MAX_PATH];</span><br><span class="line"><span class="keyword">wchar_t</span> wszProxyUrl[INTERNET_MAX_URL_LENGTH];</span><br><span class="line">SHGetFolderPath ( <span class="literal">NULL</span>, CSIDL_APPDATA | CSIDL_FLAG_CREATE, <span class="literal">NULL</span>, <span class="number">0</span>, wszPath );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Construct Pac file path. – %appdata%\MyAppFolder\redirect.pac</span></span><br><span class="line">StringCbPrintf (wszProxyUrl, <span class="keyword">sizeof</span>(wszProxyUrl), </span><br><span class="line">        <span class="string">L"file://%s\\MyAppFolder\\redirect.pac"</span>, wszPath );</span><br><span class="line"></span><br><span class="line">INTERNET_PER_CONN_OPTION_LIST *optionList = <span class="number">0</span>;</span><br><span class="line">optionList-&gt;pOptions[INDEX].Value.pszValue = wszPath;</span><br><span class="line"></span><br><span class="line">InternetSetOption ( <span class="literal">NULL</span>, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">        optionList, <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST) );</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INTERNET_PER_CONN_OPTION_LIST    List;</span><br><span class="line">INTERNET_PER_CONN_OPTION         Option[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span>                    nSize =</span><br><span class="line"><span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line"></span><br><span class="line">Option[<span class="number">0</span>].dwOption = INTERNET_PER_CONN_AUTOCONFIG_URL;</span><br><span class="line">Option[<span class="number">0</span>].Value.pszValue = <span class="string">"http://myserver/proxy.pacl"</span>;</span><br><span class="line">Option[<span class="number">1</span>].dwOption = INTERNET_PER_CONN_FLAGS;</span><br><span class="line">Option[<span class="number">1</span>].Value.dwValue = PROXY_TYPE_AUTO_PROXY_URL;</span><br><span class="line"></span><br><span class="line">List.dwSize = <span class="keyword">sizeof</span>(INTERNET_PER_CONN_OPTION_LIST);</span><br><span class="line">List.pszConnection = <span class="literal">NULL</span>;</span><br><span class="line">List.dwOptionCount = <span class="number">2</span>;</span><br><span class="line">List.dwOptionError = <span class="number">0</span>;</span><br><span class="line">List.pOptions = Option;</span><br><span class="line"></span><br><span class="line">hMyHandle =  InternetOpen(<span class="string">""</span>, INTERNET_OPEN_TYPE_DIRECT, <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!InternetSetOption(hMyHandle, INTERNET_OPTION_PER_CONNECTION_OPTION,</span><br><span class="line">&amp;List, nSize))</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"InternetQueryOption failed! (%d)\n"</span>, GetLastError());</span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="http://docs.mitmproxy.org/en/stable/howmitmproxy.html" target="_blank" rel="noopener">mitmproxy</a></li>
-<li><a href="http://www.5icpp.com/?p=139" target="_blank" rel="noopener">如何给CHtmlView添加代理——MFC</a></li>
-<li><a href="http://www.lai18.com/content/2206252.html" target="_blank" rel="noopener">为网络程序添加代理设置</a>：带 VC6 示例程序</li>
-<li><a href="http://www.cnblogs.com/duanshuiliu/archive/2013/03/18/2965405.html" target="_blank" rel="noopener">查询代理和设置代理</a></li>
-<li><a href="http://blog.csdn.net/ba_jie/article/details/43564385" target="_blank" rel="noopener">写C++程序绕过IE的限制：“某些设置由系统管理员进行管理”</a></li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> OpenSSL </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> openssl </tag>
-            
-            <tag> proxy </tag>
             
         </tags>
         
@@ -2709,6 +2955,44 @@
     </entry>
     
     <entry>
+      <title><![CDATA[CEF 的使用]]></title>
+      <url>/2017/03/17/cef-tutorial/</url>
+      <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
+<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
+<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
+<li>创建新的项目</li>
+<li>设置 include 目录到 cef 头文件目录</li>
+<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
+<li>添加 resource.rc</li>
+<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
+<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
+</ol>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
+<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
+<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
+<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
+]]></content>
+      
+        <categories>
+            
+            <category> c++ </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> c++ </tag>
+            
+            <tag> cef </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[DuiLib 的使用]]></title>
       <url>/2017/03/17/duilib-tutorial/</url>
       <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p>本文下载的是 <a href="https://github.com/redrains/DuiLib_Redrain" target="_blank" rel="noopener">Redrain 维护的版本</a>，原始的 DuiLib 版本从<a href="https://github.com/duilib/duilib" target="_blank" rel="noopener">这里</a>下载。</p>
@@ -2744,44 +3028,6 @@
             <tag> c++ </tag>
             
             <tag> duilib </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[CEF 的使用]]></title>
-      <url>/2017/03/17/cef-tutorial/</url>
-      <content type="html"><![CDATA[<h2 id="下载代码"><a href="#下载代码" class="headerlink" title="下载代码"></a>下载代码</h2><p><a href="http://opensource.spotify.com/cefbuilds/index.html" target="_blank" rel="noopener">http://opensource.spotify.com/cefbuilds/index.html</a></p>
-<h2 id="CEF"><a href="#CEF" class="headerlink" title="CEF"></a>CEF</h2><h3 id="cefsimple-示例"><a href="#cefsimple-示例" class="headerlink" title="cefsimple 示例"></a>cefsimple 示例</h3><ol>
-<li>编译 <code>libcef_dll_wrapper</code> 静态库</li>
-<li>创建新的项目</li>
-<li>设置 include 目录到 cef 头文件目录</li>
-<li>设置链接库  comctl32.lib, shlwapi.lib, rcprt4.lib, libcef_dll_wrapper.lib, libcef.lib, cef_sandbox.lib</li>
-<li>添加 resource.rc</li>
-<li>添加 cefsimple.exe.manifest 和 compatibility.manifest</li>
-<li>绑定编译事件 post build: 将 cef debug 或 release 目录，Resources 目录复制到输出目录</li>
-</ol>
-<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="CefSettings"><a href="#CefSettings" class="headerlink" title="CefSettings"></a>CefSettings</h4><p>当嵌入到 windows 消息循环和 DuiLib 消息循环时，要设置 <code>multi_threaded_message_loop</code></p>
-<h4 id="CefBrowser-和-CefFrame"><a href="#CefBrowser-和-CefFrame" class="headerlink" title="CefBrowser 和 CefFrame"></a>CefBrowser 和 CefFrame</h4><p>CefBrowser 可以包含多个 CefFrame</p>
-<h4 id="CefApp"><a href="#CefApp" class="headerlink" title="CefApp"></a>CefApp</h4><p>待补充</p>
-<h4 id="CefClient"><a href="#CefClient" class="headerlink" title="CefClient"></a>CefClient</h4><p>待补充</p>
-]]></content>
-      
-        <categories>
-            
-            <category> c++ </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> windows </tag>
-            
-            <tag> c++ </tag>
-            
-            <tag> cef </tag>
             
         </tags>
         
@@ -2980,6 +3226,10 @@
 <h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
 <p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
 <h4 id="Chrome-历史离线包"><a href="#Chrome-历史离线包" class="headerlink" title="Chrome 历史离线包"></a>Chrome 历史离线包</h4><p><a href="https://www.slimjet.com/chrome/google-chrome-old-version.php" target="_blank" rel="noopener">Google Chrome Older Versions Download</a></p>
+<h4 id="Chrome-扩展抓取"><a href="#Chrome-扩展抓取" class="headerlink" title="Chrome 扩展抓取"></a>Chrome 扩展抓取</h4><ul>
+<li><a href="https://crx.dam.io/" target="_blank" rel="noopener">全部扩展列表</a></li>
+<li><a href="https://github.com/mdamien/chrome-extensions-archive" target="_blank" rel="noopener">抓取源码</a></li>
+</ul>
 ]]></content>
       
         <categories>
@@ -2998,25 +3248,52 @@
     </entry>
     
     <entry>
-      <title><![CDATA[SourceTree 操作被挂起]]></title>
-      <url>/2017/01/17/source-tree-hungs/</url>
-      <content type="html"><![CDATA[<h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
+      <title><![CDATA[编译 Chromium 常见问题]]></title>
+      <url>/2017/01/17/build-chromium-issues/</url>
+      <content type="html"><![CDATA[<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="命令行翻墙设置"><a href="#命令行翻墙设置" class="headerlink" title="命令行翻墙设置"></a>命令行翻墙设置</h3><p><strong>Windows 命令行设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=127.0.0.1:1080</span><br><span class="line">set https_proxy=127.0.0.1:1080</span><br><span class="line">set socks5_proxy=127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<p><strong>Git 设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><h3 id="gclient-sync-参数"><a href="#gclient-sync-参数" class="headerlink" title="gclient sync 参数"></a>gclient sync 参数</h3><h4 id="–nohooks"><a href="#–nohooks" class="headerlink" title="–nohooks"></a>–nohooks</h4><h4 id="–no-history"><a href="#–no-history" class="headerlink" title="–no-history"></a>–no-history</h4><h4 id="–with-branch-heads"><a href="#–with-branch-heads" class="headerlink" title="–with_branch_heads"></a>–with_branch_heads</h4><h4 id="–with-tags"><a href="#–with-tags" class="headerlink" title="–with_tags"></a>–with_tags</h4><h4 id="–output-json"><a href="#–output-json" class="headerlink" title="–output-json"></a>–output-json</h4><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="DEPOT-TOOLS-WIN-TOOLCHAIN"><a href="#DEPOT-TOOLS-WIN-TOOLCHAIN" class="headerlink" title="DEPOT_TOOLS_WIN_TOOLCHAIN"></a>DEPOT_TOOLS_WIN_TOOLCHAIN</h3><h3 id="GYP-GENERATORS-msvs-ninja-ninja"><a href="#GYP-GENERATORS-msvs-ninja-ninja" class="headerlink" title="GYP_GENERATORS=msvs-ninja,ninja"></a>GYP_GENERATORS=msvs-ninja,ninja</h3><h3 id="GYP-DEFINES"><a href="#GYP-DEFINES" class="headerlink" title="GYP_DEFINES"></a>GYP_DEFINES</h3><h3 id="buildtype-Official"><a href="#buildtype-Official" class="headerlink" title="buildtype=Official"></a>buildtype=Official</h3><p>如果不添加 <code>buildtype=Official</code> 可能会遇到下面问题：</p>
+<ol>
+<li>XP 系统不能正常运行</li>
+</ol>
+<p>在添加了该编译参数情况下，也会遇到某些奇怪问题：</p>
+<ol>
+<li>在某些机器上，当打开某些页面，比如<a href="http://video.sina.com.cn/p/news/o/doc/2018-06-12/151568884855.html" target="_blank" rel="noopener">新浪视频</a>，退出浏览器后，会收到网络层不能析构的 bug</li>
+</ol>
+<h3 id="gclient-runhooks"><a href="#gclient-runhooks" class="headerlink" title="gclient runhooks"></a>gclient runhooks</h3><p>gclient runhooks 会做二件事：一是检查编译环境，二是生成编译脚本。我们也可以跳过检查编译环境，直接生成编译脚本：</p>
+<p><strong>生成全部脚本</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src\build\gyp_chromium</span><br></pre></td></tr></table></figure>
+<p><strong>生成某个工程</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome 工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\chrome.gyp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装包工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\installer\mini_installer.gyp</span><br></pre></td></tr></table></figure>
+<p>Goutput_dir</p>
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
+<h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误-1"><a href="#gclient-sync-错误-1" class="headerlink" title="gclient sync 错误 1"></a>gclient sync 错误 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误-2"><a href="#gclient-sync-错误-2" class="headerlink" title="gclient sync 错误 2"></a>gclient sync 错误 2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> Cannot rebase:You have unstaged changes.</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Please commit or stash them.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>忽略行结尾的不一致：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf true</span><br></pre></td></tr></table></figure>
+<h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
+<p>点击 Change system locale…，切换为 English (United State)</p>
 ]]></content>
       
         <categories>
             
-            <category> git </category>
+            <category> chromium </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> git </tag>
-            
-            <tag> SourceTree </tag>
+            <tag> chromium </tag>
             
         </tags>
         
@@ -3075,52 +3352,25 @@
     </entry>
     
     <entry>
-      <title><![CDATA[编译 Chromium 常见问题]]></title>
-      <url>/2017/01/17/build-chromium-issues/</url>
-      <content type="html"><![CDATA[<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="命令行翻墙设置"><a href="#命令行翻墙设置" class="headerlink" title="命令行翻墙设置"></a>命令行翻墙设置</h3><p><strong>Windows 命令行设置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=127.0.0.1:1080</span><br><span class="line">set https_proxy=127.0.0.1:1080</span><br><span class="line">set socks5_proxy=127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<p><strong>Git 设置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><h3 id="gclient-sync-参数"><a href="#gclient-sync-参数" class="headerlink" title="gclient sync 参数"></a>gclient sync 参数</h3><h4 id="–nohooks"><a href="#–nohooks" class="headerlink" title="–nohooks"></a>–nohooks</h4><h4 id="–no-history"><a href="#–no-history" class="headerlink" title="–no-history"></a>–no-history</h4><h4 id="–with-branch-heads"><a href="#–with-branch-heads" class="headerlink" title="–with_branch_heads"></a>–with_branch_heads</h4><h4 id="–with-tags"><a href="#–with-tags" class="headerlink" title="–with_tags"></a>–with_tags</h4><h4 id="–output-json"><a href="#–output-json" class="headerlink" title="–output-json"></a>–output-json</h4><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="DEPOT-TOOLS-WIN-TOOLCHAIN"><a href="#DEPOT-TOOLS-WIN-TOOLCHAIN" class="headerlink" title="DEPOT_TOOLS_WIN_TOOLCHAIN"></a>DEPOT_TOOLS_WIN_TOOLCHAIN</h3><h3 id="GYP-GENERATORS-msvs-ninja-ninja"><a href="#GYP-GENERATORS-msvs-ninja-ninja" class="headerlink" title="GYP_GENERATORS=msvs-ninja,ninja"></a>GYP_GENERATORS=msvs-ninja,ninja</h3><h3 id="GYP-DEFINES"><a href="#GYP-DEFINES" class="headerlink" title="GYP_DEFINES"></a>GYP_DEFINES</h3><h3 id="buildtype-Official"><a href="#buildtype-Official" class="headerlink" title="buildtype=Official"></a>buildtype=Official</h3><p>如果不添加 <code>buildtype=Official</code> 可能会遇到下面问题：</p>
-<ol>
-<li>XP 系统不能正常运行</li>
-</ol>
-<p>在添加了该编译参数情况下，也会遇到某些奇怪问题：</p>
-<ol>
-<li>在某些机器上，当打开某些页面，比如<a href="http://video.sina.com.cn/p/news/o/doc/2018-06-12/151568884855.html" target="_blank" rel="noopener">新浪视频</a>，退出浏览器后，会收到网络层不能析构的 bug</li>
-</ol>
-<h3 id="gclient-runhooks"><a href="#gclient-runhooks" class="headerlink" title="gclient runhooks"></a>gclient runhooks</h3><p>gclient runhooks 会做二件事：一是检查编译环境，二是生成编译脚本。我们也可以跳过检查编译环境，直接生成编译脚本：</p>
-<p><strong>生成全部脚本</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src\build\gyp_chromium</span><br></pre></td></tr></table></figure>
-<p><strong>生成某个工程</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome 工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\chrome.gyp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装包工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\installer\mini_installer.gyp</span><br></pre></td></tr></table></figure>
-<p>Goutput_dir</p>
-<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
-<h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
-<h3 id="gclient-sync-错误-1"><a href="#gclient-sync-错误-1" class="headerlink" title="gclient sync 错误 1"></a>gclient sync 错误 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
-<h3 id="gclient-sync-错误-2"><a href="#gclient-sync-错误-2" class="headerlink" title="gclient sync 错误 2"></a>gclient sync 错误 2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> Cannot rebase:You have unstaged changes.</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Please commit or stash them.</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<p>忽略行结尾的不一致：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf true</span><br></pre></td></tr></table></figure>
-<h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
-<p>点击 Change system locale…，切换为 English (United State)</p>
+      <title><![CDATA[SourceTree 操作被挂起]]></title>
+      <url>/2017/01/17/source-tree-hungs/</url>
+      <content type="html"><![CDATA[<h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
             
-            <category> chromium </category>
+            <category> git </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> chromium </tag>
+            <tag> git </tag>
+            
+            <tag> SourceTree </tag>
             
         </tags>
         
@@ -3938,7 +4188,7 @@ For help, use /usr/bin/supervisord -h
 </li>
 <li><p>添加新文件到 <code>grd</code> </p>
 <p> 打开 <code>src\chrome\common\extensions_api_resources.grd</code>，添加</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">grit</span> <span class="attr">latest_public_release</span>=<span class="string">"0"</span> <span class="attr">current_release</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">outputs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"grit/extensions_api_resources.h"</span> <span class="attr">type</span>=<span class="string">"rc_header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">emit</span> <span class="attr">emit_type</span>=<span class="string">'prepend'</span>&gt;</span><span class="tag">&lt;/<span class="name">emit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.pak"</span> <span class="attr">type</span>=<span class="string">"data_package"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.rc"</span> <span class="attr">type</span>=<span class="string">"rc_all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">outputs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">release</span> <span class="attr">seq</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">	  ...</span><br><span class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"IDR_EXTENSION_API_JSON_WINTRUST"</span> <span class="attr">file</span>=<span class="string">"extensions\api\wintrust.json"</span> <span class="attr">type</span>=<span class="string">"BINDATA"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">grit</span>&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">grit</span> <span class="attr">latest_public_release</span>=<span class="string">"0"</span> <span class="attr">current_release</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">outputs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"grit/extensions_api_resources.h"</span> <span class="attr">type</span>=<span class="string">"rc_header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">emit</span> <span class="attr">emit_type</span>=<span class="string">'prepend'</span>&gt;</span><span class="tag">&lt;/<span class="name">emit</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.pak"</span> <span class="attr">type</span>=<span class="string">"data_package"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">filename</span>=<span class="string">"extensions_api_resources.rc"</span> <span class="attr">type</span>=<span class="string">"rc_all"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">outputs</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">release</span> <span class="attr">seq</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">	  ...</span><br><span class="line">      <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"IDR_EXTENSION_API_JSON_WINTRUST"</span> <span class="attr">file</span>=<span class="string">"extensions\api\wintrust.json"</span> <span class="attr">type</span>=<span class="string">"BINDATA"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">release</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">grit</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="二、添加新接口头文件和实现"><a href="#二、添加新接口头文件和实现" class="headerlink" title="二、添加新接口头文件和实现"></a>二、添加新接口头文件和实现</h2><ol>
@@ -4231,7 +4481,7 @@ For help, use /usr/bin/supervisord -h
 <li>新添加：该类结点是新添加的文本，为了方便，生成文件会包含默认语言（grd）的文本。此类结点包含属性 <code>TODO=&quot;NEED_TRANSLATE&quot;</code></li>
 </ul>
 <p>如：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE translationbundle&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">translationbundle</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">id</span>=<span class="string">"6970811910055250180"</span>&gt;</span>正在更新设备...<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-UPDATE"</span> <span class="attr">id</span>=<span class="string">"4109624392265076313"</span>&gt;</span>Chromium<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-TRANSLATE"</span> <span class="attr">desc</span>=<span class="string">"Select the theme."</span> <span class="attr">id</span>=<span class="string">"233572109030077464"</span>&gt;</span></span><br><span class="line">    Select Theme</span><br><span class="line">  <span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">translationbundle</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> <span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE translationbundle&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">translationbundle</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">id</span>=<span class="string">"6970811910055250180"</span>&gt;</span>正在更新设备...<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-UPDATE"</span> <span class="attr">id</span>=<span class="string">"4109624392265076313"</span>&gt;</span>Chromium<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-TRANSLATE"</span> <span class="attr">desc</span>=<span class="string">"Select the theme."</span> <span class="attr">id</span>=<span class="string">"233572109030077464"</span>&gt;</span></span><br><span class="line">    Select Theme</span><br><span class="line">  <span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">translationbundle</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>附： <a href="https://github.com/chengxuebin/chromium-grit" target="_blank" rel="noopener">Chromium-grit 工具</a></p>
 <h3 id="提醒："><a href="#提醒：" class="headerlink" title="提醒："></a><span class="text-danger">提醒：</span></h3><ul>
 <li>保证 <code>old</code> 和 <code>new</code> 中的 grd 文件行数对应，因为是按照行号对应查找旧翻译文的，否则编译时出现错误</li>
@@ -4320,6 +4570,52 @@ For help, use /usr/bin/supervisord -h
     </entry>
     
     <entry>
+      <title><![CDATA[Linux 常用命令]]></title>
+      <url>/2015/01/25/linux-commands/</url>
+      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1 打开服务器的被禁用（blocked）端口（port）"></a>1 打开服务器的被禁用（blocked）端口（port）</h2><ul>
+<li>启用被 iptables 禁用的 80 端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2 通过 systemctl 启动服务"></a>2 通过 systemctl 启动服务</h2><ul>
+<li>启动、停止、重启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
+<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
+<ul>
+<li>设置开机自启</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3 查看进程信息"></a>3 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4 查看进程的安装位置"></a>4 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
+<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5 sudo 保留系统环境"></a>5 sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
+<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6 查找最大目录或文件"></a>6 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
+<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
+<h2 id="7-挂载"><a href="#7-挂载" class="headerlink" title="7 挂载"></a>7 挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mount -t vboxsf 源媒体 目标路径</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-查找文件包含字符"><a href="#8-查找文件包含字符" class="headerlink" title="8 查找文件包含字符"></a>8 查找文件包含字符</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> This will only search through those files <span class="built_in">which</span> have .c or .h extensions:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --include=\*.&#123;c,h&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> This will exclude searching all the files ending with .o extension:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude=*.o -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">For directories it<span class="string">'s possible to exclude a particular directory(ies) through --exclude-dir parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude-dir=&#123;dir1,dir2,*.dst&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> linux </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> server </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[常用的正则表达式]]></title>
       <url>/2015/01/25/the-most-used-regular-expression/</url>
       <content type="html"><![CDATA[<h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
@@ -4380,52 +4676,6 @@ For help, use /usr/bin/supervisord -h
         <tags>
             
             <tag> regexp </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Linux 常用命令]]></title>
-      <url>/2015/01/25/linux-commands/</url>
-      <content type="html"><![CDATA[<h2 id="1-打开服务器的被禁用（blocked）端口（port）"><a href="#1-打开服务器的被禁用（blocked）端口（port）" class="headerlink" title="1 打开服务器的被禁用（blocked）端口（port）"></a>1 打开服务器的被禁用（blocked）端口（port）</h2><ul>
-<li>启用被 iptables 禁用的 80 端口</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<ul>
-<li>将上面的配置作为规则保存到 iptables，以便服务器重启后，能再次生效</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /sbin/service iptables save</span><br></pre></td></tr></table></figure>
-<h2 id="2-通过-systemctl-启动服务"><a href="#2-通过-systemctl-启动服务" class="headerlink" title="2 通过 systemctl 启动服务"></a>2 通过 systemctl 启动服务</h2><ul>
-<li>启动、停止、重启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl start nginx.service</span></span><br><span class="line"><span class="comment"># systemctl stop nginx.service</span></span><br><span class="line"><span class="comment"># systemctl restart nginx.service</span></span><br></pre></td></tr></table></figure>
-<p>除了 nginx.service, 常用的服务还有：php-fpm.service, mysqld.service</p>
-<ul>
-<li>设置开机自启</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># systemctl enable nginx.service</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-查看进程信息"><a href="#3-查看进程信息" class="headerlink" title="3 查看进程信息"></a>3 查看进程信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -aux | grep 关键字</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-查看进程的安装位置"><a href="#4-查看进程的安装位置" class="headerlink" title="4 查看进程的安装位置"></a>4 查看进程的安装位置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep tomcat</span><br></pre></td></tr></table></figure>
-<h2 id="5-sudo-保留系统环境"><a href="#5-sudo-保留系统环境" class="headerlink" title="5 sudo 保留系统环境"></a>5 sudo 保留系统环境</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -E env</span><br></pre></td></tr></table></figure>
-<h2 id="6-查找最大目录或文件"><a href="#6-查找最大目录或文件" class="headerlink" title="6 查找最大目录或文件"></a>6 查找最大目录或文件</h2><h3 id="1）查找最大目录"><a href="#1）查找最大目录" class="headerlink" title="1）查找最大目录"></a>1）查找最大目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a | sort -n -r | head -n 5</span><br></pre></td></tr></table></figure>
-<h3 id="2）查找最大文件"><a href="#2）查找最大文件" class="headerlink" title="2）查找最大文件"></a>2）查找最大文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -type f -exec du -Sh &#123;&#125; + | sort -rh | head -n 5</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
-<h2 id="7-挂载"><a href="#7-挂载" class="headerlink" title="7 挂载"></a>7 挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mount -t vboxsf 源媒体 目标路径</span></span><br></pre></td></tr></table></figure>
-<h2 id="8-查找文件包含字符"><a href="#8-查找文件包含字符" class="headerlink" title="8 查找文件包含字符"></a>8 查找文件包含字符</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> This will only search through those files <span class="built_in">which</span> have .c or .h extensions:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --include=\*.&#123;c,h&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> This will exclude searching all the files ending with .o extension:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude=*.o -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">For directories it<span class="string">'s possible to exclude a particular directory(ies) through --exclude-dir parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude-dir=&#123;dir1,dir2,*.dst&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> linux </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> linux </tag>
-            
-            <tag> server </tag>
             
         </tags>
         
@@ -4695,9 +4945,9 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
         
         <tags>
             
-            <tag> autolayout </tag>
-            
             <tag> git </tag>
+            
+            <tag> autolayout </tag>
             
         </tags>
         

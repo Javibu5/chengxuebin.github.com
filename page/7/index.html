@@ -338,6 +338,361 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/02/15/build-cpp-netlib-with-vs2015/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/15/build-cpp-netlib-with-vs2015/" itemprop="url">使用 VS2015 编译 cpp-netlib</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T00:00:00+08:00">
+                2017-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/15/build-cpp-netlib-with-vs2015/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/15/build-cpp-netlib-with-vs2015/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/15/build-cpp-netlib-with-vs2015/" class="leancloud_visitors" data-flag-title="使用 VS2015 编译 cpp-netlib">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://cpp-netlib.org/0.11.0/getting_started.html#building-on-windows" target="_blank" rel="noopener">cpp-netlib 官方文档</a></p>
+<p>cpp-netlib 旨在用最新的 C++ 标准，提供易用的网络接口库。</p>
+<ul>
+<li><a href="http://cpp-netlib.org/" target="_blank" rel="noopener">官方网站</a>：官网提供最新的代码和库下载</li>
+<li><a href="https://github.com/cpp-netlib/cpp-netlib" target="_blank" rel="noopener">GitHub</a>：提供较早版本的下载</li>
+</ul>
+<h2 id="编译步骤"><a href="#编译步骤" class="headerlink" title="编译步骤"></a>编译步骤</h2><h4 id="1-编译-boost"><a href="#1-编译-boost" class="headerlink" title="1. 编译 boost"></a>1. 编译 boost</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bootstrap.bat</span><br><span class="line">.\b2 install --prefix=C:\Users\jon\Desktop\builds\boost --toolset=msvc --without-python link=static runtime-link=shared debug release</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>runtime-link=shared</code> 是使用动态库方式编译，对应 VS 设置值 <code>runtime = MD</code></li>
+<li><code>runtime-link=static</code> 是使用静态库方式编译，对应 VS 设置值 <code>runtime = MT</code></li>
+</ul>
+<h4 id="2-生成-cpp-netlib-配置文件"><a href="#2-生成-cpp-netlib-配置文件" class="headerlink" title="2. 生成 cpp-netlib 配置文件"></a>2. 生成 cpp-netlib 配置文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir cpp-netlib-build</span><br><span class="line"></span><br><span class="line">cd cpp-netlib-build</span><br><span class="line"></span><br><span class="line">cmake -G "Visual Studio 14" -DCMAKE_BUILD_TYPE=Debug -DBOOST_ROOT=C:/Users/jon/Desktop/builds/boost ..\cpp-netlib-0.12.0-final</span><br></pre></td></tr></table></figure>
+<p>其它的设置选项还有：</p>
+<ul>
+<li>-DCMAKE_BUILD_TYPE=Debug </li>
+<li>-DCMAKE_C_COMPILER=clang</li>
+<li>-DCMAKE_CXX_COMPILER=clang++ </li>
+</ul>
+<h4 id="3-打开-cpp-netlib-build-CPP-NETLIB-sln-编译"><a href="#3-打开-cpp-netlib-build-CPP-NETLIB-sln-编译" class="headerlink" title="3. 打开 cpp-netlib-build/CPP-NETLIB.sln 编译"></a>3. 打开 <code>cpp-netlib-build/CPP-NETLIB.sln</code> 编译</h4><p>可以全部编译，也可以根据需要单独编译某个模块。比如，单独编译 <code>cppnetlib-uri</code> 项目。编译好的文件输出在 <code>cpp-netlib-build/libs/network/src/Release</code></p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><h3 id="1-Invalid-escape-sequence-U"><a href="#1-Invalid-escape-sequence-U" class="headerlink" title="1. Invalid escape sequence \U"></a>1. Invalid escape sequence \U</h3><p>检查 <code>-DBOOST_ROOT=</code> 后面的路径分隔符是不是反斜扛。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/02/14/build-boost-with-vs2015/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/14/build-boost-with-vs2015/" itemprop="url">使用 VS2015 编译 boost</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-14T00:00:00+08:00">
+                2017-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/14/build-boost-with-vs2015/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/14/build-boost-with-vs2015/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/02/14/build-boost-with-vs2015/" class="leancloud_visitors" data-flag-title="使用 VS2015 编译 boost">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.boost.org/doc/libs/1_63_0/more/getting_started/windows.html" target="_blank" rel="noopener">boost 官方文档</a></p>
+<h3 id="最简单的编译方法"><a href="#最简单的编译方法" class="headerlink" title="最简单的编译方法"></a>最简单的编译方法</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bootstrap.bat</span><br><span class="line">.\b2.exe</span><br></pre></td></tr></table></figure>
+<p>当编译成功，会得到提示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">The Boost C++ Libraries were successfully built!</span><br><span class="line"></span><br><span class="line">The following directory should be added to compiler include paths:</span><br><span class="line"></span><br><span class="line">    C:\Users\jon\Desktop\boost_1_63_0</span><br><span class="line"></span><br><span class="line">The following directory should be added to linker library paths:</span><br><span class="line"></span><br><span class="line">    C:\Users\jon\Desktop\boost_1_63_0\stage\lib</span><br></pre></td></tr></table></figure>
+<h3 id="编译并指定目录"><a href="#编译并指定目录" class="headerlink" title="编译并指定目录"></a>编译并指定目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./b2 install --prefix=PREFIX</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.boost.org/doc/libs/1_55_0/doc/html/bbv2/installation.html" target="_blank" rel="noopener">参考</a></p>
+<h3 id="编译参数示例"><a href="#编译参数示例" class="headerlink" title="编译参数示例"></a>编译参数示例</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\b2 install --prefix=C:\Users\jon\Desktop\builds\boost --toolset=msvc --without-python link=static runtime-link=shared debug release</span><br></pre></td></tr></table></figure>
+<h3 id="使用-boost-头文件库（Header-Only）"><a href="#使用-boost-头文件库（Header-Only）" class="headerlink" title="使用 boost 头文件库（Header Only）"></a>使用 boost 头文件库（Header Only）</h3><p>将下载的 boost 目录添加到项目的 include 路径即可</p>
+<h3 id="使用-boost-编译库（Header-CPP）"><a href="#使用-boost-编译库（Header-CPP）" class="headerlink" title="使用 boost 编译库（Header+CPP）"></a>使用 boost 编译库（Header+CPP）</h3><p>除了将 boost 目录添加到 include，还要将上面编译出来的 <code>stage/lib</code> 目录添加到 library 路径</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/19/phpstorm-file-watcher/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -630,6 +985,10 @@
 <h4 id="chromium-browser-official"><a href="#chromium-browser-official" class="headerlink" title="chromium-browser-official"></a>chromium-browser-official</h4><p><a href="https://gsdview.appspot.com/chromium-browser-official/?marker=chromium-49.0.2623.11.tar.xz.hashe%40" target="_blank" rel="noopener">chromium-browser-official</a></p>
 <p><a href="https://chromium.googlesource.com/chromium/src.git" target="_blank" rel="noopener">chromium src</a></p>
 <h4 id="Chrome-历史离线包"><a href="#Chrome-历史离线包" class="headerlink" title="Chrome 历史离线包"></a>Chrome 历史离线包</h4><p><a href="https://www.slimjet.com/chrome/google-chrome-old-version.php" target="_blank" rel="noopener">Google Chrome Older Versions Download</a></p>
+<h4 id="Chrome-扩展抓取"><a href="#Chrome-扩展抓取" class="headerlink" title="Chrome 扩展抓取"></a>Chrome 扩展抓取</h4><ul>
+<li><a href="https://crx.dam.io/" target="_blank" rel="noopener">全部扩展列表</a></li>
+<li><a href="https://github.com/mdamien/chrome-extensions-archive" target="_blank" rel="noopener">抓取源码</a></li>
+</ul>
 
           
         
@@ -678,7 +1037,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/source-tree-hungs/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/build-chromium-issues/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -697,7 +1056,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/17/source-tree-hungs/" itemprop="url">SourceTree 操作被挂起</a></h2>
+                <a class="post-title-link" href="/2017/01/17/build-chromium-issues/" itemprop="url">编译 Chromium 常见问题</a></h2>
         
 
         <div class="post-meta">
@@ -732,8 +1091,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
                   </a>
                 </span>
 
@@ -750,9 +1109,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/17/source-tree-hungs/#comments" itemprop="discussionUrl">
+                <a href="/2017/01/17/build-chromium-issues/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/source-tree-hungs/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/01/17/build-chromium-issues/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -760,7 +1119,7 @@
 
           
           
-             <span id="/2017/01/17/source-tree-hungs/" class="leancloud_visitors" data-flag-title="SourceTree 操作被挂起">
+             <span id="/2017/01/17/build-chromium-issues/" class="leancloud_visitors" data-flag-title="编译 Chromium 常见问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -793,9 +1152,38 @@
       
         
           
-            <h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
+            <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="命令行翻墙设置"><a href="#命令行翻墙设置" class="headerlink" title="命令行翻墙设置"></a>命令行翻墙设置</h3><p><strong>Windows 命令行设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=127.0.0.1:1080</span><br><span class="line">set https_proxy=127.0.0.1:1080</span><br><span class="line">set socks5_proxy=127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<p><strong>Git 设置</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><h3 id="gclient-sync-参数"><a href="#gclient-sync-参数" class="headerlink" title="gclient sync 参数"></a>gclient sync 参数</h3><h4 id="–nohooks"><a href="#–nohooks" class="headerlink" title="–nohooks"></a>–nohooks</h4><h4 id="–no-history"><a href="#–no-history" class="headerlink" title="–no-history"></a>–no-history</h4><h4 id="–with-branch-heads"><a href="#–with-branch-heads" class="headerlink" title="–with_branch_heads"></a>–with_branch_heads</h4><h4 id="–with-tags"><a href="#–with-tags" class="headerlink" title="–with_tags"></a>–with_tags</h4><h4 id="–output-json"><a href="#–output-json" class="headerlink" title="–output-json"></a>–output-json</h4><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="DEPOT-TOOLS-WIN-TOOLCHAIN"><a href="#DEPOT-TOOLS-WIN-TOOLCHAIN" class="headerlink" title="DEPOT_TOOLS_WIN_TOOLCHAIN"></a>DEPOT_TOOLS_WIN_TOOLCHAIN</h3><h3 id="GYP-GENERATORS-msvs-ninja-ninja"><a href="#GYP-GENERATORS-msvs-ninja-ninja" class="headerlink" title="GYP_GENERATORS=msvs-ninja,ninja"></a>GYP_GENERATORS=msvs-ninja,ninja</h3><h3 id="GYP-DEFINES"><a href="#GYP-DEFINES" class="headerlink" title="GYP_DEFINES"></a>GYP_DEFINES</h3><h3 id="buildtype-Official"><a href="#buildtype-Official" class="headerlink" title="buildtype=Official"></a>buildtype=Official</h3><p>如果不添加 <code>buildtype=Official</code> 可能会遇到下面问题：</p>
+<ol>
+<li>XP 系统不能正常运行</li>
+</ol>
+<p>在添加了该编译参数情况下，也会遇到某些奇怪问题：</p>
+<ol>
+<li>在某些机器上，当打开某些页面，比如<a href="http://video.sina.com.cn/p/news/o/doc/2018-06-12/151568884855.html" target="_blank" rel="noopener">新浪视频</a>，退出浏览器后，会收到网络层不能析构的 bug</li>
+</ol>
+<h3 id="gclient-runhooks"><a href="#gclient-runhooks" class="headerlink" title="gclient runhooks"></a>gclient runhooks</h3><p>gclient runhooks 会做二件事：一是检查编译环境，二是生成编译脚本。我们也可以跳过检查编译环境，直接生成编译脚本：</p>
+<p><strong>生成全部脚本</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src\build\gyp_chromium</span><br></pre></td></tr></table></figure>
+<p><strong>生成某个工程</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome 工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\chrome.gyp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装包工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\installer\mini_installer.gyp</span><br></pre></td></tr></table></figure>
+<p>Goutput_dir</p>
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
+<h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误-1"><a href="#gclient-sync-错误-1" class="headerlink" title="gclient sync 错误 1"></a>gclient sync 错误 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
+<h3 id="gclient-sync-错误-2"><a href="#gclient-sync-错误-2" class="headerlink" title="gclient sync 错误 2"></a>gclient sync 错误 2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> Cannot rebase:You have unstaged changes.</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Please commit or stash them.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>忽略行结尾的不一致：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf true</span><br></pre></td></tr></table></figure>
+<h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
+<p><strong>解决办法：</strong></p>
+<p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
+<p>点击 Change system locale…，切换为 English (United State)</p>
 
           
         
@@ -1178,7 +1566,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/build-chromium-issues/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2017/01/17/source-tree-hungs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -1197,7 +1585,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/17/build-chromium-issues/" itemprop="url">编译 Chromium 常见问题</a></h2>
+                <a class="post-title-link" href="/2017/01/17/source-tree-hungs/" itemprop="url">SourceTree 操作被挂起</a></h2>
         
 
         <div class="post-meta">
@@ -1232,8 +1620,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/chromium/" itemprop="url" rel="index">
-                    <span itemprop="name">chromium</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -1250,9 +1638,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/17/build-chromium-issues/#comments" itemprop="discussionUrl">
+                <a href="/2017/01/17/source-tree-hungs/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/01/17/build-chromium-issues/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/01/17/source-tree-hungs/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1260,7 +1648,7 @@
 
           
           
-             <span id="/2017/01/17/build-chromium-issues/" class="leancloud_visitors" data-flag-title="编译 Chromium 常见问题">
+             <span id="/2017/01/17/source-tree-hungs/" class="leancloud_visitors" data-flag-title="SourceTree 操作被挂起">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1293,38 +1681,9 @@
       
         
           
-            <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="命令行翻墙设置"><a href="#命令行翻墙设置" class="headerlink" title="命令行翻墙设置"></a>命令行翻墙设置</h3><p><strong>Windows 命令行设置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy=127.0.0.1:1080</span><br><span class="line">set https_proxy=127.0.0.1:1080</span><br><span class="line">set socks5_proxy=127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<p><strong>Git 设置</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:1080</span><br><span class="line">git config --global https.proxy 127.0.0.1:1080</span><br></pre></td></tr></table></figure>
-<h2 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h2><h3 id="gclient-sync-参数"><a href="#gclient-sync-参数" class="headerlink" title="gclient sync 参数"></a>gclient sync 参数</h3><h4 id="–nohooks"><a href="#–nohooks" class="headerlink" title="–nohooks"></a>–nohooks</h4><h4 id="–no-history"><a href="#–no-history" class="headerlink" title="–no-history"></a>–no-history</h4><h4 id="–with-branch-heads"><a href="#–with-branch-heads" class="headerlink" title="–with_branch_heads"></a>–with_branch_heads</h4><h4 id="–with-tags"><a href="#–with-tags" class="headerlink" title="–with_tags"></a>–with_tags</h4><h4 id="–output-json"><a href="#–output-json" class="headerlink" title="–output-json"></a>–output-json</h4><h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><h3 id="DEPOT-TOOLS-WIN-TOOLCHAIN"><a href="#DEPOT-TOOLS-WIN-TOOLCHAIN" class="headerlink" title="DEPOT_TOOLS_WIN_TOOLCHAIN"></a>DEPOT_TOOLS_WIN_TOOLCHAIN</h3><h3 id="GYP-GENERATORS-msvs-ninja-ninja"><a href="#GYP-GENERATORS-msvs-ninja-ninja" class="headerlink" title="GYP_GENERATORS=msvs-ninja,ninja"></a>GYP_GENERATORS=msvs-ninja,ninja</h3><h3 id="GYP-DEFINES"><a href="#GYP-DEFINES" class="headerlink" title="GYP_DEFINES"></a>GYP_DEFINES</h3><h3 id="buildtype-Official"><a href="#buildtype-Official" class="headerlink" title="buildtype=Official"></a>buildtype=Official</h3><p>如果不添加 <code>buildtype=Official</code> 可能会遇到下面问题：</p>
-<ol>
-<li>XP 系统不能正常运行</li>
-</ol>
-<p>在添加了该编译参数情况下，也会遇到某些奇怪问题：</p>
-<ol>
-<li>在某些机器上，当打开某些页面，比如<a href="http://video.sina.com.cn/p/news/o/doc/2018-06-12/151568884855.html" target="_blank" rel="noopener">新浪视频</a>，退出浏览器后，会收到网络层不能析构的 bug</li>
-</ol>
-<h3 id="gclient-runhooks"><a href="#gclient-runhooks" class="headerlink" title="gclient runhooks"></a>gclient runhooks</h3><p>gclient runhooks 会做二件事：一是检查编译环境，二是生成编译脚本。我们也可以跳过检查编译环境，直接生成编译脚本：</p>
-<p><strong>生成全部脚本</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python src\build\gyp_chromium</span><br></pre></td></tr></table></figure>
-<p><strong>生成某个工程</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> chrome 工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\chrome.gyp</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装包工程</span></span><br><span class="line">python src\build\gyp_chromium src\chrome\installer\mini_installer.gyp</span><br></pre></td></tr></table></figure>
-<p>Goutput_dir</p>
-<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><h3 id="查找错误"><a href="#查找错误" class="headerlink" title="查找错误"></a>查找错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ninja -C src/out/Debug chrome | findstr error</span><br></pre></td></tr></table></figure>
-<h3 id="VS-忽略错误"><a href="#VS-忽略错误" class="headerlink" title="VS 忽略错误"></a>VS 忽略错误</h3><p>VS2015 编译时会遇到一些错误，通过以下设置解决</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">4334, # </span><br><span class="line">4595, # </span><br><span class="line">4275, # </span><br><span class="line">4819, # The file contains a character that cannot berepresented in the current code page (936).</span><br></pre></td></tr></table></figure>
-<h3 id="gclient-sync-错误-1"><a href="#gclient-sync-错误-1" class="headerlink" title="gclient sync 错误 1"></a>gclient sync 错误 1</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">fatal: Needed a single revision</span><br><span class="line">Does not point to a valid commit: 4ce7fef091e1d63a3bfc2ed225619893b0eb1782</span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> Unrecognized error, please merge or rebase manually.  </span></span><br><span class="line"><span class="meta">32&gt;</span><span class="bash"> <span class="built_in">cd</span> src\third_party\libjingle\<span class="built_in">source</span>\talk &amp;&amp; git rebase --onto 4ce7fef091e1d63a3bfc2ed225619893b0eb1782 refs/remotes/origin/master</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gclient sync --with_branch_heads</span><br></pre></td></tr></table></figure>
-<h3 id="gclient-sync-错误-2"><a href="#gclient-sync-错误-2" class="headerlink" title="gclient sync 错误 2"></a>gclient sync 错误 2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> Cannot rebase:You have unstaged changes.</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> Please commit or stash them.</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<p>忽略行结尾的不一致：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf true</span><br></pre></td></tr></table></figure>
-<h3 id="Windows-系统语言错误"><a href="#Windows-系统语言错误" class="headerlink" title="Windows 系统语言错误"></a>Windows 系统语言错误</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> The file contains a character that cannot berepresented <span class="keyword">in</span> the current code page.</span></span><br></pre></td></tr></table></figure>
-<p><strong>解决办法：</strong></p>
-<p>依次打开：Region and Language &gt; Administrative &gt; Langeuage for non-Unicode programs </p>
-<p>点击 Change system locale…，切换为 English (United State)</p>
+            <h4 id="出现的问题"><a href="#出现的问题" class="headerlink" title="出现的问题"></a>出现的问题</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">The server's host key is not cached in the registry. You</span><br><span class="line">have no guarantee that the server is the computer you</span><br><span class="line">think it is.</span><br><span class="line">The server's rsa2 key fingerprint is:</span><br><span class="line">ssh-rsa 2048 59:ca:22:af:f9:8e:6f:f7:87:b3:ea:da:1b:2b:aa:f2</span><br><span class="line">If you trust this host, enter "y" to add the key to</span><br><span class="line">PuTTY's cache and carry on connecting.</span><br><span class="line">If you want to carry on connecting just once, without</span><br><span class="line">adding the key to the cache, enter "n".</span><br><span class="line">If you do not trust this host, press Return to abandon the</span><br><span class="line">connection.</span><br></pre></td></tr></table></figure>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>手动连接一次 git 服务器，比如 GitLab，<a href="http://stackoverflow.com/questions/32437659/cannot-pull-git-remote-repository-from-sourcetree" target="_blank" rel="noopener">StackOverflow</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\plink.exe" gitlab.com</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1738,346 +2097,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/upgrade-mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/28/upgrade-mysql/" itemprop="url">MySQL升级到5.7</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
-                2016-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/28/upgrade-mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/28/upgrade-mysql/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/28/upgrade-mysql/" class="leancloud_visitors" data-flag-title="MySQL升级到5.7">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Step 1: Uninstall MySQL Packages<br>First uninstall all the MySQL packages installed on your server</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql mysql-server</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum list installed | grep mysql</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> yum remove mysql-client mysql-server mysql-common mysql-devel</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /var/lib/mysql/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> rm -rf /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
-<p>Step 2: Romove MySQL Directory<br>Now we need to remove MySQL data directory from system which by default exists at /var/lib/mysql. If you didn’t find this, It may be changed to some other place, which you can find in my.cnf file with variable datadir. Delete the /var/lib/mysql directory from system but we prefer to rename it to keep a backup of existing files.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mv /var/lib/mysql /var/lib/mysql_old_backup</span></span><br></pre></td></tr></table></figure>
-<p>Step 3: Install MySQL Packages Again<br>After removing MySQL completely, install it again using yum package manager, It will re create mysql directory under /var/lib/.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> yum install mysql mysql-server</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_upgrade -uroot -p</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> mysql_secure_installation</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> we can <span class="built_in">set</span> it <span class="keyword">in</span> my.cnf file</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> [mysqld]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> validate_password_policy=LOW</span></span><br></pre></td></tr></table></figure>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="http://www.tecmint.com/install-latest-mysql-on-rhel-centos-and-fedora/" target="_blank" rel="noopener">How to Install Latest MySQL 5.7.9 on RHEL/CentOS 7/6/5 and Fedora</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2016/08/28/install-nmp-on-centos6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/28/install-nmp-on-centos6/" itemprop="url">CentOS6 安装 nginx, MySQL, PHP</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-28T00:00:00+08:00">
-                2016-08-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/08/28/install-nmp-on-centos6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/08/28/install-nmp-on-centos6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2016/08/28/install-nmp-on-centos6/" class="leancloud_visitors" data-flag-title="CentOS6 安装 nginx, MySQL, PHP">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-centos-6" target="_blank" rel="noopener">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on CentOS 6</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2132,7 +2151,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

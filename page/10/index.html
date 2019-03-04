@@ -338,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/the-most-used-regular-expression/">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/31/chromium-grit-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="程学彬">
@@ -357,7 +357,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/01/25/the-most-used-regular-expression/" itemprop="url">常用的正则表达式</a></h2>
+                <a class="post-title-link" href="/2015/01/31/chromium-grit-2/" itemprop="url">Grit - Chromium 国际化（2）</a></h2>
         
 
         <div class="post-meta">
@@ -369,8 +369,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-25T00:00:00+08:00">
-                2015-01-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-31T00:00:00+08:00">
+                2015-01-31
               </time>
             
 
@@ -392,8 +392,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/program/" itemprop="url" rel="index">
-                    <span itemprop="name">program</span>
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
                   </a>
                 </span>
 
@@ -410,9 +410,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2015/01/25/the-most-used-regular-expression/#comments" itemprop="discussionUrl">
+                <a href="/2015/01/31/chromium-grit-2/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/01/25/the-most-used-regular-expression/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2015/01/31/chromium-grit-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -420,7 +420,7 @@
 
           
           
-             <span id="/2015/01/25/the-most-used-regular-expression/" class="leancloud_visitors" data-flag-title="常用的正则表达式">
+             <span id="/2015/01/31/chromium-grit-2/" class="leancloud_visitors" data-flag-title="Grit - Chromium 国际化（2）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -453,53 +453,239 @@
       
         
           
-            <h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
-<h3 id="2-邮箱"><a href="#2-邮箱" class="headerlink" title="2. 邮箱"></a>2. 邮箱</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^([a-z0<span class="number">-9</span>\+_\-]+)(\.[a-z0<span class="number">-9</span>\+_\-]+)*@([_a-z0<span class="number">-9</span>]+\.)+[a-z]&#123;<span class="number">2</span>,<span class="number">5</span>&#125;$/</span><br></pre></td></tr></table></figure>
-<h3 id="3-多个单词或"><a href="#3-多个单词或" class="headerlink" title="3. 多个单词或"></a>3. 多个单词或</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?:apple|banna)/</span><br></pre></td></tr></table></figure>
-<h3 id="4-不包含某个单词"><a href="#4-不包含某个单词" class="headerlink" title="4. 不包含某个单词"></a>4. 不包含某个单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^((?!hede).)*$/</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<ul>
-<li><a href="http://fineonly.com/solutions/regex-exclude-a-string" target="_blank" rel="noopener">Exclude a String</a></li>
-<li><a href="http://www.vaikan.com/regular-expression-to-match-string-not-containing-a-word/" target="_blank" rel="noopener">正则表达式里字符串”不包含”匹配技巧</a></li>
-<li><a href="http://stackoverflow.com/questions/2078915/a-regular-expression-to-exclude-a-word-string" target="_blank" rel="noopener">A regular expression to exclude a word/string</a></li>
+            <p>经过上一篇的分析，虽然对工作原理有了简单认识，但实际修改或添加支持多语言的文本还是蛮麻烦。所以这里提供一个小工具，简化这个流程。</p>
+<p>下面说一下工具的使用：</p>
+<h3 id="1-准备修改前的文件"><a href="#1-准备修改前的文件" class="headerlink" title="1. 准备修改前的文件"></a>1. 准备修改前的文件</h3><ul>
+<li><p>修改前的默认语言文件（grd）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings.grd</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改前的翻译文件（xtb）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings_zh-CN.xtb</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h3 id="5-神奇的全部-ASCII-字符"><a href="#5-神奇的全部-ASCII-字符" class="headerlink" title="5. 神奇的全部 ASCII 字符"></a>5. 神奇的全部 ASCII 字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[ -~]/</span><br><span class="line">/[\x20-\x7E]/</span><br></pre></td></tr></table></figure>
-<p><strong>解释</strong>：<a href="http://www.asciitable.com/" target="_blank" rel="noopener">ASCII 表</a>中大于空格（0x20），小于~（0x7E）的字符为全部的<strong>打印</strong>字符。</p>
-<h3 id="6-处理-HTML-标签"><a href="#6-处理-HTML-标签" class="headerlink" title="6. 处理 HTML 标签"></a>6. 处理 HTML 标签</h3><p>参考：</p>
+<p>将2个文件放到工具的 <code>old</code> 目录中。 </p>
+<blockquote>
+<p>注意如果有的 grd 文件中引用了其它资源，需要将这些资源一并放到 <code>old</code> 目录中</p>
+</blockquote>
+<h3 id="2-准备新的默认语言文件（grd）"><a href="#2-准备新的默认语言文件（grd）" class="headerlink" title="2. 准备新的默认语言文件（grd）"></a>2. 准备新的默认语言文件（grd）</h3><p>根据需要，修改旧的默认语言文件，最好将新加的文本放到文档的最后，以便和 chromium 原有的文本作区分。修改完成后的将文件放到 <code>new</code> 目录中。 这里，我将修改好的 <code>chromium_strings.grd</code> 放置到 <code>new</code> 目录。</p>
+<blockquote>
+<p>注意如果有的 grd 文件中引用了其它资源，需要将这些资源一并放到 <code>old</code> 目录中</p>
+</blockquote>
+<h3 id="3-执行"><a href="#3-执行" class="headerlink" title="3. 执行"></a>3. 执行</h3><p>准备好的目录结构：</p>
+<p><img src="/images/posts/grit/grit-tool-structure.jpg" alt=""></p>
+<p>运行根目录的 <code>run.bat</code>，它会根据上面的三个文件生成新的翻译文件 <code>xtb</code>。</p>
+<p><em>run.bat</em></p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> handling chromium_strings.grd...</span><br><span class="line">python3 "generate_translation_bundle.py" "--old_grd" "old/chromium_strings.grd" "--old_xtb" "old/chromium_strings_zh-CN.xtb" "--new_grd" "new/chromium_strings.grd" "-o" "new/chromium_strings_zh-CN.xtb"</span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">ERRORLEVEL</span> <span class="number">0</span> <span class="built_in">ECHO</span> Success!</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> handling generated_resources.grd...</span><br><span class="line">python3 "generate_translation_bundle.py" "--old_grd" "old/generated_resources.grd" "--old_xtb" "old/generated_resources_zh-CN.xtb" "--new_grd" "new/generated_resources.grd" "-o" "new/generated_resources_zh-CN.xtb"</span><br><span class="line"><span class="keyword">IF</span> <span class="keyword">ERRORLEVEL</span> <span class="number">0</span> <span class="built_in">ECHO</span> Success!</span><br><span class="line"></span><br><span class="line"><span class="built_in">cmd</span> /k</span><br></pre></td></tr></table></figure>
+<p>新生成的 xtb 实际是 xml 格式，将包含三种类型的结点（node）：</p>
 <ul>
-<li><a href="http://haacked.com/archive/2004/10/25/usingregularexpressionstomatchhtml.aspx/" target="_blank" rel="noopener">Using a Regular Expression to Match HTML</a></li>
-<li><a href="http://www.pagecolumn.com/tool/all_about_html_tags.htm" target="_blank" rel="noopener">All about HTML tags</a></li>
+<li>未修改：该类结点和原结点格式一样</li>
+<li>修改：该类结点是修改了原文档内容，为了方便，生成文件会包含原翻译，用作参考。此类结点包含属性 <code>TODO=&quot;NEED_UPDATE&quot;</code></li>
+<li>新添加：该类结点是新添加的文本，为了方便，生成文件会包含默认语言（grd）的文本。此类结点包含属性 <code>TODO=&quot;NEED_TRANSLATE&quot;</code></li>
 </ul>
-<h3 id="7-使用空格分隔中文和英文单词"><a href="#7-使用空格分隔中文和英文单词" class="headerlink" title="7. 使用空格分隔中文和英文单词"></a>7. 使用空格分隔中文和英文单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">([\x&#123;4E00&#125;-\x&#123;9FA5&#125;])([a-z0-9@#&amp;;=_\[\$\%\^\*\-\+\(\/]+)</span><br><span class="line"></span><br><span class="line">$<span class="number">1</span> $<span class="number">2</span></span><br></pre></td></tr></table></figure>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">Modifier</th>
-<th style="text-align:left">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">i</td>
-<td style="text-align:left">Perform case-insensitive matching</td>
-</tr>
-<tr>
-<td style="text-align:center">g</td>
-<td style="text-align:left">Perform a global match (find all matches rather than stopping after the first match)</td>
-</tr>
-<tr>
-<td style="text-align:center">m</td>
-<td style="text-align:left">Perform multiline matching</td>
-</tr>
-</tbody>
-</table>
-<p>收集了一些总结的很好的文章：</p>
-<ul>
-<li><a href="http://www.cnblogs.com/zxin/archive/2013/01/26/2877765.html" target="_blank" rel="noopener">最全的常用正则表达式大全</a></li>
-<li><a href="http://www.regular-expressions.info/lookaround.html" target="_blank" rel="noopener">regular-expressions.info</a></li>
-<li><a href="http://regexr.com/30npe" target="_blank" rel="noopener">RegExr</a></li>
+<p>如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> <span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE translationbundle&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">translationbundle</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">id</span>=<span class="string">"6970811910055250180"</span>&gt;</span>正在更新设备...<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-UPDATE"</span> <span class="attr">id</span>=<span class="string">"4109624392265076313"</span>&gt;</span>Chromium<span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">translation</span> <span class="attr">TODO</span>=<span class="string">"NEED-TRANSLATE"</span> <span class="attr">desc</span>=<span class="string">"Select the theme."</span> <span class="attr">id</span>=<span class="string">"233572109030077464"</span>&gt;</span></span><br><span class="line">    Select Theme</span><br><span class="line">  <span class="tag">&lt;/<span class="name">translation</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">translationbundle</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>附： <a href="https://github.com/chengxuebin/chromium-grit" target="_blank" rel="noopener">Chromium-grit 工具</a></p>
+<h3 id="提醒："><a href="#提醒：" class="headerlink" title="提醒："></a><span class="text-danger">提醒：</span></h3><ul>
+<li>保证 <code>old</code> 和 <code>new</code> 中的 grd 文件行数对应，因为是按照行号对应查找旧翻译文的，否则编译时出现错误</li>
+<li>如果修改 zh-CN 以外的语言，需要手动修改生成的 xtb 文件中 <code>lang=&quot;zh-CN&quot;</code> 属性</li>
 </ul>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/29/chromium-grit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/29/chromium-grit/" itemprop="url">Grit - Chromium 国际化（1）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-29T00:00:00+08:00">
+                2015-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chromium/" itemprop="url" rel="index">
+                    <span itemprop="name">chromium</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/29/chromium-grit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/29/chromium-grit/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/01/29/chromium-grit/" class="leancloud_visitors" data-flag-title="Grit - Chromium 国际化（1）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p>chrome_string 是关于国际化的项目（Project）， 这是一个只包含 <code>build step</code> 定义的空项目， <code>build step</code> 中定义了该项目编译时执行的程序或命令。在VS2010下编辑build step 可以用文本编辑软件直接打开 <code>chrome_strings.vcxproj</code>。</p>
+<p>chrome_string 会在 chrome 编译之前编译，它将国际化定义的文件转换成资源文件（.pak）和 C++ 头文件，C++ 头文件将作为源代码在编译 chrome 时一起被编译。</p>
+<p>语言包编译过程</p>
+<p><img src="/images/posts/grit/grit.jpg" alt=""></p>
+<h2 id="Grit-工具"><a href="#Grit-工具" class="headerlink" title="Grit 工具"></a>Grit 工具</h2><p>grit（Google Resource and Internationalization Tool）是一个python开源工具，用于支持多国际化，位于 <code>src/tools/grit</code> 目录下。<code>chrome_string</code> 编译时会执行 <code>grit.py</code> 可以，然后由grit工具将grd和xtb文件编译成pak资源文件。</p>
+<h2 id="国际化文件分类"><a href="#国际化文件分类" class="headerlink" title="国际化文件分类"></a>国际化文件分类</h2><ul>
+<li><code>generated_resources.grd</code>：该文件定义了大部分国际化字符串定义，包括按钮的文字，窗口的标题等。</li>
+<li><code>chromium_string.grd</code>：文件包括 generated_resources.grd 之外的国际化字符串定义，其中包含“安装、卸载”、“关于”等内容，把它独立出来主要是因为要和谷歌chrome 区别开来。</li>
+<li><code>google_chrome_strings.grd</code>：用于编译 chrome 时使用，是和 chromium_string.grd 相对应的一个文件。</li>
+<li><code>locale_settings.grd</code>：该文件定义了多语言的样式配置，例如窗口的大小，某些控件的尺寸，样式可以根据语言的不同而变化。</li>
+</ul>
+<h2 id="国际化文件的格式"><a href="#国际化文件的格式" class="headerlink" title="国际化文件的格式"></a>国际化文件的格式</h2><h3 id="grd-文件格式"><a href="#grd-文件格式" class="headerlink" title="grd 文件格式"></a>grd 文件格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;grit base_dir=&quot;.&quot; latest_public_release=&quot;0&quot; current_release=&quot;1&quot;</span><br><span class="line">      source_lang_id=&quot;en&quot; enc_check=&quot;m?l&quot;&gt;</span><br><span class="line">  &lt;outputs&gt;</span><br><span class="line">    &lt;output filename=&quot;grit/google_chrome_strings.h&quot; type=&quot;rc_header&quot;&gt;</span><br><span class="line">      &lt;emit emit_type=&apos;prepend&apos;&gt;&lt;/emit&gt;</span><br><span class="line">    &lt;/output&gt;</span><br><span class="line">    &lt;output filename=&quot;google_chrome_strings_zh-CN.pak&quot; type=&quot;data_package&quot; lang=&quot;zh-CN&quot; /&gt;</span><br><span class="line">    …</span><br><span class="line">  &lt;/outputs&gt;</span><br><span class="line">  &lt;translations&gt;</span><br><span class="line">    &lt;file path=&quot;resources/google_chrome_strings_zh-CN.xtb&quot; lang=&quot;zh-CN&quot; /&gt;</span><br><span class="line">    …</span><br><span class="line">  &lt;/translations&gt;</span><br><span class="line">  &lt;release seq=&quot;1&quot; allow_pseudo=&quot;false&quot;&gt;</span><br><span class="line">    &lt;messages fallback_to_english=&quot;true&quot;&gt;</span><br><span class="line">      &lt;message name=&quot;IDS_PRODUCT_NAME&quot; desc=&quot;The Chrome application name&quot;&gt;</span><br><span class="line">        Google Chrome</span><br><span class="line">      &lt;/message&gt;</span><br><span class="line">      …</span><br><span class="line">    &lt;/messages&gt;</span><br><span class="line">  &lt;/release&gt;</span><br><span class="line">&lt;/grit&gt;</span><br></pre></td></tr></table></figure>
+<p>grd 是xml的格式，它有三个部分： <code>outputs</code>、<code>translations</code>、<code>release</code>。</p>
+<ul>
+<li><code>outputs</code> 中定义编译出的C++头文件的位置和语言资源文件的位置，默认是在 <code>src/build/Debug</code> 或 <code>Release/obj/global_intermediate/chrome/</code></li>
+<li><code>translates</code> 中定义了多语言的定义文件的位置，每一种支持的语言都应该有一个翻译文件，这些文件将作为输入。</li>
+<li><code>release</code> 中的 messages 定义的是默认语言的定义，当程序 找不到合适的语言显示时，将使用默认语言中的定义。<br>  message 的属性如下：<ul>
+<li><code>name</code>：标识一个字符串的变量名</li>
+<li><code>desc</code>：该变量的介绍</li>
+<li><code>translateable</code>：是否使用翻译，默认true</li>
+<li><code>use_name_for_id</code>：是否使用name作为翻译的id标识。默认是false，翻译文件（xtb）中的id使用转换后的数字做映射；如果true，则使用 name 的值来和 grd 文件中的记录来映射。</li>
+</ul>
+</li>
+</ul>
+<h3 id="xtb-文件格式"><a href="#xtb-文件格式" class="headerlink" title="xtb 文件格式"></a>xtb 文件格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE translationbundle&gt;</span><br><span class="line">&lt;translationbundle lang=&quot;zh-CN&quot;&gt;</span><br><span class="line">&lt;translation id=&quot;6676384891291319759&quot;&gt;访问互联网&lt;/translation&gt;</span><br><span class="line">…</span><br><span class="line">&lt;/translationbundle&gt;</span><br></pre></td></tr></table></figure>
+<p>xtb 是多语言的翻译文件，也是xml格式，每种语言对应一个xtb文件。<code>&lt;translateion/&gt;</code> 结点中的 id 的数字对应于 grd 文件中 <code>&lt;message/&gt;</code> 中的 <code>name</code> 或 <code>content</code> 值，注意默认不是根据 <code>name</code>，而是根据内容来生成 <code>id</code>值，这样的好处是可以去除冗余的文字。 转换的过程定义在 <code>/src/tools/grit/external/FP.py</code> 中。</p>
+<h2 id="国际化自定义步骤"><a href="#国际化自定义步骤" class="headerlink" title="国际化自定义步骤"></a>国际化自定义步骤</h2><ol>
+<li>打开 grd 文件，添加 message 结点，或找到要修改的 message 结点；</li>
+<li>根据 message 的内容运行grit 工具，得到翻译文件 xtb 的id值；</li>
+<li>打开要修改的 xtb 文件，每种语言对应一个xtb 文件， 新建 translation 结点，id为第2步中计算得到的 id 值，结点内容为对应语言的翻译， 如果不知道如何计算 id，也可以 将 message 结点的属性use_name_for_id 设置成true，则 translate 的id 对应为 message 的name值；</li>
+<li>重新编译 chrome_string 项目，生成新的头文件和资源包。</li>
+</ol>
+<p>改动文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chromium_strings.grd</span><br><span class="line">generated_resource.grd </span><br><span class="line">chromium_strings_zh-CN.xtb </span><br><span class="line">generated_resources_zh-CN.xtb</span><br></pre></td></tr></table></figure>
           
         
       
@@ -687,6 +873,215 @@
 <p><a href="https://www.tecmint.com/find-top-large-directories-and-files-sizes-in-linux/" target="_blank" rel="noopener">参考</a></p>
 <h2 id="7-挂载"><a href="#7-挂载" class="headerlink" title="7 挂载"></a>7 挂载</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mount -t vboxsf 源媒体 目标路径</span></span><br></pre></td></tr></table></figure>
 <h2 id="8-查找文件包含字符"><a href="#8-查找文件包含字符" class="headerlink" title="8 查找文件包含字符"></a>8 查找文件包含字符</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> This will only search through those files <span class="built_in">which</span> have .c or .h extensions:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --include=\*.&#123;c,h&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> This will exclude searching all the files ending with .o extension:</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude=*.o -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">For directories it<span class="string">'s possible to exclude a particular directory(ies) through --exclude-dir parameter. For example, this will exclude the dirs dir1/, dir2/ and all of them matching *.dst/:</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> grep --exclude-dir=&#123;dir1,dir2,*.dst&#125; -rnw <span class="string">'/path/to/somewhere/'</span> -e <span class="string">"pattern"</span></span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://onthink.com/2015/01/25/the-most-used-regular-expression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="程学彬">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ironbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/01/25/the-most-used-regular-expression/" itemprop="url">常用的正则表达式</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-25T00:00:00+08:00">
+                2015-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/" itemprop="url" rel="index">
+                    <span itemprop="name">program</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/25/the-most-used-regular-expression/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/01/25/the-most-used-regular-expression/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2015/01/25/the-most-used-regular-expression/" class="leancloud_visitors" data-flag-title="常用的正则表达式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="常用表达式"><a href="#常用表达式" class="headerlink" title="常用表达式"></a>常用表达式</h2><h3 id="1-中文字符"><a href="#1-中文字符" class="headerlink" title="1. 中文字符"></a>1. 中文字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4e00-\u9fa5]/</span><br></pre></td></tr></table></figure>
+<h3 id="2-邮箱"><a href="#2-邮箱" class="headerlink" title="2. 邮箱"></a>2. 邮箱</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^([a-z0<span class="number">-9</span>\+_\-]+)(\.[a-z0<span class="number">-9</span>\+_\-]+)*@([_a-z0<span class="number">-9</span>]+\.)+[a-z]&#123;<span class="number">2</span>,<span class="number">5</span>&#125;$/</span><br></pre></td></tr></table></figure>
+<h3 id="3-多个单词或"><a href="#3-多个单词或" class="headerlink" title="3. 多个单词或"></a>3. 多个单词或</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(?:apple|banna)/</span><br></pre></td></tr></table></figure>
+<h3 id="4-不包含某个单词"><a href="#4-不包含某个单词" class="headerlink" title="4. 不包含某个单词"></a>4. 不包含某个单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^((?!hede).)*$/</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<ul>
+<li><a href="http://fineonly.com/solutions/regex-exclude-a-string" target="_blank" rel="noopener">Exclude a String</a></li>
+<li><a href="http://www.vaikan.com/regular-expression-to-match-string-not-containing-a-word/" target="_blank" rel="noopener">正则表达式里字符串”不包含”匹配技巧</a></li>
+<li><a href="http://stackoverflow.com/questions/2078915/a-regular-expression-to-exclude-a-word-string" target="_blank" rel="noopener">A regular expression to exclude a word/string</a></li>
+</ul>
+<h3 id="5-神奇的全部-ASCII-字符"><a href="#5-神奇的全部-ASCII-字符" class="headerlink" title="5. 神奇的全部 ASCII 字符"></a>5. 神奇的全部 ASCII 字符</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[ -~]/</span><br><span class="line">/[\x20-\x7E]/</span><br></pre></td></tr></table></figure>
+<p><strong>解释</strong>：<a href="http://www.asciitable.com/" target="_blank" rel="noopener">ASCII 表</a>中大于空格（0x20），小于~（0x7E）的字符为全部的<strong>打印</strong>字符。</p>
+<h3 id="6-处理-HTML-标签"><a href="#6-处理-HTML-标签" class="headerlink" title="6. 处理 HTML 标签"></a>6. 处理 HTML 标签</h3><p>参考：</p>
+<ul>
+<li><a href="http://haacked.com/archive/2004/10/25/usingregularexpressionstomatchhtml.aspx/" target="_blank" rel="noopener">Using a Regular Expression to Match HTML</a></li>
+<li><a href="http://www.pagecolumn.com/tool/all_about_html_tags.htm" target="_blank" rel="noopener">All about HTML tags</a></li>
+</ul>
+<h3 id="7-使用空格分隔中文和英文单词"><a href="#7-使用空格分隔中文和英文单词" class="headerlink" title="7. 使用空格分隔中文和英文单词"></a>7. 使用空格分隔中文和英文单词</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">([\x&#123;4E00&#125;-\x&#123;9FA5&#125;])([a-z0-9@#&amp;;=_\[\$\%\^\*\-\+\(\/]+)</span><br><span class="line"></span><br><span class="line">$<span class="number">1</span> $<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Modifier</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td style="text-align:left">Perform case-insensitive matching</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td style="text-align:left">Perform a global match (find all matches rather than stopping after the first match)</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td style="text-align:left">Perform multiline matching</td>
+</tr>
+</tbody>
+</table>
+<p>收集了一些总结的很好的文章：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/zxin/archive/2013/01/26/2877765.html" target="_blank" rel="noopener">最全的常用正则表达式大全</a></li>
+<li><a href="http://www.regular-expressions.info/lookaround.html" target="_blank" rel="noopener">regular-expressions.info</a></li>
+<li><a href="http://regexr.com/30npe" target="_blank" rel="noopener">RegExr</a></li>
+</ul>
+
           
         
       
@@ -1963,381 +2358,6 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/07/06/32bit-64bit-registry/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/07/06/32bit-64bit-registry/" itemprop="url">32位和64位程序的注册表知识点</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-07-06T00:00:00+08:00">
-                2014-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/windows/" itemprop="url" rel="index">
-                    <span itemprop="name">windows</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/07/06/32bit-64bit-registry/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/07/06/32bit-64bit-registry/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/07/06/32bit-64bit-registry/" class="leancloud_visitors" data-flag-title="32位和64位程序的注册表知识点">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>众所周知，注册表是windows系统的数据库，系统本身以及安装的程序都依赖注册表。当windows进化到64位，还要兼容大量的32位老程序，便碰到了注册表的问题。这里只讨论64位系统的注册表机制。</p>
-<p>注册表树最大可以有512级深度，通过注册表API一次可以创建32级深的键值。</p>
-<p>为了解决64位系统遇到的问题，Windows使用了三套方案，共享（Shared）、<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384232\(v=vs.85\" target="_blank" rel="noopener">注册表重定向（Registry Redirector）</a>.aspx)和<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384235\(v=vs.85\" target="_blank" rel="noopener">注册表反射（Registry Reflection）</a>.aspx)。</p>
-<ul>
-<li><p>共享，顾名思义，保存可以被32位和64位共同使用的注册表。</p>
-</li>
-<li><p>反射，这是一个早期的方案，只用于Windows Server 2008, Windows Vista, Windows Server 2003, 和Windows XP，从Windows 7 和 Windows Server 2008 R2 开始被移除。  </p>
-<p>  它的做法是备份和同步，就是把同一份注册表保存到两个物理位置，这两个位置会分别被32位或64位程序使用。保存发生在RegCloseKey调用结束。使用 RegDisableReflectionKey和RegEnableReflectionKey方法可以禁用/启用反射机制。</p>
-</li>
-<li><p>重定向，主要使用的机制，它会区分32位和64位程序（Application），分别提供给他们不同的注册表物理存储位置，但会映射成同一个逻辑视图（View），这个过程对程序本身是透明的。也就是说，一个32位程序可以像在32位系统中一样来使用注册表，虽然它们在64位系统上被存储在不同的物理位置。  </p>
-<p>  32位程序重定向的注册表存放在Wow6432Node下，例如, HKEY_LOCAL_MACHINE\Software 会被重定向到 HKEY_LOCAL_MACHINE\Software\Wow6432Node。但是，这些操作应该由系统而非程序本身来做。  </p>
-<p>  当注册表包含%ProgramFiles% 或 %commonprogramfiles%时，64位系统会自动替换为 “%ProgramFiles(x86)%” 和 “%commonprogramfiles(x86)%”，同样的system32 被替换为  syswow64。具体的替换规则请阅读 <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384232\(v=vs.85\" target="_blank" rel="noopener">MSDN</a>.aspx)</p>
-</li>
-</ul>
-<p>关于Windows系统中哪些目录使用的是哪种机制，请<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa384253\(v=vs.85\" target="_blank" rel="noopener">更详细的列表</a>.aspx)。</p>
-<p>上面是系统的解决方案，如果你需要显式地访问64位注册表或32位注册表，可以使用KEY_WOW64_64KEY和KEY_WOW64_32KEY标识。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://onthink.com/2014/06/16/ios-bullet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="程学彬">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ironbin">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/06/16/ios-bullet/" itemprop="url">IOS要点总结</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-16T00:00:00+08:00">
-                2014-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ios/" itemprop="url" rel="index">
-                    <span itemprop="name">ios</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2014/06/16/ios-bullet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/06/16/ios-bullet/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2014/06/16/ios-bullet/" class="leancloud_visitors" data-flag-title="IOS要点总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>总结ios开发遇到的易混知识点、陷阱</p>
-<h2 id="Frame-VS-Bounds"><a href="#Frame-VS-Bounds" class="headerlink" title="Frame VS Bounds"></a>Frame VS Bounds</h2><p>A picture worth thousand words! 见下图。</p>
-<ul>
-<li><p><strong>Frame</strong>： 视图的frame是相对父坐标系的原点和矩形，默认从左上点开始。</p>
-</li>
-<li><p><strong>Bounds</strong>： 视图的bounds是相对自身坐标系的原点和区域。</p>
-</li>
-<li><p><strong>Center</strong>： 中点是相对父坐标系的中心点。 注意<strong>middle</strong>是相对自身坐标系的中心点</p>
-</li>
-</ul>
-<p>注意，当view旋转（rotate）时：</p>
-<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frame.size != bounds.size</span><br></pre></td></tr></table></figure>
-<p><img src="http://i.stack.imgur.com/3jcne.jpg" alt="The Kitchen Drawer based on Stanford CS193p course"></p>
-<h2 id="initWithFrame-VS-initWithCoder-VS-awakeFromNib"><a href="#initWithFrame-VS-initWithCoder-VS-awakeFromNib" class="headerlink" title="initWithFrame VS initWithCoder VS awakeFromNib"></a>initWithFrame VS initWithCoder VS awakeFromNib</h2><ul>
-<li>initWithFrame 是用户主动调用的，传入用来初始化的frame</li>
-<li>initWithCoder 是被触发的。当UIView被反序列化（deserialize）后，被触发。</li>
-<li>awakeFromNib 是被触发的。当UIView与xib内组件建立好连接（connection）后被触发。</li>
-</ul>
-<p>注：initWithNibName:boundle是发送到UIViewController的消息，与上面的方法对象不同。</p>
-<p><img src="/images/posts/view-init.png" alt=""></p>
-<h2 id="extension-VS-category"><a href="#extension-VS-category" class="headerlink" title="extension VS category"></a>extension VS category</h2><ul>
-<li><p>category是一种扩展已经存在的Class的方法。当你不能接触到Class的源码时，这是一种很有用的方式. 它常把文件取名为 “Class+CategoryName.h”, 比如 “NSView+CustomAdditions.h”， 包括.m的命名.</p>
-</li>
-<li><p>extension是一种特殊的category, 有以下两个不同：</p>
-<ul>
-<li><p>没有被扩展类名的category. 它的声明像这样:</p>
-<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SomeClass</span> ()</span></span><br><span class="line">	- (<span class="keyword">void</span>) anAdditionalMethod;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>extension常定义在实现（.m）文件的顶部，然后在其下@implementation部分实现它。这也成为一种实现“伪私有”（pseudo-private）成员的方式。伪私有顾名思义，并不是真的声明了私有成员，只是达到了不能在外部访问的目的。</p>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2392,7 +2412,7 @@ xdebug.remote_log="/path/to/log/dir/remote.log"
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">103</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
